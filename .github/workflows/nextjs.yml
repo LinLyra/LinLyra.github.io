@@ -1,3 +1,4 @@
+# .github/workflows/nextjs.yml
 name: Deploy to GitHub Pages
 
 on:
@@ -25,19 +26,16 @@ jobs:
         with:
           node-version: 18
 
-      - name: Enable Corepack (pnpm)
-        run: corepack enable
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
-      - name: Install dependencies
+      - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      - name: Build static site
-        run: pnpm run build:pages  # package.json 里要有 "build:pages": "next build && next export -o ./out"
+      - name: Build static site (Next export)
+        run: pnpm run build:pages
 
       - name: Add .nojekyll
         run: touch ./out/.nojekyll
