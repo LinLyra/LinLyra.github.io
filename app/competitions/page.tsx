@@ -1,331 +1,188 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { GalaxyBackground } from "@/components/galaxy-background"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Trophy, Users, Calendar, ArrowLeft, Award, Lightbulb } from "lucide-react"
-import Link from "next/link"
+import { Trophy, Users, Calendar, ArrowLeft, Award } from "lucide-react"
 
-interface CompetitionItem {
-  id: string
+type CompetitionItem = {
+  slug: string
   title: string
-  event: string
-  date: string
-  type: string
-  description: string
-  skills: string[]
-  details: string[]
+  event?: string
+  date?: string
+  type: "hackathon" | "marketing" | "modeling" | "sustainability" | "case" | "product"
+  description?: string
+  key?: string[]
   placement?: string
   teamSize?: string
-  image: string
-  reflection: string
-  learnings: string[]
+  image?: string
 }
 
 export default function CompetitionsPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const [selectedItem, setSelectedItem] = useState<CompetitionItem | null>(null)
 
   const competitions: CompetitionItem[] = [
     {
-      id: "1",
-      title: "AI Healthcare Solution",
-      event: "Global Health Hackathon 2024",
-      date: "March 2024",
+      slug: "gdgx-openai-hack",
+      title: "GDG x OpenAI Hack Node Australia",
+      date: "2025.8",
       type: "hackathon",
-      description: "Developed an AI-powered diagnostic tool for early disease detection using machine learning...",
-      skills: ["Python", "TensorFlow", "React", "Healthcare AI"],
-      details: [
-        "Built ML model with 92% accuracy for disease prediction",
-        "Created intuitive web interface for medical professionals",
-        "Integrated with existing hospital management systems",
-        "Presented solution to panel of healthcare experts",
-      ],
-      placement: "2nd Place",
-      teamSize: "4 members",
-      image: "/images/competition-1.png",
-      reflection:
-        "This hackathon taught me the importance of understanding domain-specific requirements. Working with healthcare professionals showed me how technical solutions must be deeply rooted in real-world needs. The 48-hour time constraint pushed our team to prioritize features effectively and communicate under pressure.",
-      learnings: [
-        "Healthcare data requires special privacy considerations",
-        "User interface design is crucial for medical professionals",
-        "Cross-functional collaboration enhances solution quality",
-        "Time management is critical in high-pressure environments",
-      ],
+      image: "/competitions/gdgx-openai-hack-node-au/cover.png",
+      description: "2nd edition of the Global AI Hackathon, co-hosted with MIT Sloan AI Club and major sponsors like OpenAI, Akamai, and ScaleAI. ",
+      key: ["Full-stack", "Vibe coding","Social Network app"，"GameFi"]
     },
     {
-      id: "2",
-      title: "Sustainable City Planning Platform",
-      event: "Smart Cities Challenge",
-      date: "November 2023",
-      type: "competition",
-      description:
-        "Urban planning platform using IoT data and predictive analytics for sustainable city development...",
-      skills: ["IoT", "Data Analytics", "Urban Planning", "Sustainability"],
-      details: [
-        "Analyzed real-time city data from 1000+ sensors",
-        "Developed predictive models for traffic and energy optimization",
-        "Created interactive dashboard for city planners",
-        "Proposed solutions reducing carbon footprint by 25%",
-      ],
-      placement: "1st Place",
-      teamSize: "3 members",
-      image: "/images/competition-2.png",
-      reflection:
-        "Winning this competition validated my belief in data-driven solutions for urban challenges. The project required balancing technical complexity with practical implementation. I learned that sustainable solutions must consider economic, social, and environmental factors simultaneously.",
-      learnings: [
-        "IoT data integration requires robust architecture",
-        "Sustainability metrics need clear visualization",
-        "Stakeholder buy-in is essential for urban solutions",
-        "Predictive models must account for human behavior",
-      ],
+      slug: "adventurex-2025",
+      title: "AdventureX 2025",
+      date: "2025.7",
+      type: "hackathon",
+      image: "/competitions/adventurex-2025/cover.png",
+      description: "China's largest youth-driven hackathon in this summer.",
+      key: ["Product operation", "web3", "Youth Innovation","YOLO"]
     },
     {
-      id: "3",
-      title: "Algorithmic Trading Bot",
-      event: "FinTech Innovation Contest",
-      date: "September 2023",
-      type: "programming",
-      description: "High-frequency trading algorithm using advanced mathematical models and real-time market data...",
-      skills: ["Python", "Financial Modeling", "Algorithms", "Real-time Systems"],
-      details: [
-        "Implemented advanced trading strategies with 15% ROI",
-        "Processed 10,000+ market data points per second",
-        "Built risk management system with automated stop-loss",
-        "Achieved 89% win rate in backtesting scenarios",
-      ],
-      placement: "3rd Place",
-      teamSize: "2 members",
-      image: "/images/competition-3.png",
-      reflection:
-        "This competition deepened my understanding of financial markets and algorithmic trading. The challenge of processing real-time data at scale taught me about system optimization and risk management. I realized that successful trading algorithms require both technical precision and market intuition.",
-      learnings: [
-        "Real-time data processing demands efficient algorithms",
-        "Risk management is more important than profit maximization",
-        "Market volatility requires adaptive strategies",
-        "Backtesting must account for market conditions",
-      ],
+      slug: "deloitte-digital-elite",
+      title: "Deloitte Digital Elite Challenge 2025",
+      date: "2025.5",
+      type: "product",
+      image: "/competitions/deloitte-digital-elite-2025/cover.png",
+      description: "Global university competition by Deloitte China to discover digital-minded talent.",
+      key: ["AI+Audit", "Frontend Development", "Digital Transformation"]
     },
     {
-      id: "4",
-      title: "Blockchain Voting System",
-      event: "Decentralized Democracy Hackathon",
-      date: "July 2023",
-      type: "blockchain",
-      description: "Secure and transparent voting platform built on Ethereum blockchain ensuring election integrity...",
-      skills: ["Solidity", "Web3.js", "React", "Ethereum", "Cryptography"],
-      details: [
-        "Developed smart contracts with zero security vulnerabilities",
-        "Implemented cryptographic voting mechanisms",
-        "Created user-friendly interface for voters and administrators",
-        "Conducted successful pilot with 1000+ test votes",
-      ],
-      placement: "1st Place",
-      teamSize: "4 members",
-      image: "/images/competition-4.png",
-      reflection:
-        "Building a blockchain voting system highlighted the intersection of technology and democracy. The project required balancing transparency with privacy, and security with usability. I learned that blockchain solutions must address both technical and social challenges to be truly effective.",
-      learnings: [
-        "Blockchain security requires multiple layers of protection",
-        "User experience is crucial for technology adoption",
-        "Transparency and privacy can coexist with proper design",
-        "Smart contract testing is critical for security",
-      ],
+      slug: "ccf-tech-for-good-2025",
+      title: "CCF Tech for Good Marathon 2025",
+      date: "2025.5",
+      type: "hackathon",
+      image: "/competitions/ccf-tech-for-good-2025/cover.png",
+      description: "Tech-for-good hackathon hosted by CCF, building social impact solutions.",
+      key: ["Accessible Films", "Product design", "Social impact"]
     },
     {
-      id: "5",
-      title: "Cybersecurity Defense Challenge",
-      event: "National Cyber Defense Competition",
-      date: "May 2023",
-      type: "cybersecurity",
-      description:
-        "24-hour cybersecurity competition involving network defense, incident response, and threat analysis...",
-      skills: ["Network Security", "Incident Response", "Threat Analysis", "Linux"],
-      details: [
-        "Defended network infrastructure against simulated attacks",
-        "Identified and mitigated 15+ security vulnerabilities",
-        "Implemented real-time monitoring and alerting systems",
-        "Collaborated with team under high-pressure scenarios",
-      ],
-      placement: "2nd Place",
-      teamSize: "5 members",
-      image: "/images/competition-5.png",
-      reflection:
-        "This intense 24-hour competition tested both technical skills and mental resilience. Working under constant 'attack' taught me the importance of systematic thinking and team coordination in cybersecurity. I gained deep appreciation for the complexity of modern security challenges.",
-      learnings: [
-        "Cybersecurity requires constant vigilance and adaptation",
-        "Team communication is critical during security incidents",
-        "Systematic approaches prevent oversight under pressure",
-        "Understanding attacker mindset improves defense strategies",
-      ],
+      slug: "roland-berger-2025",
+      title: "Roland Berger Campus Challenge 2025",
+      date: "2025.6",
+      type: "case",
+      image: "/competitions/roland-berger-campus-challenge-2025/cover.png",
+      description: "Strategy consulting case challenge from Roland Berger.",
+      key: ["Strategy", "Market Analysis"]
     },
     {
-      id: "6",
-      title: "Green Energy Optimization",
-      event: "Sustainable Tech Challenge",
-      date: "April 2023",
+      slug: "net-zero-challenge",
+      title: "Global Youth Summit on Net-Zero Future",
+      date: "2024.9",
       type: "sustainability",
-      description: "Developed optimization algorithms for renewable energy distribution in smart grids...",
-      skills: ["Machine Learning", "Energy Systems", "Optimization", "Python"],
-      details: [
-        "Created ML models for energy demand prediction",
-        "Optimized renewable energy distribution across grid",
-        "Reduced energy waste by 30% in simulation",
-        "Integrated weather data for solar/wind predictions",
-      ],
-      placement: "3rd Place",
-      teamSize: "3 members",
-      image: "/images/competition-1.png",
-      reflection:
-        "Working on green energy solutions connected my technical skills with environmental impact. The project taught me about the complexity of energy systems and the potential of AI in sustainability. I realized that technology can be a powerful force for positive environmental change.",
-      learnings: [
-        "Energy systems require understanding of multiple variables",
-        "Weather prediction significantly impacts renewable energy",
-        "Optimization algorithms can drive sustainability",
-        "Environmental impact should guide technical decisions",
-      ],
+      image: "/competitions/net-zero-challenge-gys/cover.png",
+      description: "A youth-driven global summit held at Tsinghua, co-hosted by UNESCO East Asia and the GAUC.",
+      key: ["Climate Action", "Youth Leadership", "Innovation"]
     },
-  ]
+    {
+      slug: "loreal-brandstorm",
+      title: "L'Oréal BRANDSTORM",
+      date: "2025.4",
+      type: "marketing",
+      image: "/competitions/loreal-brandstorm/cover.png",
+      description: "Global youth challenge focused on Men Beauty through tech and product innovation",
+      key: ["Marketing", "Product", "Pitch"]
+    },
+    {
+      slug: "kpmg-bluebird-it-audit",
+      title: "KPMG Bluebird IT Audit Challenge ",
+      date: "2025.8",
+      type: "case",
+      image: "/competitions/kpmg-bluebird-it-audit/cover.png",
+      description: "KMPG inviting students to solve real-world IT audit caseas using technology.",
+      key: ["IT Audit", "Cybersecurity", "ATM"]
+    },
+     {
+      slug: "microsoft-chat-hack-promptathon",
+      title: "Microsoft Chat & Hack Promptathon",
+      date: "2025.3",
+      type: "hackathon",
+      image: "/competitions/microsoft-chat-hack-promptathon/cover.png",
+      description: "GenAI prompt engineering & product prototyping.",
+      key: ["GenAI", "Prompting", "Product"]
+    },
+    {
+      slug: "kpmg-esg-case-competition",
+      title: "KPMG ESG Case Competition",
+      date: "2025",
+      type: "case",
+      image: "/competitions/kpmg-esg-case-competition-3rd/cover.png",
+      description: "ESG case-analysis competition led by KPMG China.",
+      key: ["ESG", "Sustainability","Business Strategy"]
+    },    
+    {
+      slug: "kpmg-innovate-day",
+      title: "KPMG Innovate Day 2025",
+      date: "2024.10",
+      type: "product",
+      image: "/competitions/kpmg-innovate-day-2025/cover.png",
+      description: "KPMG innovation program focusing on digital products & insights.",
+      key: ["Product", "AuditX", "Business plan"]
+    },
+    
+    {
+      slug: "apmcm-2024",
+      title: "APMCM Asia-Pacific Mathematical Contest in Modeling",
+      date: "2024.11",
+      type: "modeling",
+      image: "/competitions/apmcm-2024/cover.png",
+      description: "Mathematical modeling contest (Asia-Pacific).",
+      key: ["Modeling", "Optimization"]
+    },
+    
+    {
+      slug: "mcm-2025",
+      title: "MCM/ICM Mathematical Contest in Modeling",
+      date: "2025.2",
+      type: "modeling",
+      image: "/competitions/mcm-2025/cover.png",
+      description: "International mathematical modeling competition.",
+      skills: ["Modeling", "Statistics"]
+    },
+    {
+      slug: "ey-esg-innovation",
+      title: "EY ESG University Innovation Challenge",
+      date: "2025.4",
+      type: "case",
+      image: "/competitions/ey-esg-innovation-2025/cover.png",
+      description: "ESG innovation competition on data-driven sustainability strategies.",
+      skills: ["ESG", "AI+Luxury"]
+    },
+    
+    {
+      slug: "commonwealth-treasury",
+      title: "Commonwealth Treasury Case Competition",
+      date: "2025.4",
+      type: "case",
+      image: "/competitions/commonwealth-treasury-case/cover.png",
+      description: "Public policy & economic analysis case organized by CBA.",
+      skills: ["Economics", "Policy", "Analytics"]
+    },
+   
+    {
+   
+  const allTags = ["hackathon", "marketing", "modeling", "sustainability", "case", "product"]
 
-  const allTags = ["hackathon", "competition", "programming", "blockchain", "cybersecurity", "sustainability"]
-
-  const filteredCompetitions = competitions.filter((comp) => {
-    const matchesSearch =
-      comp.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      comp.event.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      comp.skills.some((skill) => skill.toLowerCase().includes(searchTerm.toLowerCase()))
-    const matchesTags = selectedTags.length === 0 || selectedTags.includes(comp.type)
-    return matchesSearch && matchesTags
+  const filtered = competitions.filter((c) => {
+    const q = searchTerm.toLowerCase()
+    const hit =
+      c.title.toLowerCase().includes(q) ||
+      (c.event ?? "").toLowerCase().includes(q) ||
+      (c.key ?? []).some((s) => s.toLowerCase().includes(q))
+    const tagOK = selectedTags.length === 0 || selectedTags.includes(c.type)
+    return hit && tagOK
   })
-
-  const toggleTag = (tag: string) => {
-    setSelectedTags((prev) => (prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]))
-  }
-
-  if (selectedItem) {
-    return (
-      <div className="relative min-h-screen">
-        <GalaxyBackground />
-        <div className="relative z-10 p-6">
-          <Button
-            onClick={() => setSelectedItem(null)}
-            className="mb-6 bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Competitions
-          </Button>
-
-          <div className="max-w-6xl mx-auto space-y-8">
-            {/* Main Competition Card */}
-            <Card className="bg-black/40 backdrop-blur-md border-green-400/20">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <CardTitle className="text-2xl text-gray-100 mb-2">{selectedItem.title}</CardTitle>
-                    <div className="flex items-center gap-4 text-gray-200 mb-4">
-                      <div className="flex items-center gap-1">
-                        <Trophy className="w-4 h-4" />
-                        {selectedItem.event}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-4 h-4" />
-                        {selectedItem.date}
-                      </div>
-                      {selectedItem.teamSize && (
-                        <div className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
-                          {selectedItem.teamSize}
-                        </div>
-                      )}
-                    </div>
-                    {selectedItem.placement && (
-                      <div className="flex items-center gap-2 mb-4">
-                        <Award className="w-5 h-5 text-yellow-400" />
-                        <span className="text-yellow-400 font-semibold">{selectedItem.placement}</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="ml-6">
-                    <img
-                      src={selectedItem.image || "/placeholder.svg"}
-                      alt={selectedItem.title}
-                      className="w-48 h-32 object-cover rounded-lg border border-green-400/20"
-                    />
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-100 mb-3">Project Overview</h3>
-                  <p className="text-gray-200">{selectedItem.description}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-100 mb-3">Key Achievements</h3>
-                  <ul className="space-y-2">
-                    {selectedItem.details.map((detail, index) => (
-                      <li key={index} className="text-gray-200 flex items-start gap-2">
-                        <span className="text-green-400 mt-1">•</span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-100 mb-3">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedItem.skills.map((skill, index) => (
-                      <Badge key={index} className="bg-green-500/20 text-green-200 border-green-500/30">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Reflection Section */}
-            <Card className="bg-black/40 backdrop-blur-md border-blue-400/20">
-              <CardHeader>
-                <CardTitle className="text-gray-100 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5 text-blue-400" />
-                  Reflection & Learnings
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-100 mb-3">Personal Reflection</h3>
-                  <p className="text-gray-200 leading-relaxed">{selectedItem.reflection}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-100 mb-3">Key Learnings</h3>
-                  <ul className="space-y-2">
-                    {selectedItem.learnings.map((learning, index) => (
-                      <li key={index} className="text-gray-200 flex items-start gap-2">
-                        <span className="text-blue-400 mt-1">💡</span>
-                        {learning}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="relative min-h-screen">
       <GalaxyBackground />
-
       <div className="relative z-10 pt-20 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
@@ -335,11 +192,10 @@ export default function CompetitionsPage() {
                 Back to Universe
               </Button>
             </Link>
-            <h1 className="text-4xl font-bold text-gray-100 mb-4">Competitions & Hackathons</h1>
+            <h1 className="text-4xl font-bold text-gray-100 mb-4">Competitions</h1>
             <p className="text-gray-200">Showcasing performance under pressure and collaborative innovation</p>
           </div>
 
-          {/* Search and Filter */}
           <div className="mb-8 space-y-4">
             <Input
               placeholder="Search competitions..."
@@ -347,55 +203,47 @@ export default function CompetitionsPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="max-w-md mx-auto bg-black/30 backdrop-blur-md border-green-400/30 text-gray-100 placeholder:text-gray-400"
             />
+            {/* （如需标签过滤，可以渲染 allTags 成为可点的 Badge；此处省略 UI，仅保留逻辑位） */}
           </div>
 
-          {/* Competition Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCompetitions.map((competition) => (
-              <Card
-                key={competition.id}
-                className="bg-black/30 backdrop-blur-md border-green-400/20 hover:bg-black/40 transition-all duration-300 cursor-pointer overflow-hidden"
-                onClick={() => setSelectedItem(competition)}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={competition.image || "/placeholder.svg"}
-                    alt={competition.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  {competition.placement && (
-                    <div className="absolute top-2 right-2 flex items-center gap-1 bg-yellow-500/20 backdrop-blur-sm rounded-full px-2 py-1">
-                      <Award className="w-3 h-3 text-yellow-400" />
-                      <span className="text-yellow-400 text-xs font-semibold">{competition.placement}</span>
-                    </div>
-                  )}
-                </div>
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <Trophy className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-400 text-sm">{competition.date}</span>
+            {filtered.map((c, i) => (
+              <Link key={c.slug} href={`/competitions/${c.slug}`} className="block">
+                <Card className="bg-black/30 backdrop-blur-md border-green-400/20 hover:bg-black/40 transition-all duration-300 cursor-pointer overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={c.image || "/placeholder.svg"}
+                      alt={c.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    {c.placement && (
+                      <div className="absolute top-2 right-2 flex items-center gap-1 bg-yellow-500/20 backdrop-blur-sm rounded-full px-2 py-1">
+                        <Award className="w-3 h-3 text-yellow-400" />
+                        <span className="text-yellow-400 text-xs font-semibold">{c.placement}</span>
+                      </div>
+                    )}
                   </div>
-                  <CardTitle className="text-gray-100 text-lg mb-2">{competition.title}</CardTitle>
-                  <div className="text-green-400 text-sm font-medium">{competition.event}</div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-200 text-sm mb-4 line-clamp-3">{competition.description}</p>
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {competition.skills.slice(0, 3).map((skill, index) => (
-                      <Badge key={index} className="bg-green-500/20 text-green-200 border-green-500/30 text-xs">
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                  {competition.teamSize && (
-                    <div className="flex items-center gap-2 text-gray-400 text-sm">
-                      <Users className="w-3 h-3" />
-                      {competition.teamSize}
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-2">
+                      <Trophy className="w-4 h-4 text-gray-400" />
+                      <span className="text-gray-400 text-sm">{c.date ?? ""}</span>
                     </div>
-                  )}
-                </CardContent>
-              </Card>
+                    <CardTitle className="text-gray-100 text-lg mb-2">{c.title}</CardTitle>
+                    {c.event && <div className="text-green-400 text-sm font-medium">{c.event}</div>}
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-200 text-sm mb-4 line-clamp-3">{c.description ?? ""}</p>
+                    <div className="flex flex-wrap gap-1">
+                      {(c.skills ?? []).slice(0, 3).map((skill) => (
+                        <Badge key={skill} className="bg-green-500/20 text-green-200 border-green-500/30 text-xs">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
