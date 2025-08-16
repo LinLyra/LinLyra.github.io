@@ -13,13 +13,14 @@ type CompetitionItem = {
   slug: string;
   title: string;
   event?: string;
-  date?: string; // e.g. "2025.8"
+  date?: string; // 
   type: "hackathon" | "marketing" | "modeling" | "sustainability" | "case" | "product";
   description?: string;
   tags?: string[];
   placement?: string;
   teamSize?: string;
-  image?: string; // public 下的路径，如 /competitions/xxx/cover.png
+  image?: string;
+  logo?: string;  
 };
 
 export default function CompetitionsPage() {
@@ -32,7 +33,7 @@ export default function CompetitionsPage() {
       title: "GDG × OpenAI Hack Node Australia",
       date: "2025.08",
       type: "hackathon",
-      image: "/competitions/gdgx-openai-hack-node-au/cover.png",
+      logo: "/competitions/gdgx-openai-hack-node-au/logo.png",
       description:
         "2nd Global AI Hackathon, co-hosted with MIT Sloan AI Club; sponsors include OpenAI, Akamai, Scale AI.",
       tags: ["Full-stack", "Vibe coding", "Social Network App", "GameFi"],
@@ -42,7 +43,7 @@ export default function CompetitionsPage() {
       title: "AdventureX 2025",
       date: "2025.07",
       type: "hackathon",
-      image: "/competitions/adventurex-2025/cover.png",
+      logo: "/competitions/adventurex-2025/logo.png",
       description: "China’s largest youth-driven hackathon this summer.",
       tags: ["Product Ops", "Web3", "Youth Innovation", "YOLO"],
     },
@@ -51,7 +52,7 @@ export default function CompetitionsPage() {
       title: "Deloitte Digital Elite Challenge 2025",
       date: "2025.05",
       type: "product",
-      image: "/competitions/deloitte-digital-elite-2025/cover.png",
+      logo: "/competitions/deloitte-digital-elite-2025/logo.png",
       description: "Global university competition by Deloitte China to discover digital-minded talent.",
       tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
     },
@@ -60,7 +61,7 @@ export default function CompetitionsPage() {
       title: "CCF Tech for Good Marathon 2025",
       date: "2025.05",
       type: "hackathon",
-      image: "/competitions/ccf-tech-for-good-2025/cover.png",
+      logo: "/competitions/ccf-tech-for-good-2025/logo.png",
       description: "Building social-impact solutions at the CCF tech-for-good hackathon.",
       tags: ["Accessible Films", "Product Design", "Social Impact"],
     },
@@ -69,7 +70,7 @@ export default function CompetitionsPage() {
       title: "Roland Berger Campus Challenge 2025",
       date: "2025.06",
       type: "case",
-      image: "/competitions/roland-berger-campus-challenge-2025/cover.png",
+      logo: "/competitions/roland-berger-campus-challenge-2025/logo.png",
       description: "Strategy consulting case challenge from Roland Berger.",
       tags: ["Strategy", "Market Analysis"],
     },
@@ -78,7 +79,7 @@ export default function CompetitionsPage() {
       title: "EY ESG University Innovation Challenge 2025",
       date: "2025.04",
       type: "case",
-      image: "/competitions/ey-esg-innovation-2025/cover.png",
+      logo: "/competitions/ey-esg-innovation-2025/logo.png",
       description: "Data-driven sustainability strategies and ESG innovation.",
       tags: ["ESG", "AI + Luxury"],
     },
@@ -87,7 +88,7 @@ export default function CompetitionsPage() {
       title: "KPMG Innovate Day 2025",
       date: "2024.10",
       type: "product",
-      image: "/competitions/kpmg-innovate-day-2025/cover.png",
+      logo: "/competitions/kpmg-innovate-day-2025/logo.png",
       description: "KPMG innovation program focused on digital products & insights.",
       tags: ["Product", "AuditX", "Business Plan"],
     },
@@ -96,7 +97,7 @@ export default function CompetitionsPage() {
       title: "KPMG ESG Case Competition (3rd)",
       date: "2025",
       type: "case",
-      image: "/competitions/kpmg-esg-case-competition-3rd/cover.png",
+      logo: "/competitions/kpmg-esg-case-competition-3rd/logo.png",
       description: "ESG case-analysis competition led by KPMG China.",
       tags: ["ESG", "Sustainability", "Business Strategy"],
     },
@@ -105,7 +106,7 @@ export default function CompetitionsPage() {
       title: "KPMG Bluebird IT Audit Challenge",
       date: "2025.08",
       type: "case",
-      image: "/competitions/kpmg-bluebird-it-audit/cover.png",
+      logo: "/competitions/kpmg-bluebird-it-audit/logo.png",
       description: "Solve real-world IT-audit cases with technology.",
       tags: ["IT Audit", "Cybersecurity", "ATM"],
     },
@@ -114,7 +115,7 @@ export default function CompetitionsPage() {
       title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
       date: "2024.11",
       type: "modeling",
-      image: "/competitions/apmcm-2024/cover.png",
+      logo: "/competitions/apmcm-2024/logo.png",
       description: "Mathematical modeling contest (Asia-Pacific).",
       tags: ["Modeling", "Optimization"],
     },
@@ -123,7 +124,7 @@ export default function CompetitionsPage() {
       title: "MCM/ICM Mathematical Contest in Modeling 2025",
       date: "2025.02",
       type: "modeling",
-      image: "/competitions/mcm-2025/cover.png",
+      logo: "/competitions/mcm-2025/logo.png",
       description: "International mathematical modeling competition.",
       tags: ["Modeling", "Statistics"],
     },
@@ -132,7 +133,7 @@ export default function CompetitionsPage() {
       title: "L'Oréal BRANDSTORM",
       date: "2025.04",
       type: "marketing",
-      image: "/competitions/loreal-brandstorm/cover.png",
+      logo: "/competitions/loreal-brandstorm/logo.png",
       description: "Global youth challenge—Men’s beauty through tech & product innovation.",
       tags: ["Marketing", "Product", "Pitch"],
     },
@@ -141,7 +142,7 @@ export default function CompetitionsPage() {
       title: "Global Youth Summit on Net-Zero Future",
       date: "2024.09",
       type: "sustainability",
-      image: "/competitions/net-zero-challenge-gys/cover.png",
+      logo: "/competitions/net-zero-challenge-gys/logo.png",
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
       tags: ["Climate Action", "Youth Leadership", "Innovation"],
@@ -151,7 +152,7 @@ export default function CompetitionsPage() {
       title: "Commonwealth Treasury Case Competition",
       date: "2025.04",
       type: "case",
-      image: "/competitions/commonwealth-treasury-case/cover.png",
+      logo: "/competitions/commonwealth-treasury-case/logo.png",
       description: "Public policy & economic analysis case organized by CBA.",
       tags: ["Economics", "Policy", "Analytics"],
     },
@@ -160,20 +161,10 @@ export default function CompetitionsPage() {
       title: "Microsoft Chat & Hack Promptathon",
       date: "2025.03",
       type: "hackathon",
-      image: "/competitions/microsoft-chat-hack-promptathon/cover.png",
+      logo: "/competitions/microsoft-chat-hack-promptathon/logo.png",
       description: "GenAI prompt engineering & product prototyping.",
       tags: ["GenAI", "Prompting", "Product"],
     },
-    // 如果还有“美国商业分析精英大赛”等，请继续补在这里：
-    // {
-    //   slug: "us-business-analytics-elite",
-    //   title: "US Business Analytics Elite Competition",
-    //   date: "2025.xx",
-    //   type: "case",
-    //   image: "/competitions/us-business-analytics-elite/cover.png",
-    //   description: "…",
-    //   tags: ["Analytics", "BI", "Dashboards"],
-    // },
   ];
 
   const allTypes = ["hackathon", "marketing", "modeling", "sustainability", "case", "product"] as const;
@@ -207,7 +198,7 @@ export default function CompetitionsPage() {
             </p>
           </div>
 
-          {/* 搜索 +（可选）类型过滤 */}
+          {/* 搜索 + 类型过滤 */}
           <div className="mb-8 space-y-4">
             <Input
               placeholder="Search competitions..."
@@ -248,32 +239,45 @@ export default function CompetitionsPage() {
             </div>
           </div>
 
-          {/* 卡片列表 */}
+          {/* 卡片列表（无大图，仅 Logo） */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((c) => (
               <Link key={c.slug} href={`/competitions/${c.slug}`} className="block">
-                <Card className="bg-black/30 backdrop-blur-md border-green-400/20 hover:bg-black/40 transition-all duration-300 cursor-pointer overflow-hidden">
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={c.image || "/placeholder.svg"}
-                      alt={c.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    {c.placement && (
-                      <div className="absolute top-2 right-2 flex items-center gap-1 bg-yellow-500/20 backdrop-blur-sm rounded-full px-2 py-1">
-                        <Award className="w-3 h-3 text-yellow-400" />
-                        <span className="text-yellow-400 text-xs font-semibold">{c.placement}</span>
+                <Card className="bg-black/30 backdrop-blur-md border-green-400/20 hover:bg-black/40 transition-all duration-300 cursor-pointer overflow-hidden min-h-[220px]">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-3">
+                        {/* ✅ 小 Logo 方块 */}
+                        <div className="shrink-0 w-12 h-12 rounded-xl bg-white/5 border border-green-400/20 flex items-center justify-center overflow-hidden">
+                          <img
+                            src={c.logo || c.image || "/placeholder.svg"}
+                            alt={`${c.title} logo`}
+                            className="max-w-[2.5rem] max-h-[2.5rem] object-contain"
+                          />
+                        </div>
+                        <div>
+                          <CardTitle className="text-gray-100 text-lg leading-snug">
+                            {c.title}
+                          </CardTitle>
+                          <div className="flex items-center gap-2 text-xs text-gray-400 mt-1">
+                            <Trophy className="w-4 h-4" />
+                            <span>{c.date ?? ""}</span>
+                            {c.event && <span>• {c.event}</span>}
+                          </div>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Trophy className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-400 text-sm">{c.date ?? ""}</span>
+
+                      {c.placement && (
+                        <div className="flex items-center gap-1 bg-yellow-500/20 backdrop-blur-sm rounded-full px-2 py-1">
+                          <Award className="w-3 h-3 text-yellow-400" />
+                          <span className="text-yellow-400 text-xs font-semibold">
+                            {c.placement}
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <CardTitle className="text-gray-100 text-lg mb-2">{c.title}</CardTitle>
                   </CardHeader>
+
                   <CardContent>
                     <p className="text-gray-200 text-sm mb-4 line-clamp-3">
                       {c.description ?? ""}
