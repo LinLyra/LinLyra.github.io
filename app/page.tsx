@@ -7,20 +7,14 @@ import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { SkillsSection } from "@/components/skills-section";
 
-// ✅ 3D 组件用动态导入并关闭 SSR（浏览器端加载，效果不变）
+// ✅ 3D 组件用动态导入并关闭 SSR
 const Planets3DSection = dynamic(
-  () =>
-    import("@/components/planets-3d-section").then(
-      (m) => m.Planets3DSection
-    ),
+  () => import("@/components/planets-3d-section"), // 若它也是默认导出，直接这样即可
   { ssr: false, loading: () => null }
 );
 
 const ContactSection = dynamic(
-  () =>
-    import("@/components/contact-section").then(
-      (m) => m.ContactSection ?? m.default
-    ),
+  () => import("@/components/contact-section"), // ContactSection 现为默认导出
   { ssr: false, loading: () => null }
 );
 
@@ -36,10 +30,7 @@ export default function PersonalWebsite() {
         const el = document.getElementById(section);
         if (el) {
           const { offsetTop, offsetHeight } = el;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
           }
@@ -53,15 +44,10 @@ export default function PersonalWebsite() {
 
   return (
     <div className="relative">
-      {/* ❌ 不再在页面里渲染 GalaxyBackground —— 已在 layout 全局挂载 */}
+      {/* GalaxyBackground 已在 layout 全局挂载，这里不用再引入 */}
 
-      {/* Navigation */}
-      <Navigation
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-      />
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
 
-      {/* Content Sections */}
       <div className="relative z-10">
         <HeroSection />
         <SkillsSection />
@@ -69,7 +55,6 @@ export default function PersonalWebsite() {
         <ContactSection />
       </div>
 
-      {/* Scroll Indicator */}
       <div className="fixed right-6 top-1/2 -translate-y-1/2 transform z-40 space-y-2">
         {["home", "skills", "planets", "contact"].map((section) => (
           <div
@@ -83,4 +68,5 @@ export default function PersonalWebsite() {
     </div>
   );
 }
+
 
