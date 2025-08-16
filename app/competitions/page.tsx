@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { GalaxyBackground } from "@/components/galaxy-background";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -182,7 +181,6 @@ export default function CompetitionsPage() {
 
   return (
     <div className="relative min-h-screen">
-      <GalaxyBackground />
       <div className="relative z-10 pt-20 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
