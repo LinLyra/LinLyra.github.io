@@ -11,11 +11,14 @@ export const metadata: Metadata = {
   generator: "v0.app",
 };
 
-// 路径按你的实际修改（components/ 或 components/ui/）
-const GalaxyBackground = dynamic(() => import("@/components/galaxy-background"), {
-  ssr: false,
-  loading: () => null,
-});
+// 路径按你的实际：如果文件在 components/ui，就改成 "@/components/ui/galaxy-background"
+const GalaxyBackground = dynamic(
+  () =>
+    import("@/components/galaxy-background").then(
+      (m) => m.default ?? m.GalaxyBackground   // ✅ 兼容默认导出或命名导出
+    ),
+  { ssr: false, loading: () => null }           // ✅ 关闭 SSR（导出时不加载 three）
+);
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,10 +33,18 @@ html {
         `}</style>
       </head>
       <body>
-        <GalaxyBackground />
-        {children}
+        {/* ✅ 背景单独包一层，避免它崩全局 */}
+        <QuietBoundary fallback={null}>
+          <GalaxyBackground />
+        </QuietBoundary>
+
+        {/* ✅ 页面内容也包一层，防止某个页面组件把整页打崩 */}
+        <QuietBoundary fallback={<div className="p-8 text-gray-300">Something went wrong. Please refresh.</div>}>
+          {children}
+        </QuietBoundary>
       </body>
     </html>
   );
 }
+
 
