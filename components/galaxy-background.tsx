@@ -23,13 +23,14 @@ export default function GalaxyBackground() {
     insideColor: "#ff6030", outsideColor: "#1b3984",
   }), []);
 
+  // SSR 或不支持 WebGL 时返回纯黑底，避免崩溃
   if (typeof window === "undefined" || !ready) {
-    return <div className="fixed inset-0 z-0 bg-black" />; // 优雅降级
+    return <div className="fixed inset-0 z-0 bg-black" />;
   }
 
   return (
     <div className="fixed inset-0 z-0 bg-black pointer-events-none">
-      <Canvas camera={{ position: [8, 4, 8], fov: 75, near: 0.1, far: 1000 }} gl={{ antialias: true, alpha: true }}>
+      <Canvas dpr={[1, 1.5]} camera={{ position: [8, 4, 8], fov: 75, near: 0.1, far: 1000 }} gl={{ antialias: true, alpha: true }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.1} />
           <pointLight position={[0, 0, 0]} intensity={0.3} color="#fff" />
