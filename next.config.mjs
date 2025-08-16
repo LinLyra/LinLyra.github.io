@@ -1,10 +1,21 @@
-/** @type {import('next').NextConfig} */
+// next.config.mjs
+import webpack from "webpack";
+
 const nextConfig = {
-  output: 'export',          // 关键：静态导出 -> 生成 out/
-  trailingSlash: true,       // 建议：生成 xxx/index.html
-  images: { unoptimized: true }, // GitHub Pages 没有 Image Optimizer
-  eslint: { ignoreDuringBuilds: true },
-  typescript: { ignoreBuildErrors: true },
+  output: "export",                  // 你本来就在用
+  images: { unoptimized: true },     // GitHub Pages 推荐
+  // trailingSlash: true,            // 可选：GH Pages 常用
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      // 在服务端构建时直接忽略 three/@react-three/*，防止预渲染阶段评估它们
+      config.plugins.push(
+        new webpack.IgnorePlugin({
+          resourceRegExp: /^(@react-three\/fiber|@react-three\/drei|three)$/
+        })
+      );
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
