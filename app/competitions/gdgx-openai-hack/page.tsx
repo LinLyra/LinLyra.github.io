@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { GalaxyBackground } from "@/components/galaxy-background";
 import { MediaModal } from "@/components/media-modal";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -70,7 +69,6 @@ export default function Page() {
 
   return (
     <div className="relative min-h-screen">
-      <GalaxyBackground />
 
       <div className="relative z-10 p-6">
         <Link href="/competitions">
