@@ -1,16 +1,27 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Send } from "lucide-react"
-import { AdvancedGalaxyCanvas } from "./advanced-galaxy-canvas"
+import type React from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
 
-const FORM_ENDPOINT = "https://formspree.io/f/mjkozkel" 
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Send } from "lucide-react";
+
+// ❌ 删除静态导入：import { AdvancedGalaxyCanvas } from "./advanced-galaxy-canvas";
+// ✅ 动态导入，关闭 SSR（导出/SSR 时不加载 three/drei）
+const AdvancedGalaxyCanvas = dynamic(
+  () =>
+    import("./advanced-galaxy-canvas").then(
+      (m) => m.AdvancedGalaxyCanvas ?? m.default
+    ),
+  { ssr: false, loading: () => null }
+);
+
+const FORM_ENDPOINT = "https://formspree.io/f/mjkozkel";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -19,18 +30,18 @@ export function ContactSection() {
     subject: "",
     message: "",
     _honeypot: "", // 蜜罐，防机器人
-  })
-  const [submitting, setSubmitting] = useState(false)
-  const [ok, setOk] = useState<null | boolean>(null)
-  const [errMsg, setErrMsg] = useState<string | null>(null)
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [ok, setOk] = useState<null | boolean>(null);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (formData._honeypot) return
+    e.preventDefault();
+    if (formData._honeypot) return;
 
-    setSubmitting(true)
-    setOk(null)
-    setErrMsg(null)
+    setSubmitting(true);
+    setOk(null);
+    setErrMsg(null);
 
     try {
       const res = await fetch(FORM_ENDPOINT, {
@@ -45,48 +56,63 @@ export function ContactSection() {
           subject: formData.subject,
           message: formData.message,
         }),
-      })
+      });
 
       if (res.ok) {
-        setOk(true)
-        setFormData({ name: "", contact: "", subject: "", message: "", _honeypot: "" })
+        setOk(true);
+        setFormData({
+          name: "",
+          contact: "",
+          subject: "",
+          message: "",
+          _honeypot: "",
+        });
       } else {
-        const data = await res.json().catch(() => ({}))
-        setOk(false)
-        setErrMsg(data?.errors?.[0]?.message || "Submit failed. Please try again.")
+        const data = await res.json().catch(() => ({}));
+        setOk(false);
+        setErrMsg(
+          data?.errors?.[0]?.message || "Submit failed. Please try again."
+        );
       }
-    } catch (e) {
-      setOk(false)
-      setErrMsg("Network error. Please try again.")
+    } catch {
+      setOk(false);
+      setErrMsg("Network error. Please try again.");
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center relative z-10 px-4 py-20">
+    <section
+      id="contact"
+      className="relative z-10 min-h-screen px-4 py-20 flex items-center justify-center"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
             Let’s Connect Across the Stars
           </h2>
           <p className="text-xl text-gray-200 mb-4">
-            Ready to leave your mark in my universe? I’m open to new opportunities, creative collaborations, and curious conversations — from academic projects and competitions to work ventures and beyond.
+            Ready to leave your mark in my universe? I’m open to new
+            opportunities, creative collaborations, and curious conversations —
+            from academic projects and competitions to work ventures and beyond.
           </p>
           <p className="text-lg text-gray-300">
-            Whether you’re here to build something together, share an idea, or just say hello, your signal is welcome — let’s see where our paths might meet.
+            Whether you’re here to build something together, share an idea, or
+            just say hello, your signal is welcome — let’s see where our paths
+            might meet.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* 左：星云绘制 */}
+          {/* 左：星云绘制（仅在客户端加载） */}
           <AdvancedGalaxyCanvas />
 
           {/* 右：表单（Formspree） */}
@@ -97,7 +123,8 @@ export function ContactSection() {
                 Send a Message to My Universe
               </CardTitle>
               <p className="text-gray-300 text-sm">
-                From competitions and academic collaborations to creative projects or work opportunities — I welcome all signals.
+                From competitions and academic collaborations to creative
+                projects or work opportunities — I welcome all signals.
               </p>
             </CardHeader>
             <CardContent>
@@ -115,7 +142,9 @@ export function ContactSection() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="name" className="text-white">Name</Label>
+                    <Label htmlFor="name" className="text-white">
+                      Name
+                    </Label>
                     <Input
                       id="name"
                       name="name"
@@ -127,21 +156,25 @@ export function ContactSection() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="contact" className="text-white">Contact</Label>
+                    <Label htmlFor="contact" className="text-white">
+                      Contact
+                    </Label>
                     <Input
                       id="contact"
                       name="contact"
                       value={formData.contact}
                       onChange={handleInputChange}
                       className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                      placeholder="email / ins/ WeChat"
+                      placeholder="email / ins / WeChat"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="subject" className="text-white">Subject</Label>
+                  <Label htmlFor="subject" className="text-white">
+                    Subject
+                  </Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -154,7 +187,9 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-white">Message</Label>
+                  <Label htmlFor="message" className="text-white">
+                    Message
+                  </Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -176,16 +211,21 @@ export function ContactSection() {
                 </Button>
 
                 {ok === true && (
-                  <p className="text-center text-emerald-300 text-sm">Message sent. Thanks for your signal ✨</p>
+                  <p className="text-center text-emerald-300 text-sm">
+                    Message sent. Thanks for your signal ✨
+                  </p>
                 )}
                 {ok === false && (
-                  <p className="text-center text-red-300 text-sm">{errMsg || "Something went wrong. Please try again."}</p>
+                  <p className="text-center text-red-300 text-sm">
+                    {errMsg || "Something went wrong. Please try again."}
+                  </p>
                 )}
               </form>
 
               <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
                 <p className="text-gray-400 text-xs text-center italic">
-                  "Every message is a star launched into our shared sky — it will find its place in my constellation."
+                  "Every message is a star launched into our shared sky — it
+                  will find its place in my constellation."
                 </p>
               </div>
             </CardContent>
@@ -193,5 +233,6 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
+
