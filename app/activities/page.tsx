@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { GalaxyBackground } from "@/components/galaxy-background"
 import { Navigation } from "@/components/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -68,7 +67,6 @@ export default function ActivitiesPage() {
 
   return (
     <div className="relative min-h-screen">
-      <GalaxyBackground />
       <Navigation activeSection="activities" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-20 p-6">
