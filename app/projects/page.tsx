@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { GalaxyBackground } from "@/components/galaxy-background"
 import { Navigation } from "@/components/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -67,7 +66,6 @@ export default function ProjectsPage() {
 
   return (
     <div className="relative min-h-screen">
-      <GalaxyBackground />
       <Navigation activeSection="projects" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-20 p-6">
