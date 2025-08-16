@@ -1,3 +1,4 @@
+// components/contact-section.tsx
 "use client";
 
 import type React from "react";
@@ -11,19 +12,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Send } from "lucide-react";
 
-// ❌ 删除静态导入：import { AdvancedGalaxyCanvas } from "./advanced-galaxy-canvas";
-// ✅ 动态导入，关闭 SSR（导出/SSR 时不加载 three/drei）
+// 🔴 建议：advanced-galaxy-canvas 也改成“默认导出”
+// 然后这里这样动态导入（不要再 ?.?? m.default 兼容写法了，简单干净）
 const AdvancedGalaxyCanvas = dynamic(
-  () =>
-    import("./advanced-galaxy-canvas").then(
-      (m) => m.AdvancedGalaxyCanvas ?? m.default
-    ),
+  () => import("./advanced-galaxy-canvas"),
   { ssr: false, loading: () => null }
 );
 
 const FORM_ENDPOINT = "https://formspree.io/f/mjkozkel";
 
-export function ContactSection() {
+export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -60,19 +58,11 @@ export function ContactSection() {
 
       if (res.ok) {
         setOk(true);
-        setFormData({
-          name: "",
-          contact: "",
-          subject: "",
-          message: "",
-          _honeypot: "",
-        });
+        setFormData({ name: "", contact: "", subject: "", message: "", _honeypot: "" });
       } else {
         const data = await res.json().catch(() => ({}));
         setOk(false);
-        setErrMsg(
-          data?.errors?.[0]?.message || "Submit failed. Please try again."
-        );
+        setErrMsg(data?.errors?.[0]?.message || "Submit failed. Please try again.");
       }
     } catch {
       setOk(false);
@@ -90,24 +80,17 @@ export function ContactSection() {
   };
 
   return (
-    <section
-      id="contact"
-      className="relative z-10 min-h-screen px-4 py-20 flex items-center justify-center"
-    >
+    <section id="contact" className="relative z-10 min-h-screen px-4 py-20 flex items-center justify-center">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
-            Let’s Connect Across the Stars
-          </h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">Let’s Connect Across the Stars</h2>
           <p className="text-xl text-gray-200 mb-4">
-            Ready to leave your mark in my universe? I’m open to new
-            opportunities, creative collaborations, and curious conversations —
-            from academic projects and competitions to work ventures and beyond.
+            Ready to leave your mark in my universe? I’m open to new opportunities, creative collaborations, and curious
+            conversations — from academic projects and competitions to work ventures and beyond.
           </p>
           <p className="text-lg text-gray-300">
-            Whether you’re here to build something together, share an idea, or
-            just say hello, your signal is welcome — let’s see where our paths
-            might meet.
+            Whether you’re here to build something together, share an idea, or just say hello, your signal is welcome —
+            let’s see where our paths might meet.
           </p>
         </div>
 
@@ -123,8 +106,8 @@ export function ContactSection() {
                 Send a Message to My Universe
               </CardTitle>
               <p className="text-gray-300 text-sm">
-                From competitions and academic collaborations to creative
-                projects or work opportunities — I welcome all signals.
+                From competitions and academic collaborations to creative projects or work opportunities — I welcome all
+                signals.
               </p>
             </CardHeader>
             <CardContent>
@@ -142,9 +125,7 @@ export function ContactSection() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="name" className="text-white">
-                      Name
-                    </Label>
+                    <Label htmlFor="name" className="text-white">Name</Label>
                     <Input
                       id="name"
                       name="name"
@@ -156,9 +137,7 @@ export function ContactSection() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="contact" className="text-white">
-                      Contact
-                    </Label>
+                    <Label htmlFor="contact" className="text-white">Contact</Label>
                     <Input
                       id="contact"
                       name="contact"
@@ -172,9 +151,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <Label htmlFor="subject" className="text-white">
-                    Subject
-                  </Label>
+                  <Label htmlFor="subject" className="text-white">Subject</Label>
                   <Input
                     id="subject"
                     name="subject"
@@ -187,9 +164,7 @@ export function ContactSection() {
                 </div>
 
                 <div>
-                  <Label htmlFor="message" className="text-white">
-                    Message
-                  </Label>
+                  <Label htmlFor="message" className="text-white">Message</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -224,8 +199,7 @@ export function ContactSection() {
 
               <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
                 <p className="text-gray-400 text-xs text-center italic">
-                  "Every message is a star launched into our shared sky — it
-                  will find its place in my constellation."
+                  "Every message is a star launched into our shared sky — it will find its place in my constellation."
                 </p>
               </div>
             </CardContent>
@@ -235,4 +209,3 @@ export function ContactSection() {
     </section>
   );
 }
-
