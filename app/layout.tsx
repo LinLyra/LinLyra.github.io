@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 // 路径按你的实际修改（components/ 或 components/ui/）
-const GalaxyBackground = dynamic(() => import("@/components/ui/galaxy-background"), {
+const GalaxyBackground = dynamic(() => import("@/components/galaxy-background"), {
   ssr: false,
   loading: () => null,
 });
