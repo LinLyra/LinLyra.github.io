@@ -12,8 +12,7 @@ export const metadata: Metadata = {
   generator: "v0.app",
 };
 
-// 如果你的文件在 components/ui/galaxy-background.tsx
-// 路径改成 "@/components/ui/galaxy-background"
+
 const GalaxyBackground = dynamic(
   () => import("@/components/galaxy-background"), // 仅默认导出，不再尝试 m.GalaxyBackground
   { ssr: false, loading: () => null }
