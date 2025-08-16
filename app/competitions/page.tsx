@@ -1,184 +1,193 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { GalaxyBackground } from "@/components/galaxy-background"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Trophy, Users, Calendar, ArrowLeft, Award } from "lucide-react"
+import { useState } from "react";
+import Link from "next/link";
+import { GalaxyBackground } from "@/components/galaxy-background";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Trophy, ArrowLeft, Award } from "lucide-react";
 
 type CompetitionItem = {
-  slug: string
-  title: string
-  event?: string
-  date?: string
-  type: "hackathon" | "marketing" | "modeling" | "sustainability" | "case" | "product"
-  description?: string
-  key?: string[]
-  placement?: string
-  teamSize?: string
-  image?: string
-}
+  slug: string;
+  title: string;
+  event?: string;
+  date?: string; // e.g. "2025.8"
+  type: "hackathon" | "marketing" | "modeling" | "sustainability" | "case" | "product";
+  description?: string;
+  tags?: string[];
+  placement?: string;
+  teamSize?: string;
+  image?: string; // public 下的路径，如 /competitions/xxx/cover.png
+};
 
 export default function CompetitionsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const competitions: CompetitionItem[] = [
     {
       slug: "gdgx-openai-hack",
-      title: "GDG x OpenAI Hack Node Australia",
-      date: "2025.8",
+      title: "GDG × OpenAI Hack Node Australia",
+      date: "2025.08",
       type: "hackathon",
       image: "/competitions/gdgx-openai-hack-node-au/cover.png",
-      description: "2nd edition of the Global AI Hackathon, co-hosted with MIT Sloan AI Club and major sponsors like OpenAI, Akamai, and ScaleAI. ",
-      key: ["Full-stack", "Vibe coding","Social Network app"，"GameFi"]
+      description:
+        "2nd Global AI Hackathon, co-hosted with MIT Sloan AI Club; sponsors include OpenAI, Akamai, Scale AI.",
+      tags: ["Full-stack", "Vibe coding", "Social Network App", "GameFi"],
     },
     {
       slug: "adventurex-2025",
       title: "AdventureX 2025",
-      date: "2025.7",
+      date: "2025.07",
       type: "hackathon",
       image: "/competitions/adventurex-2025/cover.png",
-      description: "China's largest youth-driven hackathon in this summer.",
-      key: ["Product operation", "web3", "Youth Innovation","YOLO"]
+      description: "China’s largest youth-driven hackathon this summer.",
+      tags: ["Product Ops", "Web3", "Youth Innovation", "YOLO"],
     },
     {
-      slug: "deloitte-digital-elite",
+      slug: "deloitte-digital-elite-2025",
       title: "Deloitte Digital Elite Challenge 2025",
-      date: "2025.5",
+      date: "2025.05",
       type: "product",
       image: "/competitions/deloitte-digital-elite-2025/cover.png",
       description: "Global university competition by Deloitte China to discover digital-minded talent.",
-      key: ["AI+Audit", "Frontend Development", "Digital Transformation"]
+      tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
     },
     {
       slug: "ccf-tech-for-good-2025",
       title: "CCF Tech for Good Marathon 2025",
-      date: "2025.5",
+      date: "2025.05",
       type: "hackathon",
       image: "/competitions/ccf-tech-for-good-2025/cover.png",
-      description: "Tech-for-good hackathon hosted by CCF, building social impact solutions.",
-      key: ["Accessible Films", "Product design", "Social impact"]
+      description: "Building social-impact solutions at the CCF tech-for-good hackathon.",
+      tags: ["Accessible Films", "Product Design", "Social Impact"],
     },
     {
-      slug: "roland-berger-2025",
+      slug: "roland-berger-campus-2025",
       title: "Roland Berger Campus Challenge 2025",
-      date: "2025.6",
+      date: "2025.06",
       type: "case",
       image: "/competitions/roland-berger-campus-challenge-2025/cover.png",
       description: "Strategy consulting case challenge from Roland Berger.",
-      key: ["Strategy", "Market Analysis"]
+      tags: ["Strategy", "Market Analysis"],
     },
     {
-      slug: "net-zero-challenge",
-      title: "Global Youth Summit on Net-Zero Future",
-      date: "2024.9",
-      type: "sustainability",
-      image: "/competitions/net-zero-challenge-gys/cover.png",
-      description: "A youth-driven global summit held at Tsinghua, co-hosted by UNESCO East Asia and the GAUC.",
-      key: ["Climate Action", "Youth Leadership", "Innovation"]
-    },
-    {
-      slug: "loreal-brandstorm",
-      title: "L'Oréal BRANDSTORM",
-      date: "2025.4",
-      type: "marketing",
-      image: "/competitions/loreal-brandstorm/cover.png",
-      description: "Global youth challenge focused on Men Beauty through tech and product innovation",
-      key: ["Marketing", "Product", "Pitch"]
-    },
-    {
-      slug: "kpmg-bluebird-it-audit",
-      title: "KPMG Bluebird IT Audit Challenge ",
-      date: "2025.8",
+      slug: "ey-esg-innovation-2025",
+      title: "EY ESG University Innovation Challenge 2025",
+      date: "2025.04",
       type: "case",
-      image: "/competitions/kpmg-bluebird-it-audit/cover.png",
-      description: "KMPG inviting students to solve real-world IT audit caseas using technology.",
-      key: ["IT Audit", "Cybersecurity", "ATM"]
-    },
-     {
-      slug: "microsoft-chat-hack-promptathon",
-      title: "Microsoft Chat & Hack Promptathon",
-      date: "2025.3",
-      type: "hackathon",
-      image: "/competitions/microsoft-chat-hack-promptathon/cover.png",
-      description: "GenAI prompt engineering & product prototyping.",
-      key: ["GenAI", "Prompting", "Product"]
+      image: "/competitions/ey-esg-innovation-2025/cover.png",
+      description: "Data-driven sustainability strategies and ESG innovation.",
+      tags: ["ESG", "AI + Luxury"],
     },
     {
-      slug: "kpmg-esg-case-competition",
-      title: "KPMG ESG Case Competition",
-      date: "2025",
-      type: "case",
-      image: "/competitions/kpmg-esg-case-competition-3rd/cover.png",
-      description: "ESG case-analysis competition led by KPMG China.",
-      key: ["ESG", "Sustainability","Business Strategy"]
-    },    
-    {
-      slug: "kpmg-innovate-day",
+      slug: "kpmg-innovate-day-2025",
       title: "KPMG Innovate Day 2025",
       date: "2024.10",
       type: "product",
       image: "/competitions/kpmg-innovate-day-2025/cover.png",
-      description: "KPMG innovation program focusing on digital products & insights.",
-      key: ["Product", "AuditX", "Business plan"]
+      description: "KPMG innovation program focused on digital products & insights.",
+      tags: ["Product", "AuditX", "Business Plan"],
     },
-    
+    {
+      slug: "kpmg-esg-case-competition-3rd",
+      title: "KPMG ESG Case Competition (3rd)",
+      date: "2025",
+      type: "case",
+      image: "/competitions/kpmg-esg-case-competition-3rd/cover.png",
+      description: "ESG case-analysis competition led by KPMG China.",
+      tags: ["ESG", "Sustainability", "Business Strategy"],
+    },
+    {
+      slug: "kpmg-bluebird-it-audit",
+      title: "KPMG Bluebird IT Audit Challenge",
+      date: "2025.08",
+      type: "case",
+      image: "/competitions/kpmg-bluebird-it-audit/cover.png",
+      description: "Solve real-world IT-audit cases with technology.",
+      tags: ["IT Audit", "Cybersecurity", "ATM"],
+    },
     {
       slug: "apmcm-2024",
-      title: "APMCM Asia-Pacific Mathematical Contest in Modeling",
+      title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
       date: "2024.11",
       type: "modeling",
       image: "/competitions/apmcm-2024/cover.png",
       description: "Mathematical modeling contest (Asia-Pacific).",
-      key: ["Modeling", "Optimization"]
+      tags: ["Modeling", "Optimization"],
     },
-    
     {
-      slug: "mcm-2025",
-      title: "MCM/ICM Mathematical Contest in Modeling",
-      date: "2025.2",
+      slug: "mcm-icm-2025",
+      title: "MCM/ICM Mathematical Contest in Modeling 2025",
+      date: "2025.02",
       type: "modeling",
       image: "/competitions/mcm-2025/cover.png",
       description: "International mathematical modeling competition.",
-      skills: ["Modeling", "Statistics"]
+      tags: ["Modeling", "Statistics"],
     },
     {
-      slug: "ey-esg-innovation",
-      title: "EY ESG University Innovation Challenge",
-      date: "2025.4",
-      type: "case",
-      image: "/competitions/ey-esg-innovation-2025/cover.png",
-      description: "ESG innovation competition on data-driven sustainability strategies.",
-      skills: ["ESG", "AI+Luxury"]
+      slug: "loreal-brandstorm",
+      title: "L'Oréal BRANDSTORM",
+      date: "2025.04",
+      type: "marketing",
+      image: "/competitions/loreal-brandstorm/cover.png",
+      description: "Global youth challenge—Men’s beauty through tech & product innovation.",
+      tags: ["Marketing", "Product", "Pitch"],
     },
-    
     {
-      slug: "commonwealth-treasury",
+      slug: "net-zero-challenge-gys",
+      title: "Global Youth Summit on Net-Zero Future",
+      date: "2024.09",
+      type: "sustainability",
+      image: "/competitions/net-zero-challenge-gys/cover.png",
+      description:
+        "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
+      tags: ["Climate Action", "Youth Leadership", "Innovation"],
+    },
+    {
+      slug: "commonwealth-treasury-case",
       title: "Commonwealth Treasury Case Competition",
-      date: "2025.4",
+      date: "2025.04",
       type: "case",
       image: "/competitions/commonwealth-treasury-case/cover.png",
       description: "Public policy & economic analysis case organized by CBA.",
-      skills: ["Economics", "Policy", "Analytics"]
+      tags: ["Economics", "Policy", "Analytics"],
     },
-   
     {
-   
-  const allTags = ["hackathon", "marketing", "modeling", "sustainability", "case", "product"]
+      slug: "microsoft-chat-hack-promptathon",
+      title: "Microsoft Chat & Hack Promptathon",
+      date: "2025.03",
+      type: "hackathon",
+      image: "/competitions/microsoft-chat-hack-promptathon/cover.png",
+      description: "GenAI prompt engineering & product prototyping.",
+      tags: ["GenAI", "Prompting", "Product"],
+    },
+    // 如果还有“美国商业分析精英大赛”等，请继续补在这里：
+    // {
+    //   slug: "us-business-analytics-elite",
+    //   title: "US Business Analytics Elite Competition",
+    //   date: "2025.xx",
+    //   type: "case",
+    //   image: "/competitions/us-business-analytics-elite/cover.png",
+    //   description: "…",
+    //   tags: ["Analytics", "BI", "Dashboards"],
+    // },
+  ];
 
+  const allTypes = ["hackathon", "marketing", "modeling", "sustainability", "case", "product"] as const;
+
+  const q = searchTerm.trim().toLowerCase();
   const filtered = competitions.filter((c) => {
-    const q = searchTerm.toLowerCase()
     const hit =
       c.title.toLowerCase().includes(q) ||
       (c.event ?? "").toLowerCase().includes(q) ||
-      (c.key ?? []).some((s) => s.toLowerCase().includes(q))
-    const tagOK = selectedTags.length === 0 || selectedTags.includes(c.type)
-    return hit && tagOK
-  })
+      (c.description ?? "").toLowerCase().includes(q) ||
+      (c.tags ?? []).some((t) => t.toLowerCase().includes(q));
+    const tagOK = selectedTags.length === 0 || selectedTags.includes(c.type);
+    return hit && tagOK;
+  });
 
   return (
     <div className="relative min-h-screen">
@@ -193,9 +202,12 @@ export default function CompetitionsPage() {
               </Button>
             </Link>
             <h1 className="text-4xl font-bold text-gray-100 mb-4">Competitions</h1>
-            <p className="text-gray-200">Showcasing performance under pressure and collaborative innovation</p>
+            <p className="text-gray-200">
+              Transforming classroom knowledge into real-world impact through competitions.
+            </p>
           </div>
 
+          {/* 搜索 +（可选）类型过滤 */}
           <div className="mb-8 space-y-4">
             <Input
               placeholder="Search competitions..."
@@ -203,11 +215,42 @@ export default function CompetitionsPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="max-w-md mx-auto bg-black/30 backdrop-blur-md border-green-400/30 text-gray-100 placeholder:text-gray-400"
             />
-            {/* （如需标签过滤，可以渲染 allTags 成为可点的 Badge；此处省略 UI，仅保留逻辑位） */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {allTypes.map((t) => {
+                const active = selectedTags.includes(t);
+                return (
+                  <Badge
+                    key={t}
+                    onClick={() =>
+                      setSelectedTags((prev) =>
+                        active ? prev.filter((x) => x !== t) : [...prev, t]
+                      )
+                    }
+                    className={`cursor-pointer ${
+                      active
+                        ? "bg-green-500/30 text-green-100 border-green-400/50"
+                        : "bg-green-500/10 text-green-200 border-green-400/30"
+                    }`}
+                  >
+                    {t}
+                  </Badge>
+                );
+              })}
+              {selectedTags.length > 0 && (
+                <Button
+                  variant="ghost"
+                  className="h-6 px-2 text-gray-300"
+                  onClick={() => setSelectedTags([])}
+                >
+                  Clear
+                </Button>
+              )}
+            </div>
           </div>
 
+          {/* 卡片列表 */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((c, i) => (
+            {filtered.map((c) => (
               <Link key={c.slug} href={`/competitions/${c.slug}`} className="block">
                 <Card className="bg-black/30 backdrop-blur-md border-green-400/20 hover:bg-black/40 transition-all duration-300 cursor-pointer overflow-hidden">
                   <div className="relative h-48 overflow-hidden">
@@ -230,14 +273,18 @@ export default function CompetitionsPage() {
                       <span className="text-gray-400 text-sm">{c.date ?? ""}</span>
                     </div>
                     <CardTitle className="text-gray-100 text-lg mb-2">{c.title}</CardTitle>
-                    {c.event && <div className="text-green-400 text-sm font-medium">{c.event}</div>}
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-200 text-sm mb-4 line-clamp-3">{c.description ?? ""}</p>
+                    <p className="text-gray-200 text-sm mb-4 line-clamp-3">
+                      {c.description ?? ""}
+                    </p>
                     <div className="flex flex-wrap gap-1">
-                      {(c.skills ?? []).slice(0, 3).map((skill) => (
-                        <Badge key={skill} className="bg-green-500/20 text-green-200 border-green-500/30 text-xs">
-                          {skill}
+                      {(c.tags ?? []).slice(0, 4).map((tag) => (
+                        <Badge
+                          key={tag}
+                          className="bg-green-500/20 text-green-200 border-green-500/30 text-xs"
+                        >
+                          {tag}
                         </Badge>
                       ))}
                     </div>
@@ -246,8 +293,12 @@ export default function CompetitionsPage() {
               </Link>
             ))}
           </div>
+
+          {filtered.length === 0 && (
+            <p className="text-center text-gray-400 mt-12">No results found.</p>
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 }
