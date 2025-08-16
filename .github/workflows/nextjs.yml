@@ -23,11 +23,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm          # ✅ 这里要用 pnpm，CI 才会识别 pnpm-lock.yaml
+          cache: pnpm          # ✅ 配合 pnpm-lock.yaml 做缓存
 
-      - run: corepack enable   # ✅ 开启 pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build    # 要求 package.json 里 "build": "next build && next export"
+      - uses: pnpm/action-setup@v4  # ✅ 安装并放到 PATH
+        with:
+          version: 9               # 你的 pnpm 版本（8/9都可，和本地保持一致）
+          run_install: true        # 自动执行 pnpm install --frozen-lockfile
+
+      - name: Build (next build && next export)
+        run: pnpm run build        # 要求 package.json 里是 "build": "next build && next export"
 
       - uses: actions/upload-pages-artifact@v3
         with:
