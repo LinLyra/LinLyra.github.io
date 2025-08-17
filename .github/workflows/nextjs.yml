@@ -25,20 +25,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'              # 用 pnpm 缓存
+          # ⚠️ 这里不要写 cache: 'pnpm'，先让它别碰 pnpm
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          run_install: true          # 这里不要再写 version，让它用 package.json 的 packageManager
+          # 不写 version；它会自动读 package.json 里的 "packageManager"
+          run_install: true
 
       - name: Build (next build && next export)
-        run: pnpm run build          # 你已经把 next export 合到 build 脚本里了
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out                # Next 导出的静态站点目录（output: 'export' 默认就是 out）
+          path: ./out
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,3 +51,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
