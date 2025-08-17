@@ -34,10 +34,10 @@ function GeneratedGalaxy({
 }: GalaxyGeneratorProps) {
   const pointsRef = useRef<THREE.Points>(null)
 
-  const [positions, colors] = useMemo(() => {
-    // Use seed for consistent randomization
-    const seededRandom = (seed: number) => {
-      const x = Math.sin(seed) * 10000
+  // 用不同变量名避免和外层重名，并加上 as const 让 TS 推断成定长元组
+  const [posArr, colArr] = useMemo((): readonly [Float32Array, Float32Array] => {
+    const rand = (s: number) => {
+      const x = Math.sin(s) * 10000
       return x - Math.floor(x)
     }
 
@@ -50,39 +50,37 @@ function GeneratedGalaxy({
     for (let i = 0; i < count; i++) {
       const i3 = i * 3
 
-      const radiusRandom = seededRandom(seed + i) * radius
-      const spinAngle = radiusRandom * spin
+      const r = rand(seed + i) * radius
+      const spinAngle = r * spin
       const branchAngle = ((i % branches) / branches) * Math.PI * 2
 
       const randomX =
-        Math.pow(seededRandom(seed + i + 1000), randomnessPower) *
-        (seededRandom(seed + i + 2000) < 0.5 ? 1 : -1) *
+        Math.pow(rand(seed + i + 1000), randomnessPower) *
+        (rand(seed + i + 2000) < 0.5 ? 1 : -1) *
         randomness *
-        radiusRandom
+        r
       const randomY =
-        Math.pow(seededRandom(seed + i + 3000), randomnessPower) *
-        (seededRandom(seed + i + 4000) < 0.5 ? 1 : -1) *
+        Math.pow(rand(seed + i + 3000), randomnessPower) *
+        (rand(seed + i + 4000) < 0.5 ? 1 : -1) *
         randomness *
-        radiusRandom
+        r
       const randomZ =
-        Math.pow(seededRandom(seed + i + 5000), randomnessPower) *
-        (seededRandom(seed + i + 6000) < 0.5 ? 1 : -1) *
+        Math.pow(rand(seed + i + 5000), randomnessPower) *
+        (rand(seed + i + 6000) < 0.5 ? 1 : -1) *
         randomness *
-        radiusRandom
+        r
 
-      positions[i3] = Math.cos(branchAngle + spinAngle) * radiusRandom + randomX
+      positions[i3] = Math.cos(branchAngle + spinAngle) * r + randomX
       positions[i3 + 1] = randomY
-      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radiusRandom + randomZ
+      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * r + randomZ
 
-      const mixedColor = colorInside.clone()
-      mixedColor.lerp(colorOutside, radiusRandom / radius)
-
-      colors[i3] = mixedColor.r
-      colors[i3 + 1] = mixedColor.g
-      colors[i3 + 2] = mixedColor.b
+      const mixed = colorInside.clone().lerp(colorOutside, r / radius)
+      colors[i3] = mixed.r
+      colors[i3 + 1] = mixed.g
+      colors[i3 + 2] = mixed.b
     }
 
-    return [positions, colors]
+    return [positions, colors] as const
   }, [count, radius, branches, spin, randomness, randomnessPower, insideColor, outsideColor, seed])
 
   useFrame((state) => {
@@ -94,14 +92,15 @@ function GeneratedGalaxy({
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
-        <bufferAttribute attach="attributes-color" count={count} array={colors} itemSize={3} />
+        {/* ✅ 用 args 传入 (array, itemSize) —— 这是 @react-three/fiber 对 BufferAttribute 的类型要求 */}
+        <bufferAttribute attach="attributes-position" args={[posArr, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colArr, 3]} />
       </bufferGeometry>
       <pointsMaterial
         size={size}
-        sizeAttenuation={true}
+        sizeAttenuation
         depthWrite={false}
-        vertexColors={true}
+        vertexColors
         blending={THREE.AdditiveBlending}
       />
     </points>
@@ -133,10 +132,10 @@ export function GalaxyGenerator() {
     const newSeed = Date.now() + Math.random() * 1000
     setGalaxyParams((prev) => ({
       ...prev,
-      spin: (Math.random() - 0.5) * 6, // -3 to 3
-      randomness: Math.random() * 0.4 + 0.1, // 0.1 to 0.5
-      branches: Math.floor(Math.random() * 5) + 3, // 3 to 7
-      radius: Math.random() * 2 + 2, // 2 to 4
+      spin: (Math.random() - 0.5) * 6,          // -3 ~ 3
+      randomness: Math.random() * 0.4 + 0.1,    // 0.1 ~ 0.5
+      branches: Math.floor(Math.random() * 5) + 3, // 3 ~ 7
+      radius: Math.random() * 2 + 2,            // 2 ~ 4
       seed: newSeed,
     }))
   }, [])
@@ -146,12 +145,11 @@ export function GalaxyGenerator() {
       ...prev,
       insideColor: preset.inside,
       outsideColor: preset.outside,
-      seed: Date.now() + Math.random() * 1000, // 新的种子
+      seed: Date.now() + Math.random() * 1000,
     }))
   }, [])
 
   const saveGalaxy = useCallback(() => {
-    // Create a simple download of galaxy parameters
     const galaxyData = {
       ...galaxyParams,
       timestamp: new Date().toISOString(),
@@ -164,6 +162,7 @@ export function GalaxyGenerator() {
 
     const link = document.createElement("a")
     link.href = url
+    // ✅ 模板字符串要用反引号
     link.download = `my-galaxy-${Date.now()}.json`
     document.body.appendChild(link)
     link.click()
@@ -183,15 +182,13 @@ export function GalaxyGenerator() {
           connection to my universe - a way of walking alongside my path through time and space.
         </p>
       </CardHeader>
+
       <CardContent className="space-y-4">
         {/* Galaxy Canvas */}
         <div className="h-64 bg-black rounded-lg overflow-hidden border border-white/10 relative">
           <Canvas
-            key={galaxyParams.seed} // 添加key强制重新渲染
-            camera={{
-              position: [0, 0, 4],
-              fov: 75,
-            }}
+            key={galaxyParams.seed} // 变更种子时强制重建
+            camera={{ position: [0, 0, 4], fov: 75 }}
             gl={{ antialias: true, alpha: true }}
           >
             <ambientLight intensity={0.1} />
@@ -206,9 +203,8 @@ export function GalaxyGenerator() {
               key={index}
               onClick={() => applyColorPreset(preset)}
               className="w-10 h-10 rounded-full border-2 border-white/20 hover:border-white/60 hover:scale-110 transition-all duration-300 shadow-lg"
-              style={{
-                background: `linear-gradient(135deg, ${preset.inside}, ${preset.outside})`,
-              }}
+              // ✅ 背景渐变字符串
+              style={{ background: `linear-gradient(135deg, ${preset.inside}, ${preset.outside})` }}
               title={preset.name}
             />
           ))}
@@ -239,3 +235,4 @@ export function GalaxyGenerator() {
     </Card>
   )
 }
+
