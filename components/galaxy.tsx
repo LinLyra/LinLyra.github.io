@@ -29,6 +29,7 @@ export function Galaxy({
 }: GalaxyProps) {
   const pointsRef = useRef<THREE.Points>(null)
 
+  // 生成位置/颜色（Float32Array）
   const [positions, colors] = useMemo(() => {
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
@@ -39,32 +40,24 @@ export function Galaxy({
     for (let i = 0; i < count; i++) {
       const i3 = i * 3
 
-      // Position
       const radiusRandom = Math.random() * radius
       const spinAngle = radiusRandom * spin
       const branchAngle = ((i % branches) / branches) * Math.PI * 2
 
-      const randomX =
-        Math.pow(Math.random(), randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * randomness * radiusRandom
-      const randomY =
-        Math.pow(Math.random(), randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * randomness * radiusRandom
-      const randomZ =
-        Math.pow(Math.random(), randomnessPower) * (Math.random() < 0.5 ? 1 : -1) * randomness * radiusRandom
+      const rand = (p: number) =>
+        Math.pow(Math.random(), p) * (Math.random() < 0.5 ? 1 : -1) * randomness * radiusRandom
 
-      positions[i3] = Math.cos(branchAngle + spinAngle) * radiusRandom + randomX
-      positions[i3 + 1] = randomY
-      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radiusRandom + randomZ
+      positions[i3] = Math.cos(branchAngle + spinAngle) * radiusRandom + rand(randomnessPower)
+      positions[i3 + 1] = rand(randomnessPower)
+      positions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radiusRandom + rand(randomnessPower)
 
-      // Color
-      const mixedColor = colorInside.clone()
-      mixedColor.lerp(colorOutside, radiusRandom / radius)
-
-      colors[i3] = mixedColor.r
-      colors[i3 + 1] = mixedColor.g
-      colors[i3 + 2] = mixedColor.b
+      const mixed = colorInside.clone().lerp(colorOutside, radiusRandom / radius)
+      colors[i3] = mixed.r
+      colors[i3 + 1] = mixed.g
+      colors[i3 + 2] = mixed.b
     }
 
-    return [positions, colors]
+    return [positions, colors] as const
   }, [count, radius, branches, spin, randomness, randomnessPower, insideColor, outsideColor])
 
   useFrame((state) => {
@@ -76,16 +69,18 @@ export function Galaxy({
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
-        <bufferAttribute attach="attributes-color" count={count} array={colors} itemSize={3} />
+        {/* ✅ 新写法：用 args 传入 [array, itemSize]，不再写 count/array/itemSize */}
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
         size={size}
-        sizeAttenuation={true}
+        sizeAttenuation
         depthWrite={false}
-        vertexColors={true}
+        vertexColors
         blending={THREE.AdditiveBlending}
       />
     </points>
   )
 }
+
