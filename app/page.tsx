@@ -7,20 +7,14 @@ import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { SkillsSection } from "@/components/skills-section";
 
-// ✅ 兼容【命名导出】或【默认导出】的动态导入 + 关闭 SSR
+// 组件已改成默认导出后，动态导入可以最简
 const Planets3DSection = dynamic(
-  () =>
-    import("@/components/planets-3d-section").then(
-      (m) => m.Planets3DSection ?? m.default
-    ),
+  () => import("@/components/planets-3d-section"),
   { ssr: false, loading: () => null }
 );
 
 const ContactSection = dynamic(
-  () =>
-    import("@/components/contact-section").then(
-      (m) => m.ContactSection ?? m.default
-    ),
+  () => import("@/components/contact-section"),
   { ssr: false, loading: () => null }
 );
 
@@ -61,7 +55,7 @@ export default function PersonalWebsite() {
       />
 
       <div className="relative z-10">
-        {/* 确保这些 Section 内部分别有 id="home" / "skills" / "planets" / "contact" */}
+        {/* 确保这些 Section 顶层各自含有 id="home" | "skills" | "planets" | "contact" */}
         <HeroSection />
         <SkillsSection />
         <Planets3DSection />
@@ -81,6 +75,7 @@ export default function PersonalWebsite() {
     </div>
   );
 }
+
 
 
 
