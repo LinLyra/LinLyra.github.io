@@ -2,7 +2,8 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: ['main']
+    branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -19,23 +20,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 先安装 pnpm
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      # 再装 Node，并开启 pnpm 缓存（这一步会调用 pnpm，所以它必须在 pnpm 安装之后）
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
 
-      - uses: pnpm/action-setup@v4
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      # 构建 + 导出静态站点（Next 14）
+      - name: Build & Export
+        run: |
+          pnpm run build
+          pnpm exec next export
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      # 上传 out 目录作为 Pages 工件
+      - uses: actions/upload-pages-artifact@v3
         with:
-          version: 9
-          run_install: true
-
-      - name: Build (Next static export)
-        run: pnpm run build         # 会把静态文件导到 ./out
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
+          path: out
 
   deploy:
     needs: build
@@ -46,3 +57,4 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
