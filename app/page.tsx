@@ -7,14 +7,14 @@ import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { SkillsSection } from "@/components/skills-section";
 
-// 组件已改成默认导出后，动态导入可以最简
+// ✅ 这里统一做 dynamic（组件文件里不要再写 dynamic）
 const Planets3DSection = dynamic(
-  () => import("@/components/planets-3d-section"),
+  () => import("@/components/planets-3d-section"), // 默认导出
   { ssr: false, loading: () => null }
 );
 
 const ContactSection = dynamic(
-  () => import("@/components/contact-section"),
+  () => import("@/components/contact-section"),     // 建议也改成默认导出（见第 3 部分）
   { ssr: false, loading: () => null }
 );
 
@@ -30,10 +30,7 @@ export default function PersonalWebsite() {
         const el = document.getElementById(section);
         if (el) {
           const { offsetTop, offsetHeight } = el;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
           }
@@ -47,15 +44,9 @@ export default function PersonalWebsite() {
 
   return (
     <div className="relative">
-      {/* GalaxyBackground 已在 layout 全局挂载 */}
-
-      <Navigation
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-      />
+      <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
 
       <div className="relative z-10">
-        {/* 确保这些 Section 顶层各自含有 id="home" | "skills" | "planets" | "contact" */}
         <HeroSection />
         <SkillsSection />
         <Planets3DSection />
@@ -75,6 +66,7 @@ export default function PersonalWebsite() {
     </div>
   );
 }
+
 
 
 
