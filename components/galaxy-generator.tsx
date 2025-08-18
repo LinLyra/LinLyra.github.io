@@ -162,7 +162,6 @@ export function GalaxyGenerator() {
 
     const link = document.createElement("a")
     link.href = url
-    // ✅ 模板字符串要用反引号
     link.download = `my-galaxy-${Date.now()}.json`
     document.body.appendChild(link)
     link.click()
@@ -187,7 +186,7 @@ export function GalaxyGenerator() {
         {/* Galaxy Canvas */}
         <div className="h-64 bg-black rounded-lg overflow-hidden border border-white/10 relative">
           <Canvas
-            key={galaxyParams.seed} // 变更种子时强制重建
+            key={galaxyParams.seed}
             camera={{ position: [0, 0, 4], fov: 75 }}
             gl={{ antialias: true, alpha: true }}
           >
@@ -203,7 +202,6 @@ export function GalaxyGenerator() {
               key={index}
               onClick={() => applyColorPreset(preset)}
               className="w-10 h-10 rounded-full border-2 border-white/20 hover:border-white/60 hover:scale-110 transition-all duration-300 shadow-lg"
-              // ✅ 背景渐变字符串
               style={{ background: `linear-gradient(135deg, ${preset.inside}, ${preset.outside})` }}
               title={preset.name}
             />
@@ -235,4 +233,5 @@ export function GalaxyGenerator() {
     </Card>
   )
 }
+
 
