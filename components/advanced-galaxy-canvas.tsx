@@ -178,10 +178,6 @@ export default function AdvancedGalaxyCanvas() {
     fctx.fillStyle = "#ffffff";
     fctx.fillText("Welcome to Lyra's Universe", cssW / 2, 50);
 
-    fctx.font = "18px Arial";
-    fctx.shadowBlur = 10;
-    fctx.fillText("Your personal galaxy creation", cssW / 2, 80);
-
     const link = document.createElement("a");
     link.download = `lyra-universe-galaxy-${Date.now()}.png`;
     link.href = final.toDataURL("image/png");
