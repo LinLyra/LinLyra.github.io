@@ -29,7 +29,6 @@ export function Galaxy({
 }: GalaxyProps) {
   const pointsRef = useRef<THREE.Points>(null)
 
-  // 生成位置/颜色（Float32Array）
   const [positions, colors] = useMemo(() => {
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
@@ -69,7 +68,7 @@ export function Galaxy({
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        {/* ✅ 新写法：用 args 传入 [array, itemSize]，不再写 count/array/itemSize */}
+        {/* ✅ 新写法：用 args 传入 [array, itemSize] */}
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
@@ -83,4 +82,5 @@ export function Galaxy({
     </points>
   )
 }
+
 
