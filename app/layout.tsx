@@ -6,12 +6,16 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: {
+    default: "Lyra’s Universe",
+    template: "%s | Lyra’s Universe",
+  },
+  description: "Interactive 3D portfolio of Lyra (Next.js + R3F).",
+  // 可选：去掉 v0 的 generator
+  // generator: undefined,
 };
 
-// 3D 背景只在客户端渲染
+// 3D 背景只在客户端渲染（保持原样）
 const GalaxyBackground = dynamic(
   () => import("@/components/galaxy-background"),
   { ssr: false, loading: () => null }
@@ -33,4 +37,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
 
