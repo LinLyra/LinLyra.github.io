@@ -36,6 +36,7 @@ export function HeroSection() {
               <div>
                 <h3 className="text-xl font-bold text-gray-100 mb-2">Long (Lyra) LIN</h3>
                 <p className="text-gray-200 text-sm mb-1">University of Sydney</p>
+                <p className="text-gray-200 text-sm mb-1">Bachelor of Science</p>
                 <p className="text-gray-200 text-sm mb-1">Data Science &amp; Business Analytics</p>
                 <p className="text-gray-200 text-sm">Expected Graduation: Dec 2026</p>
               </div>
