@@ -1,16 +1,15 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Github, Linkedin } from "lucide-react"
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Github, Linkedin } from "lucide-react";
 
 export function HeroSection() {
   const scrollToSkills = () => {
-    const element = document.getElementById("skills")
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+    const el = document.getElementById("skills");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative z-10 px-4">
@@ -19,15 +18,29 @@ export function HeroSection() {
         <div className="flex justify-center">
           <Card className="bg-white/10 backdrop-blur-md border-white/20 p-6 text-center max-w-sm">
             <CardContent className="space-y-4">
-              <div className="w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl mx-auto flex items-center justify-center">
-                <span className="text-4xl text-gray-100">👤</span>
+              {/* 头像 */}
+              <div className="mx-auto w-32 h-32 rounded-2xl p-[2px] bg-gradient-to-br from-blue-400 to-purple-600">
+                <div className="w-full h-full rounded-[14px] overflow-hidden bg-black/40">
+                  <Image
+                    src="/user.png"
+                    alt="Long (Lyra) LIN"
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
+                </div>
               </div>
+
+              {/* 基本信息 */}
               <div>
-                <h3 className="text-xl font-bold text-gray-100 mb-2">Long(Lyra) LIN </h3>
+                <h3 className="text-xl font-bold text-gray-100 mb-2">Long (Lyra) LIN</h3>
                 <p className="text-gray-200 text-sm mb-1">University of Sydney</p>
-                <p className="text-gray-200 text-sm mb-1">Major in Data Science & Business Analytics</p>
-                <p className="text-gray-200 text-sm">Expected Graduation: Dec.2026</p>
+                <p className="text-gray-200 text-sm mb-1">Data Science &amp; Business Analytics</p>
+                <p className="text-gray-200 text-sm">Expected Graduation: Dec 2026</p>
               </div>
+
+              {/* 标签 */}
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="px-4 py-2 bg-blue-500/30 text-blue-200 rounded-full text-sm font-medium">
                   Lifelong Learner
@@ -42,9 +55,8 @@ export function HeroSection() {
                   Data Storyteller
                 </span>
                 <span className="px-4 py-2 bg-orange-500/30 text-orange-200 rounded-full text-sm font-medium">
-                  Problem-to-Product Buider
+                  Problem-to-Product Builder
                 </span>
-         
               </div>
             </CardContent>
           </Card>
@@ -58,10 +70,12 @@ export function HeroSection() {
           </h1>
 
           <p className="text-xl text-gray-200 mb-4">
-            Driven by a passion for turning data into meaningful stories, I combine expertise in analytics, AI product development, and consulting to bridge technology and business. 
+            Driven by a passion for turning data into meaningful stories, I combine analytics, AI product, and
+            consulting to bridge technology and business.
           </p>
           <p className="text-lg text-gray-300 mb-8">
-            From exploring complex datasets to delivering AI-powered solutions, I turn insights into strategies that make a measurable impact.
+            From exploring complex datasets to delivering AI-powered solutions, I turn insights into strategies that
+            make measurable impact.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
@@ -71,27 +85,44 @@ export function HeroSection() {
             >
               Explore Universe
             </Button>
+
             <div className="flex gap-3">
+              {/* 用 asChild 包一层 <a>，真正新开页跳转 */}
               <Button
+                asChild
                 variant="outline"
                 className="border-white/40 text-gray-100 hover:bg-white/20 px-6 py-3 rounded-full text-lg bg-transparent font-medium"
-                onClick={() => window.open("https://github.com/yourusername", "_blank")}
               >
-                <Github className="w-5 h-5 mr-2" />
-                GitHub
+                <a
+                  href="https://github.com/LinLyra"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Lyra's GitHub"
+                >
+                  <Github className="w-5 h-5 mr-2 inline-block" />
+                  GitHub
+                </a>
               </Button>
+
               <Button
+                asChild
                 variant="outline"
                 className="border-white/40 text-gray-100 hover:bg-white/20 px-6 py-3 rounded-full text-lg bg-transparent font-medium"
-                onClick={() => window.open("https://linkedin.com/in/yourusername", "_blank")}
               >
-                <Linkedin className="w-5 h-5 mr-2" />
-                LinkedIn
+                <a
+                  href="https://www.linkedin.com/in/long-lin-b4296431b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Lyra's LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 mr-2 inline-block" />
+                  LinkedIn
+                </a>
               </Button>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
