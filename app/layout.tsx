@@ -1,10 +1,9 @@
+// app/layout.tsx —— 纯 Server 组件
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import QuietBoundary from "@/components/quiet-boundary";
-import ClientOnly from "@/components/client-only";
 
 export const metadata: Metadata = {
   title: "v0 App",
@@ -12,41 +11,26 @@ export const metadata: Metadata = {
   generator: "v0.app",
 };
 
-
+// 3D 背景只在客户端渲染
 const GalaxyBackground = dynamic(
-  () => import("@/components/galaxy-background"), // 仅默认导出，不再尝试 m.GalaxyBackground
+  () => import("@/components/galaxy-background"),
   { ssr: false, loading: () => null }
 );
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <head>
-        <style>{`
-html {
-  font-family: ${GeistSans.style.fontFamily};
-  --font-sans: ${GeistSans.variable};
-  --font-mono: ${GeistMono.variable};
-}
-        `}</style>
-      </head>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        {/* 背景只在客户端挂载后渲染，并包错误边界，避免崩全页 */}
-        <ClientOnly>
-          <QuietBoundary fallback={null}>
-            <GalaxyBackground />
-          </QuietBoundary>
-        </ClientOnly>
-
-        {/* 页面内容也包一层兜底 */}
-        <QuietBoundary fallback={<div className="p-8 text-gray-300">Something went wrong. Please refresh.</div>}>
-          {children}
-        </QuietBoundary>
+        {/* 背景层（客户端渲染） */}
+        <GalaxyBackground />
+        {/* 页面内容 */}
+        {children}
       </body>
     </html>
   );
 }
+
