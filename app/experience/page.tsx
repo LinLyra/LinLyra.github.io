@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Calendar, ArrowLeft, X } from "lucide-react"
 
-type ExpType = "consulting" | "development" | "research" | "volunteer" | "program"
+type ExpType = "consulting" | "development" 
 
 type ExperienceItem = {
   slug: string
@@ -77,7 +77,7 @@ export default function ExperiencePage() {
   // 搜索（多关键词 AND）
   const filtered = experiences.filter((exp) => {
     const tokens = q.toLowerCase().trim().split(/\s+/).filter(Boolean)
-    const hay = [exp.title, exp.company, ...exp.skills].join(" ").toLowerCase()
+    const hay = [exp.title, exp.company,exp.type, ...exp.skills].join(" ").toLowerCase()
     return tokens.length === 0 || tokens.every(t => hay.includes(t))
   })
 
