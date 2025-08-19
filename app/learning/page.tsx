@@ -98,7 +98,7 @@ export default function LearningPage() {
       date: "2025 S1",
       type: "course",
       logo: "/learning/comp2123/logo.png",
-      tags: ["Algorithm", "Sorting", "Graph"，"Tree"],
+      tags: ["Algorithm", "Sorting", "Graph","Tree"],
       status: "completed",
       level: "undergrad",
     },
