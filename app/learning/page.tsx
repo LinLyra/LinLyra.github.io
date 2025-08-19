@@ -52,8 +52,8 @@ export default function LearningPage() {
     { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["EDA","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
     { slug:"qbus2310", title:"QBUS2310: Management Science", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["LP/IP/NLP","Optimisation","Excel Solver","Python"], status:"in-progress", level:"undergrad" },
     { slug:"qbus3330", title:"QBUS3330: Methods of Decision Analysis", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Decision Trees","Sensitivity","Simulation","Utility"], status:"in-progress", level:"undergrad" },
-    { slug:"comp5338", title:"COMP5338: Advanced Data Models", institution:"University of Sydney", date:"2025", type:"course", logo:"/learning/usydlogo.png", tags:["SQL","MongoDB","Neo4j","Indexing"], status:"in-progress", level:"undergrad", audited:true },
-    { slug:"comp5318", title:"COMP5318: Machine Learning and Data Mining", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Classification","Clustering","Feature Eng","PG"], status:"in-progress", level:"postgrad", audited:true },
+    { slug:"comp5338", title:"COMP5338: Advanced Data Models", institution:"University of Sydney", date:"2025", type:"course", logo:"/learning/usydlogo.png", tags:["SQL","MongoDB","Neo4j","Indexing"], status:"in-progress", level:"postgrad", audited:true },
+    { slug:"comp5318", title:"COMP5318: Machine Learning and Data Mining", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Classification","Clustering","Feature Eng"], status:"in-progress", level:"postgrad", audited:true },
     { slug:"comp5328", title:"COMP5328: Advanced Machine Learning", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Generalisation","PyTorch/TensorFlow","PG"], status:"in-progress", level:"postgrad", audited:true },
   ]
 
@@ -194,7 +194,7 @@ export default function LearningPage() {
                           <div className="ml-auto flex gap-2">
                             {it.level === "postgrad" && (
                               <span className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-white/5 text-gray-200 border border-white/10 whitespace-nowrap">
-                                PG
+                                Postgraduate
                               </span>
                             )}
                             {it.audited && (
