@@ -33,7 +33,7 @@ export default function ExperiencePage() {
       date: "2025.3 — Present",
       type: "development",
       skills: ["Research Design", "Generative AI", "Data Pipeline Engineering", "Prompt Engineering", "API Integration"],
-      logo: "/experience/abc/logo.png",
+      logo: "/experience/abclogo.png",
     },
     {
       slug: "abc-product-consultant",
@@ -42,7 +42,7 @@ export default function ExperiencePage() {
       date: "2025.3 — Present",
       type: "consulting",
       skills: ["Stakeholder Interview", "Data Cleaning", "Slide Decks", "Project Management", "AI-agent"],
-      logo: "/experience/abc/logo.png",
+      logo: "/experience/abclogo.png",
     },
     {
       slug: "saiep-management",
@@ -51,7 +51,7 @@ export default function ExperiencePage() {
       date: "2025.7",
       type: "consulting",
       skills: ["Strategic Thinking", "Market Research", "Competitive Analysis", "Business Model Design", "Growth Strategy"],
-      logo: "/experience/saiep/logo.png",
+      logo: "/experience/SAIEPlogo.png",
     },
     {
       slug: "accenture-strategy-consulting",
@@ -60,7 +60,7 @@ export default function ExperiencePage() {
       date: "2024.12",
       type: "consulting",
       skills: ["Strategy Consulting", "Data Analysis", "Prioritisation", "Client Communication", "Problem Solving"],
-      logo: "/experience/accenture/logo.png",
+      logo: "/experience/accenturelogo.png",
     },
     {
       slug: "deloitte-technology",
@@ -69,17 +69,9 @@ export default function ExperiencePage() {
       date: "2024.12",
       type: "development",
       skills: ["Data Analysis", "Tableau", "Excel", "Python", "Data Modeling", "Software Dev Processes"],
-      logo: "/experience/deloitte/logo.png",
+      logo: "/experience/deloittelogo.png",
     },
-    {
-      slug: "saiep-program",
-      title: "Management Track · AI Entrepreneurship Program",
-      company: "SAIEP (Strategic AI Entrepreneurship Program)",
-      date: "2025",
-      type: "program",
-      skills: ["Strategic Thinking", "Market Research", "Competitive Analysis", "Business Model Design", "Growth Strategy", "Presentation"],
-      logo: "/experience/saiep/logo.png",
-    },
+    
   ]
 
   // 搜索（多关键词 AND）
@@ -213,5 +205,3 @@ export default function ExperiencePage() {
     </div>
   )
 }
-
-
