@@ -14,7 +14,7 @@ type ExperienceItem = {
   title: string
   company: string
   date: string
-  type: "consulting" | "development" | "program"     // kept for typing; not rendered
+  type: "consulting" | "development"    // kept for typing; not rendered
   skills: string[]
   logo: string               // /public/experience/<slug>/logo.png
 }
@@ -29,7 +29,7 @@ export default function ExperiencePage() {
       title: "AI Development（Research Department",
       company: "A Better Community",
       date: "2025.3 — Present",
-      type: "consulting",
+      type: "development",
       skills: ["Research Design","Generative AI","Data Pipeline Engineering","Prompt Engineering","API Integration"],
       logo: "/experience/abclogo.png",
     },
@@ -47,7 +47,7 @@ export default function ExperiencePage() {
       title: "Management Consultant",
       company: "Study Australian Industry Experience Program",
       date: "2025.7",
-      type: "program",
+      type: "consulting",
       skills: ["Strategic Thinking","Market Research", "Competitive Analysis", "Business Model Design", "Growth Strategy"],
       logo: "/experience/SAIEPlogo.png",
     },
@@ -66,7 +66,7 @@ export default function ExperiencePage() {
       company: "Deloitte (Forage)",
       date: "2025",
       type: "development",
-      skills: ["Data Analysis"，"Tableau"，"Python","Web Security"],
+      skills: ["Data Analysis","Tableau"，"Python","Web Security"],
       logo: "/experience/deloittelogo.png",
     },
    
