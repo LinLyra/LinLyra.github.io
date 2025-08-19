@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { ArrowLeft, Calendar, X } from "lucide-react"
 
 type Status = "completed" | "in-progress"
-type LearnType = "degree" | "course" | "online-course" | "bootcamp" | "certification"
+type LearnType = "degree" | "course" | "online-course" 
 
 type LearningItem = {
   slug: string
@@ -29,29 +29,29 @@ type LearningItem = {
 export default function LearningPage() {
   const [q, setQ] = useState("")
 
-  // === 你的课程数据 ===
+  // === 课程数据 ===
   const items: LearningItem[] = [
-    { slug:"data1002", title:"DATA1002: Informatics: Data and Computation", institution:"University of Sydney", date:"2024 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Python","Pipelines","ML Basics","Visualization"], status:"completed", level:"undergrad" },
-    { slug:"data1001", title:"DATA1001: Foundations of Data Science", institution:"University of Sydney", date:"2024 S2", type:"course", logo:"/learning/usydlogo.png", tags:["R","Statistics","Hypothesis Testing","Visualization"], status:"completed", level:"undergrad" },
-    { slug:"math1061", title:"MATH1061: Mathematics 1A", institution:"University of Sydney", date:"2024 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Calculus","Linear Algebra","Proof"], status:"completed", level:"undergrad" },
-    { slug:"math1062", title:"MATH1062: Mathematics 1B", institution:"University of Sydney", date:"2024 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Multivariable","Differential Eqns","R"], status:"completed", level:"undergrad" },
-    { slug:"info1110", title:"INFO1110: Introduction to Programming", institution:"University of Sydney", date:"2024 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Python"], status:"completed", level:"undergrad" },
-    { slug:"comp2123", title:"COMP2123: Data Structures & Algorithms", institution:"University of Sydney", date:"2025 S1", type:"course", logo:"/learning/usydlogo.png", tags:["Algorithm","Sorting","Graph","Tree"], status:"completed", level:"undergrad" },
-    { slug:"comp3308", title:"COMP3308: Introduction to Artificial Intelligence", institution:"University of Sydney", date:"2025 S1", type:"course", logo:"/learning/usydlogo.png", tags:["Search","ML","Game Algorithms"], status:"completed", level:"undergrad" },
-    { slug:"stat2011", title:"STAT2011: Probability and Estimation Theory", institution:"University of Sydney", date:"2025 S1", type:"course", logo:"/learning/usydlogo.png", tags:["Probability","Estimation","Asymptotics"], status:"completed", level:"undergrad" },
-    { slug:"qbus1040", title:"QBUS1040: Foundations of Business Analytics", institution:"University of Sydney", date:"2025 S1", type:"course", logo:"/learning/usydlogo.png", tags:["Linear Algebra","Regression","Optimisation","Python"], status:"completed", level:"undergrad" },
-    { slug:"data2901", title:"DATA2901: Big Data and Data Diversity (Advanced)", institution:"University of Sydney", date:"2025 S1", type:"course", logo:"/learning/usydlogo.png", tags:["Python","SQL","Hadoop","ETL"], status:"completed", level:"undergrad" },
-    { slug:"qbus2820", title:"QBUS2820: Predictive Analytics", institution:"University of Sydney", date:"2025 S1", type:"course", logo:"/learning/usydlogo.png", tags:["Forecasting","Time Series","Python"], status:"completed", level:"undergrad", audited:true },
-    { slug:"sjtu-ma413", title:"MA413 / STAT3925: Time Series (Advanced)", institution:"Shanghai Jiao Tong University (Summer)", date:"2025", type:"course", logo:"/learning/sjtulogo.png", tags:["ARIMA","Stationarity","Forecasting","R/Python"], status:"completed", level:"undergrad" },
-    { slug:"sjtu-ma4704", title:"MA4704: Stochastic Process", institution:"Shanghai Jiao Tong University (Summer)", date:"2025", type:"course", logo:"/learning/sjtulogo.png", tags:["Poisson","CTMC/DTMC","Queueing"], status:"completed", level:"undergrad" },
-    { slug:"google-advanced-data-analytics", title:"Google Advanced Data Analytics Professional Certificate", institution:"Google x Coursera", date:"2024", type:"certification", logo:"/learning/googlelogo.png", tags:["Python","Regression","Visualization"], status:"completed" },
-    { slug:"genai-intensive-2025q1", title:"Gen AI Intensive Course 2025Q1", institution:"Google × Kaggle", date:"2025", type:"course", logo:"/learning/googlelogo.png", tags:["Prompting","Embeddings/RAG","Agents","MLOps"], status:"completed" },
+    { slug:"data1002", title:"DATA1002: Informatics: Data and Computation", institution:"University of Sydney", date:"2024 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Python","Pipelines","ML Basics","Visualization"], status:"completed", level:"undergrad" },
+    { slug:"data1001", title:"DATA1001: Foundations of Data Science", institution:"University of Sydney", date:"2024 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["R","Statistics","Hypothesis Testing","Visualization"], status:"completed", level:"undergrad" },
+    { slug:"math1061", title:"MATH1061: Mathematics 1A", institution:"University of Sydney", date:"2024 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Calculus","Linear Algebra","Proof"], status:"completed", level:"undergrad" },
+    { slug:"math1062", title:"MATH1062: Mathematics 1B", institution:"University of Sydney", date:"2024 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Multivariable","Differential Eqns","R"], status:"completed", level:"undergrad" },
+    { slug:"info1110", title:"INFO1110: Introduction to Programming", institution:"University of Sydney", date:"2024 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Python"], status:"completed", level:"undergrad" },
+    { slug:"comp2123", title:"COMP2123: Data Structures & Algorithms", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Algorithm","Sorting","Graph","Tree"], status:"completed", level:"undergrad" },
+    { slug:"comp3308", title:"COMP3308: Introduction to Artificial Intelligence", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Search","ML","Game Algorithms"], status:"completed", level:"undergrad" },
+    { slug:"stat2011", title:"STAT2011: Probability and Estimation Theory", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Probability","Estimation","Asymptotics"], status:"completed", level:"undergrad" },
+    { slug:"qbus1040", title:"QBUS1040: Foundations of Business Analytics", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Linear Algebra","Regression","Optimisation","Python"], status:"completed", level:"undergrad" },
+    { slug:"data2901", title:"DATA2901: Big Data and Data Diversity (Advanced)", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Python","SQL","Hadoop","ETL"], status:"completed", level:"undergrad" },
+    { slug:"qbus2820", title:"QBUS2820: Predictive Analytics", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Forecasting","Time Series","Python"], status:"completed", level:"undergrad", audited:true },
+    { slug:"sjtu-ma413", title:"MA413 / STAT3925: Time Series (Advanced)", institution:"Shanghai Jiao Tong University (Summer)", date:"2025", type:"degree", logo:"/learning/sjtulogo.png", tags:["ARIMA","Stationarity","Forecasting","R/Python"], status:"completed", level:"undergrad" },
+    { slug:"sjtu-ma4704", title:"MA4704: Stochastic Process", institution:"Shanghai Jiao Tong University (Summer)", date:"2025", type:"degree", logo:"/learning/sjtulogo.png", tags:["Poisson","CTMC/DTMC","Queueing"], status:"completed", level:"undergrad" },
+    { slug:"google-advanced-data-analytics", title:"Google Advanced Data Analytics Professional Certificate", institution:"Google x Coursera", date:"2024", type:"online-course", logo:"/learning/googlelogo.png", tags:["Python","Regression","Visualization"], status:"completed" },
+    { slug:"genai-intensive-2025q1", title:"Gen AI Intensive Course 2025Q1", institution:"Google × Kaggle", date:"2025", type:"online-course", logo:"/learning/googlelogo.png", tags:["Prompting","Embeddings/RAG","Agents","MLOps"], status:"completed" },
 
     // In Progress（从 QBUS2810 起）
-    { slug:"qbus2810", title:"QBUS2810: Statistical Modelling for Business", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Business Stats","Forecasting","Python"], status:"in-progress", level:"undergrad" },
-    { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["EDA","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
-    { slug:"qbus2310", title:"QBUS2310: Management Science", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["LP/IP/NLP","Optimisation","Excel Solver","Python"], status:"in-progress", level:"undergrad" },
-    { slug:"qbus3330", title:"QBUS3330: Methods of Decision Analysis", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Decision Trees","Sensitivity","Simulation","Utility"], status:"in-progress", level:"undergrad" },
+    { slug:"qbus2810", title:"QBUS2810: Statistical Modelling for Business", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Business Stats","Forecasting","Python"], status:"in-progress", level:"undergrad" },
+    { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["EDA","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
+    { slug:"qbus2310", title:"QBUS2310: Management Science", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["LP/IP/NLP","Optimisation","Excel Solver","Python"], status:"in-progress", level:"undergrad" },
+    { slug:"qbus3330", title:"QBUS3330: Methods of Decision Analysis", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Decision Trees","Sensitivity","Simulation","Utility"], status:"in-progress", level:"undergrad" },
     { slug:"comp5338", title:"COMP5338: Advanced Data Models", institution:"University of Sydney", date:"2025", type:"course", logo:"/learning/usydlogo.png", tags:["SQL","MongoDB","Neo4j","Indexing"], status:"in-progress", level:"undergrad", audited:true },
     { slug:"comp5318", title:"COMP5318: Machine Learning and Data Mining", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Classification","Clustering","Feature Eng","PG"], status:"in-progress", level:"postgrad", audited:true },
     { slug:"comp5328", title:"COMP5328: Advanced Machine Learning", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Generalisation","PyTorch/TensorFlow","PG"], status:"in-progress", level:"postgrad", audited:true },
@@ -65,12 +65,11 @@ export default function LearningPage() {
     return hit
   })
 
-  // 只保留 5 个热门关键词（粉/紫系胶囊）
+  // 一行关键词（粉/紫系）
   const tagSuggestions = useMemo(
-    () => ["Python", "ML", "Time Series", "Optimisation", "SQL"],
+    () => ["Python", "ML", "Time Series", "SQL"],
     []
   )
-
   const toggleToken = (token: string) => {
     const cur = q.split(/\s+/).filter(Boolean)
     const next = cur.includes(token) ? cur.filter(t => t !== token) : [...cur, token]
@@ -91,11 +90,11 @@ export default function LearningPage() {
                 Back to Universe
               </Button>
             </Link>
-            <h1 className="text-4xl font-bold text-white mb-3">Learning Journey</h1>
-            <p className="text-gray-300">Courses, programs, and certifications that shaped my toolkit</p>
+            <h1 className="text-4xl font-bold text-white mb-3">Learning</h1>
+            <p className="text-gray-300">Learning is my way of expanding the universe — every concept mastered and every skill refined becomes a new star in my constellation of growth.</p>
           </div>
 
-          {/* 搜索框 + 仅一行粉/紫关键词 */}
+          {/* 搜索 + 关键词（仅一行） */}
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
@@ -115,7 +114,6 @@ export default function LearningPage() {
               )}
             </div>
 
-            {/* 关键词（粉/紫胶囊，点击追加/移除） */}
             <div className="flex flex-wrap gap-2 justify-center">
               {tagSuggestions.map((t) => {
                 const active = hasToken(t)
@@ -137,7 +135,7 @@ export default function LearningPage() {
             </div>
           </div>
 
-          {/* 列表：左上小方 logo + 右侧标题/日期；粉/紫标签；右上角角标不重叠 */}
+          {/* 列表（统一高度 + 角标在卡片内） */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((it) => {
               const statusClass =
@@ -147,21 +145,21 @@ export default function LearningPage() {
 
               return (
                 <Link key={it.slug} href={`/learning/${it.slug}`} className="block">
-                  <Card className="relative bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden">
-                    {/* 右上角状态角标（上移避免重叠） */}
-                    <div className="absolute right-4 -top-3 z-20">
+                  <Card className="relative h-full min-h-[240px] bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden">
+                    {/* 右上角状态角标（在卡片内部） */}
+                    <div className="absolute right-3 top-2 z-20">
                       <span className={`rounded-full px-2.5 py-1 text-xs border backdrop-blur-sm ${statusClass}`}>
                         {it.status === "completed" ? "Completed" : "In Progress"}
                       </span>
                     </div>
 
-                    {/* 头部：左小方 logo + 右侧标题/日期 */}
-                    <div className="flex items-start gap-4 p-5 pt-6">
+                    {/* 头部：左小方 logo + 右侧标题/日期（预留顶部空间 pt-10） */}
+                    <div className="flex items-start gap-4 p-5 pt-10">
                       <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 flex items-center justify-center overflow-hidden">
                         <Image src={it.logo} alt={`${it.title} logo`} width={28} height={28} className="object-contain" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <CardTitle className="text-white text-xl font-semibold whitespace-normal">
+                        <CardTitle className="text-white text-xl font-semibold leading-snug line-clamp-2">
                           {it.title}
                         </CardTitle>
                         <div className="mt-1 text-gray-400 text-sm inline-flex items-center gap-2">
@@ -175,9 +173,9 @@ export default function LearningPage() {
                       </div>
                     </div>
 
-                    <CardHeader className="pt-3">
-                      {/* 粉/紫胶囊标签（最多 3 个） + PG/Audited */}
-                      <div className="flex flex-wrap gap-2">
+                    {/* 标签区：给最小高度避免跳动 */}
+                    <CardHeader className="pt-2">
+                      <div className="flex flex-wrap gap-2 min-h-[36px]">
                         {(it.tags ?? []).slice(0, 3).map((t) => (
                           <span
                             key={t}
@@ -189,10 +187,14 @@ export default function LearningPage() {
                         {(it.level === "postgrad" || it.audited) && (
                           <div className="ml-auto flex gap-2">
                             {it.level === "postgrad" && (
-                              <span className="rounded-full px-2.5 py-1 text-xs bg-white/5 text-gray-200 border border-white/10">PG</span>
+                              <span className="rounded-full px-2.5 py-1 text-xs bg-white/5 text-gray-200 border border-white/10">
+                                PG
+                              </span>
                             )}
                             {it.audited && (
-                              <span className="rounded-full px-2.5 py-1 text-xs bg-white/5 text-gray-200 border border-white/10">Audited</span>
+                              <span className="rounded-full px-2.5 py-1 text-xs bg-white/5 text-gray-200 border border-white/10">
+                                Audited
+                              </span>
                             )}
                           </div>
                         )}
@@ -210,5 +212,3 @@ export default function LearningPage() {
     </div>
   )
 }
-
-
