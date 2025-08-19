@@ -2,49 +2,74 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Navigation } from "@/components/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin, ArrowLeft } from "lucide-react"
+import { Calendar, ArrowLeft } from "lucide-react"
 
 type ExperienceItem = {
   id: string
   title: string
   company: string
-  location: string
   date: string
-  type: "consulting" | "development" | "research" | "volunteer"
-  description: string
+  type: "consulting" | "development" | "program"     // kept for typing; not rendered
   skills: string[]
-  image?: string
+  logo: string               // /public/experience/<slug>/logo.png
 }
 
 export default function ExperiencePage() {
   const [searchTerm, setSearchTerm] = useState("")
 
-  // ✅ 只有这一个实习卡片
+  // ===== Experiences (all English; blue theme) =====
   const experiences: ExperienceItem[] = [
     {
-      id: "abc-better-consulting",
-      title: "Consulting Intern",
-      company: "ABC Better Consulting",
-      location: "Shanghai, China",
-      date: "Jul 2025 – Sep 2025",
+      id: "abc-better-community",
+      title: "AI Development（Research Department",
+      company: "A Better Community",
+      date: "2025.3 — Present",
       type: "consulting",
-      description:
-        "Worked on market entry and growth strategy for consumer brands. Built research frameworks, cleaned and analyzed datasets, and translated insights into executive-facing slides.",
-      skills: [
-        "Market Research",
-        "Competitive Analysis",
-        "Excel / SQL",
-        "Storytelling",
-        "Client Communication",
-      ],
-      // 放一张横图：/public/experience/abc-better-consulting/cover.jpg
-      image: "/experience/abc-better-consulting/cover.jpg",
+      skills: ["Research Design","Generative AI","Data Pipeline Engineering","Prompt Engineering","API Integration"],
+      logo: "/experience/abclogo.png",
     },
+    {
+      id: "abc-better-community",
+      title: "Product Consultant,",
+      company: "A Better Community",
+      date: "2025.3 — Present",
+      type: "consulting",
+      skills: ["Stakeholder Interview","Data Cleaning","Slide Decks","Project Management","AI-agent"],
+      logo: "/experience/abclogo.png",
+    },
+     {
+      id: "saiep-program",
+      title: "Management Consultant",
+      company: "Study Australian Industry Experience Program",
+      date: "2025.7",
+      type: "program",
+      skills: ["Strategic Thinking","Market Research", "Competitive Analysis", "Business Model Design", "Growth Strategy"],
+      logo: "/experience/SAIEPlogo.png",
+    },
+    {
+      id: "accenture-strategy-consulting-forage",
+      title: "Accenture Australia Strategy Consulting Virtual Experience",
+      company: "Accenture (Forage)",
+      date: "2025",
+      type: "consulting",
+      skills: ["Strategy Consulting", "Data Analysis", "Client Communication", "Problem Solving"],
+      logo: "/experience/accenturelogo.png",
+    },
+    {
+      id: "deloitte-technology-forage",
+      title: "Deloitte Australia Technology Virtual Experience",
+      company: "Deloitte (Forage)",
+      date: "2025",
+      type: "development",
+      skills: ["Data Analysis"，"Tableau"，"Python","Web Security"],
+      logo: "/experience/deloittelogo.png",
+    },
+   
   ]
 
   const filtered = experiences.filter((exp) => {
@@ -69,62 +94,64 @@ export default function ExperiencePage() {
                 Back to Universe
               </Button>
             </Link>
-            <h1 className="text-4xl font-bold text-white mb-4">Professional Experience</h1>
-            <p className="text-gray-300">
-              Applying what I learn to real business problems
-            </p>
+            <h1 className="text-4xl font-bold text-white mb-4">Experience</h1>
+            <p className="text-gray-300">Where learning meets real-world impact.</p>
           </div>
 
+          {/* Search */}
           <div className="mb-8">
             <Input
-              placeholder="Search experience…"
+              placeholder="Search experience by title, company, or skill…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="max-w-md mx-auto bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-gray-400"
             />
           </div>
 
+          {/* Cards: left logo + right title/company/date; no status, no location, no description */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((exp) => (
               <Link key={exp.id} href={`/experience/${exp.id}`}>
                 <Card className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 cursor-pointer h-full">
-                  {exp.image && (
-                    <div className="relative h-48 overflow-hidden rounded-t-lg">
-                      <img
-                        src={exp.image}
-                        alt={exp.title}
-                        className="w-full h-full object-cover"
+                  {/* Header row */}
+                  <div className="flex items-start gap-4 p-5 pt-6">
+                    <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        width={28}
+                        height={28}
+                        className="object-contain"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                     </div>
-                  )}
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Calendar className="w-4 h-4 text-gray-400" />
-                      <span className="text-gray-400 text-sm">{exp.date}</span>
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-white text-xl font-semibold whitespace-normal">
+                        {exp.title}
+                      </CardTitle>
+                      <div className="mt-1 text-gray-300 text-sm font-medium">{exp.company}</div>
+                      <div className="mt-1 text-gray-400 text-sm inline-flex items-center gap-2">
+                        <Calendar className="w-3 h-3" />
+                        {exp.date}
+                      </div>
                     </div>
-                    <CardTitle className="text-white text-lg mb-2">{exp.title}</CardTitle>
-                    <div className="text-yellow-400 text-sm font-medium">{exp.company}</div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-300 text-sm mb-4 line-clamp-3">{exp.description}</p>
-                    <div className="flex flex-wrap gap-1 mb-4">
-                      {exp.skills.slice(0, 3).map((s) => (
-                        <Badge key={s} className="bg-blue-500/20 text-blue-200 border-blue-500/30 text-xs">
+                  </div>
+
+                  <CardHeader className="pt-3">
+                    {/* Blue skill chips */}
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.slice(0, 6).map((s) => (
+                        <span
+                          key={s}
+                          className="rounded-full px-2.5 py-1 text-xs bg-sky-500/20 text-sky-100 border border-sky-500/30"
+                        >
                           {s}
-                        </Badge>
+                        </span>
                       ))}
-                      {exp.skills.length > 3 && (
-                        <Badge className="bg-gray-500/20 text-gray-300 border-gray-500/30 text-xs">
-                          +{exp.skills.length - 3} more
-                        </Badge>
-                      )}
                     </div>
-                    <div className="flex items-center gap-2 text-gray-400 text-sm">
-                      <MapPin className="w-3 h-3" />
-                      {exp.location}
-                    </div>
-                  </CardContent>
+                  </CardHeader>
+
+                  {/* No description */}
+                  <CardContent />
                 </Card>
               </Link>
             ))}
@@ -134,3 +161,4 @@ export default function ExperiencePage() {
     </div>
   )
 }
+
