@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import { ArrowLeft, Calendar, X } from "lucide-react"
 
 type Status = "completed" | "in-progress"
-type LearnType = "degree" | "course" | "online-course" 
+type LearnType = "degree" | "course" | "online-course"
 
 type LearningItem = {
   slug: string
@@ -66,10 +66,8 @@ export default function LearningPage() {
   })
 
   // 一行关键词（粉/紫系）
-  const tagSuggestions = useMemo(
-    () => ["Python", "ML", "Time Series", "SQL"],
-    []
-  )
+  const tagSuggestions = useMemo(() => ["Python", "ML", "Time Series", "SQL"], [])
+
   const toggleToken = (token: string) => {
     const cur = q.split(/\s+/).filter(Boolean)
     const next = cur.includes(token) ? cur.filter(t => t !== token) : [...cur, token]
@@ -91,7 +89,8 @@ export default function LearningPage() {
               </Button>
             </Link>
             <h1 className="text-4xl font-bold text-white mb-3">Learning</h1>
-            <p className="text-gray-300">Learning is my way of expanding the universe — every concept mastered and every skill refined becomes a new star in my constellation of growth.</p>
+            {/* 更短的标语 */}
+            <p className="text-gray-300">Expanding my universe through learning.</p>
           </div>
 
           {/* 搜索 + 关键词（仅一行） */}
@@ -114,6 +113,7 @@ export default function LearningPage() {
               )}
             </div>
 
+            {/* 关键词胶囊：自适应宽度 + 统一高度 */}
             <div className="flex flex-wrap gap-2 justify-center">
               {tagSuggestions.map((t) => {
                 const active = hasToken(t)
@@ -122,7 +122,7 @@ export default function LearningPage() {
                     key={t}
                     onClick={() => toggleToken(t)}
                     className={
-                      "cursor-pointer rounded-full px-3 py-1 text-sm border " +
+                      "inline-flex items-center h-7 rounded-full px-3 text-sm border whitespace-nowrap cursor-pointer " +
                       (active
                         ? "bg-purple-500/30 border-purple-400/40 text-purple-100"
                         : "bg-fuchsia-500/10 border-fuchsia-400/30 text-fuchsia-200 hover:bg-fuchsia-500/20")
@@ -148,7 +148,7 @@ export default function LearningPage() {
                   <Card className="relative h-full min-h-[240px] bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden">
                     {/* 右上角状态角标（在卡片内部） */}
                     <div className="absolute right-3 top-2 z-20">
-                      <span className={`rounded-full px-2.5 py-1 text-xs border backdrop-blur-sm ${statusClass}`}>
+                      <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}>
                         {it.status === "completed" ? "Completed" : "In Progress"}
                       </span>
                     </div>
@@ -173,13 +173,13 @@ export default function LearningPage() {
                       </div>
                     </div>
 
-                    {/* 标签区：给最小高度避免跳动 */}
+                    {/* 标签区：自适应胶囊 + 最小高度避免跳动 */}
                     <CardHeader className="pt-2">
                       <div className="flex flex-wrap gap-2 min-h-[36px]">
                         {(it.tags ?? []).slice(0, 3).map((t) => (
                           <span
                             key={t}
-                            className="rounded-full px-2.5 py-1 text-xs bg-purple-500/20 text-purple-100 border border-purple-500/30"
+                            className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-purple-500/20 text-purple-100 border border-purple-500/30 whitespace-nowrap"
                           >
                             {t}
                           </span>
@@ -187,12 +187,12 @@ export default function LearningPage() {
                         {(it.level === "postgrad" || it.audited) && (
                           <div className="ml-auto flex gap-2">
                             {it.level === "postgrad" && (
-                              <span className="rounded-full px-2.5 py-1 text-xs bg-white/5 text-gray-200 border border-white/10">
+                              <span className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-white/5 text-gray-200 border border-white/10 whitespace-nowrap">
                                 PG
                               </span>
                             )}
                             {it.audited && (
-                              <span className="rounded-full px-2.5 py-1 text-xs bg-white/5 text-gray-200 border border-white/10">
+                              <span className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-white/5 text-gray-200 border border-white/10 whitespace-nowrap">
                                 Audited
                               </span>
                             )}
@@ -212,3 +212,4 @@ export default function LearningPage() {
     </div>
   )
 }
+
