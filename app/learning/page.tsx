@@ -89,7 +89,6 @@ export default function LearningPage() {
               </Button>
             </Link>
             <h1 className="text-4xl font-bold text-white mb-3">Learning</h1>
-            {/* 更短的标语 */}
             <p className="text-gray-300">Expanding my universe through learning.</p>
           </div>
 
@@ -153,10 +152,17 @@ export default function LearningPage() {
                       </span>
                     </div>
 
-                    {/* 头部：左小方 logo + 右侧标题/日期（预留顶部空间 pt-10） */}
+                    {/* 头部：左小方 logo（图片填满） + 右侧文字 */}
                     <div className="flex items-start gap-4 p-5 pt-10">
-                      <div className="flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 flex items-center justify-center overflow-hidden">
-                        <Image src={it.logo} alt={`${it.title} logo`} width={28} height={28} className="object-contain" />
+                      <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
+                        <Image
+                          src={it.logo}
+                          alt={`${it.title} logo`}
+                          fill
+                          sizes="48px"
+                          className="object-cover"
+                          priority
+                        />
                       </div>
                       <div className="flex-1 min-w-0">
                         <CardTitle className="text-white text-xl font-semibold leading-snug line-clamp-2">
@@ -173,10 +179,10 @@ export default function LearningPage() {
                       </div>
                     </div>
 
-                    {/* 标签区：自适应胶囊 + 最小高度避免跳动 */}
+                    {/* 标签区：显示所有标签（不再限制 3 个） */}
                     <CardHeader className="pt-2">
                       <div className="flex flex-wrap gap-2 min-h-[36px]">
-                        {(it.tags ?? []).slice(0, 3).map((t) => (
+                        {(it.tags ?? []).map((t) => (
                           <span
                             key={t}
                             className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-purple-500/20 text-purple-100 border border-purple-500/30 whitespace-nowrap"
@@ -212,4 +218,5 @@ export default function LearningPage() {
     </div>
   )
 }
+
 
