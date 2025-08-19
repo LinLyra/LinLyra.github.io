@@ -66,7 +66,7 @@ export default function ExperiencePage() {
       company: "Deloitte (Forage)",
       date: "2025",
       type: "development",
-      skills: ["Data Analysis","Tableau"，"Python","Web Security"],
+      skills: ["Data Analysis","Tableau","Python","Web Security"],
       logo: "/experience/deloittelogo.png",
     },
    
