@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { X, ImageIcon, Play, FileText, Download } from "lucide-react";
+// 关键：Image 要用别名导入
+import { X, Image as ImageIcon, Play, FileText, Download } from "lucide-react";
 
 type Media = {
   images?: ReadonlyArray<string>;
@@ -15,18 +16,17 @@ interface MediaModelProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  media?: Media; // 允许缺省
+  media?: Media; // 可缺省
 }
 
-export function MediaModel({ isOpen, onClose, title, media }: MediaModelProps) {
+export default function MediaModel({ isOpen, onClose, title, media }: MediaModelProps) {
   const images = media?.images ?? [];
   const videos = media?.videos ?? [];
   const documents = media?.documents ?? [];
 
-  const [activeTab, setActiveTab] =
-    useState<"images" | "videos" | "documents">(
-      images.length ? "images" : videos.length ? "videos" : "documents"
-    );
+  const [activeTab, setActiveTab] = useState<"images" | "videos" | "documents">(
+    images.length ? "images" : videos.length ? "videos" : "documents"
+  );
 
   if (!isOpen) return null;
 
@@ -35,7 +35,13 @@ export function MediaModel({ isOpen, onClose, title, media }: MediaModelProps) {
       <Card className="w-full max-w-4xl max-h-[90vh] bg-black/90 backdrop-blur-md border-white/20 overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
           <CardTitle className="text-white">{title} - Media</CardTitle>
-          <Button onClick={onClose} size="sm" variant="ghost" className="h-8 w-8 p-0 text-gray-400 hover:text-white" aria-label="Close">
+          <Button
+            onClick={onClose}
+            size="sm"
+            variant="ghost"
+            className="h-8 w-8 p-0 text-gray-400 hover:text-white"
+            aria-label="Close"
+          >
             <X className="w-4 h-4" />
           </Button>
         </CardHeader>
@@ -140,4 +146,3 @@ export function MediaModel({ isOpen, onClose, title, media }: MediaModelProps) {
     </div>
   );
 }
-
