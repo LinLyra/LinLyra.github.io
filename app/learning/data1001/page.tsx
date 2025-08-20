@@ -9,14 +9,13 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 
-// 如果你的组件名是 media-model，请保持下面的路径与名称一致；
-// 组件需要至少支持 props: images: string[], onClose: () => void, startIndex?: number
+// 默认导出的 MediaModel（路径与文件名确保一致：components/media-model.tsx）
 import MediaModel from "@/components/media-model"
 
 export default function DATA1001Page() {
   const [showNotes, setShowNotes] = useState(false)
 
-  // —— 课程元信息（按需改动） ——
+  // —— 课程元信息 ——
   const meta = {
     slug: "data1001",
     title: "DATA1001: Foundations of Data Science",
@@ -36,7 +35,7 @@ export default function DATA1001Page() {
     ],
   }
 
-  const hasNotes = meta.notes && meta.notes.length > 0
+  const hasNotes = (meta.notes?.length ?? 0) > 0
 
   const learningOutcomes = [
     {
@@ -74,11 +73,11 @@ export default function DATA1001Page() {
   ]
 
   const reflection = `
-This course sharpened my ability to frame questions statistically before touching the code. 
-I learned to defend assumptions, design analyses that match data‐generation processes, and 
-communicate uncertainty responsibly. Working in R forced me to think in tidy pipelines and 
-be explicit about model diagnostics rather than just chasing high R². Most importantly, I now 
-treat p-values as one piece of evidence—not a verdict—and pair them with effect sizes, visual 
+This course sharpened my ability to frame questions statistically before touching the code.
+I learned to defend assumptions, design analyses that match data‐generation processes, and
+communicate uncertainty responsibly. Working in R forced me to think in tidy pipelines and
+be explicit about model diagnostics rather than just chasing high R². Most importantly, I now
+treat p-values as one piece of evidence—not a verdict—and pair them with effect sizes, visual
 checks, and domain context.
   `.trim()
 
@@ -93,7 +92,7 @@ checks, and domain context.
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* 顶部返回 */}
+          {/* 顶部返回 + View More */}
           <div className="flex items-center justify-between">
             <Link href="/learning">
               <Button className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
@@ -102,7 +101,6 @@ checks, and domain context.
               </Button>
             </Link>
 
-            {/* 右上角 View More（仅当有图片笔记时显示） */}
             {hasNotes && (
               <Button
                 onClick={() => setShowNotes(true)}
@@ -132,9 +130,8 @@ checks, and domain context.
             </div>
           </header>
 
-          {/* 顶部卡片：logo + 标签 + 一句话总结 + 状态 */}
+          {/* 顶部卡片 */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            {/* 右上角状态 */}
             <div className="absolute right-3 top-3">
               <span
                 className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}
@@ -144,7 +141,7 @@ checks, and domain context.
             </div>
 
             <div className="p-5 md:p-6 flex items-start gap-4">
-              {/* 左上角小方 logo（图片撑满） */}
+              {/* 左小方 logo（图片撑满） */}
               <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
                 <Image
                   src={meta.logo}
@@ -167,13 +164,10 @@ checks, and domain context.
                     </Badge>
                   ))}
                 </div>
-                <p className="text-gray-200">
-                  {meta.tagline}
-                </p>
+                <p className="text-gray-200">{meta.tagline}</p>
               </div>
             </div>
 
-            {/* 宇宙分隔波纹（可去掉） */}
             <div className="h-1 w-full bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-fuchsia-500/20" />
           </Card>
 
@@ -204,13 +198,15 @@ checks, and domain context.
       </div>
 
       {/* 轻量图片查看（仅当有 notes 时） */}
-      {hasNotes && showNotes && (
+      {hasNotes && (
         <MediaModel
-          images={meta.notes}
+          isOpen={showNotes}
           onClose={() => setShowNotes(false)}
-          // 可选：startIndex={0}
+          title={meta.title}
+          media={{ images: meta.notes }}   // ← 关键改动：通过 media.images 传入
         />
       )}
     </div>
   )
 }
+
