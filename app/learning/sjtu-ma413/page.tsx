@@ -10,37 +10,32 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-export default function SJTU_MA413Page() {
+export default function DATA2901Page() {
   const [showNotes, setShowNotes] = useState(false)
 
   const meta = {
-    slug: "sjtu-ma413",
-    title: "MA413 / STAT3925: Time Series (Advanced)",
-    institution: "Shanghai Jiao Tong University (Summer School)",
-    term: "2025",
-    logo: "/learning/sjtulogo.png",
+    slug: "data2901",
+    title: "DATA2901: Big Data and Data Diversity (Advanced)",
+    institution: "University of Sydney",
+    term: "2025 S1",
+    logo: "/learning/usydlogo.png",
     status: "Completed" as const,
     tagline:
-      "Theory and practice for modelling, inference, and forecasting with ARIMA and spectral methods.",
-    tags: ["R/Python", "ARIMA", "ACF/PACF", "Forecasting", "Spectral"],
+      "Worked across diverse, large-scale datasets with Python, SQL and Hadoop—linking theory to real pipelines.",
+    tags: ["Python", "SQL", "Hadoop", "ETL"],
     notes: [] as string[],
   }
 
   const outcomes = [
-    { k: "Time-series fundamentals", v: "Explained components and performed decomposition and adjustment." },
-    { k: "Stationarity & correlograms", v: "Diagnosed weak stationarity; interpreted ACF/PACF and chose models." },
-    { k: "Nonstationary processes", v: "Used differencing/integration to handle homogeneous nonstationary series." },
-    { k: "ARIMA estimation", v: "Fitted AR/MA/ARMA/ARIMA via MoM/ML; interpreted parameters." },
-    { k: "Diagnostics & testing", v: "Conducted residual diagnostics and hypothesis tests to validate models." },
-    { k: "Forecasting", v: "Constructed forecasts with intervals for ARIMA-family models." },
-    { k: "Spectral analysis", v: "Applied periodograms, spectral density, and lag-window methods." },
-    { k: "Financial time series", v: "Applied models to returns and evaluated predictions." },
-    { k: "Volatility modelling", v: "Fitted ARCH/GARCH and assessed conditional heteroskedasticity." },
-    { k: "Vector models", v: "Explained and used VAR/VARMA for multivariate series." },
+    { k: "Data Automation", v: "Automated tasks on structured, semi-structured and unstructured data (text, images, geo, time series)." },
+    { k: "Ingestion & Integration", v: "Combined heterogeneous datasets and produced meaningful summaries under real-world constraints." },
+    { k: "Declarative Querying", v: "Wrote efficient SQL for extraction and manipulation." },
+    { k: "Big Data Fundamentals", v: "Applied the 4Vs; used indexing, compression, partitioning, and distributed frameworks like Hadoop." },
+    { k: "Ethics & Privacy", v: "Considered privacy and ethical implications when handling sensitive/large-scale data." },
   ]
 
   const reflection =
-    "I learned to see time not as noise but structure—ACF/PACF became a language for diagnosing behaviour before modelling."
+    "The key insight was choosing the right abstraction—SQL for set logic, Python for glue, and Hadoop when scale demanded it."
 
   const hasNotes = meta.notes.length > 0
   const badge =
@@ -82,5 +77,20 @@ export default function SJTU_MA413Page() {
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
             <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">Learning Outcomes</h2>
-            <ul className="space-y-3 text-gray-2 00">
-              {out
+            <ul className="space-y-3 text-gray-200">
+              {outcomes.map(o => <li key={o.k} className="[&>strong]:text-white leading-relaxed"><strong>{o.k}:</strong> {o.v}</li>)}
+            </ul>
+          </section>
+
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">Reflection</h2>
+            <p className="text-gray-200 leading-relaxed whitespace-pre-line">{reflection}</p>
+          </section>
+        </div>
+      </div>
+
+      {hasNotes && <MediaModel isOpen={showNotes} onClose={() => setShowNotes(false)} title={meta.title} media={{ images: meta.notes }} />}
+    </div>
+  )
+}
+
