@@ -95,7 +95,7 @@ export default function Data1002Page() {
           </Card>
 
           {/* Learning Outcomes */}
-          <Card className="bg-white/5 backdrop-blur-md border-white/10 p-6 space-y-4">
+          <Card className="bg-white/10 backdrop-blur-md border-white/10 p-6 space-y-4">
             <h2 className="text-xl font-semibold text-white">Learning Outcomes</h2>
             <ul className="list-disc pl-5 space-y-2 text-gray-200 text-sm">
               <li>
@@ -126,7 +126,7 @@ export default function Data1002Page() {
           </Card>
 
           {/* Reflection */}
-          <Card className="bg-white/5 backdrop-blur-md border-white/10 p-6 space-y-3">
+          <Card className="bg-white/10 backdrop-blur-md border-white/10 p-6 space-y-3">
             <h2 className="text-xl font-semibold text-white">Reflection</h2>
             <p className="text-gray-200 text-sm leading-relaxed">
               This course gave me my first real experience of thinking end-to-end about data: not only how to clean and
