@@ -11,7 +11,7 @@ import { ArrowLeft, Calendar } from "lucide-react"
 
 // 如果你的组件名是 media-model，请保持下面的路径与名称一致；
 // 组件需要至少支持 props: images: string[], onClose: () => void, startIndex?: number
-import { MediaModal } from "@/components/media-modal"
+import { MediaModel } from "@/components/media-model"
 
 export default function DATA1001Page() {
   const [showNotes, setShowNotes] = useState(false)
