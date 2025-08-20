@@ -1,12 +1,13 @@
 "use client"
 
-import { useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { Calendar, ArrowLeft } from "lucide-react"
+import MediaModel from "@/components/media-model"
 
 const meta = {
   title: "DATA1002: Informatics: Data and Computation",
@@ -17,14 +18,15 @@ const meta = {
   tags: ["Python", "Spreadsheets", "Data Pipelines", "Visualization"],
   intro:
     "Developed foundational skills for data-driven problem solving by combining Python programming with spreadsheet tools.",
-  media: [
-    // "/learning/data1002/media/1.jpg",
-    // "/learning/data1002/media/2.jpg",
-  ],
+  // 笔记图片：有就填进来（示例）
+  // media: ["/notes/data1002/1.jpg", "/notes/data1002/2.jpg"],
+  media: [] as string[],
 }
 
 export default function Data1002Page() {
-  const router = useRouter()
+  const [showNotes, setShowNotes] = useState(false)
+  const hasNotes = (meta.media?.length ?? 0) > 0
+
   const statusClass =
     meta.status === "completed"
       ? "bg-purple-600/25 text-purple-100 border-purple-400/40"
@@ -36,23 +38,34 @@ export default function Data1002Page() {
 
       <div className="relative z-10 pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* 返回 + 标题 */}
-          <div className="text-center">
-            <Button
-              onClick={() => router.push("/learning")}
-              className="mb-4 bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Learning
-            </Button>
+          {/* 顶部返回 + View More（与 DATA1001 一致） */}
+          <div className="flex items-center justify-between">
+            <Link href="/learning">
+              <Button className="mb-0 bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Learning
+              </Button>
+            </Link>
 
+            {hasNotes && (
+              <Button
+                onClick={() => setShowNotes(true)}
+                className="bg-fuchsia-500/20 border border-fuchsia-400/40 text-fuchsia-100 hover:bg-fuchsia-500/30"
+              >
+                View More
+              </Button>
+            )}
+          </div>
+
+          {/* 标题/基本信息（保持你的原风格） */}
+          <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-white">{meta.title}</h1>
             <p className="text-gray-300 mt-2 flex items-center justify-center gap-2">
               {meta.institution} • <Calendar className="w-4 h-4" /> {meta.date}
             </p>
           </div>
 
-          {/* Hero 卡片 */}
+          {/* Hero 卡片（不改样式，只把按钮移到了上方） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 z-20">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border ${statusClass}`}>
@@ -78,8 +91,6 @@ export default function Data1002Page() {
                 </div>
                 <p className="text-gray-200 text-sm leading-relaxed mt-3">{meta.intro}</p>
               </div>
-
-              {!!meta.media?.length && <MediaLightbox triggerLabel="View notes" images={meta.media} />}
             </div>
           </Card>
 
@@ -128,95 +139,17 @@ export default function Data1002Page() {
           </Card>
         </div>
       </div>
+
+      {/* 轻量图片查看（有图时才渲染，与 DATA1001 一致） */}
+      {hasNotes && (
+        <MediaModel
+          isOpen={showNotes}
+          onClose={() => setShowNotes(false)}
+          title={meta.title}
+          media={{ images: meta.media }}
+        />
+      )}
     </div>
   )
 }
 
-function MediaLightbox({ images, triggerLabel = "View notes" }: { images: string[]; triggerLabel?: string }) {
-  const [open, setOpen] = useState(false)
-  const [idx, setIdx] = useState(0)
-  const hasPrev = idx > 0
-  const hasNext = idx < images.length - 1
-
-  const onKey = useCallback(
-    (e: KeyboardEvent) => {
-      if (!open) return
-      if (e.key === "Escape") setOpen(false)
-      if (e.key === "ArrowLeft" && hasPrev) setIdx((i) => i - 1)
-      if (e.key === "ArrowRight" && hasNext) setIdx((i) => i + 1)
-    },
-    [open, hasPrev, hasNext]
-  )
-
-  useEffect(() => {
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  }, [onKey])
-
-  return (
-    <>
-      <Button
-        onClick={() => setOpen(true)}
-        className="bg-fuchsia-600/20 border border-fuchsia-400/40 text-fuchsia-100 hover:bg-fuchsia-600/30"
-      >
-        {triggerLabel}
-      </Button>
-
-      {open && (
-        <div className="fixed inset-4 z-[60] rounded-2xl bg-black/70 border border-white/20 backdrop-blur-md p-3 md:p-4">
-          <div className="relative h-full w-full flex flex-col">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-gray-200 text-sm">
-                {idx + 1} / {images.length}
-              </span>
-              <button
-                onClick={() => setOpen(false)}
-                className="p-1 rounded-md hover:bg-white/10 text-gray-100"
-                aria-label="Close"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="relative flex-1 rounded-xl overflow-hidden bg-black/40 border border-white/10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={images[idx]} alt={`note-${idx}`} className="absolute inset-0 w-full h-full object-contain" />
-
-              {hasPrev && (
-                <button
-                  onClick={() => setIdx((i) => i - 1)}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20"
-                >
-                  <ChevronLeft className="w-5 h-5 text-white" />
-                </button>
-              )}
-              {hasNext && (
-                <button
-                  onClick={() => setIdx((i) => i + 1)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20"
-                >
-                  <ChevronRight className="w-5 h-5 text-white" />
-                </button>
-              )}
-            </div>
-
-            <div className="mt-3 grid grid-cols-6 gap-2">
-              {images.map((m, i) => (
-                <button
-                  key={m}
-                  onClick={() => setIdx(i)}
-                  className={
-                    "relative h-16 rounded-lg overflow-hidden border " +
-                    (i === idx ? "border-fuchsia-400/60" : "border-white/10")
-                  }
-                >
-                  <img src={m} alt={`thumb-${i}`} className="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  )
-}
