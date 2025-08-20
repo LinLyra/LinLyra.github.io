@@ -157,16 +157,12 @@ checks, and domain context.
           </section>
 
           {/* Reflection */}
-          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">
-              Reflection
-            </h2>
-            <p className="text-gray-200 leading-relaxed whitespace-pre-line">
-              {reflection}
-            </p>
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6 overflow-visible">
+              <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">Reflection</h2>
+              <p className="text-gray-200 text-sm md:text-base leading-relaxed break-words whitespace-pre-line">
+                   {reflection}
+              </p>
           </section>
-        </div>
-      </div>
 
       {/* 笔记图片查看（有图才渲染） */}
       {hasNotes && (
