@@ -10,10 +10,9 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-export default function DATA1001Page() {
+export default function DATA2901Page() {
   const [showNotes, setShowNotes] = useState(false)
 
-  // —— 课程元信息 ——
   const meta = {
     slug: "data1001",
     title: "DATA1001: Foundations of Data Science",
@@ -32,9 +31,7 @@ export default function DATA1001Page() {
     ],
   }
 
-  const hasNotes = (meta.notes?.length ?? 0) > 0
-
-  const learningOutcomes = [
+  const outcomes = [
     { k: "Statistical Foundations", v: "Articulated the role of statistics in society, with emphasis on ethical use, privacy, and big-data challenges." },
     { k: "Study Design & Interpretation", v: "Evaluated how sampling and experimental design influence conclusions and limitations of data analysis." },
     { k: "Data Summarization & Visualization", v: "Produced and interpreted graphical & numerical summaries using base R and ggplot2." },
@@ -45,16 +42,11 @@ export default function DATA1001Page() {
     { k: "Team-Based Exploration", v: "Delivered collaborative analyses via reproducible reports and oral presentations." },
   ]
 
-  const reflection = `
-This course sharpened my ability to frame questions statistically before touching the code.
-I learned to defend assumptions, design analyses that match data‐generation processes, and
-communicate uncertainty responsibly. Working in R forced me to think in tidy pipelines and
-be explicit about model diagnostics rather than just chasing high R². Most importantly, I now
-treat p-values as one piece of evidence—not a verdict—and pair them with effect sizes, visual
-checks, and domain context.
-  `.trim()
+  const reflection =
+    "This course sharpened my ability to frame questions statistically before touching the code. I learned to defend assumptions, design analyses that match data‐generation processes, andcommunicate uncertainty responsibly. Working in R forced me to think in tidy pipelines and be explicit about model diagnostics rather than just chasing high R². Most importantly, I now treat p-values as one piece of evidence—not a verdict—and pair them with effect sizes, visual checks, and domain context."
 
-  const statusClass =
+  const hasNotes = meta.notes.length > 0
+  const badge =
     meta.status === "Completed"
       ? "bg-purple-600/25 text-purple-100 border-purple-400/40"
       : "bg-fuchsia-600/25 text-fuchsia-100 border-fuchsia-400/40"
@@ -62,10 +54,8 @@ checks, and domain context.
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="learning" onSectionChange={() => {}} />
-
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* 顶部返回 + View More（与 1002 一致的位置与样式） */}
           <div className="flex items-center justify-between">
             <Link href="/learning">
               <Button className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
@@ -73,7 +63,6 @@ checks, and domain context.
                 Back to Learning
               </Button>
             </Link>
-
             {hasNotes && (
               <Button
                 onClick={() => setShowNotes(true)}
@@ -84,53 +73,28 @@ checks, and domain context.
             )}
           </div>
 
-          {/* 标题（字号与 1002 对齐：text-3xl md:text-4xl） */}
           <header className="text-center space-y-2">
-            <h1 className="text-3xl md:text-4xl font-bold text-white">
-              {meta.title}
-            </h1>
-            {/* 信息行：只保留 学校 • 日历+学期 */}
+            <h1 className="text-3xl md:text-4xl font-bold text-white">{meta.title}</h1>
             <div className="text-gray-300 inline-flex items-center gap-2 text-sm md:text-base">
-              <span>{meta.institution}</span>
-              <span>•</span>
-              <span className="inline-flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {meta.term}
-              </span>
+              <span>{meta.institution}</span><span>•</span>
+              <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4" /> {meta.term}</span>
             </div>
           </header>
 
-          {/* 顶部卡片 */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            {/* 右上角状态 */}
             <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}
-              >
+              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badge}`}>
                 {meta.status}
               </span>
             </div>
-
             <div className="p-5 md:p-6 flex items-start gap-4">
-              {/* 左小方 logo（图片撑满） */}
               <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
-                <Image
-                  src={meta.logo}
-                  alt={`${meta.title} logo`}
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                  priority
-                />
+                <Image src={meta.logo} alt="logo" fill sizes="48px" className="object-cover" priority />
               </div>
-
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {meta.tags.map((t) => (
-                    <Badge
-                      key={t}
-                      className="bg-purple-500/20 text-purple-100 border-purple-500/30"
-                    >
+                  {meta.tags.map(t => (
+                    <Badge key={t} className="bg-purple-500/20 text-purple-100 border-purple-500/30">
                       {t}
                     </Badge>
                   ))}
@@ -138,33 +102,30 @@ checks, and domain context.
                 <p className="text-gray-200">{meta.tagline}</p>
               </div>
             </div>
-
             <div className="h-1 w-full bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-fuchsia-500/20" />
           </Card>
 
-          {/* Learning Outcomes */}
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
-              Learning Outcomes
-            </h2>
+            <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">Learning Outcomes</h2>
             <ul className="space-y-3 text-gray-200">
-              {learningOutcomes.map((lo) => (
-                <li key={lo.k} className="[&>strong]:text-white leading-relaxed">
-                  <strong>{lo.k}:</strong> {lo.v}
+              {outcomes.map(o => (
+                <li key={o.k} className="[&>strong]:text-white leading-relaxed">
+                  <strong>{o.k}:</strong> {o.v}
                 </li>
               ))}
             </ul>
           </section>
 
-          {/* Reflection */}
-          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6 overflow-visible">
-              <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">Reflection</h2>
-              <p className="text-gray-200 text-sm md:text-base leading-relaxed break-words whitespace-pre-line">
-                   {reflection}
-              </p>
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">Reflection</h2>
+            {/* 关键修改：去掉 whitespace-pre-line，并统一 text-base */}
+            <p className="text-gray-200 text-base leading-relaxed">
+              {reflection}
+            </p>
           </section>
+        </div>
+      </div>
 
-      {/* 笔记图片查看（有图才渲染） */}
       {hasNotes && (
         <MediaModel
           isOpen={showNotes}
@@ -176,5 +137,8 @@ checks, and domain context.
     </div>
   )
 }
+
+
+
 
 
