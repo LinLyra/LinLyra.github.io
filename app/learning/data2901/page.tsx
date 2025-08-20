@@ -28,6 +28,7 @@ export default function DATA2901Page() {
         "/learning/data29012.png",
         "/learning/data29013.png",
     ],
+  }
 
   const outcomes = [
     { k: "Data Automation", v: "Automated tasks on structured, semi-structured and unstructured data (text, images, geo, time series)." },
