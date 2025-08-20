@@ -13,7 +13,7 @@ const meta = {
   institution: "University of Sydney",
   date: "2024 S2",
   status: "completed" as const,
-  logo: "/learning/data1002/logo.png",
+  logo: "/learning/usydlogo.png",
   tags: ["Python", "Spreadsheets", "Data Pipelines", "Visualization"],
   intro:
     "Developed foundational skills for data-driven problem solving by combining Python programming with spreadsheet tools.",
