@@ -146,3 +146,4 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
     </div>
   );
 }
+
