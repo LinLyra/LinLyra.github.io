@@ -11,14 +11,14 @@ type Media = {
   documents?: ReadonlyArray<string>;
 };
 
-interface MediaModalProps {
+interface MediaModelProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   media?: Media; // 允许缺省
 }
 
-export function MediaModal({ isOpen, onClose, title, media }: MediaModalProps) {
+export function MediaModel({ isOpen, onClose, title, media }: MediaModelProps) {
   const images = media?.images ?? [];
   const videos = media?.videos ?? [];
   const documents = media?.documents ?? [];
