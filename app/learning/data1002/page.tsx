@@ -5,30 +5,57 @@ import Image from "next/image"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Calendar, ArrowLeft } from "lucide-react"
+import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-const meta = {
-  title: "DATA1002: Informatics: Data and Computation",
-  institution: "University of Sydney",
-  date: "2024 S2",
-  status: "completed" as const,
-  logo: "/learning/usydlogo.png",
-  tags: ["Python", "Spreadsheets", "Data Pipelines", "Visualization"],
-  intro:
-    "Developed foundational skills for data-driven problem solving by combining Python programming with spreadsheet tools.",
-  // 笔记图片：有就填进来（示例）
-  // media: ["/notes/data1002/1.jpg", "/notes/data1002/2.jpg"],
-  media: [] as string[],
-}
-
-export default function Data1002Page() {
+export default function DATA1001Page() {
   const [showNotes, setShowNotes] = useState(false)
-  const hasNotes = (meta.media?.length ?? 0) > 0
+
+  // —— 课程元信息 ——
+  const meta = {
+    slug: "data1001",
+    title: "DATA1001: Foundations of Data Science",
+    institution: "University of Sydney",
+    term: "2024 S1",
+    // 去掉学分与语言显示
+    logo: "/learning/usydlogo.png",
+    status: "Completed" as const,
+    tagline:
+      "Built statistical thinking from study design to hypothesis testing, using base R and ggplot2.",
+    tags: ["R", "Statistics", "Visualization", "Hypothesis Testing"],
+    notes: [
+      "/notes/data1001/note1.jpg",
+      "/notes/data1001/note2.jpg",
+      "/notes/data1001/note3.jpg",
+    ],
+  }
+
+  const hasNotes = (meta.notes?.length ?? 0) > 0
+
+  const learningOutcomes = [
+    { k: "Statistical Foundations", v: "Articulated the role of statistics in society, with emphasis on ethical use, privacy, and big-data challenges." },
+    { k: "Study Design & Interpretation", v: "Evaluated how sampling and experimental design influence conclusions and limitations of data analysis." },
+    { k: "Data Summarization & Visualization", v: "Produced and interpreted graphical & numerical summaries using base R and ggplot2." },
+    { k: "Probability & Inference", v: "Applied normal approximation and box models to describe chance variation and measurement error." },
+    { k: "Modeling Relationships", v: "Built and explained linear regression models to analyze relationships between variables." },
+    { k: "Hypothesis Testing", v: "Formulated hypotheses, ran appropriate tests, interpreted p-values while avoiding common pitfalls." },
+    { k: "Critical Thinking", v: "Assessed bias, confounding, and misuse of statistics in media and published research." },
+    { k: "Team-Based Exploration", v: "Delivered collaborative analyses via reproducible reports and oral presentations." },
+  ]
+
+  const reflection = `
+This course sharpened my ability to frame questions statistically before touching the code.
+I learned to defend assumptions, design analyses that match data‐generation processes, and
+communicate uncertainty responsibly. Working in R forced me to think in tidy pipelines and
+be explicit about model diagnostics rather than just chasing high R². Most importantly, I now
+treat p-values as one piece of evidence—not a verdict—and pair them with effect sizes, visual
+checks, and domain context.
+  `.trim()
 
   const statusClass =
-    meta.status === "completed"
+    meta.status === "Completed"
       ? "bg-purple-600/25 text-purple-100 border-purple-400/40"
       : "bg-fuchsia-600/25 text-fuchsia-100 border-fuchsia-400/40"
 
@@ -36,12 +63,12 @@ export default function Data1002Page() {
     <div className="relative min-h-screen">
       <Navigation activeSection="learning" onSectionChange={() => {}} />
 
-      <div className="relative z-10 pt-20 p-6">
+      <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* 顶部返回 + View More（与 DATA1001 一致） */}
+          {/* 顶部返回 + View More（与 1002 一致的位置与样式） */}
           <div className="flex items-center justify-between">
             <Link href="/learning">
-              <Button className="mb-0 bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
+              <Button className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Learning
               </Button>
@@ -57,99 +84,101 @@ export default function Data1002Page() {
             )}
           </div>
 
-          {/* 标题/基本信息（保持你的原风格） */}
-          <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-white">{meta.title}</h1>
-            <p className="text-gray-300 mt-2 flex items-center justify-center gap-2">
-              {meta.institution} • <Calendar className="w-4 h-4" /> {meta.date}
-            </p>
-          </div>
+          {/* 标题（字号与 1002 对齐：text-3xl md:text-4xl） */}
+          <header className="text-center space-y-2">
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
+              {meta.title}
+            </h1>
+            {/* 信息行：只保留 学校 • 日历+学期 */}
+            <div className="text-gray-300 inline-flex items-center gap-2 text-sm md:text-base">
+              <span>{meta.institution}</span>
+              <span>•</span>
+              <span className="inline-flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {meta.term}
+              </span>
+            </div>
+          </header>
 
-          {/* Hero 卡片（不改样式，只把按钮移到了上方） */}
+          {/* 顶部卡片 */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3 z-20">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border ${statusClass}`}>
-                Completed
+            {/* 右上角状态 */}
+            <div className="absolute right-3 top-3">
+              <span
+                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}
+              >
+                {meta.status}
               </span>
             </div>
 
-            <div className="p-6 pt-10 flex gap-4">
-              <div className="relative flex-shrink-0 h-14 w-14 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
-                <Image src={meta.logo} alt="course logo" fill sizes="56px" className="object-cover" priority />
+            <div className="p-5 md:p-6 flex items-start gap-4">
+              {/* 左小方 logo（图片撑满） */}
+              <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
+                <Image
+                  src={meta.logo}
+                  alt={`${meta.title} logo`}
+                  fill
+                  sizes="48px"
+                  className="object-cover"
+                  priority
+                />
               </div>
 
               <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-3">
                   {meta.tags.map((t) => (
-                    <span
+                    <Badge
                       key={t}
-                      className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-purple-500/20 text-purple-100 border border-purple-500/30"
+                      className="bg-purple-500/20 text-purple-100 border-purple-500/30"
                     >
                       {t}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
-                <p className="text-gray-200 text-sm leading-relaxed mt-3">{meta.intro}</p>
+                <p className="text-gray-200">{meta.tagline}</p>
               </div>
             </div>
+
+            <div className="h-1 w-full bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-fuchsia-500/20" />
           </Card>
 
           {/* Learning Outcomes */}
-          <Card className="bg-white/5 backdrop-blur-md border-white/10 p-6 space-y-4">
-            <h2 className="text-xl font-semibold text-white">Learning Outcomes</h2>
-            <ul className="list-disc pl-5 space-y-2 text-gray-200 text-sm">
-              <li>
-                <b>Python Automation:</b> Wrote procedural Python programs to automate data workflows based on defined
-                algorithms.
-              </li>
-              <li>
-                <b>Data Pipeline Skills:</b> Hands-on experience in ingestion, cleaning, transformation, summarization,
-                modeling, and evaluation.
-              </li>
-              <li>
-                <b>Tool Proficiency:</b> Learned to choose between spreadsheets and Python depending on stage of data
-                science, understanding trade-offs.
-              </li>
-              <li>
-                <b>Visualization & Communication:</b> Created charts with Python and spreadsheets, evaluated clarity of
-                communication.
-              </li>
-              <li>
-                <b>Machine Learning Basics:</b> Built predictive models (classification & regression), practiced model
-                evaluation, understood overfitting/underfitting.
-              </li>
-              <li>
-                <b>Data Representation:</b> Understood logical vs. physical dataset representation and data sharing
-                considerations (metadata, integrity, portability).
-              </li>
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
+              Learning Outcomes
+            </h2>
+            <ul className="space-y-3 text-gray-200">
+              {learningOutcomes.map((lo) => (
+                <li key={lo.k} className="[&>strong]:text-white leading-relaxed">
+                  <strong>{lo.k}:</strong> {lo.v}
+                </li>
+              ))}
             </ul>
-          </Card>
+          </section>
 
           {/* Reflection */}
-          <Card className="bg-white/5 backdrop-blur-md border-white/10 p-6 space-y-3">
-            <h2 className="text-xl font-semibold text-white">Reflection</h2>
-            <p className="text-gray-200 text-sm leading-relaxed">
-              This course gave me my first real experience of thinking end-to-end about data: not only how to clean and
-              analyze it, but also how to design workflows, communicate results clearly, and evaluate trade-offs between
-              tools. I found that using both spreadsheets and Python helped me understand the strengths of each — fast
-              prototyping vs. scalable automation. The unit also gave me confidence in building small predictive models,
-              which has shaped how I now approach problem-solving: by breaking down messy, real-world problems into clear
-              steps with reproducible methods.
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">
+              Reflection
+            </h2>
+            <p className="text-gray-200 leading-relaxed whitespace-pre-line">
+              {reflection}
             </p>
-          </Card>
+          </section>
         </div>
       </div>
 
-      {/* 轻量图片查看（有图时才渲染，与 DATA1001 一致） */}
+      {/* 笔记图片查看（有图才渲染） */}
       {hasNotes && (
         <MediaModel
           isOpen={showNotes}
           onClose={() => setShowNotes(false)}
           title={meta.title}
-          media={{ images: meta.media }}
+          media={{ images: meta.notes }}
         />
       )}
     </div>
   )
 }
+
 
