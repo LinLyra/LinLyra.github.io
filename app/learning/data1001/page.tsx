@@ -8,8 +8,6 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
-
-// 默认导出的 MediaModel（路径与文件名确保一致：components/media-model.tsx）
 import MediaModel from "@/components/media-model"
 
 export default function DATA1001Page() {
@@ -21,8 +19,7 @@ export default function DATA1001Page() {
     title: "DATA1001: Foundations of Data Science",
     institution: "University of Sydney",
     term: "2024 S1",
-    credit: "6 CP",
-    language: "R (base & ggplot2)",
+    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "Completed" as const,
     tagline:
@@ -38,38 +35,14 @@ export default function DATA1001Page() {
   const hasNotes = (meta.notes?.length ?? 0) > 0
 
   const learningOutcomes = [
-    {
-      k: "Statistical Foundations",
-      v: "Articulated the role of statistics in society, with emphasis on ethical use, privacy, and big-data challenges.",
-    },
-    {
-      k: "Study Design & Interpretation",
-      v: "Evaluated how sampling and experimental design influence conclusions and limitations of data analysis.",
-    },
-    {
-      k: "Data Summarization & Visualization",
-      v: "Produced and interpreted graphical & numerical summaries using base R and ggplot2.",
-    },
-    {
-      k: "Probability & Inference",
-      v: "Applied normal approximation and box models to describe chance variation and measurement error.",
-    },
-    {
-      k: "Modeling Relationships",
-      v: "Built and explained linear regression models to analyze relationships between variables.",
-    },
-    {
-      k: "Hypothesis Testing",
-      v: "Formulated hypotheses, ran appropriate tests, interpreted p-values while avoiding common pitfalls.",
-    },
-    {
-      k: "Critical Thinking",
-      v: "Assessed bias, confounding, and misuse of statistics in media and published research.",
-    },
-    {
-      k: "Team-Based Exploration",
-      v: "Delivered collaborative analyses via reproducible reports and oral presentations.",
-    },
+    { k: "Statistical Foundations", v: "Articulated the role of statistics in society, with emphasis on ethical use, privacy, and big-data challenges." },
+    { k: "Study Design & Interpretation", v: "Evaluated how sampling and experimental design influence conclusions and limitations of data analysis." },
+    { k: "Data Summarization & Visualization", v: "Produced and interpreted graphical & numerical summaries using base R and ggplot2." },
+    { k: "Probability & Inference", v: "Applied normal approximation and box models to describe chance variation and measurement error." },
+    { k: "Modeling Relationships", v: "Built and explained linear regression models to analyze relationships between variables." },
+    { k: "Hypothesis Testing", v: "Formulated hypotheses, ran appropriate tests, interpreted p-values while avoiding common pitfalls." },
+    { k: "Critical Thinking", v: "Assessed bias, confounding, and misuse of statistics in media and published research." },
+    { k: "Team-Based Exploration", v: "Delivered collaborative analyses via reproducible reports and oral presentations." },
   ]
 
   const reflection = `
@@ -92,7 +65,7 @@ checks, and domain context.
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* 顶部返回 + View More */}
+          {/* 顶部返回 + View More（与 1002 一致的位置与样式） */}
           <div className="flex items-center justify-between">
             <Link href="/learning">
               <Button className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
@@ -111,27 +84,25 @@ checks, and domain context.
             )}
           </div>
 
-          {/* 标题 */}
+          {/* 标题（字号与 1002 对齐：text-3xl md:text-4xl） */}
           <header className="text-center space-y-2">
-            <h1 className="text-3xl md:text-5xl font-bold text-white">
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
               {meta.title}
             </h1>
-            <div className="text-gray-300 inline-flex items-center gap-3 text-sm md:text-base">
+            {/* 信息行：只保留 学校 • 日历+学期 */}
+            <div className="text-gray-300 inline-flex items-center gap-2 text-sm md:text-base">
               <span>{meta.institution}</span>
               <span>•</span>
               <span className="inline-flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
                 {meta.term}
               </span>
-              <span>•</span>
-              <span>{meta.credit}</span>
-              <span>•</span>
-              <span>{meta.language}</span>
             </div>
           </header>
 
           {/* 顶部卡片 */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+            {/* 右上角状态 */}
             <div className="absolute right-3 top-3">
               <span
                 className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}
@@ -197,16 +168,17 @@ checks, and domain context.
         </div>
       </div>
 
-      {/* 轻量图片查看（仅当有 notes 时） */}
+      {/* 笔记图片查看（有图才渲染） */}
       {hasNotes && (
         <MediaModel
           isOpen={showNotes}
           onClose={() => setShowNotes(false)}
           title={meta.title}
-          media={{ images: meta.notes }}   // ← 关键改动：通过 media.images 传入
+          media={{ images: meta.notes }}
         />
       )}
     </div>
   )
 }
+
 
