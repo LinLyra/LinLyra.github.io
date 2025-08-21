@@ -38,7 +38,6 @@ export default function COMP3308Page() {
     { k: "Optimisation", v: "Explored core optimisation methods (incl. quadratic programming) for decision-making." },
     { k: "Python Programming", v: "Wrote Python programs to solve practical business problems using mathematical models." },
   ]
-  ]
 
 
   const Takeaways =`
