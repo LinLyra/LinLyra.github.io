@@ -27,6 +27,10 @@ export default function DATA1001Page() {
         "/learning/data2901note1.png",
         "/learning/data2901note2.png",
         "/learning/data2901note3.png",
+        "/learning/data29011.png",
+        "/learning/data29012.png",
+        "/learning/data29013.png",
+        "/learning/data29014.png",
     ],
   }
 
