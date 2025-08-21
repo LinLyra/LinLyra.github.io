@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-export default function DATA2901Page() {
+export default function DATA1001Page() {
   const [showNotes, setShowNotes] = useState(false)
 
   const meta = {
@@ -25,9 +25,9 @@ export default function DATA2901Page() {
       "Built statistical thinking from study design to hypothesis testing, using base R and ggplot2.",
     tags: ["R", "Statistics", "Visualization", "Hypothesis Testing"],
     notes: [
-      "/notes/data1001/note1.jpg",
-      "/notes/data1001/note2.jpg",
-      "/notes/data1001/note3.jpg",
+      "/notes/data1001note1.jpg",
+      "/notes/data1001note2.jpg",
+      "/notes/data1001note3.jpg",
     ],
   }
 
@@ -42,9 +42,11 @@ export default function DATA2901Page() {
     { k: "Team-Based Exploration", v: "Delivered collaborative analyses via reproducible reports and oral presentations." },
   ]
 
-  const reflection =
-    "This course sharpened my ability to frame questions statistically before touching the code. I learned to defend assumptions, design analyses that match data‐generation processes, andcommunicate uncertainty responsibly. Working in R forced me to think in tidy pipelines and be explicit about model diagnostics rather than just chasing high R². Most importantly, I now treat p-values as one piece of evidence—not a verdict—and pair them with effect sizes, visual checks, and domain context."
+  const Takeaways =
+    "When I first entered this course, I was a complete beginner to both R and statistics. At the start, even simple tasks like importing data or interpreting a basic summary felt overwhelming. Step by step, however, I learned how to approach problems systematically: beginning with exploratory data analysis, carefully cleaning and visualizing data, formulating hypotheses, and running the appropriate tests to validate them. One of the most transformative moments came during our team project. Working collaboratively, we managed to push ourselves beyond what we thought possible and ended up ranking top 5 out of more than 800 students. That achievement gave me a strong sense of confidence, but it also showed me the importance of teamwork—how combining diverse perspectives can sharpen both the analysis and the story we tell with data. Later, in my individual project, I again reached the top 5, and that milestone felt even more meaningful because it proved to me that I could now stand on my own and handle the full pipeline—from framing the right question, to applying models, to presenting a convincing conclusion. Beyond the rankings, the most valuable part of this journey was how it reshaped the way I think about data. I learned to question assumptions instead of taking results at face value, to design analyses that reflect real-world data-generating processes, and to communicate uncertainty responsibly. Working in R taught me to think in tidy workflows, but more importantly, this course taught me that statistics is not about chasing the highest R² or the smallest p-value—it is about building arguments that balance evidence, domain knowledge, and practical significance.
+"Looking back, I see this course not just as a technical training, but as a growth journey. I began with almost no knowledge, and ended with both recognition and confidence: the ability to use R as a tool for exploration, the courage to propose my own questions to clients or datasets, and the maturity to see statistics as a guide for clearer, fairer decision-making."
 
+  
   const hasNotes = meta.notes.length > 0
   const badge =
     meta.status === "Completed"
@@ -106,7 +108,7 @@ export default function DATA2901Page() {
           </Card>
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">Learning Outcomes</h2>
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-4">Learning Outcomes</h2>
             <ul className="space-y-3 text-gray-200">
               {outcomes.map(o => (
                 <li key={o.k} className="[&>strong]:text-white leading-relaxed">
@@ -117,10 +119,9 @@ export default function DATA2901Page() {
           </section>
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">Reflection</h2>
-            {/* 关键修改：去掉 whitespace-pre-line，并统一 text-base */}
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-3">Takeaways</h2>
             <p className="text-gray-200 text-base leading-relaxed">
-              {reflection}
+              {Takeaways}
             </p>
           </section>
         </div>
