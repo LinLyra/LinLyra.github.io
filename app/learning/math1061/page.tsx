@@ -26,7 +26,7 @@ export default function MATH1061Page() {
     notes: [] as string[],
   }
 
-   const learningOutcomes = [
+   const outcomes = [
     { k: "Mathematical Reasoning", v: "Applied logical thinking and rigorous proof techniques to solve complex problems." },
     { k: "Algebraic Proficiency", v: "Manipulated vectors, matrices, complex numbers, and real-valued functions (inverse/composite)." },
     { k: "Differential Calculus", v: "Used limits, continuity, and differentiation for approximation, optimisation, and analysis." },
