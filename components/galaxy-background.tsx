@@ -19,7 +19,7 @@ export default function GalaxyBackground() {
 
   const galaxyParams = useMemo(() => ({
     count: 120000, size: 0.01, radius: 8,
-    branches: 4, spin: 1.2, randomness: 0.15, randomnessPower: 3,
+    branches: 4, spin: 1.8, randomness: 0.15, randomnessPower: 3,
     insideColor: "#ff6030", outsideColor: "#1b3984",
   }), []);
 
