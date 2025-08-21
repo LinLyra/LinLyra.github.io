@@ -42,9 +42,19 @@ export default function DATA1001Page() {
     { k: "Team-Based Exploration", v: "Delivered collaborative analyses via reproducible reports and oral presentations." },
   ]
 
-  const Takeaways =
-    "When I first entered this course, I was a complete beginner to both R and statistics. At the start, even simple tasks like importing data or interpreting a basic summary felt overwhelming. Step by step, however, I learned how to approach problems systematically: beginning with exploratory data analysis, carefully cleaning and visualizing data, formulating hypotheses, and running the appropriate tests to validate them. One of the most transformative moments came during our team project. Working collaboratively, we managed to push ourselves beyond what we thought possible and ended up ranking top 5 out of more than 800 students. That achievement gave me a strong sense of confidence, but it also showed me the importance of teamwork—how combining diverse perspectives can sharpen both the analysis and the story we tell with data. Later, in my individual project, I again reached the top 5, and that milestone felt even more meaningful because it proved to me that I could now stand on my own and handle the full pipeline—from framing the right question, to applying models, to presenting a convincing conclusion. Beyond the rankings, the most valuable part of this journey was how it reshaped the way I think about data. I learned to question assumptions instead of taking results at face value, to design analyses that reflect real-world data-generating processes, and to communicate uncertainty responsibly. Working in R taught me to think in tidy workflows, but more importantly, this course taught me that statistics is not about chasing the highest R² or the smallest p-value—it is about building arguments that balance evidence, domain knowledge, and practical significance.
-"Looking back, I see this course not just as a technical training, but as a growth journey. I began with almost no knowledge, and ended with both recognition and confidence: the ability to use R as a tool for exploration, the courage to propose my own questions to clients or datasets, and the maturity to see statistics as a guide for clearer, fairer decision-making."
+  const Takeaways =`
+  When I first entered this course, I was a complete beginner to both R and statistics. At the start, even simple tasks like importing data or interpreting a basic summary felt overwhelming. 
+  Step by step, however, I learned how to approach problems systematically: beginning with exploratory data analysis, carefully cleaning and visualizing data, formulating hypotheses, and running the appropriate tests to validate them. 
+  
+  One of the most transformative moments came during our team project. Working collaboratively, we managed to push ourselves beyond what we thought possible and ended up ranking top 5 out of more than 800 students. 
+  That achievement gave me a strong sense of confidence, but it also showed me the importance of teamwork—how combining diverse perspectives can sharpen both the analysis and the story we tell with data. 
+  Later, in my individual project, I again reached the top 5, and that milestone felt even more meaningful because it proved to me that I could now stand on my own and handle the full pipeline—from framing the right question, to applying models, to presenting a convincing conclusion. 
+  
+  Beyond the rankings, the most valuable part of this journey was how it reshaped the way I think about data. I learned to question assumptions instead of taking results at face value, to design analyses that reflect real-world data-generating processes, and to communicate uncertainty responsibly. 
+  Working in R taught me to think in tidy workflows, but more importantly, this course taught me that statistics is not about chasing the highest R² or the smallest p-value—it is about building arguments that balance evidence, domain knowledge, and practical significance.
+
+  Looking back, I see this course not just as a technical training, but as a growth journey. I began with almost no knowledge, and ended with both recognition and confidence: the ability to use R as a tool for exploration, the courage to propose my own questions to clients or datasets, and the maturity to see statistics as a guide for clearer, fairer decision-making.
+  `
 
   
   const hasNotes = meta.notes.length > 0
