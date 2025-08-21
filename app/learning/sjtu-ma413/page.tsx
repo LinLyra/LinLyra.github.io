@@ -14,7 +14,7 @@ export default function MA413Page() {
   const [showNotes, setShowNotes] = useState(false)
 
   const meta = {
-    slug: "ma413",
+    slug: "sjtu-ma413",
     title: "MA413: Time Series & Random Process in Linear Systems",
     institution: "Shanghai Jiao Tong University",
     term: "2025",
