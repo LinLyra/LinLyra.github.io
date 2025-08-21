@@ -48,13 +48,13 @@ export default function LearningPage() {
     { slug:"genai-intensive-2025q1", title:"Gen AI Intensive Course 2025Q1", institution:"Google × Kaggle", date:"2025", type:"online-course", logo:"/learning/googlelogo.png", tags:["Prompting","Embeddings/RAG","Agents","MLOps"], status:"completed" },
 
     // In Progress（从 QBUS2810 起）
-    { slug:"qbus2810", title:"QBUS2810: Statistical Modelling for Business", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Business Stats","Forecasting","Python"], status:"in-progress", level:"undergrad" },
-    { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["EDA","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
+    { slug:"qbus2810", title:"QBUS2810: Statistical Modelling for Business", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Statiscal Modeling","Forecasting","Python"], status:"in-progress", level:"undergrad" },
+    { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["R","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
     { slug:"qbus2310", title:"QBUS2310: Management Science", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["LP/IP/NLP","Optimisation","Excel Solver","Python"], status:"in-progress", level:"undergrad" },
-    { slug:"qbus3330", title:"QBUS3330: Methods of Decision Analysis", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Decision Trees","Sensitivity","Simulation","Utility"], status:"in-progress", level:"undergrad" },
-    { slug:"comp5338", title:"COMP5338: Advanced Data Models", institution:"University of Sydney", date:"2025", type:"course", logo:"/learning/usydlogo.png", tags:["SQL","MongoDB","Neo4j","Indexing"], status:"in-progress", level:"postgrad", audited:true },
-    { slug:"comp5318", title:"COMP5318: Machine Learning and Data Mining", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Classification","Clustering","Feature Eng"], status:"in-progress", level:"postgrad", audited:true },
-    { slug:"comp5328", title:"COMP5328: Advanced Machine Learning", institution:"University of Sydney", date:"2024", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Generalisation","PyTorch/TensorFlow","PG"], status:"in-progress", level:"postgrad", audited:true },
+    { slug:"qbus3330", title:"QBUS3330: Methods of Decision Analysis", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Decision Trees","Sensitivity","Riskassssment","Managerial Decision Making"], status:"in-progress", level:"undergrad" },
+    { slug:"comp5338", title:"COMP5338: Advanced Data Models", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["SQL","MongoDB","Neo4j","Distribution System"], status:"in-progress", level:"postgrad", audited:true },
+    { slug:"comp5318", title:"COMP5318: Machine Learning and Data Mining", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Data Mining","Python"], status:"in-progress", level:"postgrad", audited:true },
+    { slug:"comp5328", title:"COMP5328: Advanced Machine Learning", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Model Evaluation","PyTorch/TensorFlow"], status:"in-progress", level:"postgrad", audited:true },
   ]
 
   // 搜索（多关键词 AND）
