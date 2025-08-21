@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Navigation } from "@/components/navigation"; // ← 加回导航
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,14 +13,14 @@ type CompetitionItem = {
   slug: string;
   title: string;
   event?: string;
-  date?: string; // 
+  date?: string;
   type: "hackathon" | "marketing" | "modeling" | "sustainability" | "case" | "product";
   description?: string;
   tags?: string[];
   placement?: string;
   teamSize?: string;
   image?: string;
-  logo?: string;  
+  logo?: string;
 };
 
 export default function CompetitionsPage() {
@@ -27,143 +28,21 @@ export default function CompetitionsPage() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const competitions: CompetitionItem[] = [
-    {
-      slug: "gdgx-openai-hack",
-      title: "GDG × OpenAI Hack Node Australia",
-      date: "2025.08",
-      type: "hackathon",
-      logo: "/competition/gdglogo.png",
-      description:
-        "2nd Global AI Hackathon, co-hosted with MIT Sloan AI Club; sponsors include OpenAI, Akamai, Scale AI.",
-      tags: ["Full-stack", "Vibe coding", "Social Network App", "GameFi"],
-    },
-    {
-      slug: "adventurex-2025",
-      title: "AdventureX 2025",
-      date: "2025.07",
-      type: "hackathon",
-      logo: "/competition/advxlogo.jpg",
-      description: "China’s largest youth-driven hackathon.",
-      tags: ["Product Ops", "Web3", "Youth Innovation", "YOLO"],
-    },
-    {
-      slug: "deloitte-digital-elite-2025",
-      title: "Deloitte Digital Elite Challenge 2025",
-      date: "2025.05",
-      type: "product",
-      logo: "/competition/deloittelogo.png",
-      description: "Global university competition by Deloitte China to discover digital-minded talent.",
-      tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
-    },
-    {
-      slug: "ccf-tech-for-good-2025",
-      title: "CCF Tech for Good Hackathon 2025",
-      date: "2025.05",
-      type: "hackathon",
-      logo: "/competition/ccflogo.png",
-      description: "Building social-impact solutions at the CCF tech-for-good hackathon.",
-      tags: ["Accessible Films", "Product Design", "Social Impact"],
-    },
-    {
-      slug: "roland-berger-campus-2025",
-      title: "Roland Berger Campus Challenge 2025",
-      date: "2025.06",
-      type: "case",
-      logo: "/competition/rblogo.png",
-      description: "Strategy consulting case challenge from Roland Berger.",
-      tags: ["Strategy", "Market Analysis"],
-    },
-    {
-      slug: "ey-esg-innovation-2025",
-      title: "EY ESG University Innovation Challenge 2025",
-      date: "2025.04",
-      type: "case",
-      logo: "/competition/eylogo.png",
-      description: "Data-driven sustainability strategies and ESG innovation.",
-      tags: ["ESG", "AI + Luxury"],
-    },
-    {
-      slug: "kpmg-innovate-day-2025",
-      title: "KPMG Innovate Day 2025",
-      date: "2024.10",
-      type: "product",
-      logo: "/competition/kpmglogo.png",
-      description: "KPMG innovation program focused on digital products & insights.",
-      tags: ["Product", "AuditX", "Business Plan"],
-    },
-    {
-      slug: "kpmg-esg-case-competition-3rd",
-      title: "KPMG ESG Case Competition",
-      date: "2025",
-      type: "case",
-      logo: "/competition/kpmglogo.png",
-      description: "ESG case-analysis competition led by KPMG China.",
-      tags: ["ESG", "Sustainability", "Business Strategy"],
-    },
-    {
-      slug: "kpmg-bluebird-it-audit",
-      title: "KPMG Bluebird IT Audit Challenge",
-      date: "2025.08",
-      type: "case",
-      logo: "/competition/kpmglogo.png",
-      description: "Solve real-world IT-audit cases with technology.",
-      tags: ["IT Audit", "Cybersecurity", "ATM"],
-    },
-    {
-      slug: "apmcm-2024",
-      title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
-      date: "2024.11",
-      type: "modeling",
-      logo: "/competition/apmcmlogo.png",
-      description: "Mathematical modeling contest (Asia-Pacific).",
-      tags: ["Modeling", "Optimization"],
-    },
-    {
-      slug: "mcm-icm-2025",
-      title: "MCM/ICM Mathematical Contest in Modeling 2025",
-      date: "2025.02",
-      type: "modeling",
-      logo: "/competition/COMAPlogo.svg",
-      description: "International mathematical modeling competition.",
-      tags: ["Modeling", "Statistics"],
-    },
-    {
-      slug: "loreal-brandstorm",
-      title: "L'Oréal BRANDSTORM 2025",
-      date: "2025.04",
-      type: "marketing",
-      logo: "/competition/loreallogo.png",
-      description: "Global youth challenge—Men’s beauty through tech & product innovation.",
-      tags: ["Marketing", "Product", "Pitch"],
-    },
-    {
-      slug: "net-zero-challenge-gys",
-      title: "Global Youth Summit on Net-Zero Future",
-      date: "2024.09",
-      type: "sustainability",
-      logo: "/competition/UNESCOlogo.png",
-      description:
-        "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
-      tags: ["Climate Action", "Youth Leadership", "Innovation"],
-    },
-    {
-      slug: "commonwealth-treasury-case",
-      title: "Commonwealth Treasury Case Competition",
-      date: "2025.04",
-      type: "case",
-      logo: "/competition/Commonwealthlogo.png",
-      description: "Public policy & economic analysis case organized by CBA.",
-      tags: ["Economics", "Policy", "Analytics"],
-    },
-    {
-      slug: "microsoft-chat-hack-promptathon",
-      title: "Microsoft Chat & Hack Promptathon",
-      date: "2025.03",
-      type: "hackathon",
-      logo: "/competition/microsoftlogo.png",
-      description: "GenAI prompt engineering & product prototyping.",
-      tags: ["GenAI", "Prompting", "Product"],
-    },
+    { slug: "gdgx-openai-hack", title: "GDG × OpenAI Hack Node Australia", date: "2025.08", type: "hackathon", logo: "/competition/gdglogo.png", description: "2nd Global AI Hackathon, co-hosted with MIT Sloan AI Club; sponsors include OpenAI, Akamai, Scale AI.", tags: ["Full-stack", "Vibe coding", "Social Network App", "GameFi"] },
+    { slug: "adventurex-2025", title: "AdventureX 2025", date: "2025.07", type: "hackathon", logo: "/competition/advxlogo.jpg", description: "China’s largest youth-driven hackathon.", tags: ["Product Ops", "Web3", "Youth Innovation", "YOLO"] },
+    { slug: "deloitte-digital-elite-2025", title: "Deloitte Digital Elite Challenge 2025", date: "2025.05", type: "product", logo: "/competition/deloittelogo.png", description: "Global university competition by Deloitte China to discover digital-minded talent.", tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"] },
+    { slug: "ccf-tech-for-good-2025", title: "CCF Tech for Good Hackathon 2025", date: "2025.05", type: "hackathon", logo: "/competition/ccflogo.png", description: "Building social-impact solutions at the CCF tech-for-good hackathon.", tags: ["Accessible Films", "Product Design", "Social Impact"] },
+    { slug: "roland-berger-campus-2025", title: "Roland Berger Campus Challenge 2025", date: "2025.06", type: "case", logo: "/competition/rblogo.png", description: "Strategy consulting case challenge from Roland Berger.", tags: ["Strategy", "Market Analysis"] },
+    { slug: "ey-esg-innovation-2025", title: "EY ESG University Innovation Challenge 2025", date: "2025.04", type: "case", logo: "/competition/eylogo.png", description: "Data-driven sustainability strategies and ESG innovation.", tags: ["ESG", "AI + Luxury"] },
+    { slug: "kpmg-innovate-day-2025", title: "KPMG Innovate Day 2025", date: "2024.10", type: "product", logo: "/competition/kpmglogo.png", description: "KPMG innovation program focused on digital products & insights.", tags: ["Product", "AuditX", "Business Plan"] },
+    { slug: "kpmg-esg-case-competition-3rd", title: "KPMG ESG Case Competition", date: "2025", type: "case", logo: "/competition/kpmglogo.png", description: "ESG case-analysis competition led by KPMG China.", tags: ["ESG", "Sustainability", "Business Strategy"] },
+    { slug: "kpmg-bluebird-it-audit", title: "KPMG Bluebird IT Audit Challenge", date: "2025.08", type: "case", logo: "/competition/kpmglogo.png", description: "Solve real-world IT-audit cases with technology.", tags: ["IT Audit", "Cybersecurity", "ATM"] },
+    { slug: "apmcm-2024", title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024", date: "2024.11", type: "modeling", logo: "/competition/apmcmlogo.png", description: "Mathematical modeling contest (Asia-Pacific).", tags: ["Modeling", "Optimization"] },
+    { slug: "mcm-icm-2025", title: "MCM/ICM Mathematical Contest in Modeling 2025", date: "2025.02", type: "modeling", logo: "/competition/COMAPlogo.svg", description: "International mathematical modeling competition.", tags: ["Modeling", "Statistics"] },
+    { slug: "loreal-brandstorm", title: "L'Oréal BRANDSTORM 2025", date: "2025.04", type: "marketing", logo: "/competition/loreallogo.png", description: "Global youth challenge—Men’s beauty through tech & product innovation.", tags: ["Marketing", "Product", "Pitch"] },
+    { slug: "net-zero-challenge-gys", title: "Global Youth Summit on Net-Zero Future", date: "2024.09", type: "sustainability", logo: "/competition/UNESCOlogo.png", description: "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.", tags: ["Climate Action", "Youth Leadership", "Innovation"] },
+    { slug: "commonwealth-treasury-case", title: "Commonwealth Treasury Case Competition", date: "2025.04", type: "case", logo: "/competition/Commonwealthlogo.png", description: "Public policy & economic analysis case organized by CBA.", tags: ["Economics", "Policy", "Analytics"] },
+    { slug: "microsoft-chat-hack-promptathon", title: "Microsoft Chat & Hack Promptathon", date: "2025.03", type: "hackathon", logo: "/competition/microsoftlogo.png", description: "GenAI prompt engineering & product prototyping.", tags: ["GenAI", "Prompting", "Product"] },
   ];
 
   const allTypes = ["hackathon", "marketing", "modeling", "sustainability", "case", "product"] as const;
@@ -181,6 +60,9 @@ export default function CompetitionsPage() {
 
   return (
     <div className="relative min-h-screen">
+      {/* 顶部导航（和其它页面一致） */}
+      <Navigation activeSection="competitions" onSectionChange={() => {}} />
+
       <div className="relative z-10 pt-20 p-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
@@ -237,7 +119,7 @@ export default function CompetitionsPage() {
             </div>
           </div>
 
-          {/* 卡片列表（无大图，仅 Logo） */}
+          {/* 卡片列表 */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((c) => (
               <Link key={c.slug} href={`/competitions/${c.slug}`} className="block">
@@ -245,7 +127,7 @@ export default function CompetitionsPage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        {/* ✅ 小 Logo 方块 */}
+                        {/* 小 Logo 方块 */}
                         <div className="shrink-0 w-12 h-12 rounded-xl bg-white/5 border border-green-400/20 flex items-center justify-center overflow-hidden">
                           <img
                             src={c.logo || c.image || "/placeholder.svg"}
@@ -304,3 +186,4 @@ export default function CompetitionsPage() {
     </div>
   );
 }
+
