@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// 关键：Image 要用别名导入
-import { X, Image as ImageIcon, Play, FileText, Download } from "lucide-react";
+// 注意：避免与 next/image 的 Image 冲突，lucide 的 Image 要用别名
+import { X, Image as ImageIcon, Play, FileText, Download, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Media = {
   images?: ReadonlyArray<string>;
@@ -16,7 +16,7 @@ interface MediaModelProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  media?: Media; // 可缺省
+  media?: Media;
 }
 
 export default function MediaModel({ isOpen, onClose, title, media }: MediaModelProps) {
@@ -24,9 +24,33 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
   const videos = media?.videos ?? [];
   const documents = media?.documents ?? [];
 
-  const [activeTab, setActiveTab] = useState<"images" | "videos" | "documents">(
-    images.length ? "images" : videos.length ? "videos" : "documents"
+  const firstTab: "images" | "videos" | "documents" =
+    images.length ? "images" : videos.length ? "videos" : "documents";
+
+  const [activeTab, setActiveTab] = useState<"images" | "videos" | "documents">(firstTab);
+  const [idx, setIdx] = useState(0);
+
+  // 切换到其他 Tab 时重置索引
+  useEffect(() => {
+    setIdx(0);
+  }, [activeTab]);
+
+  // 键盘控制
+  const onKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (!isOpen || activeTab !== "images" || images.length === 0) return;
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") setIdx((i) => (i === 0 ? images.length - 1 : i - 1));
+      if (e.key === "ArrowRight") setIdx((i) => (i === images.length - 1 ? 0 : i + 1));
+    },
+    [isOpen, activeTab, images.length, onClose]
   );
+
+  useEffect(() => {
+    if (!isOpen) return;
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen, onKey]);
 
   if (!isOpen) return null;
 
@@ -82,24 +106,67 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
           </div>
 
           {/* Content */}
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-[70vh] overflow-hidden">
+            {/* IMAGES: 单张 + 左右切换 + 缩略图 */}
             {activeTab === "images" && images.length > 0 && (
-              <div className="grid md:grid-cols-2 gap-4">
-                {images.map((image, index) => (
+              <div className="flex flex-col gap-3">
+                {/* 主视图 */}
+                <div className="relative h-[48vh] rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    key={index}
-                    src={image || "/placeholder.svg"}
-                    alt={`${title} - Image ${index + 1}`}
-                    className="w-full h-48 object-cover rounded-lg border border-white/20"
+                    src={images[idx] || "/placeholder.svg"}
+                    alt={`${title} - Image ${idx + 1}`}
+                    className="absolute inset-0 w-full h-full object-contain"
+                    draggable={false}
                   />
-                ))}
+
+                  {/* 左右切换按钮（循环） */}
+                  <button
+                    onClick={() => setIdx((i) => (i === 0 ? images.length - 1 : i - 1))}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20"
+                    aria-label="Prev"
+                  >
+                    <ChevronLeft className="w-5 h-5 text-white" />
+                  </button>
+                  <button
+                    onClick={() => setIdx((i) => (i === images.length - 1 ? 0 : i + 1))}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20"
+                    aria-label="Next"
+                  >
+                    <ChevronRight className="w-5 h-5 text-white" />
+                  </button>
+
+                  {/* 索引小提示 */}
+                  <div className="absolute right-2 bottom-2 text-xs px-2 py-1 rounded bg-black/60 text-gray-200">
+                    {idx + 1} / {images.length}
+                  </div>
+                </div>
+
+                {/* 缩略图条 */}
+                <div className="grid grid-cols-6 gap-2">
+                  {images.map((src, i) => (
+                    <button
+                      key={src + i}
+                      onClick={() => setIdx(i)}
+                      className={
+                        "relative h-16 rounded-lg overflow-hidden border " +
+                        (i === idx ? "border-fuchsia-400/60" : "border-white/10")
+                      }
+                      aria-label={`Go to image ${i + 1}`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={src} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
+            {/* VIDEOS */}
             {activeTab === "videos" && videos.length > 0 && (
-              <div className="space-y-4">
+              <div className="space-y-4 overflow-y-auto pr-1 max-h-[70vh]">
                 {videos.map((video, index) => (
-                  <div key={index} className="relative aspect-video bg-black rounded-lg overflow-hidden">
+                  <div key={index} className="relative aspect-video bg-black rounded-lg overflow-hidden border border-white/10">
                     <video controls className="w-full h-full">
                       <source src={video} type="video/mp4" />
                       Your browser does not support the video tag.
@@ -109,8 +176,9 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
               </div>
             )}
 
+            {/* DOCUMENTS */}
             {activeTab === "documents" && documents.length > 0 && (
-              <div className="space-y-3">
+              <div className="space-y-3 overflow-y-auto pr-1 max-h-[70vh]">
                 {documents.map((doc, index) => (
                   <div
                     key={index}
@@ -136,7 +204,7 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
               </div>
             )}
 
-            {/* 没有任何媒体时的占位 */}
+            {/* 占位 */}
             {images.length === 0 && videos.length === 0 && documents.length === 0 && (
               <div className="text-center text-gray-400 py-10">No media available.</div>
             )}
@@ -146,4 +214,5 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
     </div>
   );
 }
+
 
