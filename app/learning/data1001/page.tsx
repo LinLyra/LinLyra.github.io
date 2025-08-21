@@ -17,8 +17,7 @@ export default function DATA1001Page() {
     slug: "data1001",
     title: "DATA1001: Foundations of Data Science",
     institution: "University of Sydney",
-    term: "2024 S1",
-    // 去掉学分与语言显示
+    term: "2024 S2",
     logo: "/learning/usydlogo.png",
     status: "Completed" as const,
     tagline:
