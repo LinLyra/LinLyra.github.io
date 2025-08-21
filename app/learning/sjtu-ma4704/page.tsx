@@ -10,13 +10,13 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-export default function SJTU_MA4704Page() {
+export default function MA413Page() {
   const [showNotes, setShowNotes] = useState(false)
 
   const meta = {
     slug: "sjtu-ma4704",
     title: "MA4704: Stochastic Process",
-    institution: "Shanghai Jiao Tong University (Summer School)",
+    institution: "Shanghai Jiao Tong University",
     term: "2025",
     logo: "/learning/sjtulogo.png",
     status: "Completed" as const,
@@ -37,10 +37,14 @@ export default function SJTU_MA4704Page() {
     { k: "Brownian motion & martingales", v: "Stated key definitions and properties for applications." },
     { k: "Mathematical maturity", v: "Wrote clear proofs and mapped theory to diverse applications." },
   ]
-
-  const reflection =
-    "This course taught me to translate messy dynamics into probabilistic models and reason about long-run behaviour."
-
+  
+  const Takeaways =`
+  This three-week summer course compressed a wide range of stochastic process theory into an intensive format, which pushed me to build both speed and depth in understanding. 
+  I strengthened my ability to reason rigorously about randomness through topics such as Markov chains, Poisson processes, queueing systems, and Brownian motion. 
+  Without group projects, the focus was on individual mastery, and I learned to independently construct proofs, identify stationary behaviours, and connect abstract probability theory with real-world dynamic systems. 
+  The fast-paced setting also improved my mathematical maturity, training me to approach uncertainty with structure and long-run reasoning.
+  `
+  
   const hasNotes = meta.notes.length > 0
   const badge =
     meta.status === "Completed"
@@ -50,10 +54,8 @@ export default function SJTU_MA4704Page() {
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="learning" onSectionChange={() => {}} />
-
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
-          {/* 顶部返回 + View More */}
           <div className="flex items-center justify-between">
             <Link href="/learning">
               <Button className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
@@ -71,26 +73,20 @@ export default function SJTU_MA4704Page() {
             )}
           </div>
 
-          {/* 标题 */}
           <header className="text-center space-y-2">
             <h1 className="text-3xl md:text-4xl font-bold text-white">{meta.title}</h1>
             <div className="text-gray-300 inline-flex items-center gap-2 text-sm md:text-base">
-              <span>{meta.institution}</span>
-              <span>•</span>
-              <span className="inline-flex items-center gap-1">
-                <Calendar className="w-4 h-4" /> {meta.term}
-              </span>
+              <span>{meta.institution}</span><span>•</span>
+              <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4" /> {meta.term}</span>
             </div>
           </header>
 
-          {/* 顶部卡片 */}
-          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
+          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badge}`}>
                 {meta.status}
               </span>
             </div>
-
             <div className="p-5 md:p-6 flex items-start gap-4">
               <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
                 <Image src={meta.logo} alt="logo" fill sizes="48px" className="object-cover" priority />
@@ -103,30 +99,27 @@ export default function SJTU_MA4704Page() {
                     </Badge>
                   ))}
                 </div>
-                <p className="text-gray-200 text-sm md:text-base leading-relaxed break-words">{meta.tagline}</p>
+                <p className="text-gray-200">{meta.tagline}</p>
               </div>
             </div>
-
             <div className="h-1 w-full bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-fuchsia-500/20" />
           </Card>
 
-          {/* Learning Outcomes —— 缩小字号 + 正常换行 */}
-          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6 overflow-visible">
-            <h2 className="text-lg md:text-xl font-semibold text-white mb-4">Learning Outcomes</h2>
-            <ul className="list-disc pl-5 space-y-2 text-gray-200 text-sm md:text-base leading-relaxed">
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-4">Learning Outcomes</h2>
+            <ul className="space-y-3 text-gray-200">
               {outcomes.map(o => (
-                <li key={o.k} className="[&>strong]:text-white break-words">
+                <li key={o.k} className="[&>strong]:text-white leading-relaxed">
                   <strong>{o.k}:</strong> {o.v}
                 </li>
               ))}
             </ul>
           </section>
 
-          {/* Reflection —— 和 DATA1002 一致的样式 */}
-          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6 overflow-visible">
-            <h2 className="text-lg md:text-xl font-semibold text-white mb-3">Reflection</h2>
-            <p className="text-gray-200 text-sm md:text-base leading-relaxed break-words whitespace-pre-line">
-              {reflection}
+          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-3">Takeaways</h2>
+            <p className="text-gray-200 text-base leading-relaxed">
+              {Takeaways}
             </p>
           </section>
         </div>
