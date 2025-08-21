@@ -24,6 +24,7 @@ export default function DATA1002Page() {
     tagline:
       "Developed skills in data cleaning, pipelines, and applied machine learning by combining Python programming with spreadsheet tools.",
     tags: ["Python", "Machine Learning", "Data Pipelines", "Visualization"],
+    notes: [] as string[]    
   }
 
   const outcomes = [
