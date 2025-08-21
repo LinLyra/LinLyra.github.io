@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, Stars } from "@react-three/drei";
 import { Suspense, useState } from "react";
 import { Planet3D } from "./planet-3d";
-mport EnvNight from "@/components/EnvNight"; 
+import EnvNight from "@/components/EnvNight"; 
 
 import { Globe, Moon, Star, Zap, Rocket } from "lucide-react";
 
