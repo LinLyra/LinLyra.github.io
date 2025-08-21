@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-export default function DATA2901Page() {
+export default function DATA1001Page() {
   const [showNotes, setShowNotes] = useState(false)
 
   const meta = {
@@ -21,12 +21,12 @@ export default function DATA2901Page() {
     logo: "/learning/usydlogo.png",
     status: "Completed" as const,
     tagline:
-      "Worked across diverse, large-scale datasets with Python, SQL and Hadoop—linking theory to real pipelines.",
-    tags: ["Python", "SQL", "Hadoop", "ETL"],
+      "Applied Linux, SQL, Python, and Hadoop for large-scale data pipelines, integrating machine learning and database design into real-world workflows.",
+    tags: ["Python", "SQL", "Hadoop", "Linux", "Jupyter", "Big Data"],
     notes: [
-        "/learning/data29011.png",
-        "/learning/data29012.png",
-        "/learning/data29013.png",
+        "/learning/data2901note1.png",
+        "/learning/data2901note2.png",
+        "/learning/data2901note3.png",
     ],
   }
 
@@ -38,9 +38,15 @@ export default function DATA2901Page() {
     { k: "Ethics & Privacy", v: "Considered privacy and ethical implications when handling sensitive/large-scale data." },
   ]
 
-  const reflection =
-    "The key insight was choosing the right abstraction—SQL for set logic, Python for glue, and Hadoop when scale demanded it."
 
+  const Takeaways =`
+  This was my first advanced-level data science course, and the expectations were clearly higher than in introductory units. I learned how to work with Linux systems for handling data, deepened my knowledge of big data concepts, and used Jupyter notebooks to connect with PostgreSQL databases. 
+  A key part of the course was designing better table structures and fields to support efficient querying and retrieval—skills that are directly relevant to a data scientist’s work.
+  In the group project, we also had to integrate machine learning techniques to support our analysis, which required both technical adaptability and teamwork. 
+  At the same time, the SQL tests and final exam were particularly challenging for me, but I see those difficulties as valuable growth opportunities. Beyond the technical skills, I also realized how important it is to manage group dynamics effectively when tackling complex projects. 
+  Overall, the challenges were significant, but the learning outcomes and confidence I gained were even greater.
+  `
+  
   const hasNotes = meta.notes.length > 0
   const badge =
     meta.status === "Completed"
@@ -102,7 +108,7 @@ export default function DATA2901Page() {
           </Card>
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">Learning Outcomes</h2>
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-4">Learning Outcomes</h2>
             <ul className="space-y-3 text-gray-200">
               {outcomes.map(o => (
                 <li key={o.k} className="[&>strong]:text-white leading-relaxed">
@@ -113,10 +119,9 @@ export default function DATA2901Page() {
           </section>
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-white mb-3">Reflection</h2>
-            {/* 关键修改：去掉 whitespace-pre-line，并统一 text-base */}
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-3">Takeaways</h2>
             <p className="text-gray-200 text-base leading-relaxed">
-              {reflection}
+              {Takeaways}
             </p>
           </section>
         </div>
