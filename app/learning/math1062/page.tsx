@@ -26,7 +26,7 @@ export default function MATH1062Page() {
     notes: [] as string[], // 放图片就会显示 View More
   }
 
-  const learningOutcomes = [
+  const outcomes = [
     { k: "Mathematical & Statistical Thinking", v: "Solved real-world problems using logic, inference methods, and statistical modeling techniques." },
     { k: "Data Analysis with R", v: "Summarised, visualised, and interpreted data; applied appropriate inference methods for different data types." },
     { k: "Communication & Reasoning", v: "Presented mathematical and statistical arguments clearly in written form." },
