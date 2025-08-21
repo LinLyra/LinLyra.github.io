@@ -5,6 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, Stars } from "@react-three/drei";
 import { Suspense } from "react";
 import { Galaxy } from "./galaxy";
+import EnvNight from "@/components/EnvNight"; 
 
 function hasWebGL(): boolean {
   try {
@@ -34,7 +35,7 @@ export default function GalaxyBackground() {
         <Suspense fallback={null}>
           <ambientLight intensity={0.1} />
           <pointLight position={[0, 0, 0]} intensity={0.3} color="#fff" />
-          <Environment preset="night" />
+          <Environment />
           <Stars radius={400} depth={80} count={5000} factor={6} saturation={0} fade />
           <Galaxy {...galaxyParams} />
           <OrbitControls enablePan enableZoom enableRotate minDistance={3} maxDistance={150}
