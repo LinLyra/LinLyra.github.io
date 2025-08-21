@@ -23,6 +23,7 @@ export default function STAT2011Page() {
     tagline:
       "Built models with random variables and focused on estimation, uncertainty quantification, and asymptotics.",
     tags: ["Probability", "Estimation", "Inference", "Distributions"],
+    notes: [
         "/learning/stat2011note1.png",
         "/learning/stat2011note2.png",
         "/learning/stat20111.png",
