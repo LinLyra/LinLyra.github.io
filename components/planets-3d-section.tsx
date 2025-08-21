@@ -3,7 +3,8 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, Stars } from "@react-three/drei";
 import { Suspense, useState } from "react";
-import { Planet3D } from "./planet-3d"; // 这里按你现有导出方式保留命名导入
+import { Planet3D } from "./planet-3d";
+mport EnvNight from "@/components/EnvNight"; 
 
 import { Globe, Moon, Star, Zap, Rocket } from "lucide-react";
 
@@ -41,7 +42,7 @@ export default function Planets3DSection() {
             <ambientLight intensity={0.3} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4F8EF7" />
-            <Environment preset="night" />
+            <Environment />
             <Stars radius={200} depth={50} count={2000} factor={4} saturation={0} fade />
 
             {planets.map((planet, index) => (
