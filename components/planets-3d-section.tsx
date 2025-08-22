@@ -1,10 +1,10 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, Stars } from "@react-three/drei";
+import { OrbitControls, Stars } from "@react-three/drei";
 import { Suspense, useState } from "react";
 import { Planet3D } from "./planet-3d";
-import EnvNight from "@/components/EnvNight"; 
+import EnvNight from "@/components/EnvNight"; // ✅ 本地 HDR 环境贴图
 
 import { Globe, Moon, Star, Zap, Rocket } from "lucide-react";
 
@@ -28,6 +28,7 @@ export default function Planets3DSection() {
 
   return (
     <section id="planets" className="min-h-screen relative bg-black">
+      {/* 顶部文案 */}
       <div className="relative z-20 pt-20 pb-8 text-center">
         <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 mx-4 max-w-4xl mx-auto border border-white/10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">Explore Full Journey</h2>
@@ -36,13 +37,17 @@ export default function Planets3DSection() {
         </div>
       </div>
 
+      {/* 3D 场景 */}
       <div className="absolute inset-0 top-0">
         <Canvas camera={{ position: [0, 3, 15], fov: 60 }} gl={{ antialias: true }}>
           <Suspense fallback={null}>
             <ambientLight intensity={0.3} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4F8EF7" />
-            <Environment />
+
+            {/* ✅ 使用本地 HDR，避免外网请求 6 张图 */}
+            <EnvNight background={false} />
+
             <Stars radius={200} depth={50} count={2000} factor={4} saturation={0} fade />
 
             {planets.map((planet, index) => (
@@ -54,6 +59,7 @@ export default function Planets3DSection() {
                   distort={0.15}
                   speed={0.2 + index * 0.05}
                 />
+                {/* 点击热区 */}
                 <mesh
                   position={planet.position}
                   onClick={() => handlePlanetClick(planet.id, planet.route)}
@@ -87,6 +93,7 @@ export default function Planets3DSection() {
         </Canvas>
       </div>
 
+      {/* 点击反馈 */}
       {clickedPlanet && (
         <div className="fixed inset-0 pointer-events-none z-30 flex items-center justify-center">
           <div className="animate-ping absolute inline-flex h-32 w-32 rounded-full bg-white opacity-20"></div>
@@ -96,5 +103,6 @@ export default function Planets3DSection() {
     </section>
   );
 }
+
 
 
