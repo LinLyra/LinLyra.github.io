@@ -21,7 +21,7 @@ export default function Data1x01StudyBehavioursPage() {
     term: "2024 S2",
     status: "Completed" as const,
     award: "Project Excellence Award",
-    reportUrl: "/projects/data1x01/study-behaviours.html", // ← 你的 HTML 报告路径（放在 public 下）
+    reportUrl: "/data/DATA1001Project1.html", // ← 你的 HTML 报告路径（放在 public 下）
     tags: [
       "Survey EDA",
       "Learning Styles",
