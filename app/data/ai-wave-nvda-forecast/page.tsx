@@ -129,7 +129,7 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
           {/* ✅ 合并后的“我做了什么 & 技能” */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-4 text-xl font-semibold text-blue-400 md:text-2xl">
-              What I Did & Skills
+              What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {highlights.map((line, i) => (
