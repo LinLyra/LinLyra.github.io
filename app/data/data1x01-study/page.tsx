@@ -33,7 +33,10 @@ export default function Data1x01StudyBehavioursPage() {
       "ggplot2",
       "Visualization",
     ],
-    notes: [] as string[], // 如果有配图可填路径，右上会显示 View More
+    notes: [
+      "/data/froup10.png",
+      "/data/1001.png",
+    ] as string[], // 如果有配图可填路径，右上会显示 View More
   };
 
   // —— 概览 ——（可按需微调）
