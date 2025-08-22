@@ -3,32 +3,35 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import { Suspense, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Planet3D } from "./planet-3d";
-import EnvNight from "@/components/EnvNight"; // ✅ 本地 HDR 环境贴图
+import EnvNight from "@/components/EnvNight";
 
-import { Globe, Moon, Star, Zap, Rocket } from "lucide-react";
+import { BookOpen, Database, Briefcase, Package, Sparkles } from "lucide-react";
 
 export default function Planets3DSection() {
   const [clickedPlanet, setClickedPlanet] = useState<number | null>(null);
+  const router = useRouter();
 
+  // ✅ 改成你的 5 个入口：Learning / Data / Business / Product / Nebula
   const planets = [
-    { id: 1, name: "Experience",    icon: Globe,  color: "#4F8EF7", position: [-6, 0, 0] as [number, number, number], route: "/experience" },
-    { id: 2, name: "Learning",      icon: Moon,   color: "#A855F7", position: [-3, 0, 0] as [number, number, number], route: "/learning" },
-    { id: 3, name: "Projects",      icon: Star,   color: "#F59E0B", position: [ 0, 0, 0] as [number, number, number], route: "/projects" },
-    { id: 4, name: "Competitions",  icon: Zap,    color: "#10B981", position: [ 3, 0, 0] as [number, number, number], route: "/competitions" },
-    { id: 5, name: "Activities",    icon: Rocket, color: "#EF4444", position: [ 6, 0, 0] as [number, number, number], route: "/activities" },
+    { id: 1, name: "Learning", icon: BookOpen, color: "#A855F7", position: [-6, 0, 0] as [number, number, number], route: "/learning" },
+    { id: 2, name: "Data",     icon: Database, color: "#4F8EF7", position: [-3, 0, 0] as [number, number, number], route: "/data" },
+    { id: 3, name: "Business", icon: Briefcase,color: "#10B981", position: [ 0, 0, 0] as [number, number, number], route: "/business" },
+    { id: 4, name: "Product",  icon: Package,  color: "#F59E0B", position: [ 3, 0, 0] as [number, number, number], route: "/product" },
+    { id: 5, name: "Nebula",   icon: Sparkles, color: "#EF4444", position: [ 6, 0, 0] as [number, number, number], route: "/nebula" },
   ];
 
   const handlePlanetClick = (planetId: number, route: string) => {
     setClickedPlanet(planetId);
     setTimeout(() => {
-      window.location.href = route;
+      router.push(route); // ← 更平滑的 SPA 跳转；不想改可用 window.location.href
     }, 500);
   };
 
   return (
     <section id="planets" className="min-h-screen relative bg-black">
-      {/* 顶部文案 */}
+      {/* 顶部文案：不改风格 */}
       <div className="relative z-20 pt-20 pb-8 text-center">
         <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 mx-4 max-w-4xl mx-auto border border-white/10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">Explore Full Journey</h2>
@@ -44,10 +47,7 @@ export default function Planets3DSection() {
             <ambientLight intensity={0.3} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4F8EF7" />
-
-            {/* ✅ 使用本地 HDR，避免外网请求 6 张图 */}
             <EnvNight background={false} />
-
             <Stars radius={200} depth={50} count={2000} factor={4} saturation={0} fade />
 
             {planets.map((planet, index) => (
@@ -63,14 +63,8 @@ export default function Planets3DSection() {
                 <mesh
                   position={planet.position}
                   onClick={() => handlePlanetClick(planet.id, planet.route)}
-                  onPointerOver={(e) => {
-                    e.stopPropagation();
-                    document.body.style.cursor = "pointer";
-                  }}
-                  onPointerOut={(e) => {
-                    e.stopPropagation();
-                    document.body.style.cursor = "default";
-                  }}
+                  onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = "pointer"; }}
+                  onPointerOut={(e) => { e.stopPropagation(); document.body.style.cursor = "default"; }}
                 >
                   <sphereGeometry args={[1.8, 32, 32]} />
                   <meshBasicMaterial transparent opacity={0} />
@@ -103,6 +97,7 @@ export default function Planets3DSection() {
     </section>
   );
 }
+
 
 
 
