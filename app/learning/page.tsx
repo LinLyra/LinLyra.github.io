@@ -83,7 +83,7 @@ export default function LearningPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <Link href="/">
-              <Button className="mb-4 bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
+              <Button className="mb-4 bg-gradient-to-r from-purple-500/20 to-fuchsia-500/20 backdrop-blur-md border-purple-400/30 text-white hover:bg-purple-500/30">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Universe
               </Button>
@@ -99,7 +99,7 @@ export default function LearningPage() {
                 placeholder="Search by code, title, institution, or tag…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                className="w-full bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-gray-400 pr-10"
+                className="w-full bg-black/30 backdrop-blur-md border-purple-400/30 text-white placeholder:text-gray-400 pr-10""
               />
               {q && (
                 <button
