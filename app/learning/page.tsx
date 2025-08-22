@@ -99,7 +99,7 @@ export default function LearningPage() {
                 placeholder="Search by code, title, institution, or tag…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                className="w-full bg-black/30 backdrop-blur-md border-purple-400/30 text-white placeholder:text-gray-400 pr-10""
+                className="w-full bg-black/30 backdrop-blur-md border-purple-400/30 text-white placeholder:text-gray-400 pr-10"
               />
               {q && (
                 <button
