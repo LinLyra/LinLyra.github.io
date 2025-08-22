@@ -98,7 +98,7 @@ export default function DataPage() {
   description:
     "Plan: analyze order-level dataset (time, location, spend), cluster consumer segments, model delivery time drivers, and identify promotions impact using regression and causal inference.",
   skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
-  status: "In progress",
+  status: "In Progress",
 },
 
 {
@@ -120,7 +120,7 @@ export default function DataPage() {
       description:
         "Plan: feature engineering from play-by-play/seed history, Elo/efficiency ratings, logistic/XGBoost ensemble for upset prediction.",
       skills: ["Python", "Pandas", "Machining Learning"],
-      status: "planned",
+      status: "Planned",
     },
   ];
 
