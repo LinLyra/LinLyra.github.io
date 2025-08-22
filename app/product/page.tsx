@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Rocket, ArrowLeft, Award } from "lucide-react";
 
-type ProductType = "product" | "project" | "hackathon" | "marketing";
+type ProductType = "product" | "project" | "hackathon" | "development";
 
 type ProductItem = {
   slug: string;
@@ -119,7 +119,7 @@ export default function ProductPage() {
       slug: "loreal-brandstorm",
       title: "L'Oréal BRANDSTORM 2025",
       date: "2025.04",
-      type: "marketing",
+      type: "product",
       logo: "/competition/loreallogo.png",
       description:
         "Global youth challenge — men’s beauty through tech & product innovation.",
@@ -152,7 +152,7 @@ export default function ProductPage() {
   ];
 
   // 仅显示实际使用到的类型
-  const allTypes: ProductType[] = ["product", "project", "hackathon", "marketing"];
+  const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
   const used = (t: ProductType) => products.some((p) => p.type === t);
 
   // 搜索：title / company / event / description / tags / skills
@@ -192,7 +192,7 @@ export default function ProductPage() {
               </Button>
             </Link>
             <h1 className="mb-2 text-4xl font-bold text-gray-100">Product</h1>
-            <p className="text-gray-200">Products & projects — shipping user-facing value.</p>
+            <p className="text-gray-200">Designing solutions that turn ideas into impact, from concepts to prototypes.</p>
           </div>
 
           {/* 搜索 + 类型过滤（橙色主题） */}
