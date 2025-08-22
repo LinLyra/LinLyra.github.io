@@ -20,8 +20,8 @@ export default function DisasterInsurancePage() {
     practice: "Risk Finance · Protection Gap Analytics · EDA & Hypothesis Test",
     term: "2024 S2",
     status: "Completed" as const,
-    award: "Project Excellence Award", // 🏆 按你要求保留荣誉
-    reportUrl: "/data/disaster-risk-insurance.html", // ← 你的 HTML 报告（放在 public 下）
+    award: "Project Excellence Award",
+    reportUrl: "/data/disaster-risk-insurance.html", // 放在 public 下
     tags: [
       "Protection Gap",
       "Parametric Insurance",
@@ -34,11 +34,11 @@ export default function DisasterInsurancePage() {
       "ggplot2",
       "EDA",
     ],
-    // 可选：如果你有图，填路径；有图时右上会出现 View More
-    notes: [] as string[],
+    notes: [
+      "/data/top5.png",
+    ] 
   };
 
-  // —— Overview ——（把客户画像+结论并入概述）
   const overview = `Using the Kaggle/Our World in Data natural-disaster dataset, I quantified the global protection gap
 (economic losses − insured losses) and compared payout ratios across regions and peril types.
 Asia shows frequent, high-loss events (especially earthquakes and floods) but persistently low insurance coverage;
@@ -46,7 +46,6 @@ North America/Oceania are more mature, yet uninsured losses are still rising wit
 Recommendation: prioritize innovative/parametric products and public-private partnerships in Asia and other vulnerable regions
 to narrow the protection gap and strengthen resilience. This direction aligns with the World Bank Climate Finance Mobilization goals.`;
 
-  // —— What I did ——（动作合一：方法 + 产出）
   const highlights: string[] = [
     "Built an end-to-end R/tidyverse pipeline: cleaning, encoding payout ratios and protection-gap indicators; publication-ready charts.",
     "Constructed regional time series of uninsured losses; contrasted payout ratios with disaster frequency and peril mix.",
@@ -56,14 +55,13 @@ to narrow the protection gap and strengthen resilience. This direction aligns wi
     "Packaged findings for a policy audience (World Bank): where to intervene, which peril to target, and why parametrics help.",
   ];
 
-  // —— Reflection ——（强调理性与可执行性）
   const reflection = `Working with noisy, partly missing self-reported/loss data forced disciplined claims: I documented
 assumptions, kept estimates conservative, and triangulated with Swiss Re sigma. The biggest learning was turning
 analytics into a concrete product roadmap: for Asian markets, simulate parametric triggers (e.g., quake intensity,
 flood gauge thresholds) and test affordability/payout adequacy under PPP structures. If iterating, I would integrate
 exposure layers and higher-resolution peril data, then run sensitivity analyses on trigger design to balance basis risk,
 speed of payout, and fiscal impact. Keeping the message policy-relevant—where to act, what to build, and how to measure
-impact—was key, and it’s also why this project earned recognition.`
+impact—was key, and it’s also why this project earned recognition.`;
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -72,7 +70,13 @@ impact—was key, and it’s also why this project earned recognition.`
       : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
+      {/* 背景：深色 + 星云 */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[#090a12]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(59,130,246,0.18),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(99,102,241,0.18),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(56,189,248,0.15),transparent_55%)]" />
+      </div>
+
       <Navigation activeSection="data" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
@@ -109,7 +113,9 @@ impact—was key, and it’s also why this project earned recognition.`
           {/* 顶部 Meta 卡（无 logo，含 Award） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
+              <span
+                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
+              >
                 {meta.status}
               </span>
               {meta.award && (
@@ -131,7 +137,10 @@ impact—was key, and it’s also why this project earned recognition.`
               </div>
               <div className="flex flex-wrap gap-2 mb-2">
                 {meta.tags.map((t) => (
-                  <Badge key={t} className="bg-blue-500/20 text-blue-100 border-blue-500/30">
+                  <Badge
+                    key={t}
+                    className="bg-blue-500/20 text-blue-100 border-blue-500/30"
+                  >
                     {t}
                   </Badge>
                 ))}
@@ -143,24 +152,36 @@ impact—was key, and it’s also why this project earned recognition.`
 
           {/* Overview */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Project Overview</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
+            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
+              Project Overview
+            </h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+              {overview}
+            </p>
           </section>
 
           {/* What I Did */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">What I Did</h2>
+            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
+              What I Did
+            </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {highlights.map((line, i) => (
-                <li key={i} className="leading-relaxed">{line}</li>
+                <li key={i} className="leading-relaxed">
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
 
           {/* Reflection */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Reflection</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
+            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
+              Reflection
+            </h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+              {reflection}
+            </p>
           </section>
         </div>
       </div>
@@ -176,3 +197,4 @@ impact—was key, and it’s also why this project earned recognition.`
     </div>
   );
 }
+
