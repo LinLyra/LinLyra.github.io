@@ -164,18 +164,6 @@ The project’s recognition, I think, came from this combination of rigor, restr
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
-          {/* Keywords */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Keywords</h2>
-            <div className="flex flex-wrap gap-2">
-              {keywords.map((k) => (
-                <Badge key={k} className="border-blue-500/30 bg-blue-500/20 text-blue-100">
-                  {k}
-                </Badge>
-              ))}
-            </div>
-          </section>
-
           {/* What I Built & Learned */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">What I did</h2>
