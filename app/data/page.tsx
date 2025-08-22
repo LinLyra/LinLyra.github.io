@@ -111,8 +111,8 @@ export default function DataPage() {
   skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
   status: "In Progress"
   },
-},
-    {
+    
+  {
       slug: "kaggle-ncaa-basketball",
       title: "NCAA Basketball Analytics (Kaggle)",
       category: "Sports Analytics",
