@@ -21,7 +21,7 @@ export default function DisasterInsurancePage() {
     term: "2024 S2",
     status: "Completed" as const,
     award: "Project Excellence Award", // 🏆 按你要求保留荣誉
-    reportUrl: "/data/disaster-insurance.html", // ← 你的 HTML 报告（放在 public 下）
+    reportUrl: "/data/disaster-risk-insurance.html", // ← 你的 HTML 报告（放在 public 下）
     tags: [
       "Protection Gap",
       "Parametric Insurance",
