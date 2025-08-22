@@ -67,7 +67,7 @@ export default function DataPage() {
       status: "Completed",
     },
     {
-      slug: "pima-diabetes-accuracy-vs-runtime",
+      slug: "pima-diabetes",
       title:
         "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes",
       category: "Classification / Benchmark",
@@ -78,7 +78,7 @@ export default function DataPage() {
       status: "Completed",
     },
     {
-      slug: "data1x01-study-behaviours",
+      slug: "data1x01-study",
       title:
         "The Study Behaviours and Expectations of DATA1X01 Students",
       category: "Survey Analytics",
