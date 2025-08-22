@@ -25,13 +25,17 @@ export default function NebulaPage() {
   // 你的活动数据（原样保留）
   const activities: ActivityItem[] = [
     { slug: "rabobank-office-tour", title: "Office Tour — Rabobank Australia", org: "Rabobank", date: "2025.08", summary: "Banking tech stack, risk systems, and a peek into product operations.", cover: "/activities/rabobank.png", location: "Rabobank office" },
+    { slug: "ey-applicants-interviews", title: "EY Presents: Applicants and Interviews", org: "EY", date: "2025.08", summary: "Insights on EY application processes, interview prep, and career pathways.", cover: "/activities/EY.png", location: "Campus" },
     { slug: "gurobi-community-meetup", title: "Gurobi Community Meetup", org: "Gurobi", date: "2025.08", summary: "Optimisation case studies: LP/IP modeling, solver tuning, and applications.", cover: "/activities/gurobi.png", location: "Swiss Hotel" },
-    { slug: "linkedin-all-star-profile", title: "LinkedIn: Building an All-Star Profile", org: "Career Center", date: "2024.08", summary: "Profile optimisation, storytelling, and networking best practices.", cover: "/activities/linkedin.png", location: "Campus" },
     { slug: "microsoft-chat-and-hack", title: "Chat & Hack: Microsoft Careers Day (On Campus)", org: "Microsoft", date: "2025.03", summary: "Career chats, hack-style demos, and routes into product & engineering.", cover: "/activities/microsoft.png", location: "Campus" },
     { slug: "bain-career-in-consulting", title: "A Career in Consulting with Bain & Company", org: "Bain & Company", date: "2025.03", summary: "Pathways into strategy consulting, recruiting tips, and day-in-the-life insights.", cover: "/activities/bain.png", location: "Campus" },
     { slug: "hongkong-flow-trader", title: "Hongkong Flow Trader", org: "Industry Insights", date: "2025.03", summary: "Flow trading landscape, pricing, risk, and life on the trading floor.", cover: "/activities/flow.png", location: "Campus" },
     { slug: "ai-power-struggle-regulation", title: "The AI Power Struggle: China, the US and the Future of Regulation", org: "Policy & Governance", date: "2025.04", summary: "Global AI regulation, safety vs. innovation, cross-border governance trends.", cover: "/activities/ai.png", location: "Campus" },
     { slug: "rhombus-ai-workshop", title: "AI Workshop with Rhombus AI", org: "Rhombus AI", date: "2025.04", summary: "Hands-on with LLM tooling, data pipelines, and prompt workflows.", cover: "/activities/rhombus.png", location: "Campus" },
+    { slug: "faculty-stem-panel", title: "Faculty of Science STEM Panel Discussion", org: "Faculty of Science", date: "2024.08", summary: "Panel discussion on STEM careers, research opportunities, and student pathways.", cover: "/activities/stem.png", location: "Campus" },
+    { slug: "linkedin-all-star-profile", title: "LinkedIn: Building an All-Star Profile", org: "Career Center", date: "2024.08", summary: "Profile optimisation, storytelling, and networking best practices.", cover: "/activities/linkedin.png", location: "Campus" },
+    
+    // --- 志愿者类活动，排在最后 ---
     { slug: "city2surf-volunteer", title: "City2Surf Marathon Volunteer", org: "City2Surf", date: "2024.08", summary: "Supported race logistics, assisted in crowd management and final medal distribution.", cover: "/activities/city2.png", location: "Bondi Beach" },
     { slug: "mid-autumn-gala", title: "Mid-Autumn Festival Gala Volunteer", org: "Chinese-Australian Association", date: "2024.09", summary: "Assisted in event coordination, guest reception.", cover: "/activities/mid.png", location: "Town Hall" },
     { slug: "usu", title: "USU Volunteer", org: "University of Sydney Union (USU)", date: "2025.04 - Present", summary: "Contributed to student life by supporting campus events, and engaging with diverse student communities.", cover: "/activities/usu.png", location: "Campus" },
@@ -81,7 +85,7 @@ export default function NebulaPage() {
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
-                placeholder="Search by title, organization, place, or keyword (volunteer / journal / networking / talks)…"
+                placeholder="Search by title, organization, place, or keyword (volunteer / networking / talks)…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 className="w-full bg-black/30 backdrop-blur-md border-red-400/30 text-gray-100 placeholder:text-gray-400 pr-10"
