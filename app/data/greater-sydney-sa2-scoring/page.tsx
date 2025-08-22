@@ -16,11 +16,11 @@ export default function Data2901SydneyResourcesPage() {
   const meta = {
     slug: "data2901-sydney-resources",
     title: "Greater Sydney SA2 Resource Scoring",
-    institution: "Course Project · University of Sydney",
+    institution: "Group Project · University of Sydney",
     practice: "Spatial Analytics · PostgreSQL/PostGIS · Composite Scoring",
     term: "2025 S1",
     status: "Completed" as const,
-    github: "https://github.com/LinLyra/Greate-Sydney", // ← 换为真实仓库
+    github: "https://github.com/LinLyra/Greater-Sydney",
     tags: [
       "PostgreSQL",
       "PostGIS",
@@ -31,41 +31,40 @@ export default function Data2901SydneyResourcesPage() {
       "Rank-based",
       "Lasso",
       "OLS",
-      "Choropleth"
+      "Choropleth",
     ],
-    // 这里放你导出的关键可视化：区分度地图、排序条形图、SA4 分组散点、收入相关/回归等
     notes: [
       "/data/data2901.png",
-    ],
+    ] 
   };
 
-  // —— Overview（概览，按你的报告内容精炼）——
+  // —— Overview（和 AI Stock 相同的 <p> + whitespace-pre-line）——
   const overview = `We evaluate how “well-resourced” each SA2 in selected SA4 zones of Greater Sydney is by building a spatial database and a composite scoring system.
 We integrated six datasets (ABS SA2/Population/Income, Retail Business counts, Transport for NSW GTFS stops, NSW DoE school catchments, NSW POI API), standardized geometries to GDA2020 (EPSG:7844), and performed all joins in PostGIS. Each indicator was normalized (z-scores) and aggregated; the sum was passed through a sigmoid to obtain a final score in [0,1].
 
 Key findings:
 • Sydney – Inner West: consistently high scores across SA2s (dense infrastructure & transport).
 • Sydney – Blacktown: largest internal disparity (south high; north low), indicating spatial inequality.
-• Sydney – Eastern Suburbs: mixed performance（沿海高、内陆偏低）.
-• Pearson correlation between score and median income is weak & slightly negative (≈ −0.08), suggesting resource access is not simply a function of income in this subset. 
+• Sydney – Eastern Suburbs: mixed performance.
+• Pearson correlation between score and median income is weak & slightly negative (≈ −0.08), suggesting resource access is not simply a function of income in this subset.
 We also add robustness checks via rank-based scoring and validate predictors with Lasso + OLS.`;
 
-  // —— What I did（把工程实现与方法选择融合成要点，可复用模板）——
+  // —— What I did —— 
   const highlights: string[] = [
-    "Built a reproducible spatial database (PostgreSQL + PostGIS), unified all layers in GDA2020 (EPSG:7844), and created SA4 filters/views with proper GiST indexes for geometry.",
-    "ETL with pandas/geopandas: cleaned, typed, and de-duplicated; mapped GTFS stops to SA2; intersected school catchments; fetched NSW POIs via API and excluded overlapping categories.",
-    "Engineered four indicators per SA2: retail business density (per 1,000 residents), public transport stops, school catchment coverage (per 1,000 youths), and essential POIs.",
-    "Standardized indicators with z-scores and aggregated; applied a sigmoid to bound the final score to [0,1]; excluded SA2s with population < 100 to avoid instability.",
-    "Produced choropleths and ranked bar charts to surface spatial inequality; grouped SA2s by SA4 to compare within-region dispersion.",
-    "Checked relationship with income: weak/slightly negative correlation; performed Lasso for feature selection then OLS for interpretability; kept all predictors after CV.",
-    "Ran a rank-based composite as robustness check to mitigate outlier inflation from z-scores; compared distributions vs. sigmoid scores for policy-friendly interpretation.",
+    "Built a reproducible spatial database (PostgreSQL + PostGIS), unified all layers in GDA2020 (EPSG:7844), and created SA4 filters/views with GiST indexes.",
+    "ETL with pandas/geopandas: cleaned, typed, and de-duplicated; mapped GTFS stops to SA2; intersected school catchments; fetched NSW POIs via API.",
+    "Engineered four indicators per SA2: retail business density, public transport stops, school catchment coverage, and essential POIs.",
+    "Standardized indicators with z-scores and aggregated; applied a sigmoid to bound the final score to [0,1]; excluded tiny-pop SA2s for stability.",
+    "Produced choropleths and ranked bar charts to surface spatial inequality; compared dispersion within SA4 groups.",
+    "Checked relationship with income (weak/slightly negative); used Lasso + OLS for selection & interpretation; retained predictors after CV.",
+    "Ran a rank-based composite as a robustness check to mitigate outlier inflation and improve policy communication.",
   ];
 
-  // —— Reflection（项目体会，偏方法论与可复制性）——
+  // —— Reflection（也改回 <p>）——
   const reflection = `Two choices made the work robust and explainable: (1) keeping geospatial logic inside PostGIS (indexes, ST_Intersects/Contains, and consistent SRIDs) and (2) separating indicator engineering from scoring so we could swap normalization (z-score vs. rank) without breaking the pipeline.
-The z-score + sigmoid path surfaced contrast clearly but can inflate extremes; the rank-based variant, while simpler, improved stability and policy communication. 
+The z-score + sigmoid path surfaced contrast clearly but can inflate extremes; the rank-based variant, while simpler, improved stability and policy communication.
 Model validation reminded us that a single composite index rarely “explains” socioeconomic outcomes—Lasso/OLS helped quantify limits and justify future variables (e.g., housing cost, land use).
-If iterating, I’d (a) expand indicators, (b) add time dynamics for “access volatility,” and (c) publish a small policy brief for councils, pairing each low-scoring SA2 with actionable levers (transport stops, school access, amenities).`;
+If iterating, I’d expand indicators, add time dynamics for “access volatility,” and publish a policy brief pairing low-scoring SA2s with actionable levers.`;
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -98,7 +97,6 @@ If iterating, I’d (a) expand indicators, (b) add time dynamics for “access v
                   </Button>
                 </a>
               )}
-              
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
@@ -113,7 +111,9 @@ If iterating, I’d (a) expand indicators, (b) add time dynamics for “access v
           {/* 顶部 Meta 卡（无 logo、无荣誉） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
+              <span
+                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
+              >
                 {meta.status}
               </span>
             </div>
@@ -138,10 +138,10 @@ If iterating, I’d (a) expand indicators, (b) add time dynamics for “access v
             <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20" />
           </Card>
 
-          {/* Overview */}
+          {/* Overview —— 用 <p> + whitespace-pre-line，避免等宽字体 */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Project Overview</h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">{overview}</pre>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
           {/* What I did */}
@@ -149,15 +149,17 @@ If iterating, I’d (a) expand indicators, (b) add time dynamics for “access v
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {highlights.map((line, i) => (
-                <li key={i} className="leading-relaxed">{line}</li>
+                <li key={i} className="leading-relaxed">
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
 
-          {/* Reflection */}
+          {/* Reflection —— 同样用 <p> */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Reflection</h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">{reflection}</pre>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
           </section>
         </div>
       </div>
@@ -173,3 +175,4 @@ If iterating, I’d (a) expand indicators, (b) add time dynamics for “access v
     </div>
   );
 }
+
