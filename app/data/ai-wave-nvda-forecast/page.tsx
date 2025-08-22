@@ -34,7 +34,7 @@ export default function AIStockForecastPage() {
       "Forecasting",
       "EDA",
     ],
-    github: "", // 如需展示外链可再加回
+    github: "https://github.com/LinLyra/Forecasting-the-Nivida-stock", // 如需展示外链可再加回
     notes: [
       "/data/ai-stock1.png",
       "/data/ai-stock2.png",
