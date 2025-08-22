@@ -35,7 +35,7 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
     setIdx(0);
   }, [activeTab]);
 
-  // 键盘控制
+  // 键盘控制（仅 images）
   const onKey = useCallback(
     (e: KeyboardEvent) => {
       if (!isOpen || activeTab !== "images" || images.length === 0) return;
@@ -58,7 +58,7 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
       <Card className="w-full max-w-4xl max-h-[90vh] bg-black/90 backdrop-blur-md border-white/20 overflow-hidden">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-          <CardTitle className="text-white">{title} - Media</CardTitle>
+          <CardTitle className="text-white">{title}</CardTitle>
           <Button
             onClick={onClose}
             size="sm"
@@ -107,7 +107,7 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
 
           {/* Content */}
           <div className="max-h-[70vh] overflow-hidden">
-            {/* IMAGES: 单张 + 左右切换 + 缩略图 */}
+            {/* IMAGES: 主图 + 左右切换 + 横向滚动缩略图 */}
             {activeTab === "images" && images.length > 0 && (
               <div className="flex flex-col gap-3">
                 {/* 主视图 */}
@@ -142,20 +142,25 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
                   </div>
                 </div>
 
-                {/* 缩略图条 */}
-                <div className="grid grid-cols-6 gap-2">
+                {/* 缩略图条（横向滚动，一行显示任意数量） */}
+                <div className="flex gap-2 overflow-x-auto py-1">
                   {images.map((src, i) => (
                     <button
                       key={src + i}
                       onClick={() => setIdx(i)}
                       className={
-                        "relative h-16 rounded-lg overflow-hidden border " +
+                        "relative h-16 w-24 flex-none rounded-lg overflow-hidden border " +
                         (i === idx ? "border-fuchsia-400/60" : "border-white/10")
                       }
                       aria-label={`Go to image ${i + 1}`}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={src} alt={`thumb-${i}`} className="w-full h-full object-cover" />
+                      <img
+                        src={src}
+                        alt={`thumb-${i}`}
+                        className="w-full h-full object-cover"
+                        draggable={false}
+                      />
                     </button>
                   ))}
                 </div>
@@ -214,5 +219,6 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
     </div>
   );
 }
+
 
 
