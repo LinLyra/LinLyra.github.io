@@ -28,13 +28,11 @@ export default function CompetitionsPage() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const competitions: CompetitionItem[] = [
-    { slug: "deloitte-digital-elite-2025", title: "Deloitte Digital Elite Challenge 2025", date: "2025.05", type: "product", logo: "/competition/deloittelogo.png", description: "Global university competition by Deloitte China to discover digital-minded talent.", tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"] },
+    { slug: "net-zero-challenge-gys", title: "Global Youth Summit on Net-Zero Future", date: "2024.09", type: "sustainability", logo: "/competition/UNESCOlogo.png", description: "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.", tags: ["Climate Action", "Youth Leadership", "Innovation"] },
     { slug: "roland-berger-campus-2025", title: "Roland Berger Campus Challenge 2025", date: "2025.06", type: "case", logo: "/competition/rblogo.png", description: "Strategy consulting case challenge from Roland Berger.", tags: ["Strategy", "Market Analysis"] },
     { slug: "ey-esg-innovation-2025", title: "EY ESG University Innovation Challenge 2025", date: "2025.04", type: "case", logo: "/competition/eylogo.png", description: "Data-driven sustainability strategies and ESG innovation.", tags: ["ESG", "AI + Luxury"] },
-    { slug: "kpmg-esg-case-competition-3rd", title: "KPMG ESG Case Competition", date: "2025", type: "case", logo: "/competition/kpmglogo.png", description: "ESG case-analysis competition led by KPMG China.", tags: ["ESG", "Sustainability", "Business Strategy"] },
-    { slug: "kpmg-bluebird-it-audit", title: "KPMG Bluebird IT Audit Challenge", date: "2025.08", type: "case", logo: "/competition/kpmglogo.png", description: "Solve real-world IT-audit cases with technology.", tags: ["IT Audit", "Cybersecurity", "ATM"] },
-    { slug: "loreal-brandstorm", title: "L'Oréal BRANDSTORM 2025", date: "2025.04", type: "marketing", logo: "/competition/loreallogo.png", description: "Global youth challenge—Men’s beauty through tech & product innovation.", tags: ["Marketing", "Product", "Pitch"] },
-    { slug: "net-zero-challenge-gys", title: "Global Youth Summit on Net-Zero Future", date: "2024.09", type: "sustainability", logo: "/competition/UNESCOlogo.png", description: "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.", tags: ["Climate Action", "Youth Leadership", "Innovation"] },
+    { slug: "kpmg-esg-case-competition", title: "KPMG ESG Case Competition", date: "2025", type: "case", logo: "/competition/kpmglogo.png", description: "ESG case-analysis competition led by KPMG China.", tags: ["ESG", "Sustainability", "Business Strategy"] },
+    { slug: "kpmg-bluebird-it-audit", title: "KPMG Bluebird IT Audit Challenge", date: "2025.08", type: "case", logo: "/competition/kpmglogo.png", description: "Solve real-world IT-audit cases with technology.", tags: ["IT Audit", "Cybersecurity", "ATM"] },    
     { slug: "commonwealth-treasury-case", title: "Commonwealth Treasury Case Competition", date: "2025.04", type: "case", logo: "/competition/Commonwealthlogo.png", description: "Public policy & economic analysis case organized by CBA.", tags: ["Economics", "Policy", "Analytics"] },
 
   ];
