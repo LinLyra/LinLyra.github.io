@@ -11,7 +11,7 @@ import { Trophy, ArrowLeft, Award, BriefcaseBusiness } from "lucide-react";
 
 type BusinessType =
   | "consulting"
-  | "supply chain"
+  | "case"
   | "sustainability"
   | "marketing"
 
@@ -41,7 +41,22 @@ export default function BusinessPage() {
 
   /** ===== 1) 数据合并：比赛 + 咨询 ===== */
   const businessItems: BusinessItem[] = [
-    // —— 比赛（business 相关）——
+    {
+      slug: "abc-product-consultant",
+      title: "Product Consultant",
+      company: "A Better Community",
+      date: "2025.3 — Present",
+      type: "consulting",
+      skills: [
+        "Stakeholder Interview",
+        "Slide Decks",
+        "Project Management",
+      ],
+      logo: "/experience/abclogo.png",
+      description:
+        "Hands-on product consulting with stakeholder interviews, data cleaning, AI-agent exploration and delivery-ready slides.",
+      tags: ["AI bot", "Product consultant"],
+    },
     {
       slug: "net-zero-challenge-gys",
       title: "Global Youth Summit on Net-Zero Future",
@@ -50,7 +65,35 @@ export default function BusinessPage() {
       logo: "/competition/UNESCOlogo.png",
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
-      tags: ["Climate Action", "Youth Leadership", "Innovation"],
+      tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
+    },
+    {
+      slug: "kpmg-bluebird-it-audit",
+      title: "KPMG Bluebird IT Audit Challenge",
+      date: "2025.08",
+      type: "case",
+      logo: "/competition/kpmglogo.png",
+      description:
+        "Solve real-world IT-audit cases with technology.",
+      tags: ["Advance to the Semifinals","IT Audit", "Cybersecurity", "ATM"],
+    },
+    {
+      slug: "saiep-management",
+      title: "Management Consultant",
+      company: "Study Australian Industry Experience Program",
+      date: "2025.7",
+      type: "consulting",
+      skills: [
+        "Strategic Thinking",
+        "Market Research",
+        "Competitive Analysis",
+        "Business Model Design",
+        "Growth Strategy",
+      ],
+      logo: "/experience/SAIEPlogo.png",
+      description:
+        "Strategy-led consulting practice with market research and growth modeling.",
+      tags: ["Strategy", "Go-to-Market"],
     },
     {
       slug: "roland-berger-campus-2025",
@@ -62,6 +105,7 @@ export default function BusinessPage() {
         "Strategy consulting case challenge from Roland Berger.",
       tags: ["Strategy", "Market Analysis", "Humanoid Robot"],
     },
+    
     {
       slug: "ey-esg-innovation-2025",
       title: "EY ESG University Innovation Challenge 2025",
@@ -82,16 +126,7 @@ export default function BusinessPage() {
         "ESG case-analysis competition led by KPMG China.",
       tags: ["ESG", "Sustainability", "Automotive Supply Chain"],
     },
-    {
-      slug: "kpmg-bluebird-it-audit",
-      title: "KPMG Bluebird IT Audit Challenge",
-      date: "2025.08",
-      type: "case",
-      logo: "/competition/kpmglogo.png",
-      description:
-        "Solve real-world IT-audit cases with technology.",
-      tags: ["IT Audit", "Cybersecurity", "ATM"],
-    },
+    
     {
       slug: "commonwealth-treasury-case",
       title: "Commonwealth Treasury Case Competition",
@@ -102,42 +137,8 @@ export default function BusinessPage() {
         "Public policy & economic analysis case organized by CBA.",
       tags: ["Economics", "Policy", "Analytics"],
     },
-
-    // —— 咨询（从 experience 并入）——
-    {
-      slug: "abc-product-consultant",
-      title: "Product Consultant",
-      company: "A Better Community",
-      date: "2025.3 — Present",
-      type: "consulting",
-      skills: [
-        "Stakeholder Interview",
-        "Slide Decks",
-        "Project Management",
-      ],
-      logo: "/experience/abclogo.png",
-      description:
-        "Hands-on product consulting with stakeholder interviews, data cleaning, AI-agent exploration and delivery-ready slides.",
-      tags: ["AI bot", "Consulting"],
-    },
-    {
-      slug: "saiep-management",
-      title: "Management Consultant",
-      company: "Study Australian Industry Experience Program",
-      date: "2025.7",
-      type: "consulting",
-      skills: [
-        "Strategic Thinking",
-        "Market Research",
-        "Competitive Analysis",
-        "Business Model Design",
-        "Growth Strategy",
-      ],
-      logo: "/experience/SAIEPlogo.png",
-      description:
-        "Strategy-led consulting practice with market research and growth modeling.",
-      tags: ["Strategy", "Go-to-Market"],
-    },
+    
+    
     {
       slug: "accenture-strategy-consulting",
       title: "Strategy Consulting · Virtual Experience",
@@ -161,7 +162,7 @@ export default function BusinessPage() {
   /** ===== 2) 过滤类型（新增 consulting）===== */
   const allTypes: BusinessType[] = [
     "consulting",
-    "supply chain",
+    "case",
     "sustainability",
     "marketing",
   ];
