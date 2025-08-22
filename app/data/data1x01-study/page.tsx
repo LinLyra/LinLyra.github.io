@@ -34,8 +34,8 @@ export default function Data1x01StudyBehavioursPage() {
       "Visualization",
     ],
     notes: [
-      "/data/froup10.png",
-      "/data/1001.png",
+      "/data/group10.png",
+      "/data/data1001.png",
     ] as string[], // 如果有配图可填路径，右上会显示 View More
   };
 
