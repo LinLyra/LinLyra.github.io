@@ -32,7 +32,7 @@ export default function DataPage() {
       date: "2025",
       description:
         "Univariate & multivariate forecasting (ARIMA/Prophet + feature signals) to explore AI-cycle dynamics on NVDA price.",
-      skills: ["Python", "Time Series", "ARIMA", "Prophet", "Feature Engineering"],
+      skills: ["Python", "Time Series", "ARIMA", "Semiconductor Industry"], 
       status: "Completed",
       links: {},
     },
@@ -44,6 +44,17 @@ export default function DataPage() {
       description:
         "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
       skills: ["Risk Modeling", "GIS (basic)", "Data Visualization", "Policy Analysis"],
+      status: "Completed",
+    },
+    {
+      slug: "data1x01-study",
+      title:
+        "The Study Behaviours and Expectations of DATA1X01 Students",
+      category: "Survey Analytics",
+      date: "2025",
+      description:
+        "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
+      skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
       status: "Completed",
     },
     {
@@ -77,28 +88,39 @@ export default function DataPage() {
       skills: ["scikit-learn", "XGBoost", "Benchmarking", "Metrics"],
       status: "Completed",
     },
-    {
-      slug: "data1x01-study",
-      title:
-        "The Study Behaviours and Expectations of DATA1X01 Students",
-      category: "Survey Analytics",
-      date: "2025",
-      description:
-        "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
-      skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
-      status: "Completed",
-    },
+    
     // ===== Kaggle 计划：NCAA 篮球 =====
+    {
+  slug: "food-delivery-insights",
+  title: "Food Delivery Market Insights",
+  category: "Consumer Analytics",
+  date: "2025.08",
+  description:
+    "Plan: analyze order-level dataset (time, location, spend), cluster consumer segments, model delivery time drivers, and identify promotions impact using regression and causal inference.",
+  skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
+  status: "In progress",
+},
+
+{
+  slug: "tableau-next-hackathon",
+  title: "Tableau Next Hackathon Project",
+  category: "Short Video & Agentic Analytics",
+  date: "2025.08",
+  description:
+    "Plan: explore short-video engagement data; prototype an agentic analytics dashboard (Tableau + LLM/agents) to uncover patterns in audience retention, trending topics, and personalized recommendations.",
+  skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
+  status: "In Progress"
+  },
+},
     {
       slug: "kaggle-ncaa-basketball",
       title: "NCAA Basketball Analytics (Kaggle)",
       category: "Sports Analytics",
-      date: "2025.09 (planned)",
+      date: "2025.09",
       description:
         "Plan: feature engineering from play-by-play/seed history, Elo/efficiency ratings, logistic/XGBoost ensemble for upset prediction.",
       skills: ["Python", "Pandas", "Machining Learning"],
-      status: "Planned",
-      links: {}, // 准备好后填入
+      status: "planned",
     },
   ];
 
