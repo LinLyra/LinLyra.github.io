@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, Github, ExternalLink } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function AIStockForecastPage() {
@@ -17,7 +17,8 @@ export default function AIStockForecastPage() {
     slug: "ai-stock-forecast",
     title: "Riding the AI Wave: Forecasting NVIDIA (with AMD & Intel)",
     institution: "Course Project · University of Sydney",
-    practice: "Applied Data Science / Financial Time Series (ABS stakeholder scenario)",
+    practice:
+      "Applied Data Science / Financial Time Series (ABS stakeholder scenario)",
     term: "2025 S1",
     logo: "/projects/ai-stock/nvidia-logo.png",
     status: "Completed" as const,
@@ -55,7 +56,7 @@ quantify uncertainty bands. Insights connect statistical signals with real marke
     "Semiconductor Industry",
   ];
 
-  // ✅ 合并后的“我做了什么 & 技能”要点（以后其它项目也能直接复用）
+  // ✅ 我的职责与技能亮点
   const highlights: string[] = [
     "Owned end-to-end NVIDIA pipeline: data sourcing/cleaning, EDA, and ADF stationarity tests.",
     "Applied Box–Cox (λ≈−0.39) and first-order differencing; verified stationarity via diagnostics.",
@@ -66,11 +67,11 @@ quantify uncertainty bands. Insights connect statistical signals with real marke
     "Translated signals into stakeholder-friendly narrative on AI-cycle demand and competitive pressure.",
   ];
 
-  const takeaways = `
+  const reflection = `
 Working exclusively on the NVIDIA track taught me to own the full lifecycle of a data science project: from raw data to interpretation. 
 I realized how small statistical choices (differencing order, Box–Cox parameter) dramatically change NVIDIA forecasts.
 Producing NVIDIA’s forecast charts reinforced that communicating uncertainty bands is as crucial as the forecast itself. 
-Most importantly, I learned to translate NVIDIA’s time-series signals into a market story that resonates with non-technical stakeholders.`
+Most importantly, I learned to translate NVIDIA’s time-series signals into a market story that resonates with non-technical stakeholders.`;
 
   const hasNotes = meta.notes.length > 0;
 
@@ -81,7 +82,7 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View More（蓝色主题） */}
+          {/* 顶部：左返回 / 右 GitHub + View More */}
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -90,17 +91,34 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
               </Button>
             </Link>
 
-            {hasNotes && (
-              <Button
-                onClick={() => setShowNotes(true)}
-                className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
-              >
-                View More
-              </Button>
-            )}
+            <div className="flex items-center gap-2">
+              {meta.github && (
+                <a
+                  href={meta.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="View project on GitHub"
+                >
+                  <Button className="bg-white/10 border border-blue-400/40 text-blue-100 hover:bg-white/20">
+                    <Github className="h-4 w-4 mr-2" />
+                    View on GitHub
+                    <ExternalLink className="h-4 w-4 ml-1" />
+                  </Button>
+                </a>
+              )}
+
+              {hasNotes && (
+                <Button
+                  onClick={() => setShowNotes(true)}
+                  className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
+                >
+                  View More
+                </Button>
+              )}
+            </div>
           </div>
 
-          {/* Overview —— 页面从这里开始 */}
+          {/* Overview */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <div className="mb-2 inline-flex items-center gap-2 text-sm text-gray-300">
               <span>{meta.institution}</span>
@@ -110,25 +128,34 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
                 {meta.term}
               </span>
             </div>
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Project Overview</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
+            <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
+              Project Overview
+            </h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+              {overview}
+            </p>
           </section>
 
-          {/* Keywords（蓝色主题标签） */}
+          {/* Keywords */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-4 text-xl font-semibold text-blue-400 md:text-2xl">Keywords</h2>
+            <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
+              Keywords
+            </h2>
             <div className="flex flex-wrap gap-2">
               {keywords.map((k) => (
-                <Badge key={k} className="border-blue-500/30 bg-blue-500/20 text-blue-100">
+                <Badge
+                  key={k}
+                  className="border-blue-500/30 bg-blue-500/20 text-blue-100"
+                >
                   {k}
                 </Badge>
               ))}
             </div>
           </section>
 
-          {/* ✅ 合并后的“我做了什么 & 技能” */}
+          {/* What I Did */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-4 text-xl font-semibold text-blue-400 md:text-2xl">
+            <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
               What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -140,10 +167,14 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
             </ul>
           </section>
 
-          {/* Summary */}
+          {/* Reflection */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Summary</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{takeaways}</p>
+            <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
+              Reflection
+            </h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+              {reflection}
+            </p>
           </section>
         </div>
       </div>
@@ -159,3 +190,4 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
     </div>
   );
 }
+
