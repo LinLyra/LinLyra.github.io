@@ -12,18 +12,15 @@ import MediaModel from "@/components/media-model";
 export default function AIStockForecastPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // --- META（供弹窗/标签等用） ---
+  // --- META（无 award、无 logo） ---
   const meta = {
     slug: "ai-stock-forecast",
     title: "Riding the AI Wave: Forecasting NVIDIA (with AMD & Intel)",
     institution: "Course Project · University of Sydney",
     practice:
-      "Applied Data Science / Financial Time Series (ABS stakeholder scenario)",
+      "Applied Data Science · Financial Time Series (ABS stakeholder scenario)",
     term: "2025 S1",
-    logo: "/projects/ai-stock/nvidia-logo.png",
     status: "Completed" as const,
-    tagline:
-      "Time-series forecasting with ARIMA on NVIDIA, with comparative analysis on AMD & Intel to explore AI-driven market dynamics.",
     tags: [
       "Time Series",
       "ARIMA",
@@ -35,28 +32,16 @@ export default function AIStockForecastPage() {
       "EDA",
     ],
     github: "https://github.com/LinLyra/Forecasting-the-Nivida-stock",
-    notes: ["/data/ai-stock1.png", "/data/ai-stock2.png"],
+    notes: ["/data/aistock1.png", "/data/aistock2.png"],
   };
 
   const overview = `\
-This project models monthly closing prices (2020–2025) for NVIDIA and compares them with AMD and Intel. \
-I performed stationarity checks (ADF), variance stabilization (Box–Cox), differencing, ACF/PACF diagnostics, \
-and fitted ARIMA family models. The selected models were then used to generate 12-month forecasts and \
+This project models monthly closing prices (2020–2025) for NVIDIA and compares them with AMD and Intel.
+I performed stationarity checks (ADF), variance stabilization (Box–Cox), differencing, ACF/PACF diagnostics,
+and fitted ARIMA family models. The selected models were then used to generate 12-month forecasts and
 quantify uncertainty bands. Insights connect statistical signals with real market narratives in the AI chip cycle.`;
 
-  const keywords = [
-    "ADF Test",
-    "Box–Cox",
-    "Differencing",
-    "ACF/PACF",
-    "ARIMA(0,1,0) / (1,1,0)",
-    "Residual Diagnostics",
-    "Ljung–Box",
-    "Confidence Intervals",
-    "Semiconductor Industry",
-  ];
-
-  // ✅ 我的职责与技能亮点
+  // ✅ 我的职责与技能亮点（合并块）
   const highlights: string[] = [
     "Owned end-to-end NVIDIA pipeline: data sourcing/cleaning, EDA, and ADF stationarity tests.",
     "Applied Box–Cox (λ≈−0.39) and first-order differencing; verified stationarity via diagnostics.",
@@ -68,12 +53,16 @@ quantify uncertainty bands. Insights connect statistical signals with real marke
   ];
 
   const reflection = `
-Working exclusively on the NVIDIA track taught me to own the full lifecycle of a data science project: from raw data to interpretation. 
+Working exclusively on the NVIDIA track taught me to own the full lifecycle of a data science project: from raw data to interpretation.
 I realized how small statistical choices (differencing order, Box–Cox parameter) dramatically change NVIDIA forecasts.
-Producing NVIDIA’s forecast charts reinforced that communicating uncertainty bands is as crucial as the forecast itself. 
+Producing NVIDIA’s forecast charts reinforced that communicating uncertainty bands is as crucial as the forecast itself.
 Most importantly, I learned to translate NVIDIA’s time-series signals into a market story that resonates with non-technical stakeholders.`;
 
   const hasNotes = meta.notes.length > 0;
+  const badgeClass =
+    meta.status === "Completed"
+      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
+      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -100,13 +89,12 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
                   aria-label="View project on GitHub"
                 >
                   <Button className="bg-white/10 border border-blue-400/40 text-blue-100 hover:bg-white/20">
-                    <Github className="h-4 w-4 mr-2" />
+                    <Github className="mr-2 h-4 w-4" />
                     View on GitHub
-                    <ExternalLink className="h-4 w-4 ml-1" />
+                    <ExternalLink className="ml-1 h-4 w-4" />
                   </Button>
                 </a>
               )}
-
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
@@ -118,39 +106,49 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
             </div>
           </div>
 
-          {/* Overview */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <div className="mb-2 inline-flex items-center gap-2 text-sm text-gray-300">
-              <span>{meta.institution}</span>
-              <span>•</span>
-              <span className="inline-flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {meta.term}
+          {/* 顶部 Meta 卡（无 logo、无 award；标签在这里展示） */}
+          <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
+            <div className="absolute right-3 top-3">
+              <span
+                className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
+              >
+                {meta.status}
               </span>
             </div>
+            <div className="p-5 md:p-6">
+              <h1 className="mb-1 text-xl font-semibold text-white md:text-2xl">
+                {meta.title}
+              </h1>
+              <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">
+                <span>{meta.institution}</span>
+                <span>•</span>
+                <span className="inline-flex items-center gap-1">
+                  <Calendar className="h-4 w-4" /> {meta.term}
+                </span>
+              </div>
+              <div className="mb-2 flex flex-wrap gap-2">
+                {meta.tags.map((t) => (
+                  <Badge
+                    key={t}
+                    className="border-blue-500/30 bg-blue-500/20 text-blue-100"
+                  >
+                    {t}
+                  </Badge>
+                ))}
+              </div>
+              <p className="text-gray-200">{meta.practice}</p>
+            </div>
+            <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20" />
+          </Card>
+
+          {/* Overview（从这里开始正文） */}
+          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
               Project Overview
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
               {overview}
             </p>
-          </section>
-
-          {/* Keywords */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
-              Keywords
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {keywords.map((k) => (
-                <Badge
-                  key={k}
-                  className="border-blue-500/30 bg-blue-500/20 text-blue-100"
-                >
-                  {k}
-                </Badge>
-              ))}
-            </div>
           </section>
 
           {/* What I Did */}
@@ -190,4 +188,3 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
     </div>
   );
 }
-
