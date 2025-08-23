@@ -33,7 +33,6 @@ export default function UpgradingProjectPage() {
             This project is currently being upgraded.  
           </p>
 
-          </div>
         </div>
       </main>
     </div>
