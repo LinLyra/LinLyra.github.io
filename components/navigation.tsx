@@ -52,7 +52,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
             <div className="relative h-8 w-8 overflow-hidden rounded-md ring-1 ring-white/20">
               <Image src="/logo.png" alt="Lyra Logo" fill sizes="32px" className="object-cover" priority />
             </div>
-            <span className="text-white text-lg font-bold">Welcome to Lyra&apos;s Universe</span>
+            <span className="text-white text-lg font-bold">Welcome to Lyra&apos;s Universe. LLAP🖖</span>
           </Link>
 
           {/* 桌面导航 */}
