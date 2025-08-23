@@ -14,7 +14,7 @@ export default function Data1002Project3Page() {
 
   // —— META（无 award / 无外链）——
   const meta = {
-    slug: "data1002-project3",
+    slug: "employer-income-correlation-au",
     title: "Modeling Australia’s Weekly Earnings with Employment Signals",
     institution: "Course Project · University of Sydney",
     practice: "Predictive Modeling · EDA · Model Comparison (Python / scikit-learn)",
@@ -58,8 +58,8 @@ close to linear—ensembles still win, but a well-specified linear baseline can 
 stakeholder value comes from translation, not just metrics: we used feature importance and error bands to explain
 what moves earnings and where predictions are less certain.
 
-If I iterate, I’ll (1) add macro covariates (CPI, IR, sector composition) to stress-test non-linear gains; (2) build a simple
-cross-validation / time-series split to de-bias the random 80/20; (3) quantify stability via rolling windows; and (4)
+If I iterate, I’ll add macro covariates (CPI, IR, sector composition) to stress-test non-linear gains. Second, build a simple
+cross-validation / time-series split to de-bias the random 80/20. Third, quantify stability via rolling windows; and
 tighten the plotting pipeline so every chart is reproducible from raw inputs. The goal isn’t just a slightly higher R²,
 but a model that remains legible and robust when assumptions inevitably drift.`;
 
