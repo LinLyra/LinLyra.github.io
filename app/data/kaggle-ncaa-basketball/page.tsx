@@ -33,11 +33,6 @@ export default function UpgradingProjectPage() {
             This project is currently being upgraded.  
           </p>
 
-          {/* 状态说明 */}
-          <div className="flex justify-center gap-4 text-sm text-gray-300">
-            <span className="inline-flex items-center h-7 rounded-full px-3 bg-white/10 border border-white/20 text-gray-200">
-              <Stars className="w-3 h-3 mr-1" /> Coming Soon
-            </span>
           </div>
         </div>
       </main>
