@@ -35,12 +35,6 @@ export default function UpgradingProjectPage() {
 
           {/* 状态说明 */}
           <div className="flex justify-center gap-4 text-sm text-gray-300">
-            <span className="inline-flex items-center h-7 rounded-full px-3 bg-blue-500/20 border border-blue-400/30 text-blue-100">
-              <Wrench className="w-3 h-3 mr-1" /> Updating
-            </span>
-            <span className="inline-flex items-center h-7 rounded-full px-3 bg-cyan-500/20 border border-cyan-400/30 text-cyan-100">
-              <Clock className="w-3 h-3 mr-1" /> In Progress
-            </span>
             <span className="inline-flex items-center h-7 rounded-full px-3 bg-white/10 border border-white/20 text-gray-200">
               <Stars className="w-3 h-3 mr-1" /> Coming Soon
             </span>
