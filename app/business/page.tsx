@@ -141,7 +141,7 @@ export default function BusinessPage() {
      title: "Technology · Virtual Experience",
      company: "Deloitte (Forage)",
      date: "2024.12",
-     type: "consluting",
+     type: "consulting",
      logo: "/experience/deloittelogo.png",
      description:
         "Explored digital consulting with Python and Tableau-driven insights on business technology challenges",
