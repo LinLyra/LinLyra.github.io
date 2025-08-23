@@ -135,6 +135,7 @@ export default function BusinessPage() {
         "Virtual strategy consulting experience: scoping, prioritisation and analysis.",
       tags: ["Consulting", "Analysis"],
     },
+    
     {
      slug: "deloitte-technology",
      title: "Technology · Virtual Experience",
@@ -144,13 +145,14 @@ export default function BusinessPage() {
      logo: "/experience/deloittelogo.png",
      description:
         "Explored digital consulting with Python and Tableau-driven insights on business technology challenges",
-     skills: [
+     tags: [
       "Data Analysis",
       "Tableau",
       "Excel",
       "Python",
       ],
-    },      
+    },  
+    
     {
       slug: "kpmg-esg-case-competition",
       title: "KPMG ESG Case Competition",
