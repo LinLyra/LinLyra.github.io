@@ -21,7 +21,6 @@ export default function DisasterInsurancePage() {
     term: "2024 S2",
     status: "Completed" as const,
     award: "Project Excellence Award",
-    reportUrl: "/data/disaster-risk-insurance.html", // 放在 public 下
     tags: [
       "Protection Gap",
       "Parametric Insurance",
@@ -36,6 +35,7 @@ export default function DisasterInsurancePage() {
     ],
     notes: [
       "/data/top5.png",
+      "/data/DATA1001.png",
     ] 
   };
 
@@ -91,14 +91,6 @@ impact—was key, and it’s also why this project earned recognition.`;
             </Link>
 
             <div className="flex items-center gap-2">
-              {meta.reportUrl && (
-                <a href={meta.reportUrl} target="_blank" rel="noreferrer">
-                  <Button className="bg-white/10 border border-blue-400/40 text-blue-100 hover:bg-white/20">
-                    View Report
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
-                </a>
-              )}
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
