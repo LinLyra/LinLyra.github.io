@@ -43,7 +43,7 @@ export default function BusinessPage() {
   const businessItems: BusinessItem[] = [
     {
       slug: "abc-product-consultant",
-      title: "Product Consultant",
+      title: "Product Consultant（Internship）",
       company: "A Better Community",
       date: "2025.3 — Present",
       type: "consulting",
