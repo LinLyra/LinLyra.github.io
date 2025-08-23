@@ -81,7 +81,7 @@ export default function BusinessPage() {
       slug: "saiep-management",
       title: "Management Consultant",
       company: "Study Australian Industry Experience Program",
-      date: "2025.7紧急
+      date: "2025.7",
       type: "consulting",
       skills: [
         "Strategic Thinking",
