@@ -21,7 +21,6 @@ export default function Data1x01StudyBehavioursPage() {
     term: "2024 S2",
     status: "Completed" as const,
     award: "Project Excellence Award",
-    reportUrl: "/data/DATA1001Project1.html", // ← 你的 HTML 报告路径（放在 public 下）
     tags: [
       "Survey EDA",
       "Learning Styles",
@@ -36,7 +35,8 @@ export default function Data1x01StudyBehavioursPage() {
     notes: [
       "/data/group10.png",
       "/data/data1001.png",
-    ] as string[], // 如果有配图可填路径，右上会显示 View More
+      "/data/DATA1x01.png",
+    ] 
   };
 
   // —— 概览 ——（可按需微调）
@@ -104,14 +104,7 @@ The project’s recognition, I think, came from this combination of rigor, restr
             </Link>
 
             <div className="flex items-center gap-2">
-              {meta.reportUrl && (
-                <a href={meta.reportUrl} target="_blank" rel="noreferrer">
-                  <Button className="bg-white/10 border border-blue-400/40 text-blue-100 hover:bg-white/20">
-                    View Report
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
-                </a>
-              )}
+              
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
