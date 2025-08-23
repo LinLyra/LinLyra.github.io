@@ -31,7 +31,6 @@ export default function AIStockForecastPage() {
       "Forecasting",
       "EDA",
     ],
-    github: "https://github.com/LinLyra/Forecasting-the-Nivida-stock",
     notes: ["/data/aistock1.png", "/data/aistock2.png"],
   };
 
@@ -81,20 +80,7 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
             </Link>
 
             <div className="flex items-center gap-2">
-              {meta.github && (
-                <a
-                  href={meta.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="View project on GitHub"
-                >
-                  <Button className="bg-white/10 border border-blue-400/40 text-blue-100 hover:bg-white/20">
-                    <Github className="mr-2 h-4 w-4" />
-                    View on GitHub
-                    <ExternalLink className="ml-1 h-4 w-4" />
-                  </Button>
-                </a>
-              )}
+            
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
