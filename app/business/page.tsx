@@ -66,7 +66,7 @@ export default function BusinessPage() {
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
       tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
-    },‼️
+    },
     {
       slug: "kpmg-bluebird-it-audit",
       title: "KPMG Bluebird IT Audit Challenge",
@@ -135,7 +135,22 @@ export default function BusinessPage() {
         "Virtual strategy consulting experience: scoping, prioritisation and analysis.",
       tags: ["Consulting", "Analysis"],
     },
-          
+    {
+     slug: "deloitte-technology",
+     title: "Technology · Virtual Experience",
+     company: "Deloitte (Forage)",
+     date: "2024.12",
+     type: "consluting",
+     logo: "/experience/deloittelogo.png",
+     description:
+        "Explored digital consulting with Python and Tableau-driven insights on business technology challenges",
+     skills: [
+      "Data Analysis",
+      "Tableau",
+      "Excel",
+      "Python",
+      ],
+    },      
     {
       slug: "kpmg-esg-case-competition",
       title: "KPMG ESG Case Competition",
