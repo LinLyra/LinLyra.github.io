@@ -35,11 +35,13 @@ export default function ProductPage() {
     // --- 你的截图项目 ---
     {
     slug: "abc-ai-development",
-    title: "AI Development Internship",
+    title: "AI Development（Internship）",
     company: "A Better Community",
     date: "2025.3 — Present",
     type: "development",
     logo: "/experience/abclogo.png",
+    description:
+        "From client interviews to data pipelines and prompt engineering, delivering generative AI solutions for real community needs.",
     skills: [
       "Research Design",
       "Generative AI",
@@ -48,24 +50,8 @@ export default function ProductPage() {
       "API Integration",
     ],
    },
-   {
-     slug: "deloitte-technology",
-     title: "Technology · Virtual Experience",
-     company: "Deloitte (Forage)",
-     date: "2024.12",
-     type: "development",
-     logo: "/experience/deloittelogo.png",
-     skills: [
-      "Data Analysis",
-      "Tableau",
-      "Excel",
-      "Python",
-      "Data Modeling",
-      "Software Dev Processes",
-      ],
-    },
     {
-      slug: "deloitte-digital-elite-2025",
+      slug: "🏆deloitte-digital-elite-2025",
       title: "Deloitte Digital Elite Challenge 2025",
       date: "2025.05",
       type: "product",
@@ -86,7 +72,7 @@ export default function ProductPage() {
       tags: ["Full-stack", "Vibe coding", "Social Network App", "GameFi"],
     },
     {
-      slug: "ccf-tech-for-good-2025",
+      slug: "🏆ccf-tech-for-good-2025",
       title: "CCF Tech for Good Hackathon 2025",
       date: "2025.05",
       type: "hackathon",
@@ -127,19 +113,6 @@ export default function ProductPage() {
     },
 
     {
-      slug: "ai-esg-circular-fashion",
-      title: "AI × ESG: Generative Scoring for Circular Fashion",
-      date: "2025",
-      type: "project",
-      image: "/project/ai-esg-cover.png",        // 把截图放 public/project/ai-esg-cover.png
-      logo: "/competition/eylogo.png",
-      description:
-        "Lightweight AI-powered ESG scoring pipeline for circular fashion: image understanding (E), document understanding (S), and structured output (G).",
-      tags: ["GenAI", "Vision", "ESG", "JSON Scoring"],
-      skills: ["Prompt Engineering", "Pipeline Design"],
-    },
-    
-    {
       slug: "microsoft-chat-hack-promptathon",
       title: "Microsoft Chat & Hack Promptathon",
       date: "2025.03",
@@ -149,6 +122,18 @@ export default function ProductPage() {
         "GenAI prompt engineering & product prototyping.",
       tags: ["GenAI", "Prompting", "Product"],
     },
+    {
+      slug: "ai-esg-circular-fashion",
+      title: "AI × ESG: Generative Scoring for Circular Fashion",
+      date: "2025.04",
+      type: "project",       // 把截图放 public/project/ai-esg-cover.png
+      description:
+        "Lightweight AI-powered ESG scoring pipeline for circular fashion: image understanding (E), document understanding (S), and structured output (G).",
+      tags: ["GenAI", "Vision", "ESG", "JSON Scoring"],
+      skills: ["Prompt Engineering", "Pipeline Design"],
+    },
+
+  
   ];
 
   // 仅显示实际使用到的类型
