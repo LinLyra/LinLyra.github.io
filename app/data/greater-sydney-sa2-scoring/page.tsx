@@ -20,7 +20,6 @@ export default function Data2901SydneyResourcesPage() {
     practice: "Spatial Analytics · PostgreSQL/PostGIS · Composite Scoring",
     term: "2025 S1",
     status: "Completed" as const,
-    github: "https://github.com/LinLyra/Greater-Sydney",
     tags: [
       "PostgreSQL",
       "PostGIS",
@@ -88,15 +87,7 @@ If iterating, I’d expand indicators, add time dynamics for “access volatilit
             </Link>
 
             <div className="flex items-center gap-2">
-              {meta.github && (
-                <a href={meta.github} target="_blank" rel="noreferrer">
-                  <Button className="bg-white/10 border border-blue-400/40 text-blue-100 hover:bg-white/20">
-                    <Github className="mr-2 h-4 w-4" />
-                    View on GitHub
-                    <ExternalLink className="ml-1 h-4 w-4" />
-                  </Button>
-                </a>
-              )}
+              
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
