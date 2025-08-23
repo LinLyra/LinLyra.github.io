@@ -71,12 +71,11 @@ export function HeroSection() {
           </h1>
 
           <p className="text-xl text-gray-200 mb-4">
-            Driven by a passion for turning data into meaningful stories, I combine analytics, AI product, and
-            consulting to bridge technology and business.
+            Driven by a passion for data, I start with analytics to understand complex systems, 
+            transform insights into business strategy, design product solutions, and bring them to life through full-stack development.
           </p>
           <p className="text-lg text-gray-300 mb-8">
-            From exploring complex datasets to delivering AI-powered solutions, I turn insights into strategies that
-            make measurable impact.
+            My work connects data, business, and technology into measurable impact.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
