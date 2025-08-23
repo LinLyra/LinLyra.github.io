@@ -29,7 +29,7 @@ export default function DataPage() {
       slug: "ai-wave-nvda-forecast",
       title: "Rising the AI Wave: Forecasting the NVIDIA Stock",
       category: "Time Series / Forecasting",
-      date: "2025",
+      date: "2025.07",
       description:
         "Univariate & multivariate forecasting (ARIMA/Prophet + feature signals) to explore AI-cycle dynamics on NVDA price.",
       skills: ["Python", "Time Series", "ARIMA", "Semiconductor Industry"], 
@@ -38,9 +38,9 @@ export default function DataPage() {
     },
     {
       slug: "disaster-risk-insurance",
-      title: "Disaster Risk Insurance: Insights and Recommendations",
+      title: "🏆Disaster Risk Insurance: Insights and Recommendations",
       category: "Risk Analytics / Policy",
-      date: "2025",
+      date: "2024 S2",
       description:
         "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
       skills: ["Risk Modeling", "GIS (basic)", "Data Visualization", "Policy Analysis"],
@@ -49,9 +49,9 @@ export default function DataPage() {
     {
       slug: "data1x01-study",
       title:
-        "The Study Behaviours and Expectations of DATA1X01 Students",
+        "🏆The Study Behaviours and Expectations of DATA1X01 Students",
       category: "Survey Analytics",
-      date: "2025",
+      date: "2024 S2",
       description:
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
       skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
@@ -61,7 +61,7 @@ export default function DataPage() {
       slug: "employer-income-correlation-au",
       title: "Employer–Income Correlation Analysis in Australia",
       category: "Econometrics / EDA",
-      date: "2025",
+      date: "2024 S2",
       description:
         "Exploratory analysis on employer types and income distributions across Australian regions; correlation & regression checks.",
       skills: ["EDA", "Regression", "Pandas", "Stat Tests"],
@@ -71,7 +71,7 @@ export default function DataPage() {
       slug: "greater-sydney-sa2-scoring",
       title: "Greater Sydney SA2 Resources Scoring Report",
       category: "Index Design / Regional Scoring",
-      date: "2025",
+      date: "2025 S1",
       description:
         "Constructs a composite index to score SA2 areas by resource accessibility; normalization, weighting, and ranking.",
       skills: ["Index Scoring", "Normalization", "Ranking", "Pandas"],
@@ -82,7 +82,7 @@ export default function DataPage() {
       title:
         "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes",
       category: "Classification / Benchmark",
-      date: "2025",
+      date: "2025 S1",
       description:
         "Benchmarks multiple classifiers on accuracy–runtime trade-off (LogReg, SVM, RF, XGBoost) with reproducible splits.",
       skills: ["scikit-learn", "XGBoost", "Benchmarking", "Metrics"],
@@ -103,7 +103,7 @@ export default function DataPage() {
 
 {
   slug: "tableau-next-hackathon",
-  title: "Tableau Next Hackathon Project",
+  title: "Tableau Next Hackathon",
   category: "Short Video & Agentic Analytics",
   date: "2025.08",
   description:
@@ -152,7 +152,7 @@ export default function DataPage() {
             </Link>
             <h1 className="mb-4 text-4xl font-bold text-gray-100">Data</h1>
             <p className="text-gray-200">
-              Coursework projects & planned studies — consistent blue theme.
+              CUsing data to understand the world, uncover patterns, and drive insights.
             </p>
           </div>
 
