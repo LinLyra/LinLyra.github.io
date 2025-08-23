@@ -95,8 +95,7 @@ but a model that remains legible and robust when assumptions inevitably drift.`;
                 onClick={() => setShowNotes(true)}
                 className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
               >
-                View Photo
-                <ExternalLink className="ml-2 h-4 w-4" />
+                View more
               </Button>
             )}
           </div>
