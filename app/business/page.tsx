@@ -54,19 +54,19 @@ export default function BusinessPage() {
       ],
       logo: "/experience/abclogo.png",
       description:
-        "Hands-on product consulting with stakeholder interviews, data cleaning, AI-agent exploration and delivery-ready slides.",
+        "Hands-on product consulting with stakeholder interviews, data cleaning, AI-agent exploration.",
       tags: ["AI bot", "Product consultant"],
     },
     {
       slug: "net-zero-challenge-gys",
-      title: "Global Youth Summit on Net-Zero Future",
+      title: "🏆Global Youth Summit on Net-Zero Future",
       date: "2024.09",
       type: "sustainability",
       logo: "/competition/UNESCOlogo.png",
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
       tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
-    },
+    },‼️
     {
       slug: "kpmg-bluebird-it-audit",
       title: "KPMG Bluebird IT Audit Challenge",
@@ -81,7 +81,7 @@ export default function BusinessPage() {
       slug: "saiep-management",
       title: "Management Consultant",
       company: "Study Australian Industry Experience Program",
-      date: "2025.7",
+      date: "2025.7紧急
       type: "consulting",
       skills: [
         "Strategic Thinking",
@@ -116,6 +116,26 @@ export default function BusinessPage() {
         "Data-driven sustainability strategies and ESG innovation.",
       tags: ["ESG", "AI + Luxury", "Luxury Supply Chain"],
     },
+       
+    {
+      slug: "accenture-strategy-consulting",
+      title: "Strategy Consulting · Virtual Experience",
+      company: "Accenture (Forage)",
+      date: "2024.12",
+      type: "consulting",
+      skills: [
+        "Strategy Consulting",
+        "Data Analysis",
+        "Prioritisation",
+        "Client Communication",
+        "Problem Solving",
+      ],
+      logo: "/experience/accenturelogo.png",
+      description:
+        "Virtual strategy consulting experience: scoping, prioritisation and analysis.",
+      tags: ["Consulting", "Analysis"],
+    },
+          
     {
       slug: "kpmg-esg-case-competition",
       title: "KPMG ESG Case Competition",
@@ -138,25 +158,7 @@ export default function BusinessPage() {
       tags: ["Economics", "Policy", "Analytics"],
     },
     
-    
-    {
-      slug: "accenture-strategy-consulting",
-      title: "Strategy Consulting · Virtual Experience",
-      company: "Accenture (Forage)",
-      date: "2024.12",
-      type: "consulting",
-      skills: [
-        "Strategy Consulting",
-        "Data Analysis",
-        "Prioritisation",
-        "Client Communication",
-        "Problem Solving",
-      ],
-      logo: "/experience/accenturelogo.png",
-      description:
-        "Virtual strategy consulting experience: scoping, prioritisation and analysis.",
-      tags: ["Consulting", "Analysis"],
-    },
+  
   ];
 
   /** ===== 2) 过滤类型（新增 consulting）===== */
