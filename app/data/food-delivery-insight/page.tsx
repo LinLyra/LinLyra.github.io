@@ -27,7 +27,7 @@ export default function UpgradingProjectPage() {
 
           {/* 项目标题（你可以替换成 meta.title） */}
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
-            Kaggle NCAA Basketball Analytics
+            Food delivery insight
           </h1>
           <p className="text-gray-300 mb-8">
             This project is currently being upgraded.  
