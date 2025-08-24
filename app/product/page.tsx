@@ -60,7 +60,7 @@ export default function ProductPage() {
       date: "2025.05",
       type: "product",
       logo: "/competition/deloittelogo.png",
-      placement: "National Runner-up",
+      placement: "Runner-up",
       description:
         "Global university challenge by Deloitte China on digital product innovation.",
       tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
