@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function KpmgInnovateDay2025Page() {
@@ -21,9 +21,9 @@ export default function KpmgInnovateDay2025Page() {
     status: "Completed" as const,
     tags: ["Product", "AuditX", "Business Plan"],
     notes: [
-      "/business/kpmg-innovate1.png",
-      "/business/kpmg-innovate2.png",
-      "/business/kpmg-innovate3.png",
+      "/product/kpmg-innovate1.png",
+      "/product/kpmg-innovate2.png",
+      "/product/kpmg-innovate3.png",
     ] as string[],
   };
 
@@ -49,25 +49,25 @@ private deployment to reduce data-security friction.`;
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
     meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
+      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
+      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* green nebula background */}
+      {/* orange nebula background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#08110d]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[#120c07]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(251,146,60,0.18),transparent_60%),radial-gradient(circle_at_12%_85%,rgba(245,158,11,0.14),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(234,88,12,0.12),transparent_55%)]" />
       </div>
 
-      <Navigation activeSection="business" onSectionChange={() => {}} />
+      <Navigation activeSection="product" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
           {/* top bar */}
           <div className="flex items-center justify-between">
-            <Link href="/business">
-              <Button className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30">
+            <Link href="/product">
+              <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-gray-100 hover:bg-orange-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Product
               </Button>
@@ -76,9 +76,10 @@ private deployment to reduce data-security friction.`;
             {hasNotes && (
               <Button
                 onClick={() => setShowNotes(true)}
-                className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
+                className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
               >
                 View More
+                <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
             )}
           </div>
@@ -86,9 +87,7 @@ private deployment to reduce data-security friction.`;
           {/* meta card */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
+              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
                 {meta.status}
               </span>
             </div>
@@ -102,29 +101,26 @@ private deployment to reduce data-security friction.`;
                 <span className="inline-flex items-center gap-1">
                   <Calendar className="h-4 w-4" /> {meta.term}
                 </span>
-                {/* Team Lead pill next to date */}
-                <span className="ml-1 inline-flex items-center rounded-full border border-green-400/30 bg-green-500/20 px-2.5 py-0.5 text-xs text-green-100">
+                {/* Team Lead pill */}
+                <span className="ml-1 inline-flex items-center rounded-full border border-amber-400/30 bg-orange-500/20 px-2.5 py-0.5 text-xs text-amber-100">
                   Team Lead
                 </span>
               </div>
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
-                  <Badge
-                    key={t}
-                    className="bg-green-500/20 text-green-100 border-green-500/30"
-                  >
+                  <Badge key={t} className="bg-orange-500/20 text-amber-100 border-amber-500/30">
                     {t}
                   </Badge>
                 ))}
               </div>
               <p className="text-gray-200">{meta.practice}</p>
             </div>
-            <div className="h-1 w-full bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20" />
+            <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
           {/* overview */}
-          <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Project Overview
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
@@ -133,8 +129,8 @@ private deployment to reduce data-security friction.`;
           </section>
 
           {/* what i did */}
-          <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -147,8 +143,8 @@ private deployment to reduce data-security friction.`;
           </section>
 
           {/* reflection */}
-          <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Reflection
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
@@ -169,3 +165,4 @@ private deployment to reduce data-security friction.`;
     </div>
   );
 }
+
