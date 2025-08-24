@@ -12,25 +12,17 @@ import MediaModel from "@/components/media-model";
 export default function RolandBergerCampus2025Page() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题；无外链/荣誉）——
+  // —— META（绿色主题）——
   const meta = {
     slug: "roland-berger-campus-2025",
     title: "Roland Berger Campus Challenge 2025",
     institution: "Roland Berger",
     practice: "Strategy Case · Humanoid Robotics Go-to-Market",
     term: "2025.06",
+    role: "Team Lead",
     status: "Completed" as const,
-    tags: [
-      "Strategy",
-      "Market Analysis",
-      "Humanoid Robot",
-      "Go-to-Market",
-      "Unit Economics",
-    ],
-    // 把你的图片放到 /public/business/roland-berger/ 下即可
-    notes: [
-      "/business/roland-berger.jpg",
-    ] as string[],
+    tags: ["Strategy", "Market Analysis", "Humanoid Robot", "Go-to-Market", "Unit Economics"],
+    notes: ["/business/roland-berger.jpg"] as string[],
   };
 
   // —— Overview —— 
@@ -76,7 +68,7 @@ environmental control and measurable ROI exist; and design the partnership fabri
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景（与 Business 星球一致风格） */}
+      {/* 绿色星云背景 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -105,12 +97,10 @@ environmental control and measurable ROI exist; and design the partnership fabri
             )}
           </div>
 
-          {/* 顶部 Meta 卡（无 logo） */}
+          {/* 顶部 Meta 卡（新增：日期后 Team Lead 徽章） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
+              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
                 {meta.status}
               </span>
             </div>
@@ -124,13 +114,14 @@ environmental control and measurable ROI exist; and design the partnership fabri
                 <span className="inline-flex items-center gap-1">
                   <Calendar className="h-4 w-4" /> {meta.term}
                 </span>
+                {/* Team Lead 徽章（与你截图一致的小胶囊） */}
+                <span className="ml-1 inline-flex items-center h-5 rounded-full px-2 text-[11px] border border-emerald-300/40 bg-emerald-500/20 text-emerald-100">
+                  {meta.role}
+                </span>
               </div>
               <div className="flex flex-wrap gap-2 mb-2">
                 {meta.tags.map((t) => (
-                  <Badge
-                    key={t}
-                    className="bg-emerald-500/20 text-emerald-100 border-emerald-500/30"
-                  >
+                  <Badge key={t} className="bg-emerald-500/20 text-emerald-100 border-emerald-500/30">
                     {t}
                   </Badge>
                 ))}
@@ -164,7 +155,7 @@ environmental control and measurable ROI exist; and design the partnership fabri
             </ul>
           </section>
 
-          {/* Reflection（行业理解） */}
+          {/* Reflection */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Reflection
