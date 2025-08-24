@@ -80,7 +80,6 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
                   className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
                 >
                   View More
-                  <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               )}
             </div>
