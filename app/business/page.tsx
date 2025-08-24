@@ -135,7 +135,7 @@ export default function BusinessPage() {
     {
       slug: "kpmg-esg-case-competition",
       title: "KPMG ESG Case Competition",
-      date: "2025",
+      date: "2024.09",
       type: "case",
       logo: "/competition/kpmglogo.png",
       description: "ESG case-analysis competition led by KPMG China.",
