@@ -12,7 +12,7 @@ import MediaModel from "@/components/media-model";
 export default function KpmgBluebirdItAuditPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题；仅一张照片；无荣誉/外链）——
+  // —— META（绿色主题）——
   const meta = {
     slug: "kpmg-bluebird-it-audit-2025",
     title: "KPMG Bluebird IT Audit Challenge 2025",
@@ -20,8 +20,9 @@ export default function KpmgBluebirdItAuditPage() {
     practice: "IT Audit · POS/Payments · Cybersecurity Controls",
     term: "2025.08",
     status: "Completed" as const,
-    // 把封面图放到 public 下对应路径
-    notes: ["/business/kpmg-bluebird/cover.jpg"],
+    role: "Team Lead",              // ← 新增：角色芯片（日期旁）
+    placement: "Semifinalist",      // ← 新增：右上角“晋级决赛”角标
+    notes: ["/business/kpmg-bluebird/cover.jpg"], // 放到 public 下
     tags: [
       "IT Audit",
       "Cybersecurity",
@@ -29,7 +30,7 @@ export default function KpmgBluebirdItAuditPage() {
       "Cloud POS",
       "Data Consistency",
       "Change Management",
-      "Semifinalist",
+      // 注意：不再在 tags 里放 "Semifinalist"，避免和右上角重复
     ],
   };
 
@@ -52,7 +53,7 @@ the offline final overlapped with the start of semester, so we could not attend.
 tech details with audit rigor, and how to ship a minimal, repeatable audit playbook under tight time constraints.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
+  const statusBadge =
     meta.status === "Completed"
       ? "bg-green-600/25 text-green-100 border-green-400/40"
       : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
@@ -85,38 +86,49 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
             </div>
           </div>
 
-          {/* Meta 卡片（绿色主题；无荣誉徽章） */}
+          {/* Meta 卡片（右上角两个角标：Completed + Semifinalist） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
+            <div className="absolute right-3 top-3 flex gap-2">
+              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}>
                 {meta.status}
               </span>
+              {meta.placement && (
+                <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
+                  🏆 {meta.placement}
+                </span>
+              )}
             </div>
+
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
               </h1>
+
+              {/* 机构 · 日期 · 角色（Team Lead 芯片） */}
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">
                 <span>{meta.institution}</span>
                 <span>•</span>
                 <span className="inline-flex items-center gap-1">
                   <Calendar className="h-4 w-4" /> {meta.term}
                 </span>
+                {meta.role && (
+                  <span className="ml-2 inline-flex items-center rounded-full border border-green-400/30 bg-green-500/10 px-2 py-0.5 text-[11px] text-green-200">
+                    {meta.role}
+                  </span>
+                )}
               </div>
+
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
-                  <Badge
-                    key={t}
-                    className="bg-green-500/20 text-green-100 border-green-500/30"
-                  >
+                  <Badge key={t} className="bg-green-500/20 text-green-100 border-green-500/30">
                     {t}
                   </Badge>
                 ))}
               </div>
+
               <p className="text-gray-200">{meta.practice}</p>
             </div>
+
             <div className="h-1 w-full bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20" />
           </Card>
 
@@ -144,7 +156,7 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
             </ul>
           </section>
 
-          {/* Reflection（突出：题目出乎意料/带队进半决赛/未去线下决赛） */}
+          {/* Reflection */}
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               Reflection
@@ -167,3 +179,4 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
     </div>
   );
 }
+
