@@ -12,12 +12,12 @@ import { ArrowLeft, Github, Globe, Rocket, Award as AwardIcon } from "lucide-rea
 type DataItem = {
   slug: string;
   title: string;
-  category: string;                // 保留在数据里（不展示）
-  date: string;                    // e.g., "2025.07" / "2024 S2"
+  category: string;              
+  date: string;                    
   description: string;
   skills: string[];
   status: "Completed" | "In Progress" | "Planned";
-  award?: string;                  // e.g., "Excellence Award"
+  award?: string;            
   links?: { github?: string; demo?: string };
 };
 
@@ -45,7 +45,7 @@ export default function DataPage() {
         "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
       skills: ["Risk Modeling", "GIS (basic)", "Data Visualization", "Policy Analysis"],
       status: "Completed",
-      award: "Excellence Award",
+      award: "Excellence",
     },
     {
       slug: "data1x01-study",
@@ -56,7 +56,7 @@ export default function DataPage() {
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
       skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
       status: "Completed",
-      award: "Excellence Award",
+      award: "Excellence",
     },
     {
       slug: "employer-income-correlation-au",
