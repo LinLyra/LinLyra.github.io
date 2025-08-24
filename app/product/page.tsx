@@ -36,7 +36,6 @@ export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<ProductType[]>([]);
 
-  // ===== 数据 =====
   const products: ProductItem[] = [
     {
       slug: "abc-ai-development",
