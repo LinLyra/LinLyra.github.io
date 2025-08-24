@@ -38,7 +38,7 @@ export function HeroSection() {
                 <p className="text-gray-200 text-sm mb-1">University of Sydney</p>
                 <p className="text-gray-200 text-sm mb-1">Bachelor of Science</p>
                 <p className="text-gray-200 text-sm mb-1">Data Science &amp; Business Analytics</p>
-                <p className="text-gray-200 text-sm">Expected Graduation: Dec 2026</p>
+                <p className="text-gray-200 text-sm">July. 2024 - Expected Dec. 2026</p>
               </div>
 
               {/* 标签 */}
