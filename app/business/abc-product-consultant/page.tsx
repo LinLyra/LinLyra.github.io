@@ -47,7 +47,6 @@ export default function ProductConsultingInternPage() {
 • Discovery → Delivery: Interviews → process mapping → documentation → usability testing → training/enablement — a complete consulting loop that keeps teams aligned.
 • Rollout lessons: Small pilots + permission setup + scenario-based training materially improved adoption and frontline satisfaction.`;
 
-
   const badgeClass =
     meta.status === "In Progress"
       ? "bg-green-600/25 text-green-100 border-green-400/40"
@@ -67,7 +66,6 @@ export default function ProductConsultingInternPage() {
                 Back to Business
               </Button>
             </Link>
-            {/* 无外链/照片，这里不放右侧按钮 */}
             <div />
           </div>
 
@@ -106,19 +104,20 @@ export default function ProductConsultingInternPage() {
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               What I Worked On
             </h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">
+            {/* 用 p + whitespace-pre-line 保留换行，且不使用等宽字体 */}
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
               {whatIDid}
-            </pre>
+            </p>
           </section>
 
-          {/* 收获 / Key Takeaways（替代 Reflection） */}
+          {/* Key Takeaways（替代 Reflection） */}
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               Key Takeaways
             </h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
               {takeaways}
-            </pre>
+            </p>
           </section>
         </div>
       </div>
