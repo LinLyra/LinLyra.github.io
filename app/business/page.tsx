@@ -54,7 +54,7 @@ export default function BusinessPage() {
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
       placement: "Global·Bronze",                 // ★ 新增：封面角标
-      tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
+      tags: ["Climate Action", "Youth Leadership", "Innovation"],
     },
     {
       slug: "kpmg-bluebird-it-audit",
@@ -64,7 +64,7 @@ export default function BusinessPage() {
       logo: "/competition/kpmglogo.png",
       description: "Solve real-world IT-audit cases with technology.",
       placement: "Semifinalist",                        // ★ 新增：封面角标
-      tags: ["Advance to the Semifinals", "IT Audit", "Cybersecurity", "ATM"],
+      tags: ["IT Audit", "Cybersecurity", "ATM"],
     },
     {
       slug: "saiep-management",
@@ -141,6 +141,17 @@ export default function BusinessPage() {
       description: "ESG case-analysis competition led by KPMG China.",
       tags: ["ESG", "Sustainability", "Automotive Supply Chain"],
     },
+    {
+      slug: "allegro-fund-pe-competition-2024",
+      title: "Allegro Fund National Private Equity Case Competition",
+      date: "2024.09",
+      type: "case",
+      logo: "/competition/allegrologo.png", // 放到 public/competition 下；无 logo 可删此行
+      description:
+          "National private-equity case on deal screening, investment thesis and LBO modelling.",
+      tags: ["Private Equity", "LBO Model", "Deal Screening", "Investment Memo"],
+     },
+
     {
       slug: "commonwealth-treasury-case",
       title: "Commonwealth Treasury Case Competition",
