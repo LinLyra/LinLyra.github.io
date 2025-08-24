@@ -53,7 +53,7 @@ export function SkillsSection() {
   ]
 
   const stats = [
-    { number: "1 Year", label: "Since Starting in Data (2024.08 → 2025.08)" },
+    { number: "1 Year", label: "Since 2024.08 Starting in Data" },
     { number: "20+", label: "Projects / Competitions Completed" },
     { number: "Data → Product", label: "Bridge from Insight to Product" },
   ]
