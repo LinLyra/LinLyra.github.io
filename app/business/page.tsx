@@ -59,7 +59,7 @@ export default function BusinessPage() {
     },
     {
       slug: "net-zero-challenge-gys",
-      title: "🏆Global Youth Summit on Net-Zero Future",
+      title: "Global Youth Summit on Net-Zero Future",
       date: "2024.09",
       type: "sustainability",
       logo: "/competition/UNESCOlogo.png",
