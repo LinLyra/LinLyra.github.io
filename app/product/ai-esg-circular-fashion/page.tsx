@@ -7,7 +7,6 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
-import MediaModel from "@/components/media-model";
 
 export default function GreenSyncESGPage() {
   const [showNotes, setShowNotes] = useState(false);
@@ -68,7 +67,6 @@ Future iterations: enlarge labeled sets, add confidence scores, human-in-the-loo
               <a href={meta.kaggleUrl} target="_blank" rel="noreferrer">
                 <Button className="bg-white/10 border border-amber-400/40 text-amber-100 hover:bg-white/20">
                   View Notebook
-                  <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </a>
               
@@ -130,15 +128,6 @@ Future iterations: enlarge labeled sets, add confidence scores, human-in-the-loo
           </section>
         </div>
       </div>
-
-      {hasNotes && (
-        <MediaModel
-          isOpen={showNotes}
-          onClose={() => setShowNotes(false)}
-          title={meta.title}
-          media={{ images: meta.notes }}
-        />
-      )}
     </div>
   );
 }
