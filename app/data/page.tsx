@@ -12,7 +12,7 @@ import { ArrowLeft, Github, Globe, Rocket, Award as AwardIcon } from "lucide-rea
 type DataItem = {
   slug: string;
   title: string;
-  category: string;                // 保留在数据里，但不再展示
+  category: string;                // 保留在数据里（不展示）
   date: string;                    // e.g., "2025.07" / "2024 S2"
   description: string;
   skills: string[];
@@ -24,7 +24,6 @@ type DataItem = {
 export default function DataPage() {
   const [search, setSearch] = useState("");
 
-  // ===== 列表 =====
   const items: DataItem[] = [
     {
       slug: "ai-wave-nvda-forecast",
@@ -91,7 +90,7 @@ export default function DataPage() {
       status: "Completed",
     },
 
-    // ===== In progress / planned =====
+    // In progress / planned
     {
       slug: "food-delivery-insights",
       title: "Food Delivery Market Insights",
@@ -124,7 +123,6 @@ export default function DataPage() {
     },
   ];
 
-  // ===== 搜索过滤 =====
   const filtered = items.filter((p) => {
     const q = search.trim().toLowerCase();
     if (!q) return true;
@@ -142,7 +140,7 @@ export default function DataPage() {
 
       <div className="relative z-10 pt-20 p-6">
         <div className="mx-auto max-w-6xl">
-          {/* 头部 */}
+          {/* Header */}
           <div className="mb-8 text-center">
             <Link href="/">
               <Button className="mb-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -156,7 +154,7 @@ export default function DataPage() {
             </p>
           </div>
 
-          {/* 搜索 */}
+          {/* Search */}
           <div className="mb-8">
             <Input
               placeholder="Search datasets, topics, or skills…"
@@ -166,27 +164,26 @@ export default function DataPage() {
             />
           </div>
 
-          {/* 列表 */}
+          {/* Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                <Card className="relative h-full cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
-                  {/* 右上角：获奖徽章（若有） */}
+                <Card className="relative h-full cursor-pointer overflow-hidden border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
+                  {/* Award badge (reserved space with pr-28 on header) */}
                   {project.award && (
-                    <div className="absolute right-3 top-3">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 border border-amber-400/30 backdrop-blur-sm">
-                        <AwardIcon className="h-3 w-3 text-amber-300" />
-                        {project.award}
+                    <div className="absolute right-3 top-3 z-10">
+                      <span className="inline-flex max-w-[70%] items-center gap-1 truncate rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 backdrop-blur-sm">
+                        <AwardIcon className="h-3 w-3 shrink-0 text-amber-300" />
+                        <span className="truncate">{project.award}</span>
                       </span>
                     </div>
                   )}
 
-                  <CardHeader className="pb-2">
+                  <CardHeader className="pb-2 pr-28">
                     <CardTitle className="mb-1 text-lg text-gray-100">
                       {project.title}
                     </CardTitle>
-
-                    {/* 🔥 仅显示：火箭 + 日期（替换原来的蓝色分类行） */}
+                    {/* Rocket + Date */}
                     <div className="mt-1 flex items-center gap-2 text-sm text-gray-400">
                       <Rocket className="h-4 w-4" />
                       <span>{project.date}</span>
@@ -198,7 +195,7 @@ export default function DataPage() {
                       {project.description}
                     </p>
 
-                    {/* 技能标签 */}
+                    {/* Skills */}
                     <div className="mb-4 flex flex-wrap gap-1">
                       {project.skills.slice(0, 4).map((skill) => (
                         <Badge
@@ -215,7 +212,7 @@ export default function DataPage() {
                       )}
                     </div>
 
-                    {/* 状态 & 外链 */}
+                    {/* Status & Links */}
                     <div className="flex items-center justify-between">
                       <Badge
                         className={
@@ -248,4 +245,5 @@ export default function DataPage() {
     </div>
   );
 }
+
 
