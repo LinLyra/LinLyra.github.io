@@ -7,18 +7,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Github, Globe, Rocket, Award as AwardIcon } from "lucide-react";
+import { Rocket, ArrowLeft, Award as AwardIcon, Github, Globe } from "lucide-react";
 
 type DataItem = {
   slug: string;
   title: string;
-  category: string;              
-  date: string;                    
+  category: string;
+  date: string;
   description: string;
   skills: string[];
   status: "Completed" | "In Progress" | "Planned";
-  award?: string;            
+  award?: string;
   links?: { github?: string; demo?: string };
+  logo?: string; // ignored in rendering
 };
 
 export default function DataPage() {
@@ -45,7 +46,7 @@ export default function DataPage() {
         "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
       skills: ["Risk Modeling", "GIS (basic)", "Data Visualization", "Policy Analysis"],
       status: "Completed",
-      award: "Excellence",
+      award: "Excellence Award",
     },
     {
       slug: "data1x01-study",
@@ -56,7 +57,7 @@ export default function DataPage() {
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
       skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
       status: "Completed",
-      award: "Excellence",
+      award: "Excellence Award",
     },
     {
       slug: "employer-income-correlation-au",
@@ -90,15 +91,37 @@ export default function DataPage() {
       status: "Completed",
     },
 
-    // In progress / planned
+    // Inserted modeling contests here (before the unfinished items)
+    {
+      slug: "apmcm-2024",
+      title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
+      category: "Mathematical Modeling",
+      date: "2024.11",
+      description: "Asia-Pacific mathematical modeling contest.",
+      skills: ["Modeling", "Optimization"],
+      status: "Completed",
+      logo: "/competition/apmcmlogo.png",
+    },
+    {
+      slug: "mcm-icm-2025",
+      title: "MCM/ICM Mathematical Contest in Modeling 2025",
+      category: "Mathematical Modeling",
+      date: "2025.02",
+      description: "International mathematical modeling competition.",
+      skills: ["Modeling", "Statistics"],
+      status: "Completed",
+      logo: "/competition/COMAPlogo.png",
+    },
+
+    // Unfinished items after modeling contests
     {
       slug: "food-delivery-insights",
       title: "Food Delivery Market Insights",
       category: "Consumer Analytics",
       date: "2025.08",
       description:
-        "Plan: analyze order-level dataset (time, location, spend), cluster consumer segments, model delivery time drivers, and identify promotions impact using regression and causal inference.",
-      skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
+        "Analyze order-level dataset (time, location, spend), cluster consumer segments, model delivery-time drivers, and identify promotion impact via regression/causal inference.",
+      skills: ["Python", "Pandas", "Visualization", "Clustering", "Causal Inference"],
       status: "In Progress",
     },
     {
@@ -107,7 +130,7 @@ export default function DataPage() {
       category: "Short Video & Agentic Analytics",
       date: "2025.08",
       description:
-        "Plan: explore short-video engagement data; prototype an agentic analytics dashboard (Tableau + LLM/agents) to uncover patterns in audience retention, trending topics, and personalized recommendations.",
+        "Explore short-video engagement data; prototype an agentic analytics dashboard (Tableau + LLM/agents) for retention trends and recommendations.",
       skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
       status: "In Progress",
     },
@@ -117,8 +140,8 @@ export default function DataPage() {
       category: "Sports Analytics",
       date: "2025.09",
       description:
-        "Plan: feature engineering from play-by-play/seed history, Elo/efficiency ratings, logistic/XGBoost ensemble for upset prediction.",
-      skills: ["Python", "Pandas", "Machining Learning"],
+        "Feature engineering from play-by-play/seed history, Elo/efficiency ratings, logistic/XGBoost ensemble for upset prediction.",
+      skills: ["Python", "Pandas", "Machine Learning"],
       status: "Planned",
     },
   ];
@@ -140,7 +163,6 @@ export default function DataPage() {
 
       <div className="relative z-10 pt-20 p-6">
         <div className="mx-auto max-w-6xl">
-          {/* Header */}
           <div className="mb-8 text-center">
             <Link href="/">
               <Button className="mb-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -154,7 +176,6 @@ export default function DataPage() {
             </p>
           </div>
 
-          {/* Search */}
           <div className="mb-8">
             <Input
               placeholder="Search datasets, topics, or skills…"
@@ -164,26 +185,24 @@ export default function DataPage() {
             />
           </div>
 
-          {/* Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                <Card className="relative h-full cursor-pointer overflow-hidden border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
-                  {/* Award badge (reserved space with pr-28 on header) */}
+                <Card className="relative h-full cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
                   {project.award && (
                     <div className="absolute right-3 top-3 z-10">
-                      <span className="inline-flex max-w-[70%] items-center gap-1 truncate rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 backdrop-blur-sm">
-                        <AwardIcon className="h-3 w-3 shrink-0 text-amber-300" />
-                        <span className="truncate">{project.award}</span>
+                      <span className="inline-flex items-center gap-1 rounded-full bg-yellow-500/20 px-2 py-1 text-xs font-semibold text-yellow-200 border border-yellow-400/30 backdrop-blur-sm">
+                        <AwardIcon className="h-3 w-3 text-yellow-300" />
+                        {project.award}
                       </span>
                     </div>
                   )}
 
-                  <CardHeader className="pb-2 pr-28">
+                  <CardHeader className="pb-2">
                     <CardTitle className="mb-1 text-lg text-gray-100">
                       {project.title}
                     </CardTitle>
-                    {/* Rocket + Date */}
+
                     <div className="mt-1 flex items-center gap-2 text-sm text-gray-400">
                       <Rocket className="h-4 w-4" />
                       <span>{project.date}</span>
@@ -195,7 +214,6 @@ export default function DataPage() {
                       {project.description}
                     </p>
 
-                    {/* Skills */}
                     <div className="mb-4 flex flex-wrap gap-1">
                       {project.skills.slice(0, 4).map((skill) => (
                         <Badge
@@ -212,7 +230,6 @@ export default function DataPage() {
                       )}
                     </div>
 
-                    {/* Status & Links */}
                     <div className="flex items-center justify-between">
                       <Badge
                         className={
@@ -245,5 +262,3 @@ export default function DataPage() {
     </div>
   );
 }
-
-
