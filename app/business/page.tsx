@@ -9,27 +9,19 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Trophy, ArrowLeft, Award, BriefcaseBusiness } from "lucide-react";
 
-type BusinessType =
-  | "consulting"
-  | "case"
-  | "sustainability"
-  | "marketing"
-
+type BusinessType = "consulting" | "case" | "sustainability" | "marketing";
 
 type BusinessItem = {
   slug: string;
   title: string;
-  /** 比赛类可填 event；咨询类可不用 */
   event?: string;
-  /** 咨询类可填 company；比赛类可不用 */
   company?: string;
   date?: string;
   type: BusinessType;
   description?: string;
   tags?: string[];
-  /** 咨询类可填 skills；比赛类也可选填 */
   skills?: string[];
-  placement?: string;
+  placement?: string;     // ← 用来在卡片右上角显示“获奖/晋级”徽标
   teamSize?: string;
   image?: string;
   logo?: string;
@@ -39,7 +31,7 @@ export default function BusinessPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<BusinessType[]>([]);
 
-  /** ===== 1) 数据合并：比赛 + 咨询 ===== */
+  /** ===== 数据（比赛 + 咨询）===== */
   const businessItems: BusinessItem[] = [
     {
       slug: "abc-product-consultant",
@@ -47,11 +39,7 @@ export default function BusinessPage() {
       company: "A Better Community",
       date: "2025.3 — Present",
       type: "consulting",
-      skills: [
-        "Stakeholder Interview",
-        "Slide Decks",
-        "Project Management",
-      ],
+      skills: ["Stakeholder Interview", "Slide Decks", "Project Management"],
       logo: "/experience/abclogo.png",
       description:
         "Hands-on product consulting with stakeholder interviews, data cleaning, AI-agent exploration.",
@@ -65,6 +53,7 @@ export default function BusinessPage() {
       logo: "/competition/UNESCOlogo.png",
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
+      placement: "Global Bronze Award",                 // ★ 新增：封面角标
       tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
     },
     {
@@ -73,9 +62,9 @@ export default function BusinessPage() {
       date: "2025.08",
       type: "case",
       logo: "/competition/kpmglogo.png",
-      description:
-        "Solve real-world IT-audit cases with technology.",
-      tags: ["Advance to the Semifinals","IT Audit", "Cybersecurity", "ATM"],
+      description: "Solve real-world IT-audit cases with technology.",
+      placement: "Semifinalist",                        // ★ 新增：封面角标
+      tags: ["Advance to the Semifinals", "IT Audit", "Cybersecurity", "ATM"],
     },
     {
       slug: "saiep-management",
@@ -101,22 +90,19 @@ export default function BusinessPage() {
       date: "2025.06",
       type: "case",
       logo: "/competition/rblogo.png",
-      description:
-        "Strategy consulting case challenge from Roland Berger.",
+      description: "Strategy consulting case challenge from Roland Berger.",
       tags: ["Strategy", "Market Analysis", "Humanoid Robot"],
     },
-    
     {
       slug: "ey-esg-innovation-2025",
       title: "EY ESG University Innovation Challenge 2025",
       date: "2025.04",
       type: "case",
       logo: "/competition/eylogo.png",
-      description:
-        "Data-driven sustainability strategies and ESG innovation.",
+      description: "Data-driven sustainability strategies and ESG innovation.",
+      placement: "Semifinalist",                        // ★ 新增：封面角标
       tags: ["ESG", "AI + Luxury", "Luxury Supply Chain"],
     },
-       
     {
       slug: "accenture-strategy-consulting",
       title: "Strategy Consulting · Virtual Experience",
@@ -135,58 +121,41 @@ export default function BusinessPage() {
         "Virtual strategy consulting experience: scoping, prioritisation and analysis.",
       tags: ["Consulting", "Analysis"],
     },
-    
     {
-     slug: "deloitte-technology",
-     title: "Technology · Virtual Experience",
-     company: "Deloitte (Forage)",
-     date: "2024.12",
-     type: "consulting",
-     logo: "/experience/deloittelogo.png",
-     description:
+      slug: "deloitte-technology",
+      title: "Technology · Virtual Experience",
+      company: "Deloitte (Forage)",
+      date: "2024.12",
+      type: "consulting",
+      logo: "/experience/deloittelogo.png",
+      description:
         "Explored digital consulting with Python and Tableau-driven insights on business technology challenges",
-     tags: [
-      "Data Analysis",
-      "Tableau",
-      "Excel",
-      "Python",
-      ],
-    },  
-    
+      tags: ["Data Analysis", "Tableau", "Excel", "Python"],
+    },
     {
       slug: "kpmg-esg-case-competition",
       title: "KPMG ESG Case Competition",
       date: "2025",
       type: "case",
       logo: "/competition/kpmglogo.png",
-      description:
-        "ESG case-analysis competition led by KPMG China.",
+      description: "ESG case-analysis competition led by KPMG China.",
       tags: ["ESG", "Sustainability", "Automotive Supply Chain"],
     },
-    
     {
       slug: "commonwealth-treasury-case",
       title: "Commonwealth Treasury Case Competition",
       date: "2025.04",
       type: "case",
       logo: "/competition/Commonwealthlogo.png",
-      description:
-        "Public policy & economic analysis case organized by CBA.",
+      description: "Public policy & economic analysis case organized by CBA.",
       tags: ["Economics", "Policy", "Analytics"],
     },
-    
-  
   ];
 
-  /** ===== 2) 过滤类型（新增 consulting）===== */
-  const allTypes: BusinessType[] = [
-    "consulting",
-    "case",
-    "sustainability",
-    "marketing",
-  ];
+  /** ===== 过滤类型 ===== */
+  const allTypes: BusinessType[] = ["consulting", "case", "sustainability", "marketing"];
 
-  /** ===== 3) 搜索（新增 company/skills 关键字）===== */
+  /** ===== 搜索 ===== */
   const q = searchTerm.trim().toLowerCase();
   const filtered = businessItems.filter((c) => {
     const haystack = [
@@ -206,16 +175,12 @@ export default function BusinessPage() {
   });
 
   const toggleTag = (t: BusinessType) =>
-    setSelectedTags((prev) =>
-      prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]
-    );
+    setSelectedTags((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
 
-  const isTypeUsed = (t: BusinessType) =>
-    businessItems.some((b) => b.type === t);
+  const isTypeUsed = (t: BusinessType) => businessItems.some((b) => b.type === t);
 
   return (
     <div className="relative min-h-screen">
-      {/* 顶部导航 */}
       <Navigation activeSection="business" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-20 p-6">
@@ -259,11 +224,7 @@ export default function BusinessPage() {
                 ) : null
               )}
               {selectedTags.length > 0 && (
-                <Button
-                  variant="ghost"
-                  className="h-6 px-2 text-gray-300"
-                  onClick={() => setSelectedTags([])}
-                >
+                <Button variant="ghost" className="h-6 px-2 text-gray-300" onClick={() => setSelectedTags([])}>
                   Clear
                 </Button>
               )}
@@ -287,11 +248,8 @@ export default function BusinessPage() {
                           />
                         </div>
                         <div>
-                          <CardTitle className="text-lg leading-snug text-gray-100">
-                            {c.title}
-                          </CardTitle>
-
-                          {/* 次要信息：比赛用日期+event；咨询用日期+company */}
+                          <CardTitle className="text-lg leading-snug text-gray-100">{c.title}</CardTitle>
+                          {/* 次要信息：比赛用日期；咨询用公司 */}
                           <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">
                             {c.type === "consulting" ? (
                               <>
@@ -310,34 +268,24 @@ export default function BusinessPage() {
                         </div>
                       </div>
 
+                      {/* 右上角：获奖/晋级徽标 */}
                       {c.placement && (
                         <div className="flex items-center gap-1 rounded-full bg-yellow-500/20 px-2 py-1 backdrop-blur-sm">
                           <Award className="h-3 w-3 text-yellow-400" />
-                          <span className="text-xs font-semibold text-yellow-400">
-                            {c.placement}
-                          </span>
+                          <span className="text-xs font-semibold text-yellow-400">{c.placement}</span>
                         </div>
                       )}
                     </div>
                   </CardHeader>
 
                   <CardContent>
-                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">
-                      {c.description ?? ""}
-                    </p>
-
+                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">{c.description ?? ""}</p>
                     {/* 标签优先展示 skills，否则 tags */}
                     <div className="flex flex-wrap gap-1">
-                      {(
-                        (c.skills && c.skills.length > 0 ? c.skills : c.tags) ??
-                        []
-                      )
+                      {((c.skills && c.skills.length > 0 ? c.skills : c.tags) ?? [])
                         .slice(0, 4)
                         .map((tag) => (
-                          <Badge
-                            key={tag}
-                            className="border-green-500/30 bg-green-500/20 text-xs text-green-200"
-                          >
+                          <Badge key={tag} className="border-green-500/30 bg-green-500/20 text-xs text-green-200">
                             {tag}
                           </Badge>
                         ))}
@@ -348,12 +296,11 @@ export default function BusinessPage() {
             ))}
           </div>
 
-          {filtered.length === 0 && (
-            <p className="mt-12 text-center text-gray-400">No results found.</p>
-          )}
+          {filtered.length === 0 && <p className="mt-12 text-center text-gray-400">No results found.</p>}
         </div>
       </div>
     </div>
   );
 }
+
 
