@@ -21,7 +21,7 @@ type BusinessItem = {
   description?: string;
   tags?: string[];
   skills?: string[];
-  placement?: string;     // ← 用来在卡片右上角显示“获奖/晋级”徽标
+  placement?: string;   
   teamSize?: string;
   image?: string;
   logo?: string;
@@ -31,7 +31,6 @@ export default function BusinessPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<BusinessType[]>([]);
 
-  /** ===== 数据（比赛 + 咨询）===== */
   const businessItems: BusinessItem[] = [
     {
       slug: "abc-product-consultant",
@@ -53,7 +52,7 @@ export default function BusinessPage() {
       logo: "/competition/UNESCOlogo.png",
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
-      placement: "Global·Bronze",                 // ★ 新增：封面角标
+      placement: "Global·Bronze",              
       tags: ["Climate Action", "Youth Leadership", "Innovation"],
     },
     {
@@ -63,7 +62,7 @@ export default function BusinessPage() {
       type: "case",
       logo: "/competition/kpmglogo.png",
       description: "Solve real-world IT-audit cases with technology.",
-      placement: "Semifinalist",                        // ★ 新增：封面角标
+      placement: "Semifinalist",                      
       tags: ["IT Audit", "Cybersecurity", "ATM"],
     },
     {
@@ -100,7 +99,7 @@ export default function BusinessPage() {
       type: "case",
       logo: "/competition/eylogo.png",
       description: "Data-driven sustainability strategies and ESG innovation.",
-      placement: "Semifinalist",                        // ★ 新增：封面角标
+      placement: "Semifinalist",                      
       tags: ["ESG", "AI + Luxury", "Luxury Supply Chain"],
     },
     {
@@ -146,7 +145,7 @@ export default function BusinessPage() {
       title: "Allegro Fund National Private Equity Case Competition",
       date: "2024.09",
       type: "case",
-      logo: "/competition/allegrologo.png", // 放到 public/competition 下；无 logo 可删此行
+      logo: "/competition/allegrologo.png", 
       description:
           "National private-equity case on deal screening, investment thesis and LBO modelling.",
       tags: ["Private Equity", "LBO Model", "Deal Screening", "Investment Memo"],
@@ -163,10 +162,9 @@ export default function BusinessPage() {
     },
   ];
 
-  /** ===== 过滤类型 ===== */
   const allTypes: BusinessType[] = ["consulting", "case", "sustainability", "marketing"];
 
-  /** ===== 搜索 ===== */
+
   const q = searchTerm.trim().toLowerCase();
   const filtered = businessItems.filter((c) => {
     const haystack = [
@@ -242,7 +240,7 @@ export default function BusinessPage() {
             </div>
           </div>
 
-          {/* 列表 */}
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((c) => (
               <Link key={c.slug} href={`/business/${c.slug}`} className="block">
@@ -250,7 +248,7 @@ export default function BusinessPage() {
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center gap-3">
-                        {/* 小 Logo 方块 */}
+     
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-green-400/20 bg-white/5">
                           <img
                             src={c.logo || c.image || "/placeholder.svg"}
@@ -260,7 +258,7 @@ export default function BusinessPage() {
                         </div>
                         <div>
                           <CardTitle className="text-lg leading-snug text-gray-100">{c.title}</CardTitle>
-                          {/* 次要信息：比赛用日期；咨询用公司 */}
+              
                           <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">
                             {c.type === "consulting" ? (
                               <>
@@ -279,7 +277,7 @@ export default function BusinessPage() {
                         </div>
                       </div>
 
-                      {/* 右上角：获奖/晋级徽标 */}
+
                       {c.placement && (
                         <div className="flex items-center gap-1 rounded-full bg-yellow-500/20 px-2 py-1 backdrop-blur-sm">
                           <Award className="h-3 w-3 text-yellow-400" />
@@ -291,7 +289,7 @@ export default function BusinessPage() {
 
                   <CardContent>
                     <p className="mb-4 line-clamp-3 text-sm text-gray-200">{c.description ?? ""}</p>
-                    {/* 标签优先展示 skills，否则 tags */}
+   
                     <div className="flex flex-wrap gap-1">
                       {((c.skills && c.skills.length > 0 ? c.skills : c.tags) ?? [])
                         .slice(0, 4)
