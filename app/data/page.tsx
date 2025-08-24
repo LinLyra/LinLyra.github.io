@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Github, Globe, Rocket, Trophy, Award as AwardIcon } from "lucide-react";
 
-type DataType = "course" | "project" | "competition";
+type DataType = "competition" | "course" | "project";
 
 type DataItem = {
   slug: string;
@@ -18,9 +18,9 @@ type DataItem = {
   description: string;
   skills: string[];
   status: "Completed" | "In Progress" | "Planned";
-  type?: DataType;            // default: "course"
-  award?: string;             // e.g. "Excellence Award"
-  logo?: string;              // for competitions
+  type: DataType;
+  award?: string;
+  logo?: string;
   links?: { github?: string; demo?: string };
 };
 
@@ -36,7 +36,7 @@ export default function DataPage() {
         "Univariate & multivariate forecasting (ARIMA/Prophet + feature signals) to explore AI-cycle dynamics on NVDA price.",
       skills: ["Python", "Time Series", "ARIMA", "Semiconductor Industry"],
       status: "Completed",
-      type: "project",
+      type: "course",
     },
     {
       slug: "disaster-risk-insurance",
@@ -46,8 +46,8 @@ export default function DataPage() {
         "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
       skills: ["Risk Modeling", "GIS (basic)", "Data Visualization", "Policy Analysis"],
       status: "Completed",
-      award: "Excellence Award",
       type: "course",
+      award: "Excellence Award",
     },
     {
       slug: "data1x01-study",
@@ -57,8 +57,8 @@ export default function DataPage() {
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
       skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
       status: "Completed",
-      award: "Excellence Award",
       type: "course",
+      award: "Excellence Award",
     },
     {
       slug: "employer-income-correlation-au",
@@ -92,13 +92,13 @@ export default function DataPage() {
       type: "course",
     },
 
-    // in progress / planned
+    // In-progress / planned
     {
       slug: "food-delivery-insights",
       title: "Food Delivery Market Insights",
       date: "2025.08",
       description:
-        "Plan: analyze order-level dataset (time, location, spend), cluster consumer segments, model delivery time drivers, and identify promotions impact using regression and causal inference.",
+        "Analyze order-level dataset; cluster consumer segments, model delivery-time drivers, and estimate promo impact with causal inference.",
       skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
       status: "In Progress",
       type: "project",
@@ -108,7 +108,7 @@ export default function DataPage() {
       title: "Tableau Next Hackathon",
       date: "2025.08",
       description:
-        "Plan: explore short-video engagement data; prototype an agentic analytics dashboard (Tableau + LLM/agents) to uncover patterns in audience retention, trending topics, and personalized recommendations.",
+        "Explore short-video engagement; prototype an agentic analytics dashboard (Tableau + LLM/agents) for retention and recommendations.",
       skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
       status: "In Progress",
       type: "project",
@@ -118,13 +118,13 @@ export default function DataPage() {
       title: "NCAA Basketball Analytics (Kaggle)",
       date: "2025.09",
       description:
-        "Plan: feature engineering from play-by-play/seed history, Elo/efficiency ratings, logistic/XGBoost ensemble for upset prediction.",
+        "Feature engineering from play-by-play and seed history; Elo/efficiency ratings; logistic/XGBoost ensemble for upset prediction.",
       skills: ["Python", "Pandas", "Machine Learning"],
       status: "Planned",
       type: "project",
     },
 
-    // competitions (with logo + trophy icon)
+    // Modeling competitions (with logos, treated as competitions)
     {
       slug: "apmcm-2024",
       title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
@@ -157,8 +157,6 @@ export default function DataPage() {
     );
   });
 
-  const metaIcon = (p: DataItem) => (p.type === "competition" ? <Trophy className="h-4 w-4" /> : <Rocket className="h-4 w-4" />);
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="data" onSectionChange={() => {}} />
@@ -188,23 +186,13 @@ export default function DataPage() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((project) => {
-              const showLogo = project.type === "competition" && project.logo;
-              return (
-                <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                  <Card className="relative h-full cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
-                    {project.award && (
-                      <div className="absolute right-3 top-3 z-20">
-                        <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 border border-amber-400/30 backdrop-blur-sm">
-                          <AwardIcon className="h-3 w-3 text-amber-300" />
-                          {project.award}
-                        </span>
-                      </div>
-                    )}
-
-                    <CardHeader className={`pb-2 ${project.award ? "pt-6" : ""}`}>
-                      <div className="flex items-start gap-3">
-                        {showLogo && (
+            {filtered.map((project) => (
+              <Link key={project.slug} href={`/data/${project.slug}`} className="block">
+                <Card className="h-full cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-start gap-3 min-w-0">
+                        {project.type === "competition" && project.logo && (
                           <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
                             <img
                               src={project.logo}
@@ -215,55 +203,70 @@ export default function DataPage() {
                         )}
 
                         <div className="min-w-0">
-                          <CardTitle className="mb-1 text-lg text-gray-100">{project.title}</CardTitle>
-
+                          <CardTitle className="mb-1 text-lg text-gray-100">
+                            {project.title}
+                          </CardTitle>
                           <div className="mt-1 flex items-center gap-2 text-sm text-gray-400">
-                            {metaIcon(project)}
+                            {project.type === "competition" ? (
+                              <Trophy className="h-4 w-4" />
+                            ) : (
+                              <Rocket className="h-4 w-4" />
+                            )}
                             <span className="truncate">{project.date}</span>
                           </div>
                         </div>
                       </div>
-                    </CardHeader>
 
-                    <CardContent>
-                      <p className="mb-4 line-clamp-3 text-sm text-gray-200">{project.description}</p>
+                      {project.award && (
+                        <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 border border-amber-400/30 backdrop-blur-sm">
+                          <AwardIcon className="h-3 w-3 text-amber-300" />
+                          {project.award}
+                        </span>
+                      )}
+                    </div>
+                  </CardHeader>
 
-                      <div className="mb-4 flex flex-wrap gap-1">
-                        {project.skills.slice(0, 4).map((skill) => (
-                          <Badge key={skill} className="border-blue-500/30 bg-blue-500/20 text-blue-200 text-xs">
-                            {skill}
-                          </Badge>
-                        ))}
-                        {project.skills.length > 4 && (
-                          <Badge className="border-gray-500/30 bg-gray-500/20 text-gray-300 text-xs">
-                            +{project.skills.length - 4} more
-                          </Badge>
-                        )}
-                      </div>
+                  <CardContent>
+                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">{project.description}</p>
 
-                      <div className="flex items-center justify-between">
+                    <div className="mb-4 flex flex-wrap gap-1">
+                      {project.skills.slice(0, 4).map((skill) => (
                         <Badge
-                          className={
-                            project.status === "Completed"
-                              ? "bg-green-500/20 text-green-200 border-green-500/30"
-                              : project.status === "In Progress"
-                              ? "bg-amber-500/20 text-amber-200 border-amber-500/30"
-                              : "bg-blue-500/20 text-blue-200 border-blue-500/30"
-                          }
+                          key={skill}
+                          className="border-blue-500/30 bg-blue-500/20 text-blue-200 text-xs"
                         >
-                          {project.status}
+                          {skill}
                         </Badge>
+                      ))}
+                      {project.skills.length > 4 && (
+                        <Badge className="border-gray-500/30 bg-gray-500/20 text-gray-300 text-xs">
+                          +{project.skills.length - 4} more
+                        </Badge>
+                      )}
+                    </div>
 
-                        <div className="flex gap-2">
-                          {!!project.links?.github && <Github className="h-4 w-4 text-gray-400" />}
-                          {!!project.links?.demo && <Globe className="h-4 w-4 text-gray-400" />}
-                        </div>
+                    <div className="flex items-center justify-between">
+                      <Badge
+                        className={
+                          project.status === "Completed"
+                            ? "bg-green-500/20 text-green-200 border-green-500/30"
+                            : project.status === "In Progress"
+                            ? "bg-amber-500/20 text-amber-200 border-amber-500/30"
+                            : "bg-blue-500/20 text-blue-200 border-blue-500/30"
+                        }
+                      >
+                        {project.status}
+                      </Badge>
+
+                      <div className="flex gap-2">
+                        {!!project.links?.github && <Github className="h-4 w-4 text-gray-400" />}
+                        {!!project.links?.demo && <Globe className="h-4 w-4 text-gray-400" />}
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
 
           {filtered.length === 0 && (
