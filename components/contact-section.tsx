@@ -12,8 +12,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Send } from "lucide-react";
 
-// 🔴 建议：advanced-galaxy-canvas 也改成“默认导出”
-// 然后这里这样动态导入（不要再 ?.?? m.default 兼容写法了，简单干净）
 const AdvancedGalaxyCanvas = dynamic(
   () => import("./advanced-galaxy-canvas"),
   { ssr: false, loading: () => null }
@@ -27,7 +25,7 @@ export default function ContactSection() {
     contact: "",
     subject: "",
     message: "",
-    _honeypot: "", // 蜜罐，防机器人
+    _honeypot: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [ok, setOk] = useState<null | boolean>(null);
@@ -82,15 +80,18 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative z-10 min-h-screen px-4 py-20 flex items-center justify-center">
       <div className="max-w-6xl mx-auto">
+        {/* 顶部引导：更宽泛、去重复 */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">Let’s Connect Across the Stars</h2>
-          <p className="text-xl text-gray-200 mb-4">
-            Ready to leave your mark in my universe? I’m open to new opportunities, creative collaborations, and curious
-            conversations — from academic projects and competitions to work ventures and beyond.
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
+            Let’s Connect Across the Stars
+          </h2>
+          <p className="text-xl text-gray-200 mb-3">
+            Open to work opportunities, research & projects, product ideas, collaborations,
+            or simply a good conversation.
           </p>
           <p className="text-lg text-gray-300">
-            Whether you’re here to build something together, share an idea, or just say hello, your signal is welcome —
-            let’s see where our paths might meet.
+            Pitch an idea, share feedback, ask a question, or just say hi — if it’s meaningful to you,
+            it’s welcome here.
           </p>
         </div>
 
@@ -106,10 +107,10 @@ export default function ContactSection() {
                 Send a Message to My Universe
               </CardTitle>
               <p className="text-gray-300 text-sm">
-                From competitions and academic collaborations to creative projects or work opportunities — I welcome all
-                signals.
+                Work, research, projects, community ideas — or just a hello. All signals are welcome.
               </p>
             </CardHeader>
+
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 {/* 蜜罐隐藏字段 */}
@@ -144,7 +145,7 @@ export default function ContactSection() {
                       value={formData.contact}
                       onChange={handleInputChange}
                       className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                      placeholder="email / ins / WeChat"
+                      placeholder="email / WeChat / LinkedIn"
                       required
                     />
                   </div>
@@ -158,7 +159,7 @@ export default function ContactSection() {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                    placeholder="What’s this about?"
+                    placeholder="Topic (work / research / idea / hello)"
                     required
                   />
                 </div>
@@ -171,7 +172,7 @@ export default function ContactSection() {
                     value={formData.message}
                     onChange={handleInputChange}
                     className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 min-h-[120px]"
-                    placeholder="Tell me about your project, collab idea, competition, or just say hello!"
+                    placeholder="Tell me what you’re exploring, building, or curious about — links welcome."
                     required
                   />
                 </div>
@@ -197,6 +198,7 @@ export default function ContactSection() {
                 )}
               </form>
 
+              {/* 底部引用：保持不变 */}
               <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
                 <p className="text-gray-400 text-xs text-center italic">
                   "Every message is a star launched into our shared sky — it will find its place in my constellation."
