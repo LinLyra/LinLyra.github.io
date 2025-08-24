@@ -78,7 +78,7 @@ Being the only technologist also reinforced a habit—show the smallest valuable
                 className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
               >
                 View More
-                <ExternalLink className="ml-2 h-4 w-4" />
+
               </Button>
             )}
           </div>
