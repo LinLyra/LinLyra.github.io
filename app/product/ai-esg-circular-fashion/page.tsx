@@ -38,7 +38,6 @@ It demonstrates: (E) image understanding for material/impact cues, (S) policy/do
   const reflection = `Multimodal ESG scoring works only with strong guardrails. The key was agreeing on a strict JSON schema, writing assertive prompts, and validating every output.
 Future iterations: enlarge labeled sets, add confidence scores, human-in-the-loop review, and task-specific fine-tuning or adapters to improve robustness.`;
 
-  const hasNotes = meta.notes.length > 0;
   const badgeClass =
     meta.status === "Completed"
       ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
