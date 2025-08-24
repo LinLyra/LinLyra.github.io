@@ -53,7 +53,7 @@ export default function BusinessPage() {
       logo: "/competition/UNESCOlogo.png",
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
-      placement: "Global Bronze Award",                 // ★ 新增：封面角标
+      placement: "Global·Bronze",                 // ★ 新增：封面角标
       tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
     },
     {
