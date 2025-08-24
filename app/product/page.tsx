@@ -32,33 +32,36 @@ type ProductItem = {
   logo?: string;
 };
 
-/** 右上角名次角标：Top 9 用圆形徽章，其他（Runner-up 等）用胶囊 */
+/** 右上角名次角标：Top 9 用圆形，其它用胶囊；都可截断，不遮挡内容 */
 function PlacementBadge({ placement }: { placement: string }) {
-  if (/top\s*9/i.test(placement)) {
+  if (/^top\s*\d+$/i.test(placement.trim())) {
+    const num = placement.trim().split(/\s+/)[1] ?? "";
     return (
-      <div className="absolute right-2 top-2 z-20">
+      <div className="pointer-events-none absolute right-3 top-3 z-20">
         <div
-          className="grid h-12 w-12 place-items-center rounded-full
+          className="grid h-11 w-11 place-items-center rounded-full
                      bg-gradient-to-br from-amber-300 via-yellow-400 to-orange-400
                      text-amber-950 font-semibold
                      ring-1 ring-amber-200/60
                      shadow-[0_8px_24px_rgba(251,191,36,0.45)]"
         >
           <span className="text-[10px] leading-3">Top</span>
-          <span className="-mt-0.5 text-base leading-4">9</span>
+          <span className="-mt-0.5 text-sm leading-4">{num}</span>
         </div>
       </div>
     );
   }
   return (
-    <div
-      className="absolute right-3 top-3 z-20 flex items-center gap-1
-                 rounded-full bg-yellow-500/20 px-2 py-1 backdrop-blur-sm
-                 ring-1 ring-amber-300/40"
-    >
-      <Award className="h-3 w-3 text-yellow-300" />
-      <span className="text-xs font-semibold text-yellow-300">
-        {placement}
+    <div className="pointer-events-none absolute right-3 top-3 z-20">
+      <span
+        className="inline-flex max-w-[70%] items-center gap-1 truncate
+                   rounded-full bg-yellow-500/20 px-2 py-1
+                   ring-1 ring-amber-300/40 backdrop-blur-sm"
+      >
+        <Award className="h-3 w-3 shrink-0 text-yellow-300" />
+        <span className="text-xs font-semibold text-yellow-300 truncate">
+          {placement}
+        </span>
       </span>
     </div>
   );
@@ -68,9 +71,7 @@ export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<ProductType[]>([]);
 
-  /** ===== 清单 ===== */
   const products: ProductItem[] = [
-    // 实习：公文包图标
     {
       slug: "abc-ai-development",
       title: "AI Development（Internship）",
@@ -88,8 +89,6 @@ export default function ProductPage() {
         "API Integration",
       ],
     },
-
-    // 比赛：奖杯图标 + 全国亚军角标
     {
       slug: "deloitte-digital-elite-2025",
       title: "Deloitte Digital Elite Challenge 2025",
@@ -101,8 +100,6 @@ export default function ProductPage() {
         "Global university challenge by Deloitte China on digital product innovation.",
       tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
     },
-
-    // 比赛：奖杯图标
     {
       slug: "gdgx-openai-hack",
       title: "GDG × OpenAI Hack Node Australia",
@@ -113,8 +110,6 @@ export default function ProductPage() {
         "2nd Global AI Hackathon (co-hosted with MIT Sloan AI Club).",
       tags: ["Full-stack", "Vibe coding", "Social Network App", "GameFi"],
     },
-
-    // 比赛：奖杯图标 + Top 9 圆形角标
     {
       slug: "ccf-tech-for-good-2025",
       title: "CCF Tech for Good Hackathon 2025",
@@ -126,8 +121,6 @@ export default function ProductPage() {
         "Building social-impact solutions — accessible films & product design.",
       tags: ["Accessible Films", "Product Design", "Social Impact"],
     },
-
-    // 比赛：奖杯图标
     {
       slug: "adventurex-2025",
       title: "AdventureX 2025",
@@ -138,8 +131,6 @@ export default function ProductPage() {
         "China’s largest youth-driven hackathon — rapid product prototyping.",
       tags: ["Product Ops", "Web3", "Youth Innovation", "YOLO"],
     },
-
-    // 比赛：奖杯图标
     {
       slug: "kpmg-innovate-day-2025",
       title: "KPMG Innovate Day 2025",
@@ -150,8 +141,6 @@ export default function ProductPage() {
         "KPMG innovation program focused on digital products & insights.",
       tags: ["Product", "AuditX", "Business Plan"],
     },
-
-    // 比赛：奖杯图标
     {
       slug: "loreal-brandstorm",
       title: "L'Oréal BRANDSTORM 2025",
@@ -162,8 +151,6 @@ export default function ProductPage() {
         "Global youth challenge — men’s beauty through tech & product innovation.",
       tags: ["Marketing", "Product", "Pitch"],
     },
-
-    // 比赛：奖杯图标
     {
       slug: "microsoft-chat-hack-promptathon",
       title: "Microsoft Chat & Hack Promptathon",
@@ -173,14 +160,11 @@ export default function ProductPage() {
       description: "GenAI prompt engineering & product prototyping.",
       tags: ["GenAI", "Prompting", "Product"],
     },
-
-    // 自己项目：火箭图标 + 无 logo（不保留 logo 空位）
     {
       slug: "ai-esg-circular-fashion",
       title: "AI × ESG: Generative Scoring for Circular Fashion",
       date: "2025.04",
       type: "project",
-      // 无 image / 无 logo
       description:
         "Lightweight AI-powered ESG scoring pipeline for circular fashion: image understanding (E), document understanding (S), and structured output (G).",
       tags: ["GenAI", "Vision", "ESG", "JSON Scoring"],
@@ -191,7 +175,6 @@ export default function ProductPage() {
   const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
   const used = (t: ProductType) => products.some((p) => p.type === t);
 
-  // 搜索：title / company / event / description / tags / skills
   const q = searchTerm.trim().toLowerCase();
   const filtered = products.filter((p) => {
     const bag = [
@@ -227,7 +210,6 @@ export default function ProductPage() {
 
       <div className="relative z-10 pt-20 p-6">
         <div className="mx-auto max-w-6xl">
-          {/* 头部 */}
           <div className="mb-8 text-center">
             <Link href="/">
               <Button className="mb-4 border-amber-400/30 bg-gradient-to-r from-orange-500/20 to-amber-500/20 text-gray-100 backdrop-blur-md hover:bg-orange-500/30">
@@ -241,7 +223,6 @@ export default function ProductPage() {
             </p>
           </div>
 
-          {/* 搜索 + 类型过滤（橙色主题） */}
           <div className="mb-8 space-y-4">
             <Input
               placeholder="Search by title / company / tags / skills..."
@@ -277,7 +258,6 @@ export default function ProductPage() {
             </div>
           </div>
 
-          {/* 列表 */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
               <Link key={p.slug} href={`/product/${p.slug}`} className="block">
@@ -286,10 +266,10 @@ export default function ProductPage() {
                              border-amber-400/20 bg-black/30 backdrop-blur-md
                              transition-all duration-300 hover:bg-black/40"
                 >
-                  {/* 右上角名次徽章 */}
                   {p.placement && <PlacementBadge placement={p.placement} />}
 
-                  <CardHeader className="pb-2">
+                  {/* 预留顶部/右侧空间，避免角标遮挡标题与 meta 行 */}
+                  <CardHeader className="pb-2 pt-8 pr-28">
                     <div className="flex items-start justify-between">
                       <div className={`flex items-center ${p.image || p.logo ? "gap-3" : "gap-0"}`}>
                         {(p.image || p.logo) && (
@@ -358,3 +338,4 @@ export default function ProductPage() {
     </div>
   );
 }
+
