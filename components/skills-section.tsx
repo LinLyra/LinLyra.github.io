@@ -77,29 +77,36 @@ export function SkillsSection() {
   ]
 
   return (
-    <section id="skills" className="min-h-screen flex flex-col items-center justify-center relative z-10 px-4 py-20">
-      <div className="max-w-6xl mx-auto text-center">
+    <section
+      id="skills"
+      className="min-h-screen flex flex-col items-center justify-center relative z-10 px-4 py-20"
+    >
+      <div className="max-w-7xl mx-auto text-center">
         {/* Title */}
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">Skills & Trajectory</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
+            Skills & Trajectory
+          </h2>
           <p className="text-xl text-gray-200 mb-8">
             A multidisciplinary toolkit for innovation and growth.
           </p>
           <p className="text-lg text-gray-300">Build • Analyze • Strategize • Transform</p>
         </div>
 
-        {/* Skills Grid (4 columns fixed) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-6 mb-16">
           {skillCategories.map((category, index) => (
             <Card
               key={index}
-              className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition-all duration-300"
+              className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition-all duration-300 h-full flex flex-col"
             >
               <CardHeader>
-                <CardTitle className="text-gray-100 text-xl">{category.title}</CardTitle>
+                <CardTitle className="text-gray-100 text-xl">
+                  {category.title}
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
+              <CardContent className="flex-1">
+                <div className="flex flex-wrap gap-2 items-start">
                   {category.skills.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
@@ -118,22 +125,29 @@ export function SkillsSection() {
         <div className="flex flex-wrap justify-center gap-8 mb-16">
           {stats.map((stat, index) => (
             <div key={index} className="text-center max-w-xs">
-              <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">{stat.number}</div>
+              <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">
+                {stat.number}
+              </div>
               <div className="text-gray-200">{stat.label}</div>
             </div>
           ))}
         </div>
 
         {/* Trajectory */}
-        <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-8">Trajectory</h3>
+        <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-8">
+          Trajectory
+        </h3>
         <div className="grid md:grid-cols-3 gap-6">
           {trajectory.map((step, i) => (
-            <Card key={i} className="bg-white/5 backdrop-blur-md border-white/10">
+            <Card
+              key={i}
+              className="bg-white/5 backdrop-blur-md border-white/10 h-full flex flex-col"
+            >
               <CardHeader>
                 <p className="text-blue-300 font-semibold">{step.date}</p>
                 <CardTitle className="text-white">{step.title}</CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-1">
                 <p className="text-gray-300 text-sm">{step.desc}</p>
               </CardContent>
             </Card>
@@ -143,3 +157,4 @@ export function SkillsSection() {
     </section>
   )
 }
+
