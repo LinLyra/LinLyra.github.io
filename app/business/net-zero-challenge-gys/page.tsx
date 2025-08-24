@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function NetZeroGYSPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题；两张照片；带奖项徽章）——
   const meta = {
     slug: "net-zero-gys-2024",
     title: "Global Youth Summit on Net-Zero Future",
@@ -21,8 +20,7 @@ export default function NetZeroGYSPage() {
     term: "2024.09 · Team Lead",
     status: "Completed" as const,
     award: "Global Bronze",
-    // 把两张图放到 public 对应路径
-    notes: ["/business/gys/photo1.jpg", "/business/gys/photo2.jpg"],
+    notes: ["/business/zero.png", "/business/zero1.png"],
     tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
   };
 
@@ -60,7 +58,7 @@ plus a one-page “how to replicate” kit for local operators and governments.`
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View More（仅照片） */}
+
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30">
@@ -76,13 +74,12 @@ plus a one-page “how to replicate” kit for local operators and governments.`
                   className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
                 >
                   View More
-                  <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               )}
             </div>
           </div>
 
-          {/* Meta 卡片（完成 + 全球铜奖） */}
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
               <span
