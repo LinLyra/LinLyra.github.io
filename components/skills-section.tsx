@@ -13,7 +13,7 @@ export function SkillsSection() {
       skills: ["Market Analysis","Roadmapping", "User Research", "MVP Design", "Prototyping (Figma)", "KPI Frameworks"],
     },
     {
-      title: "Consulting",
+      title: "Business",
       skills: ["Stakeholder Communication", "Problem Structuring","Business Modeling","Digital Transformation", "GTM Planning" ],
     },
     {
