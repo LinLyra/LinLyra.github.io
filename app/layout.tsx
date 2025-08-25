@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { GeistSans } from "geist/font/sans";
@@ -11,7 +10,8 @@ export const metadata: Metadata = {
     template: "%s | Lyra’s Universe",
   },
   description: "Interactive 3D portfolio of Lyra (Next.js + R3F).",
- 
+};
+
 const GalaxyBackground = dynamic(
   () => import("@/components/galaxy-background"),
   { ssr: false, loading: () => null }
@@ -25,13 +25,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
-
         <GalaxyBackground />
-
         {children}
       </body>
     </html>
   );
 }
+
 
 
