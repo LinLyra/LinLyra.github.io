@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function Data1002Project3Page() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（无 award / 无外链）——
   const meta = {
     slug: "employer-income-correlation-au",
     title: "Modeling Australia’s Weekly Earnings with Employment Signals",
@@ -20,9 +19,9 @@ export default function Data1002Project3Page() {
     practice: "Predictive Modeling · EDA · Model Comparison (Python / scikit-learn)",
     term: "2024 S2",
     status: "Completed" as const,
-    // 只放一张项目配图（放在 public 下）
-    notes: ["/data/data1002.png"],
-    // 显示在 Meta 卡片里的标签（不单独做 Keywords 区块）
+    notes: ["/data/data1002.png"，
+           "/data/data10021.png"],
+
     tags: [
       "Random Forest",
       "Gradient Boosting",
@@ -71,7 +70,6 @@ but a model that remains legible and robust when assumptions inevitably drift.`;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 背景：深色 + 蓝色星云 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#090a12]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(59,130,246,0.18),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(99,102,241,0.18),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(56,189,248,0.15),transparent_55%)]" />
@@ -81,7 +79,7 @@ but a model that remains legible and robust when assumptions inevitably drift.`;
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View Photo（只有图片，无外链） */}
+
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -100,7 +98,6 @@ but a model that remains legible and robust when assumptions inevitably drift.`;
             )}
           </div>
 
-          {/* 顶部 Meta 卡（无 award / 无外链） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
@@ -154,7 +151,6 @@ but a model that remains legible and robust when assumptions inevitably drift.`;
             </ul>
           </section>
 
-          {/* Reflection（不截断） */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
               Reflection
