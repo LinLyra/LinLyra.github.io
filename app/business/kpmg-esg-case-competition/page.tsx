@@ -7,8 +7,11 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar } from "lucide-react";
+import MediaModel from "@/components/media-model";
 
 export default function KpmgEsgCasePage() {
+  const [showNotes, setShowNotes] = useState(false);
+
   const meta = {
     slug: "kpmg-esg-case-competition-2024",
     title: "KPMG ESG Case Competition",
@@ -21,14 +24,12 @@ export default function KpmgEsgCasePage() {
     notes: ["/competition/esg.png"] as string[],
   };
 
-  // —— Overview ——
   const overview = `ESG case-analysis competition led by KPMG China.
 We tackled a multinational EV manufacturer’s sustainable supply-chain strategy: upstream critical-minerals risk,
 clean manufacturing and circularity in midstream, and green logistics & after-use in downstream. We proposed an
 ISO 14001–anchored EMS rollout, Scope 1/2/3 accounting and LCA templates, supplier ratings and green procurement,
 and a pragmatic roadmap with governance, KPIs and pilot scenarios.`;
 
-  // —— What I Did ——
   const whatIDid: string[] = [
     "Served as Team Lead for a 3-person team; set hypothesis tree & storyline, split workstreams, and ran daily stand-ups.",
     "Mapped the EV value chain and pressure-tested decarbonization levers: critical-mineral sourcing, vertical integration, and resilience.",
@@ -38,7 +39,6 @@ and a pragmatic roadmap with governance, KPIs and pilot scenarios.`;
     "Prioritized initiatives via impact–feasibility matrix; defined KPI tree (intensity, recycling rate, renewables share) and governance.",
   ];
 
-  // —— Reflection ——
   const reflection = `Leading the team taught me to balance structure with realism.  
 Judges valued clear, auditable mechanics more than buzzwords: “target → lever → data → control → KPI”.  
 
@@ -47,6 +47,8 @@ We learned that a practical roadmap with governance checkpoints is often more co
 
 Another key takeaway was how to communicate complexity simply. Turning supply-chain emissions, recycling loops, and procurement incentives into one integrated storyline required discipline: highlight the value drivers, strip jargon, and show measurable impacts. 
 That clarity not only resonated with judges but also helped our team stay aligned under time pressure.`;
+
+  const hasNotes = (meta.notes?.length ?? 0) > 0;
 
   const badgeClass =
     meta.status === "Completed"
@@ -71,7 +73,17 @@ That clarity not only resonated with judges but also helped our team stay aligne
                 Back to Business
               </Button>
             </Link>
-            <div />
+
+            {hasNotes ? (
+              <Button
+                onClick={() => setShowNotes(true)}
+                className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
+              >
+                View More
+              </Button>
+            ) : (
+              <div />
+            )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
@@ -93,7 +105,6 @@ That clarity not only resonated with judges but also helped our team stay aligne
                 <span className="ml-1 inline-flex items-center h-5 rounded-full px-2 text-[11px] border border-emerald-300/40 bg-emerald-500/20 text-emerald-100">
                   {meta.role}
                 </span>
- 
               </div>
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
@@ -107,13 +118,11 @@ That clarity not only resonated with judges but also helped our team stay aligne
             <div className="h-1 w-full bg-gradient-to-r from-emerald-500/20 via-green-500/20 to-emerald-500/20" />
           </Card>
 
-          {/* Overview */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Project Overview</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
-          {/* What I Did */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -125,13 +134,22 @@ That clarity not only resonated with judges but also helped our team stay aligne
             </ul>
           </section>
 
-          {/* Reflection */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Reflection</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
           </section>
         </div>
       </div>
+
+      {hasNotes && (
+        <MediaModel
+          isOpen={showNotes}
+          onClose={() => setShowNotes(false)}
+          title={meta.title}
+          media={{ images: meta.notes }}
+        />
+      )}
     </div>
   );
 }
+
