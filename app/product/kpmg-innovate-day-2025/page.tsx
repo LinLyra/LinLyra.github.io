@@ -21,9 +21,8 @@ export default function KpmgInnovateDay2025Page() {
     status: "Completed" as const,
     tags: ["Product", "AuditX", "Business Plan"],
     notes: [
-      "/product/kpmg-innovate1.png",
-      "/product/kpmg-innovate2.png",
-      "/product/kpmg-innovate3.png",
+      "/competition/check.png",
+      "/competition/check2.png",
     ] as string[],
   };
 
