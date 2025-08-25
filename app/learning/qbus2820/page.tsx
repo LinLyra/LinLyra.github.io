@@ -18,7 +18,6 @@ export default function QBUS2820Page() {
     title: "QBUS2820: Predictive Analytics",
     institution: "University of Sydney",
     term: "2025 S1",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "Completed" as const,
     tagline:
