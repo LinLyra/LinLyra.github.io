@@ -19,7 +19,7 @@ export default function Data1002Project3Page() {
     practice: "Predictive Modeling · EDA · Model Comparison (Python / scikit-learn)",
     term: "2024 S2",
     status: "Completed" as const,
-    notes: ["/data/data1002.png"，
+    notes: ["/data/data1002.png",
            "/data/data10021.png"],
 
     tags: [
