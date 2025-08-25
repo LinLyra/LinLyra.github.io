@@ -28,7 +28,7 @@ export default function McmIcm2025Page() {
       "Policy Analysis",
     ],
     notes: [
-      "/competition/mcm1.png",
+      "/competition/mcm.png",
       "/competition/mcm2.png",
       "/competition/mcm3.png",
     ] as string[],
