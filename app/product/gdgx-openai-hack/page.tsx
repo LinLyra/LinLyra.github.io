@@ -50,31 +50,6 @@ and behavior generates GXP to unlock permissions and ranking. New modules includ
     "Event timeline & assets: growth events (projects/awards) unify into a user ‘growth graph’ used by ranking.",
   ];
 
-  const architecture = `High-level design
-• Growth Asset Layer — YOLO token (bonding-curve), GXP ledger, growth timeline.
-• Challenge Engine — missions & task submissions; GXP rewards; daily/weekly caps to prevent farming.
-• Circles / Governance — gated by GXP; circle feed, leaderboard, mock voting (Snapshot-like UI).
-• Discovery / Scout — potential list (GXP × price/holder moves), watchlists, basic signals API.
-• Interaction — support/hold token, follow, limited DM (holder-only).
-
-Tech stack & data
-• Front-end: Next.js 14 (App Router), React, Tailwind, Zustand; SWR for data fetching; edge-friendly pages.
-• Back-end: Go + PostgreSQL; modules: auth, users, tokens, orders, gxp_events, missions, circles, follows.
-• Key tables: users, yolo_tokens, yolo_orders, gxp_ledger, growth_events, missions, mission_submits,
-  circles, circle_members, votes, watchlists.
-• APIs (illustrative):
-  - POST /api/auth/signup | /login
-  - GET /api/user/:id/timeline  (growth events + GXP deltas)
-  - GET /api/token/:id          (price, holders, curve params)
-  - POST /api/order/buy|sell    (mock trading w/ fees + GXP rebate)
-  - GET /api/missions           ; POST /api/missions/:id/submit
-  - GET /api/circles            ; POST /api/circles/:id/join
-  - GET /api/scout/heatmap      (rank by GXPΔ, holdersΔ, completion rate)
-• Rules:
-  - Self-hold cap (e.g., ≤30%) to prevent wash-trading.
-  - GXP unlocks: posting > missions > circle creation > scout visibility.
-  - Trading fee split: platform tax + small GXP rebate to the builder.`;
-
   const reflection = `I treated “growth” as a first-class asset: actions mint reputation (GXP), support mints price
 signals (YOLO), and both feed discovery. Operations-wise I validated acquisition loops (missions + circles)
 and drafted anti-gaming limits (caps, daily GXP budget). This upgrade made the prototype coherent for
@@ -183,11 +158,6 @@ early users (builders, scouts) and clarified a path from vibe hacking to a defen
             </ul>
           </section>
 
-          {/* Architecture */}
-          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">Architecture</h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">{architecture}</pre>
-          </section>
 
           {/* Reflection */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
