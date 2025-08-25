@@ -1,12 +1,12 @@
 "use client"
 
 import { useMemo, useState } from "react"
-import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, MapPin, X } from "lucide-react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 type ActivityItem = {
   slug: string
@@ -16,7 +16,6 @@ type ActivityItem = {
   summary: string
   cover: string
   location?: string
-  link?: string
 }
 
 export default function NebulaPage() {
@@ -33,8 +32,6 @@ export default function NebulaPage() {
     { slug: "rhombus-ai-workshop", title: "AI Workshop with Rhombus AI", org: "Rhombus AI", date: "2025.04", summary: "Hands-on with LLM tooling, data pipelines, and prompt workflows.", cover: "/activities/rhombus.png", location: "Campus" },
     { slug: "faculty-stem-panel", title: "Faculty of Science STEM Panel Discussion", org: "Faculty of Science", date: "2024.08", summary: "Panel discussion on STEM careers, research opportunities, and student pathways.", cover: "/activities/stem.png", location: "Campus" },
     { slug: "linkedin-all-star-profile", title: "LinkedIn: Building an All-Star Profile", org: "Career Center", date: "2024.08", summary: "Profile optimisation, storytelling, and networking best practices.", cover: "/activities/linkedin.png", location: "Campus" },
-
-    // Volunteer
     { slug: "city2surf-volunteer", title: "City2Surf Marathon Volunteer", org: "City2Surf", date: "2024.08", summary: "Supported race logistics, assisted in crowd management and final medal distribution.", cover: "/activities/city2.png", location: "Bondi Beach" },
     { slug: "mid-autumn-gala", title: "Mid-Autumn Festival Gala Volunteer", org: "Chinese-Australian Association", date: "2024.09", summary: "Assisted in event coordination, guest reception.", cover: "/activities/mid.png", location: "Town Hall" },
     { slug: "usu", title: "USU Volunteer", org: "University of Sydney Union (USU)", date: "2025.04 - Present", summary: "Contributed to student life by supporting campus events, and engaging with diverse student communities.", cover: "/activities/usu.png", location: "Campus" },
@@ -76,7 +73,7 @@ export default function NebulaPage() {
             </p>
           </div>
 
-          {/* Search + keyword chips */}
+     
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
@@ -117,11 +114,15 @@ export default function NebulaPage() {
             </div>
           </div>
 
-          {/* Card list */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered.map((a) => (
-              <Card key={a.slug} className="bg-black/30 backdrop-blur-md border-red-400/20 hover:bg-black/40 transition-all duration-300 overflow-hidden">
-                <div className="relative h-44 w-full">
+              <Card
+                key={a.slug}
+                className="bg-black/30 backdrop-blur-md border-red-400/20 hover:bg-black/40 transition-all duration-300 overflow-hidden"
+                title={a.title}
+              >
+                <div className="relative h-32 w-full">
                   <img
                     src={a.cover || "/placeholder.svg"}
                     alt={a.title}
@@ -131,40 +132,33 @@ export default function NebulaPage() {
                 </div>
 
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-gray-400 text-sm">{a.org}</span>
-                    <span className="text-gray-400 text-sm">{a.date}</span>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-gray-400 text-xs">{a.org}</span>
+                    <span className="text-gray-400 text-xs">{a.date}</span>
                   </div>
-
-                  <CardTitle className="text-gray-100 text-lg mb-1 line-clamp-1" title={a.title}>
+                  <CardTitle className="text-gray-100 text-sm mb-1 line-clamp-1" title={a.title}>
                     {a.title}
                   </CardTitle>
-                  <div className="flex items-center gap-3 text-xs text-gray-400">
-                    {a.location && (
-                      <div className="inline-flex items-center gap-1">
-                        <MapPin className="w-3 h-3" />
-                        {a.location}
-                      </div>
-                    )}
-                  </div>
+                  {a.location && (
+                    <div className="flex items-center gap-1 text-xs text-gray-400">
+                      <MapPin className="w-3 h-3" />
+                      {a.location}
+                    </div>
+                  )}
                 </CardHeader>
 
                 <CardContent>
-                  {a.summary && <p className="text-gray-200 text-sm line-clamp-3">{a.summary}</p>}
+                  {a.summary && <p className="text-gray-200 text-xs line-clamp-2">{a.summary}</p>}
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          {/* 👇 结尾提示 */}
           <div className="text-center mt-10 text-gray-400 text-sm">
-            Curious about the details? Let’s grab a coffee and chat. ☕
+            Curious about the details? Feel free to reach out — always happy to share over a coffee chat ☕
           </div>
         </div>
       </div>
     </div>
   )
 }
-
-
-
