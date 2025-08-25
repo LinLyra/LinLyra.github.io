@@ -112,9 +112,9 @@ export default function AIDevelopmentInternPage() {
             <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               What I Worked On
             </h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">
+            <div className="whitespace-pre-wrap font-sans text-base leading-relaxed text-gray-200">
               {whatIDid}
-            </pre>
+            </div>
           </section>
 
           {/* Key Takeaways */}
@@ -122,12 +122,13 @@ export default function AIDevelopmentInternPage() {
             <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Key Takeaways
             </h2>
-            <pre className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">
+            <div className="whitespace-pre-wrap font-sans text-base leading-relaxed text-gray-200">
               {takeaways}
-            </pre>
+            </div>
           </section>
         </div>
       </div>
     </div>
   );
 }
+
