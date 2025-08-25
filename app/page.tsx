@@ -7,14 +7,14 @@ import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { SkillsSection } from "@/components/skills-section";
 
-// ✅ 这里统一做 dynamic（组件文件里不要再写 dynamic）
+
 const Planets3DSection = dynamic(
-  () => import("@/components/planets-3d-section"), // 默认导出
+  () => import("@/components/planets-3d-section"), 
   { ssr: false, loading: () => null }
 );
 
 const ContactSection = dynamic(
-  () => import("@/components/contact-section"),     // 建议也改成默认导出（见第 3 部分）
+  () => import("@/components/contact-section"),     
   { ssr: false, loading: () => null }
 );
 
