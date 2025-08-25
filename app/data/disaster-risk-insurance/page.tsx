@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function DisasterInsurancePage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META ——（无 logo、无 GitHub）
   const meta = {
     slug: "disaster-insurance",
     title: "Disaster Risk Insurance: Insights and Recommendations",
@@ -34,7 +33,7 @@ export default function DisasterInsurancePage() {
       "EDA",
     ],
     notes: [
-      "/data/top5.png",
+      "/learning/top5.png",
       "/data/DATA1001.png",
     ] 
   };
@@ -102,7 +101,7 @@ impact—was key, and it’s also why this project earned recognition.`;
             </div>
           </div>
 
-          {/* 顶部 Meta 卡（无 logo，含 Award） */}
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
               <span
