@@ -18,7 +18,6 @@ export default function COMP5328Page() {
     title: "COMP5328: Advanced Machine Learning",
     institution: "University of Sydney",
     term: "2025 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
