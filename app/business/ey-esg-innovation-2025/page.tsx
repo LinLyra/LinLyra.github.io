@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function EyEsgInnovationPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题；Team Lead；Semifinalist；两张配图）——
   const meta = {
     slug: "ey-esg-innovation-2025",
     title: "EY ESG University Innovation Challenge 2025",
@@ -22,8 +21,7 @@ export default function EyEsgInnovationPage() {
     role: "Team Lead",
     status: "Completed" as const,
     award: "Semifinalist",
-    // 把图片放到 public/business/ey-esg/ 下；文件名可按需替换
-    notes: ["/business/ey-esg/slide-1.png", "/business/ey-esg/slide-2.png"],
+    notes: ["/competition/lvmh.png"],
     tags: ["ESG", "AI + Luxury", "Luxury Supply Chain"],
   };
 
@@ -78,7 +76,6 @@ why those KPIs, why that governance flow. This experience sharpened my ability t
             </div>
           </div>
 
-          {/* Meta 卡片（绿色主题；右上角 Completed + Semifinalist 徽章；日期旁标注 Team Lead） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
               <span
