@@ -25,7 +25,7 @@ export default function DATA1001Page() {
     tags: ["R", "Statistics", "Visualization", "Hypothesis Testing"],
     notes: [
       "/learning/group10.png",
-      "/learning/top5.png",
+      "/data/top5.png",
     ],
   }
 
