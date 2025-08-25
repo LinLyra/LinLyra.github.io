@@ -53,7 +53,7 @@ export default function BusinessPage() {
       description:
         "Youth-driven summit at Tsinghua, co-hosted by UNESCO East Asia and GAUC.",
       placement: "Global·Bronze",              
-      tags: ["Climate Action", "Youth Leadership", "Innovation"],
+      tags: ["Climate Action", "Youth Leadership", "Innovation", "Green House"],
     },
     {
       slug: "kpmg-bluebird-it-audit",
@@ -148,9 +148,8 @@ export default function BusinessPage() {
       logo: "/competition/allegrologo.png", 
       description:
           "National private-equity case on deal screening, investment thesis and LBO modelling.",
-      tags: ["Private Equity", "LBO Model", "Deal Screening", "Investment Memo"],
+      tags: ["Private Equity", "Bega", "Deal Screening", "Investment Memo"],
      },
-
     {
       slug: "commonwealth-treasury-case",
       title: "Commonwealth Treasury Case Competition",
