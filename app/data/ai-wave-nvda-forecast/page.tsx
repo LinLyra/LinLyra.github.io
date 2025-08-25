@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function AIStockForecastPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // --- META（无 award、无 logo） ---
   const meta = {
     slug: "ai-stock-forecast",
     title: "Riding the AI Wave: Forecasting NVIDIA (with AMD & Intel)",
@@ -40,7 +39,6 @@ I performed stationarity checks (ADF), variance stabilization (Box–Cox), diffe
 and fitted ARIMA family models. The selected models were then used to generate 12-month forecasts and
 quantify uncertainty bands. Insights connect statistical signals with real market narratives in the AI chip cycle.`;
 
-  // ✅ 我的职责与技能亮点（合并块）
   const highlights: string[] = [
     "Owned end-to-end NVIDIA pipeline: data sourcing/cleaning, EDA, and ADF stationarity tests.",
     "Applied Box–Cox (λ≈−0.39) and first-order differencing; verified stationarity via diagnostics.",
@@ -65,12 +63,10 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
 
   return (
     <div className="relative min-h-screen">
-      {/* 高亮 Data 星球 */}
       <Navigation activeSection="data" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 GitHub + View More */}
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -127,7 +123,6 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
             <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20" />
           </Card>
 
-          {/* Overview（从这里开始正文） */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-2 text-xl font-semibold text-blue-400 md:text-2xl">
               Project Overview
