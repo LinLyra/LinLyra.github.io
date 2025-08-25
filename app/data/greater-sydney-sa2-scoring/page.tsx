@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function Data2901SydneyResourcesPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（无 award、带 GitHub 与 Report、带图片）——
   const meta = {
     slug: "data2901-sydney-resources",
     title: "Greater Sydney SA2 Resource Scoring",
@@ -37,7 +36,6 @@ export default function Data2901SydneyResourcesPage() {
     ] 
   };
 
-  // —— Overview（和 AI Stock 相同的 <p> + whitespace-pre-line）——
   const overview = `We evaluate how “well-resourced” each SA2 in selected SA4 zones of Greater Sydney is by building a spatial database and a composite scoring system.
 We integrated six datasets (ABS SA2/Population/Income, Retail Business counts, Transport for NSW GTFS stops, NSW DoE school catchments, NSW POI API), standardized geometries to GDA2020 (EPSG:7844), and performed all joins in PostGIS. Each indicator was normalized (z-scores) and aggregated; the sum was passed through a sigmoid to obtain a final score in [0,1].
 
@@ -59,7 +57,7 @@ We also add robustness checks via rank-based scoring and validate predictors wit
     "Ran a rank-based composite as a robustness check to mitigate outlier inflation and improve policy communication.",
   ];
 
-  // —— Reflection（也改回 <p>）——
+
   const reflection = `Two choices made the work robust and explainable: (1) keeping geospatial logic inside PostGIS (indexes, ST_Intersects/Contains, and consistent SRIDs) and (2) separating indicator engineering from scoring so we could swap normalization (z-score vs. rank) without breaking the pipeline.
 The z-score + sigmoid path surfaced contrast clearly but can inflate extremes; the rank-based variant, while simpler, improved stability and policy communication.
 Model validation reminded us that a single composite index rarely “explains” socioeconomic outcomes—Lasso/OLS helped quantify limits and justify future variables (e.g., housing cost, land use).
@@ -77,7 +75,7 @@ If iterating, I’d expand indicators, add time dynamics for “access volatilit
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 GitHub + Report + View More */}
+ 
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -99,7 +97,7 @@ If iterating, I’d expand indicators, add time dynamics for “access volatilit
             </div>
           </div>
 
-          {/* 顶部 Meta 卡（无 logo、无荣誉） */}
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span
@@ -129,13 +127,12 @@ If iterating, I’d expand indicators, add time dynamics for “access volatilit
             <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20" />
           </Card>
 
-          {/* Overview —— 用 <p> + whitespace-pre-line，避免等宽字体 */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Project Overview</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
-          {/* What I did */}
+
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -147,7 +144,7 @@ If iterating, I’d expand indicators, add time dynamics for “access volatilit
             </ul>
           </section>
 
-          {/* Reflection —— 同样用 <p> */}
+
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Reflection</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
