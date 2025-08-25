@@ -23,7 +23,7 @@ export default function MATH1062Page() {
     tagline:
       "Connected advanced calculus and differential equations with data analysis in R, learning to model real-world dynamics and validate them through statistical inference.",
     tags: ["Multivariable Calculus", "Differential Eqns", "R"],
-    notes: [] as string[], // 放图片就会显示 View More
+    notes: [] as string[], 
   }
 
   const outcomes = [
