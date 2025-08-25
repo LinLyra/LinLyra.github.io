@@ -16,7 +16,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname() || "/";
 
-  // ✅ 新导航顺序 & 路由（无尾斜杠，更好做 startsWith 比对）
+
   const navItems = [
     { id: "home",     label: "Home",     route: "/" },
     { id: "learning", label: "Learning", route: "/learning" },
@@ -39,7 +39,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
 
   const isActiveRoute = (route: string) => {
     if (route === "/") return pathname === "/";
-    // 兼容子路由：/product 和 /product/xxx 都会高亮
+
     return pathname === route || pathname.startsWith(route + "/");
   };
 
@@ -47,7 +47,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* ✅ LOGO：把你的图片放到 public/logo.png，或替换为你的路径 */}
+  
           <Link href="/" className="flex items-center space-x-3" aria-label="Go to home">
             <div className="relative h-8 w-8 overflow-hidden rounded-md ring-1 ring-white/20">
               <Image src="/logo.png" alt="Lyra Logo" fill sizes="32px" className="object-cover" priority />
@@ -55,7 +55,6 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
             <span className="text-white text-lg font-bold">Welcome to Lyra&apos;s Universe. LLAP🖖</span>
           </Link>
 
-          {/* 桌面导航 */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <div key={item.id}>
@@ -84,7 +83,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
             ))}
           </div>
 
-          {/* 移动端菜单按钮 */}
+ 
           <div className="md:hidden">
             <Button variant="ghost" size="sm" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white">
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -92,7 +91,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
           </div>
         </div>
 
-        {/* 移动端抽屉 */}
+
         {isMenuOpen && (
           <div className="md:hidden mt-2 rounded-lg bg-black/40 p-4 backdrop-blur-md">
             {navItems.map((item) => (
