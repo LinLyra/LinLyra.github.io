@@ -32,8 +32,9 @@ export default function Data1x01StudyBehavioursPage() {
       "Visualization",
     ],
     notes: [
-      "/data/group10.png",
+      "/data/data1x01.png",
       "/data/DATA1x01.png",
+      "/data/group10.png",
     ] 
   };
 
