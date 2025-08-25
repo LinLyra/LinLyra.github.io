@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function Comp3308ClassifiersPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（无奖项、无外链；只放一张配图做 View More）——
   const meta = {
     slug: "pima-diabetes-accuracy-vs-runtime",
     title: "Classifier Accuracy & Runtime — Pima Diabetes vs Room Occupancy",
@@ -30,11 +29,12 @@ export default function Comp3308ClassifiersPage() {
       "Weka",
       "Python",
     ],
-    // 换成你的实际图片路径（public 下）
-    notes: ["/data/comp3308.png"],
+
+    notes: ["/data/comp3308.png",
+           "/data/comp33081.png"],
   };
 
-  // —— 概览（来自报告的要点，精炼叙述）——
+
   const overview = `We compare custom Python implementations (1NN/7NN, Naive Bayes, + majority-vote ensemble)
 with Weka baselines (ZeroR, 1R, Decision Tree, MLP, SVM, Random Forest) on two datasets:
 (1) Pima Indians Diabetes (768 × 8) and (2) Room Occupancy (2025 × 4). Using 10-fold stratified CV,
@@ -49,7 +49,6 @@ Takeaway: Dataset structure dominates outcomes; ensembles help more on noisier P
 Accuracy parity across platforms validates our implementations; runtime favors Java/Weka unless Python is
 vectorized/optimized.`;
 
-  // —— What I did（合并“职责 + 技能 + 做法”）——
   const highlights: string[] = [
     "Re-implemented 1NN/7NN & Gaussian Naive Bayes in Python; set up 10-fold stratified CV pipeline.",
     "Built a simple majority-vote ensemble (1NN + 7NN + NB) and compared against Weka baselines.",
@@ -59,7 +58,6 @@ vectorized/optimized.`;
     "Summarized implications: choose models by data regime; prioritize optimization only where latency matters.",
   ];
 
-  // —— Reflection（不截断，蓝色主题）——
   const reflection = `This exercise made me appreciate how strongly dataset structure drives model performance.
 On Pima, we saw modest ceilings (≈75–77%) even for strong models; on Occupancy, almost everything was near-perfect.
 That pushed me to interpret results beyond “which algorithm wins,” toward “why this dataset favors certain inductive biases.”
@@ -85,7 +83,7 @@ performance and interpretability for real deployments.`;
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右仅 View More */}
+     
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -104,7 +102,7 @@ performance and interpretability for real deployments.`;
             )}
           </div>
 
-          {/* Meta 卡（无荣誉、无外链） */}
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
@@ -152,7 +150,7 @@ performance and interpretability for real deployments.`;
             </ul>
           </section>
 
-          {/* Reflection（不截断） */}
+
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Reflection</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
