@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
@@ -19,7 +18,6 @@ export default function DeloitteTechnologyVirtualPage() {
     practice: "Digital Consulting · Data Analysis · Insights & Dashboards",
     term: "2024.12",
     status: "Completed" as const,
-
     notes: ["/experience/deloitteforge.png"],
   };
 
@@ -33,7 +31,7 @@ from cleaning and analysing datasets to communicating insights via simple dashbo
     "Summarised recommendations and next steps in a client-ready update.",
   ];
 
-  const reflection = `Good technology consulting is translation: turn messy tables into a few
+  const takeaways = `Good technology consulting is translation: turn messy tables into a few
 business-relevant stories—what changed, why it matters, and what to do next. I practised
 time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act immediately.
 
@@ -46,7 +44,6 @@ If I repeated the exercise, I would experiment with layering insights: an immedi
 storyline for executives, plus a deeper appendix for analysts. That way I can serve both
 audiences at once while still practicing clear, structured communication under pressure.`;
 
-
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
     meta.status === "Completed"
@@ -54,7 +51,8 @@ audiences at once while still practicing clear, structured communication under p
       : "bg-lime-600/25 text-lime-100 border-lime-400/40";
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-visible">
+
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -82,8 +80,8 @@ audiences at once while still practicing clear, structured communication under p
             )}
           </div>
 
-          {/* Meta 卡片（不渲染标签 chips / 无荣誉） */}
-          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+
+          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
                 {meta.status}
@@ -106,7 +104,9 @@ audiences at once while still practicing clear, structured communication under p
           {/* Overview */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Project Overview</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
+              {overview}
+            </p>
           </section>
 
           {/* What I Did */}
@@ -114,15 +114,16 @@ audiences at once while still practicing clear, structured communication under p
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
-                <li key={i} className="leading-relaxed">{line}</li>
+                <li key={i} className="leading-relaxed break-words hyphens-auto">{line}</li>
               ))}
             </ul>
           </section>
 
-          {/* Reflection */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Reflection</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Takeaways</h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
+              {takeaways}
+            </p>
           </section>
         </div>
       </div>
@@ -138,3 +139,4 @@ audiences at once while still practicing clear, structured communication under p
     </div>
   );
 }
+
