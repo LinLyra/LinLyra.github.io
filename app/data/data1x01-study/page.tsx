@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function Data1x01StudyBehavioursPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META ——（无 logo、无 GitHub）
   const meta = {
     slug: "data1x01-study-behaviours",
     title: "The study behaviours and expectations of DATA1X01 students",
@@ -34,12 +33,11 @@ export default function Data1x01StudyBehavioursPage() {
     ],
     notes: [
       "/data/group10.png",
-      "/data/data1001.png",
       "/data/DATA1x01.png",
     ] 
   };
 
-  // —— 概览 ——（可按需微调）
+
   const overview = `\
 We investigate DATA1X01 students’ study behaviours and expectations using cohort survey responses.
 Two questions guided our analysis:
@@ -48,7 +46,6 @@ Two questions guided our analysis:
 
 We performed initial data analysis (IDA) in R (tidyverse/ggplot2), cleaned and encoded survey fields, and produced descriptive summaries and visuals. A key insight is that intended study time does not strongly align with mark goals, suggesting a gap between expectations and planned effort. We also observe mixed alignment between self-reported learning styles and declared habits, highlighting the limits of self-assessed study strategies.`;
 
-  // —— 关键词 —— 
   const keywords = [
     "Survey EDA",
     "Learning Styles (Deep/Surface/Strategic)",
@@ -62,7 +59,7 @@ We performed initial data analysis (IDA) in R (tidyverse/ggplot2), cleaned and e
     "Visualization",
   ];
 
-  // —— What I Built & Learned（合并块，模板可复用）
+
   const highlights: string[] = [
     "Framed research questions with course scope; operationalized study habits and learning styles into analyzable variables.",
     "Cleaned and encoded survey responses; handled missing/ambiguous entries; documented assumptions and data caveats.",
@@ -72,7 +69,6 @@ We performed initial data analysis (IDA) in R (tidyverse/ggplot2), cleaned and e
     "Authored a reproducible analysis script and an accessible narrative for non-technical readers.",
   ];
 
-  // —— Reflection（加长版，获奖强调）
   const reflection = `
 Winning the Project Excellence Award validated not only our results but our process. The strongest lesson for me was learning how to translate messy, self-reported survey constructs—“study habits,” “learning styles,” “mark goals”—into analyzable features without over-claiming. 
 I committed to a transparent, reproducible pipeline (scripted data cleaning, clear encoding rules, figure generation from code) so every chart had a traceable origin and every conclusion was proportional to evidence.
@@ -94,7 +90,7 @@ The project’s recognition, I think, came from this combination of rigor, restr
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View Report (+ 可选 View More) */}
+  
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
@@ -116,7 +112,6 @@ The project’s recognition, I think, came from this combination of rigor, restr
             </div>
           </div>
 
-          {/* 顶部 Meta 卡（无 logo，含 Award） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
