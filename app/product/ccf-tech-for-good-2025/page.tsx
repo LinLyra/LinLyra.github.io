@@ -22,8 +22,9 @@ export default function CcfTechForGood2025Page() {
     award: "Top 9",
     tags: ["Accessible Films", "Product Design", "Social Impact"],
     notes: [
-      "/product/ccf.png",
-      "/product/ccf2.png",
+      "/competition/ccf.png",
+      "/competition/ccf1.png",
+      "/competition/ccf2.png",
     ] as string[],
   };
 
