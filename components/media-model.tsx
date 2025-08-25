@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-// 注意：避免与 next/image 的 Image 冲突，lucide 的 Image 要用别名
 import { X, Image as ImageIcon, Play, FileText, Download, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Media = {
@@ -30,12 +29,11 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
   const [activeTab, setActiveTab] = useState<"images" | "videos" | "documents">(firstTab);
   const [idx, setIdx] = useState(0);
 
-  // 切换到其他 Tab 时重置索引
+
   useEffect(() => {
     setIdx(0);
   }, [activeTab]);
 
-  // 键盘控制（仅 images）
   const onKey = useCallback(
     (e: KeyboardEvent) => {
       if (!isOpen || activeTab !== "images" || images.length === 0) return;
@@ -107,10 +105,10 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
 
           {/* Content */}
           <div className="max-h-[70vh] overflow-hidden">
-            {/* IMAGES: 主图 + 左右切换 + 横向滚动缩略图 */}
+    
             {activeTab === "images" && images.length > 0 && (
               <div className="flex flex-col gap-3">
-                {/* 主视图 */}
+               
                 <div className="relative h-[48vh] rounded-xl overflow-hidden bg-black/40 border border-white/10">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -120,7 +118,6 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
                     draggable={false}
                   />
 
-                  {/* 左右切换按钮（循环） */}
                   <button
                     onClick={() => setIdx((i) => (i === 0 ? images.length - 1 : i - 1))}
                     className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/10 hover:bg-white/20"
@@ -136,13 +133,13 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
                     <ChevronRight className="w-5 h-5 text-white" />
                   </button>
 
-                  {/* 索引小提示 */}
+             
                   <div className="absolute right-2 bottom-2 text-xs px-2 py-1 rounded bg-black/60 text-gray-200">
                     {idx + 1} / {images.length}
                   </div>
                 </div>
 
-                {/* 缩略图条（横向滚动，一行显示任意数量） */}
+      
                 <div className="flex gap-2 overflow-x-auto py-1">
                   {images.map((src, i) => (
                     <button
@@ -209,7 +206,7 @@ export default function MediaModel({ isOpen, onClose, title, media }: MediaModel
               </div>
             )}
 
-            {/* 占位 */}
+ 
             {images.length === 0 && videos.length === 0 && documents.length === 0 && (
               <div className="text-center text-gray-400 py-10">No media available.</div>
             )}
