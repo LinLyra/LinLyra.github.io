@@ -20,7 +20,7 @@ export default function LorealBrandstorm2025Page() {
     term: "2025.04",
     status: "Completed" as const,
     tags: ["Marketing", "Product", "Pitch"],
-    notes: ["/product/loreal.png"],
+    notes: ["/competition/loreal.png"],
   };
 
   const overview = `Global youth challenge focused on men’s beauty through tech and product innovation.
