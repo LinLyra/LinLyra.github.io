@@ -68,7 +68,7 @@ export function Galaxy({
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        {/* ✅ 新写法：用 args 传入 [array, itemSize] */}
+
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
