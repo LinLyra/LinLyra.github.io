@@ -73,7 +73,6 @@ export default function AdvancedGalaxyCanvas() {
       ctx.arc(x, y, outerR, 0, Math.PI * 2);
       ctx.fill();
 
-      // 中心亮点
       const g2 = ctx.createRadialGradient(x, y, 0, x, y, size);
       g2.addColorStop(0, "#ffffff");
       g2.addColorStop(0.5, color);
@@ -95,13 +94,13 @@ export default function AdvancedGalaxyCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // 背景
+
     const cssW = parseFloat(canvas.style.width || "600");
     const cssH = parseFloat(canvas.style.height || "300");
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, cssW, cssH);
 
-    // 所有轨迹
+
     for (const o of orbs) {
       drawGlowOrb(o.x, o.y, o.color, o.size, o.intensity);
     }
@@ -162,7 +161,7 @@ export default function AdvancedGalaxyCanvas() {
     const cssW = parseFloat(canvas.style.width || "600");
     const cssH = parseFloat(canvas.style.height || "300");
 
-    // 生成与 CSS 像素一致的导出图
+
     const final = document.createElement("canvas");
     final.width = cssW;
     final.height = cssH;
@@ -189,12 +188,12 @@ export default function AdvancedGalaxyCanvas() {
     fitCanvas();
     const onResize = () => {
       fitCanvas();
-      // 重新绘制已有的轨迹
+
       setTimeout(redrawCanvas, 0);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
   }, []);
 
   useEffect(() => {
