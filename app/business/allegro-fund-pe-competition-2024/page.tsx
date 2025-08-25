@@ -15,10 +15,10 @@ export default function BegaEsgValuationPage() {
   // —— META（绿色主题；1 张图；无外链/无荣誉）——
   const meta = {
     slug: "bega-esg-valuation",
-    title: "Bega Group ESG Strategy & Valuation (HLX Team)",
-    institution: "University of Sydney · HLX Team",
+    title: "Bega Group ESG Strategy & Valuation",
+    institution: "Allegro Fund",
     practice: "ESG Strategy · DCF Valuation · Food & Beverage",
-    term: "2025",
+    term: "2024.10",
     status: "Completed" as const,
     tags: [
       "ESG",
@@ -30,8 +30,7 @@ export default function BegaEsgValuationPage() {
       "Recommendations",
     ],
     notes: [
-      // 放在 public 下的封面或关键图
-      "/business/bega-esg/cover.jpg",
+      "/competition/bega.png",
     ] as string[],
   };
 
@@ -50,11 +49,21 @@ farm-to-factory recommendations and an investor-facing narrative.`;
     "Authored an executive storyline: what to fix, what to scale, how to evidence impact, and how it flows into valuation.",
   ];
 
-  const reflection = `Key learning: investors reward credible, decision-grade ESG—not slogans. The bridge from ESG to
+    const reflection = `Key learning: investors reward credible, decision-grade ESG—not slogans. The bridge from ESG to
 valuation is built with measurable channels (risk reduction, cost/outage avoidance, brand/revenue resilience),
 clean data and conservative assumptions. A practical playbook helped: start where data is strongest,
 pilot to de-risk execution, attach KPIs to each lever, and show how those KPIs move cash flows or discount rates.
-Equally important was packaging: a clear ‘why this, why now’ narrative and exhibits that make audit-ready assumptions obvious.`;
+Equally important was packaging: a clear ‘why this, why now’ narrative and exhibits that make audit-ready assumptions obvious.
+
+Another reflection was the balance between depth and pragmatism. ESG analysis can quickly become an endless wish-list,
+but the discipline was to prioritise levers that truly move enterprise value and can be evidenced in 6–18 months.
+It also showed me how crucial storytelling is: valuation models may sit in Excel, but the real persuasion happens
+through a slide or a one-page memo that makes the link between sustainability and value creation impossible to ignore.
+
+Finally, I realised the exercise sharpened my consulting toolkit itself: framing a messy, multi-dimensional topic,
+finding a ‘client-credible’ scope, and pushing to connect strategy recommendations back into valuation. This reinforced
+that even ESG—when done rigorously—is not a side narrative, but an investable, measurable part of business strategy.`;
+
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -74,7 +83,6 @@ Equally important was packaging: a clear ‘why this, why now’ narrative and e
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View More（仅图片） */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
@@ -93,7 +101,6 @@ Equally important was packaging: a clear ‘why this, why now’ narrative and e
             )}
           </div>
 
-          {/* 顶部 Meta 卡片 */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
