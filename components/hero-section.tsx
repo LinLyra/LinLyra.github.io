@@ -18,7 +18,7 @@ export function HeroSection() {
         <div className="flex justify-center">
           <Card className="bg-white/10 backdrop-blur-md border-white/20 p-6 text-center max-w-sm">
             <CardContent className="space-y-4">
-              {/* 头像 */}
+             
               <div className="mx-auto w-32 h-32 rounded-2xl p-[2px] bg-gradient-to-br from-blue-400 to-purple-600">
                 <div className="w-full h-full rounded-[14px] overflow-hidden bg-black/40">
                   <Image
@@ -32,7 +32,7 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* 基本信息 */}
+        
               <div>
                 <h3 className="text-xl font-bold text-gray-100 mb-2">Long (Lyra) LIN</h3>
                 <p className="text-gray-200 text-sm mb-1">University of Sydney</p>
@@ -41,7 +41,7 @@ export function HeroSection() {
                 <p className="text-gray-200 text-sm">July. 2024 - Expected Dec. 2026</p>
               </div>
 
-              {/* 标签 */}
+
               <div className="flex flex-wrap gap-2 justify-center">
                 <span className="px-4 py-2 bg-blue-500/30 text-blue-200 rounded-full text-sm font-medium">
                   Lifelong Learner
@@ -87,7 +87,7 @@ export function HeroSection() {
             </Button>
 
             <div className="flex gap-3">
-              {/* 用 asChild 包一层 <a>，真正新开页跳转 */}
+           
               <Button
                 asChild
                 variant="outline"
