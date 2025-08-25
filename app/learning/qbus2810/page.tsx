@@ -18,7 +18,6 @@ export default function QBUS2810Page() {
     title: "QBUS2810: Statistical Modelling for Business",
     institution: "University of Sydney",
     term: "2025 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
