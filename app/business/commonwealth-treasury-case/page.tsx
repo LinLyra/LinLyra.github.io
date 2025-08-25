@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function CommonwealthTreasuryCasePage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题；无荣誉/队长，仅 1 张图）——
   const meta = {
     slug: "commonwealth-treasury-case",
     title: "Commonwealth Treasury Case Competition",
@@ -21,7 +20,7 @@ export default function CommonwealthTreasuryCasePage() {
     term: "2025.04",
     status: "Completed" as const,
     tags: ["Economics", "Policy", "Analytics"],
-    notes: ["/business/commonwealth.png"] as string[],
+    notes: ["/competition/commonwealth.png"] as string[],
   };
 
   // —— Overview —— 
@@ -40,10 +39,21 @@ monitoring metrics and fiscal guardrails.`;
   ];
 
   // —— Reflection —— 
+    // —— Reflection ——
   const reflection = `Biggest takeaway: good policy cases are about trade-offs, not single-metric wins.
 Anchoring the narrative on measurable objectives (growth, inflation, inequality proxies) helped us justify why our package
 was targeted and phased, rather than broad-brush. Clear monitoring signals and rollback criteria made the recommendations
-actionable for decision-makers.`;
+actionable for decision-makers.
+
+Another lesson was separating ‘show’ vs. ‘signal’: we avoided false precision and used simple elasticities/multipliers
+with transparent assumptions, then stress-tested a few edge cases (energy shocks, SME credit tightening).
+That kept the model explainable while still decision-grade.
+
+Finally, packaging mattered as much as modelling. We learned to link each exhibit to a next step:
+which data the treasury should track, what phase-gates unlock, and what triggers pause/rollback.
+If iterating, I would add distributional microdata (household/firm panels) and run sensitivity on fiscal rules to quantify
+trade-offs under tighter headroom. This balance of clarity, humility, and execution detail is what makes a policy case persuasive.`;
+
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -53,7 +63,6 @@ actionable for decision-makers.`;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -63,7 +72,6 @@ actionable for decision-makers.`;
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View More（仅图片） */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
@@ -82,7 +90,6 @@ actionable for decision-makers.`;
             )}
           </div>
 
-          {/* 顶部 Meta 卡（无荣誉/队长） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span
