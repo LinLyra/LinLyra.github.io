@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar } from "lucide-react";
 
 export default function KpmgEsgCasePage() {
-  // —— META（绿色主题；无外链/无荣誉/无图片）——
   const meta = {
     slug: "kpmg-esg-case-competition-2024",
     title: "KPMG ESG Case Competition",
@@ -19,7 +18,7 @@ export default function KpmgEsgCasePage() {
     status: "Completed" as const,
     role: "Team Lead",
     tags: ["ESG", "Sustainability", "Automotive Supply Chain"],
-    notes: ["/business/kpmg.png"] as string[],
+    notes: ["/competition/esg.png"] as string[],
   };
 
   // —— Overview ——
@@ -40,10 +39,14 @@ and a pragmatic roadmap with governance, KPIs and pilot scenarios.`;
   ];
 
   // —— Reflection ——
-  const reflection = `Leading the team taught me to balance structure with realism.
-Judges valued clear, auditable mechanics more than buzzwords: “target → lever → data → control → KPI”.
-Framing ESG as an operating system (EMS + data + incentives) helped translate analysis into a credible
-sequence of pilots and scale-up—exactly what cross-functional stakeholders can execute under time pressure.`;
+  const reflection = `Leading the team taught me to balance structure with realism.  
+Judges valued clear, auditable mechanics more than buzzwords: “target → lever → data → control → KPI”.  
+
+Framing ESG as an operating system (EMS + data + incentives) helped translate analysis into a credible sequence of pilots and scale-up—exactly what cross-functional stakeholders can execute under time pressure. 
+We learned that a practical roadmap with governance checkpoints is often more convincing than an ambitious but vague vision.  
+
+Another key takeaway was how to communicate complexity simply. Turning supply-chain emissions, recycling loops, and procurement incentives into one integrated storyline required discipline: highlight the value drivers, strip jargon, and show measurable impacts. 
+That clarity not only resonated with judges but also helped our team stay aligned under time pressure.`;
 
   const badgeClass =
     meta.status === "Completed"
@@ -52,7 +55,6 @@ sequence of pilots and scale-up—exactly what cross-functional stakeholders can
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景（与 Business 星球一致） */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -62,7 +64,6 @@ sequence of pilots and scale-up—exactly what cross-functional stakeholders can
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回（绿色） */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
@@ -73,7 +74,6 @@ sequence of pilots and scale-up—exactly what cross-functional stakeholders can
             <div />
           </div>
 
-          {/* 顶部 Meta 卡（右上仅状态；日期旁显示 Team Lead） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
