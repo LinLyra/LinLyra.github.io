@@ -18,7 +18,6 @@ export default function COMP5318Page() {
     title: "COMP5318: Machine Learning and Data Mining",
     institution: "University of Sydney",
     term: "2025 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
