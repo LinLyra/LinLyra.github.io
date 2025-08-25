@@ -31,18 +31,12 @@ from cleaning and analysing datasets to communicating insights via simple dashbo
     "Summarised recommendations and next steps in a client-ready update.",
   ];
 
-  const takeaways = `Good technology consulting is translation: turn messy tables into a few
-business-relevant stories—what changed, why it matters, and what to do next. I practised
-time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act immediately.
-
-Another key lesson was the balance between speed and depth. The simulation pushed me to find
-"just enough analysis"—sanity checks, quick pivots, and a dashboard that highlights the
-signal without drowning in noise. It showed me how even simple metrics, if framed well,
-can unlock real client impact.
-
-If I repeated the exercise, I would experiment with layering insights: an immediate one-page
-storyline for executives, plus a deeper appendix for analysts. That way I can serve both
-audiences at once while still practicing clear, structured communication under pressure.`;
+  // —— Takeaways 改为“多段数组”（更稳，不被裁切） ——
+  const takeaways: string[] = [
+    `Good technology consulting is translation: turn messy tables into a few business-relevant stories—what changed, why it matters, and what to do next. I practised time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act immediately.`,
+    `Another key lesson was the balance between speed and depth. The simulation pushed me to find "just enough analysis"—sanity checks, quick pivots, and a dashboard that highlights the signal without drowning in noise. It showed me how even simple metrics, if framed well, can unlock real client impact.`,
+    `If I repeated the exercise, I would experiment with layering insights: an immediate one-page storyline for executives, plus a deeper appendix for analysts. That way I can serve both audiences at once while still practicing clear, structured communication under pressure.`,
+  ];
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -52,7 +46,6 @@ audiences at once while still practicing clear, structured communication under p
 
   return (
     <div className="relative min-h-screen overflow-visible">
-
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -80,7 +73,6 @@ audiences at once while still practicing clear, structured communication under p
             )}
           </div>
 
-
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
@@ -102,28 +94,39 @@ audiences at once while still practicing clear, structured communication under p
           </Card>
 
           {/* Overview */}
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Project Overview</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
+            <p className="whitespace-pre-wrap break-words text-base leading-relaxed text-gray-200">
               {overview}
             </p>
           </section>
 
-          {/* What I Did */}
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+          {/* What I Worked on */}
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Worked on</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
-                <li key={i} className="leading-relaxed break-words hyphens-auto">{line}</li>
+                <li key={i} className="leading-relaxed break-words">{line}</li>
               ))}
             </ul>
           </section>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+          {/* Takeaways（不截断） */}
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Takeaways</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
-              {takeaways}
-            </p>
+            <div
+              className="space-y-5 text-base leading-relaxed text-gray-200 whitespace-pre-wrap break-words"
+              style={{
+                WebkitLineClamp: "unset",
+                WebkitBoxOrient: "unset",
+                overflow: "visible",
+                display: "block",
+              }}
+            >
+              {takeaways.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </section>
         </div>
       </div>
@@ -139,4 +142,3 @@ audiences at once while still practicing clear, structured communication under p
     </div>
   );
 }
-
