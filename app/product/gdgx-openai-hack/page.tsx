@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function GDGOpenAIHackNodeAustraliaPage() {
@@ -19,11 +19,10 @@ export default function GDGOpenAIHackNodeAustraliaPage() {
     practice: "Full-stack · Social App · Tokenized Growth (GXP / Circles / Missions)",
     term: "2025.08",
     status: "Completed" as const,
-    // photos only — put your screenshots under /public/product/gdg-openai-au/
     notes: [
-      "/competiton/gdg1.png",
+      "/competiton/gdg.png",
+      "/competition/gdg1.png",
       "/competition/gdg2.png",
-      "/competition/gdg3.png",
     ] as string[],
     tags: [
       "Full-stack",
@@ -108,15 +107,32 @@ early users (builders, scouts) and clarified a path from vibe hacking to a defen
               </Button>
             </Link>
 
-            {hasNotes && (
-              <Button
-                onClick={() => setShowNotes(true)}
-                className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
+            <div className="flex items-center gap-2">
+              {hasNotes && (
+                <Button
+                  onClick={() => setShowNotes(true)}
+                  className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
+                >
+                  View More
+                </Button>
+              )}
+
+              {/* GitHub repo button */}
+              <a
+                href="https://github.com/LinLyra/global-accelerator-2025"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                View More
-        
-              </Button>
-            )}
+                <Button
+                  className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/20"
+                  aria-label="Open GitHub Repository"
+                >
+                  <Github className="mr-2 h-4 w-4" />
+                  GitHub
+                  <ExternalLink className="ml-1 h-3 w-3 opacity-80" />
+                </Button>
+              </a>
+            </div>
           </div>
 
           {/* meta card */}
