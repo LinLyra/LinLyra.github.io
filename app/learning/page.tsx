@@ -29,7 +29,7 @@ type LearningItem = {
 export default function LearningPage() {
   const [q, setQ] = useState("")
 
-  // === 课程数据 ===
+ 
   const items: LearningItem[] = [
     { slug:"comp2123", title:"COMP2123: Data Structures & Algorithms", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Algorithm","Sorting","Graph","Tree"], status:"completed", level:"undergrad" },
     { slug:"comp3308", title:"COMP3308: Introduction to Artificial Intelligence", institution:"University of Sydney", date:"2025 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Search","ML","Game Algorithms"], status:"completed", level:"undergrad" },
@@ -47,7 +47,7 @@ export default function LearningPage() {
     { slug:"google-advanced-data-analytics", title:"Google Advanced Data Analytics Professional Certificate", institution:"Google x Coursera", date:"2024", type:"online-course", logo:"/learning/googlelogo.png", tags:["Python","Regression","Visualization"], status:"completed" },
     { slug:"genai-intensive-2025q1", title:"Gen AI Intensive Course 2025Q1", institution:"Google × Kaggle", date:"2025", type:"online-course", logo:"/learning/googlelogo.png", tags:["Prompting","Embeddings/RAG","Agents","MLOps"], status:"completed" },
 
-    // In Progress（从 QBUS2810 起）
+
     { slug:"qbus2810", title:"QBUS2810: Statistical Modelling for Business", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Statiscal Modeling","Forecasting","Python"], status:"in-progress", level:"undergrad" },
     { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["R","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
     { slug:"qbus2310", title:"QBUS2310: Management Science", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["LP/IP/NLP","Optimisation","Excel Solver","Python"], status:"in-progress", level:"undergrad" },
@@ -57,7 +57,7 @@ export default function LearningPage() {
     { slug:"comp5328", title:"COMP5328: Advanced Machine Learning", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Model Evaluation","PyTorch/TensorFlow"], status:"in-progress", level:"postgrad", audited:true },
   ]
 
-  // 搜索（多关键词 AND）
+
   const filtered = items.filter((it) => {
     const tokens = q.toLowerCase().trim().split(/\s+/).filter(Boolean)
     const hay = [it.title, it.institution, ...(it.tags ?? [])].join(" ").toLowerCase()
@@ -65,7 +65,7 @@ export default function LearningPage() {
     return hit
   })
 
-  // 一行关键词（粉/紫系）
+
   const tagSuggestions = useMemo(() => ["Python", "ML", "Time Series", "SQL"], [])
 
   const toggleToken = (token: string) => {
@@ -92,7 +92,7 @@ export default function LearningPage() {
             <p className="text-gray-300">Expanding my universe through learning.</p>
           </div>
 
-          {/* 搜索 + 关键词（仅一行） */}
+
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
@@ -112,7 +112,7 @@ export default function LearningPage() {
               )}
             </div>
 
-            {/* 关键词胶囊：自适应宽度 + 统一高度 */}
+
             <div className="flex flex-wrap gap-2 justify-center">
               {tagSuggestions.map((t) => {
                 const active = hasToken(t)
@@ -134,7 +134,7 @@ export default function LearningPage() {
             </div>
           </div>
 
-          {/* 列表（统一高度 + 角标在卡片内） */}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((it) => {
               const statusClass =
@@ -152,7 +152,6 @@ export default function LearningPage() {
                       </span>
                     </div>
 
-                    {/* 头部：左小方 logo（图片填满） + 右侧文字 */}
                     <div className="flex items-start gap-4 p-5 pt-10">
                       <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
                         <Image
@@ -179,7 +178,7 @@ export default function LearningPage() {
                       </div>
                     </div>
 
-                    {/* 标签区：显示所有标签（不再限制 3 个） */}
+  
                     <CardHeader className="pt-2">
                       <div className="flex flex-wrap gap-2 min-h-[36px]">
                         {(it.tags ?? []).map((t) => (
