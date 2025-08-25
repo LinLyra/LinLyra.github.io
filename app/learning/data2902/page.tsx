@@ -18,7 +18,6 @@ export default function DATA2902Page() {
     title: "DATA2902: Data Analytics — Learning from Data (Advanced)",
     institution: "University of Sydney",
     term: "2025 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
