@@ -19,7 +19,7 @@ export default function AdventureXYolo2025Page() {
     practice: "Product Ops · Growth Platform · Web App Prototype",
     term: "2025.07",
     status: "Completed" as const,
-    // 你可以把下列图片放在 public/product/yolo/ 目录下
+
     notes: [
       "/competiton/yolo.png",
       "/competition/yolo1.png",
@@ -59,7 +59,7 @@ and a trust mechanism around it (records, endorsements, and lightweight incentiv
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 背景：橙色主题 */}
+
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#0f0a07]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(251,191,36,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(234,179,8,0.12),transparent_55%)]" />
@@ -69,7 +69,7 @@ and a trust mechanism around it (records, endorsements, and lightweight incentiv
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：返回 / 右侧 View More（图片） */}
+
           <div className="flex items-center justify-between">
             <Link href="/product">
               <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-gray-100 hover:bg-orange-500/30">
@@ -89,7 +89,7 @@ and a trust mechanism around it (records, endorsements, and lightweight incentiv
             )}
           </div>
 
-          {/* Meta 卡片（无荣誉/队长角标） */}
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span
