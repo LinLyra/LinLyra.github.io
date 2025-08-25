@@ -20,7 +20,7 @@ export default function DeloitteDigitalElitePage() {
     term: "2025.05",
     status: "Completed" as const,
     placement: "National Runner-up",
-    notes: ["/product/deloitte.png"],
+    notes: ["/competition/pin1.png"],
     tags: [
       "AI + Audit",
       "Product Architecture",
