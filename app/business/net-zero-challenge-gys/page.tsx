@@ -20,7 +20,7 @@ export default function NetZeroGYSPage() {
     term: "2024.09 · Team Lead",
     status: "Completed" as const,
     award: "Global Bronze",
-    notes: ["/business/zero.png", "/business/zero1.png"],
+    notes: ["/competition/zero.png", "/competition/zero1.png"],
     tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
   };
 
