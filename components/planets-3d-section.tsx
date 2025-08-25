@@ -13,7 +13,7 @@ export default function Planets3DSection() {
   const [clickedPlanet, setClickedPlanet] = useState<number | null>(null);
   const router = useRouter();
 
-  // ✅ 改成你的 5 个入口：Learning / Data / Business / Product / Nebula
+
   const planets = [
     { id: 1, name: "Learning", icon: BookOpen, color: "#A855F7", position: [-6, 0, 0] as [number, number, number], route: "/learning" },
     { id: 2, name: "Data",     icon: Database, color: "#4F8EF7", position: [-3, 0, 0] as [number, number, number], route: "/data" },
@@ -25,13 +25,13 @@ export default function Planets3DSection() {
   const handlePlanetClick = (planetId: number, route: string) => {
     setClickedPlanet(planetId);
     setTimeout(() => {
-      router.push(route); // ← 更平滑的 SPA 跳转；不想改可用 window.location.href
+      router.push(route); 
     }, 500);
   };
 
   return (
     <section id="planets" className="min-h-screen relative bg-black">
-      {/* 顶部文案：不改风格 */}
+ 
       <div className="relative z-20 pt-20 pb-8 text-center">
         <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 mx-4 max-w-4xl mx-auto border border-white/10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">Explore Full Journey</h2>
@@ -40,7 +40,7 @@ export default function Planets3DSection() {
         </div>
       </div>
 
-      {/* 3D 场景 */}
+
       <div className="absolute inset-0 top-0">
         <Canvas camera={{ position: [0, 3, 15], fov: 60 }} gl={{ antialias: true }}>
           <Suspense fallback={null}>
@@ -59,7 +59,7 @@ export default function Planets3DSection() {
                   distort={0.15}
                   speed={0.2 + index * 0.05}
                 />
-                {/* 点击热区 */}
+          
                 <mesh
                   position={planet.position}
                   onClick={() => handlePlanetClick(planet.id, planet.route)}
@@ -87,7 +87,7 @@ export default function Planets3DSection() {
         </Canvas>
       </div>
 
-      {/* 点击反馈 */}
+
       {clickedPlanet && (
         <div className="fixed inset-0 pointer-events-none z-30 flex items-center justify-center">
           <div className="animate-ping absolute inline-flex h-32 w-32 rounded-full bg-white opacity-20"></div>
