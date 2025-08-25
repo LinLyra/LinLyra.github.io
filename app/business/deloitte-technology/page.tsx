@@ -19,8 +19,8 @@ export default function DeloitteTechnologyVirtualPage() {
     practice: "Digital Consulting · Data Analysis · Insights & Dashboards",
     term: "2024.12",
     status: "Completed" as const,
-    // 一张配图：放在 /public/business/forage/deloitte-cover.jpg
-    notes: ["/business/forage/deloitte-cover.jpg"],
+
+    notes: ["/experience/deloitteforge.png"],
   };
 
   const overview = `Technology consulting simulation exploring data-driven client work:
@@ -35,7 +35,17 @@ from cleaning and analysing datasets to communicating insights via simple dashbo
 
   const reflection = `Good technology consulting is translation: turn messy tables into a few
 business-relevant stories—what changed, why it matters, and what to do next. I practised
-time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act immediately.`;
+time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act immediately.
+
+Another key lesson was the balance between speed and depth. The simulation pushed me to find
+"just enough analysis"—sanity checks, quick pivots, and a dashboard that highlights the
+signal without drowning in noise. It showed me how even simple metrics, if framed well,
+can unlock real client impact.
+
+If I repeated the exercise, I would experiment with layering insights: an immediate one-page
+storyline for executives, plus a deeper appendix for analysts. That way I can serve both
+audiences at once while still practicing clear, structured communication under pressure.`;
+
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -45,7 +55,6 @@ time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act i
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -55,7 +64,6 @@ time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act i
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：返回 / View More */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
