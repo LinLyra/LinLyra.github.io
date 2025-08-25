@@ -40,8 +40,7 @@ covering digital product passports, Scope-3 visibility, and structured KPI dashb
   const reflection = `Semifinalist as Team Lead taught me to translate ESG ambitions into data systems that actually ship.
 Two lessons stood out. First, strategy must start with data reliability: without unified indicators and a clear Scope-3 model,
 AI scoring is theater. Second, packaging matters—judges want a repeatable path from pilot to rollout with controls, not just slogans.
-I also learned to balance depth and clarity for a mixed audience (ESG, ops, data), and to defend choices under time pressure—why DPP,
-why those KPIs, why that governance flow. This experience sharpened my ability to lead an outcome-driven, evidence-based pitch.`;
+I also learned to balance depth and clarity for a mixed audience (ESG, ops, data), and to defend choices under time pressure—why DPP, why those KPIs, why that governance flow. This experience sharpened my ability to lead an outcome-driven, evidence-based pitch.`;
 
   const hasNotes = meta.notes.length > 0;
   const statusPill =
