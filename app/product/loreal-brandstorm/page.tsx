@@ -35,19 +35,21 @@ and crafted a pitch narrative covering insight → concept → channel plan → 
     "Created a competition-ready pitch deck and demo storyboard; iterated via timed dry-runs.",
   ];
 
-  const reflection = `The biggest lesson was translating vague “innovation” into a focused MVP with measurable learning goals.
-Community and content beat heavy feature sets at zero-to-one: a small, credible promise with clear proof points
-(e.g., routine adherence, repeat purchase) travels farther than a broad bundle. I also learned to keep the
-financials honest—simple sensitivity on CAC, churn, and creator costs quickly shows whether the concept can scale.`;
+
+  const reflection: string[] = [
+    `The biggest lesson was translating vague “innovation” into a focused MVP with measurable learning goals. Community and content beat heavy feature sets at zero-to-one: a small, credible promise with clear proof points travels farther than a broad bundle.`,
+    `I kept the financials honest with simple sensitivity on CAC, churn, and creator costs—this quickly shows whether the concept can scale. Next iteration, I’d pre-wire a mini experiment plan (retention cohort + referral lift) and a lean BOM to align product, channel, and unit economics from day one.`,
+  ];
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
     meta.status === "Completed"
-      ? "bg-orange-600/25 text-orange-100 border-amber-400/40"
+      ? "bg-yellow-600/25 text-yellow-100 border-yellow-400/40"
       : "bg-amber-600/25 text-amber-100 border-amber-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#120d08]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(249,115,22,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(245,158,11,0.16),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(251,191,36,0.12),transparent_55%)]" />
@@ -83,10 +85,12 @@ financials honest—simple sensitivity on CAC, churn, and creator costs quickly 
                 {meta.status}
               </span>
             </div>
+
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
               </h1>
+
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">
                 <span>{meta.institution}</span>
                 <span>•</span>
@@ -94,6 +98,7 @@ financials honest—simple sensitivity on CAC, churn, and creator costs quickly 
                   <Calendar className="h-4 w-4" /> {meta.term}
                 </span>
               </div>
+
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
                   <Badge
@@ -104,22 +109,25 @@ financials honest—simple sensitivity on CAC, churn, and creator costs quickly 
                   </Badge>
                 ))}
               </div>
+
               <p className="text-gray-200">{meta.practice}</p>
             </div>
+
             <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
-          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-orange-400 md:text-2xl">
+          <section className="rounded-xl border border-yellow-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
+            <h2 className="mb-3 text-xl font-semibold text-yellow-400 md:text-2xl">
               Project Overview
             </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+            <p className="whitespace-pre-wrap break-words text-base leading-relaxed text-gray-200">
               {overview}
             </p>
           </section>
 
-          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-orange-400 md:text-2xl">
+
+          <section className="rounded-xl border border-yellow-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
+            <h2 className="mb-3 text-xl font-semibold text-yellow-400 md:text-2xl">
               What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -131,13 +139,16 @@ financials honest—simple sensitivity on CAC, churn, and creator costs quickly 
             </ul>
           </section>
 
-          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-orange-400 md:text-2xl">
+
+          <section className="rounded-xl border border-yellow-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
+            <h2 className="mb-3 text-xl font-semibold text-yellow-400 md:text-2xl">
               Reflection
             </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
-              {reflection}
-            </p>
+            <div className="space-y-4 text-base leading-relaxed text-gray-200 whitespace-pre-wrap break-words">
+              {reflection.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
           </section>
         </div>
       </div>
@@ -153,3 +164,4 @@ financials honest—simple sensitivity on CAC, churn, and creator costs quickly 
     </div>
   );
 }
+
