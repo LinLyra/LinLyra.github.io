@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Calendar } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
@@ -19,8 +18,7 @@ export default function AccentureStrategyVirtualPage() {
     practice: "Scoping · Prioritisation · Analysis · Client Communication",
     term: "2024.12",
     status: "Completed" as const,
-    // 一张配图：放在 /public/business/forage/accenture-cover.jpg
-    notes: ["/business/forage/accenture-cover.jpg"],
+    notes: ["/experience/acc.png"],
   };
 
   const overview = `Virtual strategy consulting simulation focused on framing ambiguous problems,
@@ -33,10 +31,17 @@ prioritising opportunities, and communicating insights with a client-ready story
     "Structured a concise narrative and crafted slides for a client update.",
   ];
 
-  const reflection = `Biggest takeaway: start from clarity—not data volumes. A crisp problem statement,
-MECE structure and a few high-leverage assumptions often unlock decisions faster than
-heavy modelling. I also learned to tie “insight → implication → next step” so stakeholders
-see exactly what to do next.`;
+  const reflection = `Biggest takeaway: structure consistently beats volume. 
+
+• Problem framing: Turning an ambiguous brief into a sharp problem statement + success metric aligned the team fast and prevented rabbit holes.  
+• Prioritisation: Using MECE to lay out drivers, then applying a simple impact × feasibility filter, helped surface the 2–3 moves that actually mattered.  
+• Assumption math: Lightweight models (ranges, sensitivity checks, sanity baselines) were often more useful than heavy spreadsheets — they gave clarity without slowing us down.  
+• Storylining: Framing everything as “insight → implication → next step” made slides easier to digest and action-oriented.  
+• Client communication: Learned to be decisive while still transparent about uncertainty — acknowledge gaps, but still recommend a path forward.  
+
+If I repeated this, I’d add:  
+1) a red/amber/green risk heatmap tied to each option’s leading indicators, and  
+2) a short 2-week experiment plan to validate the riskiest assumption cheaply before scaling.`;
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -46,7 +51,6 @@ see exactly what to do next.`;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -56,7 +60,6 @@ see exactly what to do next.`;
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：返回 / View More */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
@@ -75,7 +78,6 @@ see exactly what to do next.`;
             )}
           </div>
 
-          {/* Meta 卡片（不渲染标签 chips / 无荣誉） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
@@ -98,7 +100,7 @@ see exactly what to do next.`;
 
           {/* Overview */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Project Overview</h2>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Overview</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
@@ -112,9 +114,9 @@ see exactly what to do next.`;
             </ul>
           </section>
 
-          {/* Reflection */}
+          {/* Takeaways */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Reflection</h2>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Takeaways</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
           </section>
         </div>
