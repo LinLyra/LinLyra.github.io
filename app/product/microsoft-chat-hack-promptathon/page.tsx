@@ -57,6 +57,7 @@ and trustworthy in a real user journey.`;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#140e0a]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.16),transparent_60%),radial-gradient(circle_at_12%_88%,rgba(249,115,22,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(251,191,36,0.12),transparent_55%)]" />
@@ -66,6 +67,7 @@ and trustworthy in a real user journey.`;
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
+
           <div className="flex items-center justify-between">
             <Link href="/product">
               <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-amber-100 hover:bg-orange-500/30">
@@ -84,6 +86,7 @@ and trustworthy in a real user journey.`;
             )}
           </div>
 
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
@@ -91,7 +94,9 @@ and trustworthy in a real user journey.`;
               </span>
             </div>
             <div className="p-5 md:p-6">
-              <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">{meta.title}</h1>
+              <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
+                {meta.title}
+              </h1>
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">
                 <span>{meta.institution}</span>
                 <span>•</span>
@@ -111,11 +116,15 @@ and trustworthy in a real user journey.`;
             <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
+          {/* Overview */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-orange-300 md:text-2xl">Project Overview</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+              {overview}
+            </p>
           </section>
 
+          {/* What I Did */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-orange-300 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -129,9 +138,16 @@ and trustworthy in a real user journey.`;
 
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-orange-300 md:text-2xl">Reflection</h2>
-            <p className="whitespace-pre-line break-words hyphens-auto text-base leading-relaxed text-gray-200">
+            <div
+              className="
+                whitespace-pre-wrap
+                break-words
+                [overflow-wrap:anywhere]
+                text-base leading-relaxed text-gray-200
+              "
+            >
               {reflection}
-            </p>
+            </div>
           </section>
         </div>
       </div>
@@ -147,3 +163,4 @@ and trustworthy in a real user journey.`;
     </div>
   );
 }
+
