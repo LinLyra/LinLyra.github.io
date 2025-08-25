@@ -17,7 +17,7 @@ export default function SAIEPManagementConsultingPage() {
     title: "Management Consultant",
     institution: "Study Australian Industry Experience Program",
     practice: "Strategy consulting · Market research · Growth modelling",
-    term: "2025.7",
+    term: "2025.07",
     status: "Completed" as const,
     tags: ["Strategy", "Market Research", "Competitive Analysis", "Business Model Design"],
     notes: ["/experience/saiep1.png", "/experience/saiep2.png"],
