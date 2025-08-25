@@ -18,7 +18,6 @@ export default function COMP5338Page() {
     title: "COMP5338: Advanced Data Models",
     institution: "University of Sydney",
     term: "2025 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
