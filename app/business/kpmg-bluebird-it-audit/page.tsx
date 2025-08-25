@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function KpmgBluebirdItAuditPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题）——
   const meta = {
     slug: "kpmg-bluebird-it-audit-2025",
     title: "KPMG Bluebird IT Audit Challenge 2025",
@@ -20,9 +19,9 @@ export default function KpmgBluebirdItAuditPage() {
     practice: "IT Audit · POS/Payments · Cybersecurity Controls",
     term: "2025.08",
     status: "Completed" as const,
-    role: "Team Lead",              // ← 新增：角色芯片（日期旁）
-    placement: "Semifinalist",      // ← 新增：右上角“晋级决赛”角标
-    notes: ["/business/kpmg-bluebird/cover.jpg"], // 放到 public 下
+    role: "Team Lead",              
+    placement: "Semifinalist",      
+    notes: ["/competition/bluebird.png"], // 放到 public 下
     tags: [
       "IT Audit",
       "Cybersecurity",
@@ -30,7 +29,6 @@ export default function KpmgBluebirdItAuditPage() {
       "Cloud POS",
       "Data Consistency",
       "Change Management",
-      // 注意：不再在 tags 里放 "Semifinalist"，避免和右上角重复
     ],
   };
 
@@ -45,12 +43,14 @@ remediation priorities under time pressure.`;
     "Prepared a small set of slides/checklists that teammates (audit background) could execute consistently.",
   ];
 
-  const reflection = `The prompt was unexpectedly technical, but my prior exposure to payments and POS architecture helped me lead
-two audit teammates and push us into the semifinals. The biggest lesson: judges value clear, testable controls more than
-theory—spell out “objective → risk → control → test step → evidence”. Mapping cloud POS, mobile POS and omni-channel flows
-to a simple audit path (transaction → logs → interfaces → reconciliation) made the solution actionable. Unfortunately,
-the offline final overlapped with the start of semester, so we could not attend. Still, this sprint taught me how to bridge
-tech details with audit rigor, and how to ship a minimal, repeatable audit playbook under tight time constraints.`;
+  const reflection = `The prompt was unexpectedly technical, but my prior exposure to payments and POS architecture helped me lead two audit teammates and push us into the semifinals.  
+
+The biggest lesson: judges value clear, testable controls more than theory—spell out “objective → risk → control → test step → evidence”. Mapping cloud POS, mobile POS and omni-channel 
+flows to a simple audit path (transaction → logs → interfaces → reconciliation) made the solution actionable.  
+
+Unfortunately, the offline final overlapped with the start of semester, so we could not attend. Still, this sprint taught me how to bridge tech details with audit rigor, and how to ship a minimal, 
+repeatable audit playbook under tight time constraints.`;
+
 
   const hasNotes = meta.notes.length > 0;
   const statusBadge =
@@ -64,7 +64,7 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回（绿色） / 右 View More（仅图片） */}
+  
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30">
@@ -85,7 +85,6 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
             </div>
           </div>
 
-          {/* Meta 卡片（右上角两个角标：Completed + Semifinalist） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}>
@@ -103,7 +102,7 @@ tech details with audit rigor, and how to ship a minimal, repeatable audit playb
                 {meta.title}
               </h1>
 
-              {/* 机构 · 日期 · 角色（Team Lead 芯片） */}
+    
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">
                 <span>{meta.institution}</span>
                 <span>•</span>
