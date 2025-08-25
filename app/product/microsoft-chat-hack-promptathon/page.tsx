@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function MicrosoftPromptathonPage() {
@@ -20,7 +20,7 @@ export default function MicrosoftPromptathonPage() {
     term: "2025.03",
     status: "Completed" as const,
     tags: ["GenAI", "Prompting", "Product Prototype"],
-    notes: ["/product/promptathon/cover.jpg"],
+    notes: ["/competition/microsoft.png"],
   };
 
   const overview = `Rapid prototyping sprint focused on prompt engineering and lightweight productization.
@@ -37,8 +37,17 @@ and packaged a minimal demo that showcased a pragmatic use case rather than gene
 
   const reflection = `Two lessons stood out. First, prompt work becomes real once it is tied to a concrete task and an
 evaluation loop—otherwise it drifts. Second, a thin product wrapper (clear CTA, guardrails, and telemetry)
-does more to earn user trust than another clever prompt tweak. If I iterate further, I would add lightweight
-dataset capture for continuous evaluation and a small library of reusable task blocks to accelerate new flows.`;
+does more to earn user trust than another clever prompt tweak.
+
+I also learned that prompt patterns scale best when treated like small, composable building blocks. By writing
+prompts as “task modules” (setup → constraints → exemplars → validation) and pairing them with a tiny rubric,
+I could swap pieces without breaking the whole flow. That made failures debuggable: if quality dipped, I knew
+whether to adjust instructions, add a counter-example, tighten constraints, or improve input sanitation.
+
+If I iterate further, I would (1) add lightweight dataset capture for continuous evaluation, (2) keep a small
+registry of reusable task blocks with known trade-offs, and (3) log user intent + outcome to close the loop
+between prompting and product. The goal isn't a perfect prompt—it’s a prompt that is observable, maintainable,
+and trustworthy in a real user journey.`;
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -120,7 +129,9 @@ dataset capture for continuous evaluation and a small library of reusable task b
 
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-orange-300 md:text-2xl">Reflection</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
+            <p className="whitespace-pre-line break-words hyphens-auto text-base leading-relaxed text-gray-200">
+              {reflection}
+            </p>
           </section>
         </div>
       </div>
