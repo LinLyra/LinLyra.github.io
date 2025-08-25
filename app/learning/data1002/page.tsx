@@ -18,7 +18,6 @@ export default function DATA1002Page() {
     title: "DATA1002: Informatics: Data and Computation",
     institution: "University of Sydney",
     term: "2024 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "Completed" as const,
     tagline:
