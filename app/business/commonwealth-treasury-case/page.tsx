@@ -23,13 +23,13 @@ export default function CommonwealthTreasuryCasePage() {
     notes: ["/competition/commonwealth.png"] as string[],
   };
 
-  // —— Overview —— 
+  // —— Overview ——
   const overview = `Public policy & economic analysis case organized by CBA.
 We assessed macro–micro transmission channels for alternative policy packages (stimulus mix, tax levers, sector support),
 and balanced growth, inflation and distributional outcomes. Our final proposal prioritized targeted measures with clear
 monitoring metrics and fiscal guardrails.`;
 
-  // —— What I Did —— 
+  // —— What I Did ——
   const highlights: string[] = [
     "Framed objectives and constraints: growth, price stability, employment, fiscal headroom.",
     "Built a lightweight scenario model (elasticities + multipliers) to compare policy options and sector spillovers.",
@@ -38,8 +38,7 @@ monitoring metrics and fiscal guardrails.`;
     "Crafted an executive storyline and exhibits that tied numbers to concrete policy actions.",
   ];
 
-  // —— Reflection —— 
-    // —— Reflection ——
+
   const reflection = `Biggest takeaway: good policy cases are about trade-offs, not single-metric wins.
 Anchoring the narrative on measurable objectives (growth, inflation, inequality proxies) helped us justify why our package
 was targeted and phased, rather than broad-brush. Clear monitoring signals and rollback criteria made the recommendations
@@ -53,7 +52,6 @@ Finally, packaging mattered as much as modelling. We learned to link each exhibi
 which data the treasury should track, what phase-gates unlock, and what triggers pause/rollback.
 If iterating, I would add distributional microdata (household/firm panels) and run sensitivity on fiscal rules to quantify
 trade-offs under tighter headroom. This balance of clarity, humility, and execution detail is what makes a policy case persuasive.`;
-
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -148,14 +146,22 @@ trade-offs under tighter headroom. This balance of clarity, humility, and execut
             </ul>
           </section>
 
-          {/* Reflection */}
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+          {/* Reflection（合并为一段 + 强制不裁切） */}
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Reflection
             </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
-              {reflection}
-            </p>
+            <div
+              className="text-base leading-relaxed text-gray-200 break-words line-clamp-none"
+              style={{
+                WebkitLineClamp: "unset",
+                WebkitBoxOrient: "unset",
+                overflow: "visible",
+                display: "block",
+              }}
+            >
+              {reflection.replace(/\s*\n+\s*/g, " ")}
+            </div>
           </section>
         </div>
       </div>
@@ -171,3 +177,4 @@ trade-offs under tighter headroom. This balance of clarity, humility, and execut
     </div>
   );
 }
+
