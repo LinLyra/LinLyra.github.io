@@ -29,7 +29,9 @@ export default function APMCM2024Page() {
       "ARIMA",
       "Scenario Analysis",
     ],
-    notes: ["/competition/apmcm.png"],
+    notes: ["/competition/apmcm1.png",
+           "/competition/apmcm2.png",
+           "/competition/apmcm3.png"],
   };
 
   const overview = `Pet-industry modeling across China and global markets:
@@ -45,7 +47,7 @@ export default function APMCM2024Page() {
     "Delivery: concise exhibits and an executive storyline connecting model outputs to go-to-market and policy recommendations.",
   ];
 
-  const reflection = `Key takeaways:
+  const reflection = `
 - Match method to signal: linear for steady trends; tree models for non-linear drivers; ARIMA for stationary time-series.
 - Assumptions are part of the model: make them explicit and stress-test with scenario ranges, not single points.
 - Decision focus beats metric chasing: tie every chart to a “so-what”—pricing power, export risk, domestic substitution, and timing.
