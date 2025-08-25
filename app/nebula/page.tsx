@@ -18,7 +18,7 @@ type ActivityItem = {
   summary: string
   cover: string
   location?: string
-  kinds: Kind[]        // ← 隐形分类（用于过滤）
+  kinds: Kind[]   
 }
 
 export default function NebulaPage() {
@@ -161,14 +161,13 @@ export default function NebulaPage() {
   const chips: Kind[] = useMemo(() => ["Volunteer", "Networking", "Talks"], [])
 
   const filtered = activities.filter((a) => {
-    // 文本搜索
+
     const tokens = q.toLowerCase().trim().split(/\s+/).filter(Boolean)
     const hay = [a.title, a.org, a.summary ?? "", a.location ?? ""]
       .join(" ")
       .toLowerCase()
     const textOk = tokens.length === 0 || tokens.every((t) => hay.includes(t))
 
-    // 隐形分类过滤：选了就按 OR 交集；没选则不过滤
     const kindOk =
       selectedKinds.length === 0 ||
       a.kinds.some((k) => selectedKinds.includes(k))
@@ -200,7 +199,7 @@ export default function NebulaPage() {
             </p>
           </div>
 
-          {/* 搜索 + 分类 chips（chips 只做过滤，不写进搜索框） */}
+      
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
@@ -241,7 +240,7 @@ export default function NebulaPage() {
             </div>
           </div>
 
-          {/* 小卡片：一行 4 个，不可点，hover 显示完整标题 */}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered.map((a) => (
               <Card
