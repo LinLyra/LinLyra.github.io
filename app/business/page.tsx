@@ -63,7 +63,7 @@ export default function BusinessPage() {
       logo: "/competition/kpmglogo.png",
       description: "Solve real-world IT-audit cases with technology.",
       placement: "Semifinalist",                      
-      tags: ["IT Audit", "Cybersecurity", "ATM"],
+      tags: ["IT Audit", "Cybersecurity", "POS"],
     },
     {
       slug: "saiep-management",
