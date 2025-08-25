@@ -8,6 +8,8 @@ import { ArrowLeft, MapPin, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
+type Kind = "Volunteer" | "Networking" | "Talks"
+
 type ActivityItem = {
   slug: string
   title: string
@@ -16,43 +18,168 @@ type ActivityItem = {
   summary: string
   cover: string
   location?: string
+  kinds: Kind[]        // ← 隐形分类（用于过滤）
 }
 
 export default function NebulaPage() {
   const [q, setQ] = useState("")
+  const [selectedKinds, setSelectedKinds] = useState<Kind[]>([])
 
   const activities: ActivityItem[] = [
-    { slug: "rabobank-office-tour", title: "Office Tour — Rabobank Australia", org: "Rabobank", date: "2025.08", summary: "Banking tech stack, risk systems, and a peek into product operations.", cover: "/activities/rabobank.png", location: "Rabobank office" },
-    { slug: "ey-applicants-interviews", title: "EY Presents: Applicants and Interviews", org: "EY", date: "2025.08", summary: "Insights on EY application processes, interview prep, and career pathways.", cover: "/activities/EY.png", location: "Campus" },
-    { slug: "gurobi-community-meetup", title: "Gurobi Community Meetup", org: "Gurobi", date: "2025.08", summary: "Optimisation case studies: LP/IP modeling, solver tuning, and applications.", cover: "/activities/gurobi.png", location: "Swiss Hotel" },
-    { slug: "microsoft-chat-and-hack", title: "Chat & Hack: Microsoft Careers Day (On Campus)", org: "Microsoft", date: "2025.03", summary: "Career chats, hack-style demos, and routes into product & engineering.", cover: "/activities/microsoft.png", location: "Campus" },
-    { slug: "bain-career-in-consulting", title: "A Career in Consulting with Bain & Company", org: "Bain & Company", date: "2025.03", summary: "Pathways into strategy consulting, recruiting tips, and day-in-the-life insights.", cover: "/activities/bain.png", location: "Campus" },
-    { slug: "hongkong-flow-trader", title: "Hongkong Flow Trader", org: "Industry Insights", date: "2025.03", summary: "Flow trading landscape, pricing, risk, and life on the trading floor.", cover: "/activities/flow.png", location: "Campus" },
-    { slug: "ai-power-struggle-regulation", title: "The AI Power Struggle: China, the US and the Future of Regulation", org: "Policy & Governance", date: "2025.04", summary: "Global AI regulation, safety vs. innovation, cross-border governance trends.", cover: "/activities/ai.png", location: "Campus" },
-    { slug: "rhombus-ai-workshop", title: "AI Workshop with Rhombus AI", org: "Rhombus AI", date: "2025.04", summary: "Hands-on with LLM tooling, data pipelines, and prompt workflows.", cover: "/activities/rhombus.png", location: "Campus" },
-    { slug: "faculty-stem-panel", title: "Faculty of Science STEM Panel Discussion", org: "Faculty of Science", date: "2024.08", summary: "Panel discussion on STEM careers, research opportunities, and student pathways.", cover: "/activities/stem.png", location: "Campus" },
-    { slug: "linkedin-all-star-profile", title: "LinkedIn: Building an All-Star Profile", org: "Career Center", date: "2024.08", summary: "Profile optimisation, storytelling, and networking best practices.", cover: "/activities/linkedin.png", location: "Campus" },
-    { slug: "city2surf-volunteer", title: "City2Surf Marathon Volunteer", org: "City2Surf", date: "2024.08", summary: "Supported race logistics, assisted in crowd management and final medal distribution.", cover: "/activities/city2.png", location: "Bondi Beach" },
-    { slug: "mid-autumn-gala", title: "Mid-Autumn Festival Gala Volunteer", org: "Chinese-Australian Association", date: "2024.09", summary: "Assisted in event coordination, guest reception.", cover: "/activities/mid.png", location: "Town Hall" },
-    { slug: "usu", title: "USU Volunteer", org: "University of Sydney Union (USU)", date: "2025.04 - Present", summary: "Contributed to student life by supporting campus events, and engaging with diverse student communities.", cover: "/activities/usu.png", location: "Campus" },
+    {
+      slug: "rabobank-office-tour",
+      title: "Office Tour — Rabobank Australia",
+      org: "Rabobank",
+      date: "2025.08",
+      summary: "Banking tech stack, risk systems, and a peek into product operations.",
+      cover: "/activities/ra1.png",
+      location: "Rabobank office",
+      kinds: ["Networking"],
+    },
+    {
+      slug: "ey-applicants-interviews",
+      title: "EY Presents: Applicants and Interviews",
+      org: "EY",
+      date: "2025.08",
+      summary: "Insights on EY application processes, interview prep, and career pathways.",
+      cover: "/activities/ey1.png",
+      location: "Campus",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "gurobi-community-meetup",
+      title: "Gurobi Community Meetup",
+      org: "Gurobi",
+      date: "2025.08",
+      summary: "Optimisation case studies: LP/IP modeling, solver tuning, and applications.",
+      cover: "/activities/gurobi1.png",
+      location: "Swiss Hotel",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "microsoft-chat-and-hack",
+      title: "Chat & Hack: Microsoft Careers Day (On Campus)",
+      org: "Microsoft",
+      date: "2025.03",
+      summary: "Career chats, hack-style demos, and routes into product & engineering.",
+      cover: "/activities/microsoft1.png",
+      location: "Campus",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "bain-career-in-consulting",
+      title: "A Career in Consulting with Bain & Company",
+      org: "Bain & Company",
+      date: "2025.03",
+      summary: "Pathways into strategy consulting, recruiting tips, and day-in-the-life insights.",
+      cover: "/activities/bain1.png",
+      location: "Campus",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "hongkong-flow-trader",
+      title: "Hongkong Flow Trader",
+      org: "Industry Insights",
+      date: "2025.03",
+      summary: "Flow trading landscape, pricing, risk, and life on the trading floor.",
+      cover: "/activities/flow1.png",
+      location: "Campus",
+      kinds: ["Talks"],
+    },
+    {
+      slug: "ai-power-struggle-regulation",
+      title: "The AI Power Struggle: China, the US and the Future of Regulation",
+      org: "Policy & Governance",
+      date: "2025.04",
+      summary: "Global AI regulation, safety vs. innovation, cross-border governance trends.",
+      cover: "/activities/ai.png",
+      location: "Campus",
+      kinds: ["Talks"],
+    },
+    {
+      slug: "rhombus-ai-workshop",
+      title: "AI Workshop with Rhombus AI",
+      org: "Rhombus AI",
+      date: "2025.04",
+      summary: "Hands-on with LLM tooling, data pipelines, and prompt workflows.",
+      cover: "/activities/rhombus.png",
+      location: "Campus",
+      kinds: ["Talks"],
+    },
+    {
+      slug: "faculty-stem-panel",
+      title: "Faculty of Science STEM Panel Discussion",
+      org: "Faculty of Science",
+      date: "2024.08",
+      summary: "Panel discussion on STEM careers, research opportunities, and student pathways.",
+      cover: "/activities/stem.png",
+      location: "Campus",
+      kinds: ["Talks"],
+    },
+    {
+      slug: "linkedin-all-star-profile",
+      title: "LinkedIn: Building an All-Star Profile",
+      org: "Career Center",
+      date: "2024.08",
+      summary: "Profile optimisation, storytelling, and networking best practices.",
+      cover: "/activities/linkedin.png",
+      location: "Campus",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "city2surf-volunteer",
+      title: "City2Surf Marathon Volunteer",
+      org: "City2Surf",
+      date: "2024.08",
+      summary: "Supported race logistics, assisted in crowd management and final medal distribution.",
+      cover: "/activities/city2.png",
+      location: "Bondi Beach",
+      kinds: ["Volunteer"],
+    },
+    {
+      slug: "mid-autumn-gala",
+      title: "Mid-Autumn Festival Gala Volunteer",
+      org: "Chinese-Australian Association",
+      date: "2024.09",
+      summary: "Assisted in event coordination, guest reception.",
+      cover: "/activities/mid.png",
+      location: "Town Hall",
+      kinds: ["Volunteer"],
+    },
+    {
+      slug: "usu",
+      title: "USU Volunteer",
+      org: "University of Sydney Union (USU)",
+      date: "2025.04 - Present",
+      summary: "Contributed to student life by supporting campus events, and engaging with diverse student communities.",
+      cover: "/activities/usu.png",
+      location: "Campus",
+      kinds: ["Volunteer"],
+    },
   ]
 
+  const chips: Kind[] = useMemo(() => ["Volunteer", "Networking", "Talks"], [])
+
   const filtered = activities.filter((a) => {
+    // 文本搜索
     const tokens = q.toLowerCase().trim().split(/\s+/).filter(Boolean)
-    const hay = [a.title, a.org, a.summary ?? "", a.location ?? ""].join(" ").toLowerCase()
-    return tokens.length === 0 || tokens.every(t => hay.includes(t))
+    const hay = [a.title, a.org, a.summary ?? "", a.location ?? ""]
+      .join(" ")
+      .toLowerCase()
+    const textOk = tokens.length === 0 || tokens.every((t) => hay.includes(t))
+
+    // 隐形分类过滤：选了就按 OR 交集；没选则不过滤
+    const kindOk =
+      selectedKinds.length === 0 ||
+      a.kinds.some((k) => selectedKinds.includes(k))
+
+    return textOk && kindOk
   })
 
-  const keywordChips = useMemo(
-    () => ["Volunteer", "Networking", "Talks"],
-    []
-  )
-  const toggleToken = (token: string) => {
-    const cur = q.split(/\s+/).filter(Boolean)
-    const next = cur.includes(token) ? cur.filter(t => t !== token) : [...cur, token]
-    setQ(next.join(" "))
-  }
-  const hasToken = (token: string) => q.split(/\s+/).filter(Boolean).includes(token)
+  const toggleKind = (k: Kind) =>
+    setSelectedKinds((prev) =>
+      prev.includes(k) ? prev.filter((x) => x !== k) : [...prev, k]
+    )
 
   return (
     <div className="relative min-h-screen">
@@ -73,11 +200,11 @@ export default function NebulaPage() {
             </p>
           </div>
 
-     
+          {/* 搜索 + 分类 chips（chips 只做过滤，不写进搜索框） */}
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
-                placeholder="Search by title, organization, place, or keyword (volunteer / networking / talks)…"
+                placeholder="Search by title, organization, place, or keyword…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 className="w-full bg-black/30 backdrop-blur-md border-red-400/30 text-gray-100 placeholder:text-gray-400 pr-10"
@@ -94,12 +221,12 @@ export default function NebulaPage() {
             </div>
 
             <div className="flex flex-wrap gap-2 justify-center">
-              {keywordChips.map((t) => {
-                const active = hasToken(t)
+              {chips.map((k) => {
+                const active = selectedKinds.includes(k)
                 return (
                   <span
-                    key={t}
-                    onClick={() => toggleToken(t)}
+                    key={k}
+                    onClick={() => toggleKind(k)}
                     className={
                       "inline-flex items-center h-7 rounded-full px-3 text-sm border whitespace-nowrap cursor-pointer " +
                       (active
@@ -107,14 +234,14 @@ export default function NebulaPage() {
                         : "bg-black/30 text-gray-200 border-red-400/20 hover:bg-red-500/10")
                     }
                   >
-                    {t}
+                    {k}
                   </span>
                 )
               })}
             </div>
           </div>
 
-
+          {/* 小卡片：一行 4 个，不可点，hover 显示完整标题 */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered.map((a) => (
               <Card
@@ -148,17 +275,22 @@ export default function NebulaPage() {
                 </CardHeader>
 
                 <CardContent>
-                  {a.summary && <p className="text-gray-200 text-xs line-clamp-2">{a.summary}</p>}
+                  {a.summary && (
+                    <p className="text-gray-200 text-xs line-clamp-2">
+                      {a.summary}
+                    </p>
+                  )}
                 </CardContent>
               </Card>
             ))}
           </div>
 
           <div className="text-center mt-10 text-gray-400 text-sm">
-            Curious about the details? Feel free to reach out — always happy to share over a coffee chat ☕
+            If you’re curious about any of these, I’m always happy to chat and share more—coffee’s on me ☕
           </div>
         </div>
       </div>
     </div>
   )
 }
+
