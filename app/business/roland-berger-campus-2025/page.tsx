@@ -41,22 +41,15 @@ and translated insights into a crisp storyline for executives.`;
     "Crafted executive deck: MECE storyline, exhibit design, and ‘so-what’ recommendations.",
   ];
 
-  const reflection = `Humanoid robotics is less a single “product” and more a stack:
-(1) hardware affordability & reliability (actuation, power density, hands/dexterity),
-(2) perception & control across messy, long-tail tasks, and
-(3) an operations layer (fleet mgmt, remote assist, safety/guardrails) that actually makes deployments viable.
+  const reflection = `Humanoid robotics is less a single “product” and more a stack: hardware affordability & reliability (actuation, power density, hands/dexterity), perception & control across messy, long-tail tasks, and an operations layer (fleet mgmt, remote assist, safety/guardrails) that actually makes deployments viable.
 
-Near-term beachheads are “dull-dirty-dangerous” and constrained environments: pallet handling, inspection rounds,
-night-shift security, basic material movement. Success metrics aren’t just ‘can it walk’ but:
+Near-term beachheads are “dull-dirty-dangerous” and constrained environments: pallet handling, inspection rounds, night-shift security, basic material movement. Success metrics aren’t just ‘can it walk’ but:
 task success rate (TSR), mean-time-to-intervention (MTTI), time-to-first-task-library (TTFTL), and safety events per 1k hrs.
 
-Economically, capex must be amortized via service models (RaaS) with predictable uptime; value creation comes from
-labor substitution on low-variance tasks plus safety/quality benefits. The credible path I see is
-‘humanoid as a platform’ with curated task libraries and human-in-the-loop tele-assist, not pure autonomy day-one.
-Integration matters: APIs to WMS/MES/ERP, site-mapping, and operator training drive adoption more than model benchmarks.
+Economically, capex must be amortized via service models (RaaS) with predictable uptime; value creation comes from labor substitution on low-variance tasks plus safety/quality benefits. 
+The credible path I see is ‘humanoid as a platform’ with curated task libraries and human-in-the-loop tele-assist, not pure autonomy day-one. Integration matters: APIs to WMS/MES/ERP, site-mapping, and operator training drive adoption more than model benchmarks.
 
-The lesson for me as a strategy candidate: sanity-check hype with unit economics; pick beachheads where
-environmental control and measurable ROI exist; and design the partnership fabric early so scaling is not an afterthought.`;
+The lesson for me as a strategy candidate: sanity-check hype with unit economics; pick beachheads where environmental control and measurable ROI exist; and design the partnership fabric early so scaling is not an afterthought.`;
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
