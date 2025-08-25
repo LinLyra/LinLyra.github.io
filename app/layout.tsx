@@ -1,4 +1,4 @@
-// app/layout.tsx —— 纯 Server 组件
+
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { GeistSans } from "geist/font/sans";
@@ -11,11 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Lyra’s Universe",
   },
   description: "Interactive 3D portfolio of Lyra (Next.js + R3F).",
-  // 可选：去掉 v0 的 generator
-  // generator: undefined,
-};
-
-// 3D 背景只在客户端渲染（保持原样）
+ 
 const GalaxyBackground = dynamic(
   () => import("@/components/galaxy-background"),
   { ssr: false, loading: () => null }
@@ -29,9 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
-        {/* 背景层（客户端渲染） */}
+
         <GalaxyBackground />
-        {/* 页面内容 */}
+
         {children}
       </body>
     </html>
