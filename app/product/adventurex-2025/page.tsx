@@ -21,7 +21,7 @@ export default function AdventureXYolo2025Page() {
     status: "Completed" as const,
 
     notes: [
-      "/competiton/yolo.png",
+      "/competition/yolo.png",
       "/competition/yolo1.png",
       "/competition/yolo2.png",
     ] as string[],
@@ -84,7 +84,6 @@ and a trust mechanism around it (records, endorsements, and lightweight incentiv
                 className="bg-orange-500/20 border border-amber-400/40 text-orange-100 hover:bg-orange-500/30"
               >
                 View More
-                <ExternalLink className="ml-2 h-4 w-4" />
               </Button>
             )}
           </div>
