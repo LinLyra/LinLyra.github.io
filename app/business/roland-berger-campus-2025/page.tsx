@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function RolandBergerCampus2025Page() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题）——
   const meta = {
     slug: "roland-berger-campus-2025",
     title: "Roland Berger Campus Challenge 2025",
@@ -22,7 +21,7 @@ export default function RolandBergerCampus2025Page() {
     role: "Team Lead",
     status: "Completed" as const,
     tags: ["Strategy", "Market Analysis", "Humanoid Robot", "Go-to-Market", "Unit Economics"],
-    notes: ["/business/roland-berger.jpg"] as string[],
+    notes: ["/competition/rb.png"] as string[],
   };
 
   // —— Overview —— 
@@ -42,7 +41,6 @@ and translated insights into a crisp storyline for executives.`;
     "Crafted executive deck: MECE storyline, exhibit design, and ‘so-what’ recommendations.",
   ];
 
-  // —— Reflection（行业理解：人形机器人）——
   const reflection = `Humanoid robotics is less a single “product” and more a stack:
 (1) hardware affordability & reliability (actuation, power density, hands/dexterity),
 (2) perception & control across messy, long-tail tasks, and
@@ -68,7 +66,6 @@ environmental control and measurable ROI exist; and design the partnership fabri
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />
@@ -78,7 +75,7 @@ environmental control and measurable ROI exist; and design the partnership fabri
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View More */}
+
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
@@ -97,7 +94,6 @@ environmental control and measurable ROI exist; and design the partnership fabri
             )}
           </div>
 
-          {/* 顶部 Meta 卡（新增：日期后 Team Lead 徽章） */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
@@ -114,7 +110,7 @@ environmental control and measurable ROI exist; and design the partnership fabri
                 <span className="inline-flex items-center gap-1">
                   <Calendar className="h-4 w-4" /> {meta.term}
                 </span>
-                {/* Team Lead 徽章（与你截图一致的小胶囊） */}
+
                 <span className="ml-1 inline-flex items-center h-5 rounded-full px-2 text-[11px] border border-emerald-300/40 bg-emerald-500/20 text-emerald-100">
                   {meta.role}
                 </span>
