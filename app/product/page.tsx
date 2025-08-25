@@ -48,7 +48,7 @@ export default function ProductPage() {
         "From client interviews to data pipelines and prompt engineering, delivering generative AI solutions for real community needs.",
       skills: [
         "Research Design",
-        "Generative AI",
+        "GenAI",
         "Data Pipeline Engineering",
         "Prompt Engineering",
         "API Integration",
@@ -60,7 +60,7 @@ export default function ProductPage() {
       date: "2025.05",
       type: "product",
       logo: "/competition/deloittelogo.png",
-      placement: "Runner-up",
+      placement: "First Runner-up",
       description:
         "Global university challenge by Deloitte China on digital product innovation.",
       tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
@@ -94,7 +94,7 @@ export default function ProductPage() {
       logo: "/competition/advxlogo.jpg",
       description:
         "China’s largest youth-driven hackathon — rapid product prototyping.",
-      tags: ["Product Ops", "Web3", "Youth Innovation", "YOLO"],
+      tags: ["Operation", "Growth Asset", "Youth Innovation", "YOLO"],
     },
     {
       slug: "kpmg-innovate-day-2025",
@@ -104,7 +104,7 @@ export default function ProductPage() {
       logo: "/competition/kpmglogo.png",
       description:
         "KPMG innovation program focused on digital products & insights.",
-      tags: ["Product", "AuditX", "Business Plan"],
+      tags: ["Product", "AI+Audit","AuditX", "Business Plan"],
     },
     {
       slug: "loreal-brandstorm",
@@ -114,7 +114,7 @@ export default function ProductPage() {
       logo: "/competition/loreallogo.png",
       description:
         "Global youth challenge — men’s beauty through tech & product innovation.",
-      tags: ["Marketing", "Product", "Pitch"],
+      tags: ["Marketing", "Product", "Pitch","Men's Skincare"],
     },
     {
       slug: "microsoft-chat-hack-promptathon",
@@ -132,8 +132,8 @@ export default function ProductPage() {
       type: "project",
       description:
         "Lightweight AI-powered ESG scoring pipeline for circular fashion: image understanding (E), document understanding (S), and structured output (G).",
-      tags: ["GenAI", "Vision", "ESG", "JSON Scoring"],
-      skills: ["Prompt Engineering", "Pipeline Design"],
+      tags: ["GenAI", "Image Recognition", "ESG", "Scoring"],
+      skills: ["Prompt Engineering", "API Integration"],
     },
   ];
 
