@@ -33,7 +33,7 @@ export default function DataPage() {
       title: "Rising the AI Wave: Forecasting the NVIDIA Stock",
       date: "2025.07",
       description:
-        "Univariate & multivariate forecasting (ARIMA/Prophet + feature signals) to explore AI-cycle dynamics on NVDA price.",
+        "Univariate & multivariate forecasting (ARIMA+ feature signals) to explore AI-cycle dynamics on NVDA price.",
       skills: ["Python", "Time Series", "ARIMA", "Semiconductor Industry"],
       status: "Completed",
       type: "course",
@@ -44,7 +44,7 @@ export default function DataPage() {
       date: "2024 S2",
       description:
         "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
-      skills: ["Risk Modeling", "GIS (basic)", "Data Visualization", "Policy Analysis"],
+      skills: ["Risk Modeling", "R", "Data Visualization", "Policy Analysis"],
       status: "Completed",
       type: "course",
       award: "Excellence Award",
@@ -55,7 +55,7 @@ export default function DataPage() {
       date: "2024 S2",
       description:
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
-      skills: ["Survey", "Cleaning", "Visualization", "Reporting"],
+      skills: ["Survey", "Cleaning", "R Visualization", "Reporting"],
       status: "Completed",
       type: "course",
       award: "Excellence Award",
@@ -65,8 +65,8 @@ export default function DataPage() {
       title: "Employer–Income Correlation Analysis in Australia",
       date: "2024 S2",
       description:
-        "Exploratory analysis on employer types and income distributions across Australian regions; correlation & regression checks.",
-      skills: ["EDA", "Regression", "Pandas", "Stat Tests"],
+        "Exploratory analysis on employer types and income distributions across Australian regions.",
+      skills: ["EDA", "Gradient Boosting", "Random Forest", "KNN", "Navie Baye", "KNN", "Regression"],
       status: "Completed",
       type: "course",
     },
@@ -76,7 +76,7 @@ export default function DataPage() {
       date: "2025 S1",
       description:
         "Constructs a composite index to score SA2 areas by resource accessibility; normalization, weighting, and ranking.",
-      skills: ["Index Scoring", "Normalization", "Ranking", "Pandas"],
+      skills: ["postgresqL", "Index Scoring", "Database", "ER", "Machine Learning"],
       status: "Completed",
       type: "course",
     },
@@ -86,13 +86,33 @@ export default function DataPage() {
         "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes",
       date: "2025 S1",
       description:
-        "Benchmarks multiple classifiers on accuracy–runtime trade-off (LogReg, SVM, RF, XGBoost) with reproducible splits.",
-      skills: ["scikit-learn", "XGBoost", "Benchmarking", "Metrics"],
+        "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes and Room Occupancy Datasets",
+      skills: ["ZeroR", "1R", "Decision Trees", "Multi-Layer Perceptrons","Support Vector Machines", "Random Forests"],
       status: "Completed",
       type: "course",
     },
 
     // In-progress / planned
+    {
+      slug: "apmcm-2024",
+      title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
+      date: "2024.11",
+      description: "Asia-Pacific mathematical modeling contest.",
+      skills: ["Modeling", "Optimization"],
+      status: "Completed",
+      type: "competition",
+      logo: "/competition/apmcmlogo.png",
+    },
+    {
+      slug: "mcm-icm-2025",
+      title: "MCM/ICM Mathematical Contest in Modeling 2025",
+      date: "2025.02",
+      description: "International mathematical modeling competition.",
+      skills: ["Modeling", "Statistics"],
+      status: "Completed",
+      type: "competition",
+      logo: "/competition/COMAPlogo.svg",
+    },
     {
       slug: "food-delivery-insights",
       title: "Food Delivery Market Insights",
@@ -125,26 +145,7 @@ export default function DataPage() {
     },
 
     // Modeling competitions (with logos, treated as competitions)
-    {
-      slug: "apmcm-2024",
-      title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
-      date: "2024.11",
-      description: "Asia-Pacific mathematical modeling contest.",
-      skills: ["Modeling", "Optimization"],
-      status: "Completed",
-      type: "competition",
-      logo: "/competition/apmcmlogo.png",
-    },
-    {
-      slug: "mcm-icm-2025",
-      title: "MCM/ICM Mathematical Contest in Modeling 2025",
-      date: "2025.02",
-      description: "International mathematical modeling competition.",
-      skills: ["Modeling", "Statistics"],
-      status: "Completed",
-      type: "competition",
-      logo: "/competition/COMAPlogo.svg",
-    },
+    
   ];
 
   const filtered = items.filter((p) => {
