@@ -106,7 +106,7 @@ If I repeated this, I’d add:
 
           {/* What I Did */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Did</h2>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Worked on</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
                 <li key={i} className="leading-relaxed">{line}</li>
