@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function SAIEPManagementConsultingPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META：无 logo、无外链，仅两张图 —— 
   const meta = {
     slug: "saiep-management",
     title: "Management Consultant",
@@ -21,17 +20,14 @@ export default function SAIEPManagementConsultingPage() {
     term: "2025.7",
     status: "Completed" as const,
     tags: ["Strategy", "Market Research", "Competitive Analysis", "Business Model Design"],
-    notes: [
-      // 放两张展示图到 public/ 路径即可
-      "/business/saiep1.jpg",
-      "/business/saiep2.jpg",
-    ],
+    notes: ["/experience/saiep1.png", "/experience/saiep2.png"],
   };
 
   const overview = `Strategy-led consulting engagement focused on growth for an education non-profit.
 We scoped the problem with stakeholders, mapped the market, and built an evidence-based growth narrative
 that the client could take to partners and funders. Deliverables included a succinct strategy report,
 supporting analysis, and an adoption-ready roadmap for the next phases.`;
+
 
   const highlights: string[] = [
     "Stakeholder discovery: distilled goals, constraints, and success criteria; framed testable hypotheses.",
@@ -41,11 +37,17 @@ supporting analysis, and an adoption-ready roadmap for the next phases.`;
     "Roadmap: phased rollout with proof-points, feedback loops, and resource assumptions for scale-up.",
   ];
 
-  const reflection = `I learned how to turn a broad mission into a practical growth story that leaders can act on.
-Two things mattered most: (1) keeping the narrative tight—problem, options, trade-offs—and
-(2) proposing a pilotable path (who, what, when, how success is measured) instead of abstract strategy.
-I also practiced “evidence over intuition”: when assumptions were fuzzy, we built small tests and
-defined the next proof-point rather than over-engineering the plan.`;
+  const takeaways = `I learned how to turn a broad mission into a practical growth story that leaders can act on.
+Two habits mattered most: (1) keep the narrative tight—problem, options, trade-offs, decision—and (2) propose a
+pilotable path (who, what, when, how success is measured) instead of abstract strategy.
+
+A second lesson was evidence discipline. When assumptions were fuzzy, we resisted over-engineering the plan and
+designed small tests with clear proof-points: what signal we expect, how we’ll measure it, and what decision it unlocks.
+This kept the team moving while reducing risk for stakeholders.
+
+Finally, packaging changed outcomes. An executive one-pager + a deeper appendix let different audiences engage at their
+own altitude. Pairing a lightweight KPI tree with an operating cadence (owners, reviews, course-corrections) made the
+recommendations feel inevitable rather than aspirational—something a lean non-profit could actually run next week.`;
 
   const hasNotes = meta.notes.length > 0;
   const badgeClass =
@@ -54,14 +56,12 @@ defined the next proof-point rather than over-engineering the plan.`;
       : "bg-green-600/25 text-green-100 border-green-400/40";
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景 */}
+    <div className="relative min-h-screen overflow-visible">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#07110c]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(34,197,94,0.16),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(52,211,153,0.14),transparent_55%)]" />
       </div>
 
-      {/* 顶部导航高亮 Business */}
       <Navigation activeSection="business" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
@@ -85,8 +85,7 @@ defined the next proof-point rather than over-engineering the plan.`;
             )}
           </div>
 
-          {/* Meta 卡（无外链、无荣誉） */}
-          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
             <div className="absolute right-3 top-3">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
                 {meta.status}
@@ -116,23 +115,29 @@ defined the next proof-point rather than over-engineering the plan.`;
           {/* Overview */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Project Overview</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
+              {overview}
+            </p>
           </section>
 
-          {/* What I Did */}
+          {/* What I Worked On */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Did</h2>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">What I Worked On</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {highlights.map((line, i) => (
-                <li key={i} className="leading-relaxed">{line}</li>
+                <li key={i} className="leading-relaxed break-words hyphens-auto">
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
 
-          {/* Reflection */}
+          {/* Takeaways */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Reflection</h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Takeaways</h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
+              {takeaways}
+            </p>
           </section>
         </div>
       </div>
