@@ -14,13 +14,13 @@ export default function GDGOpenAIHackNodeAustraliaPage() {
 
   const meta = {
     slug: "gdg-openai-hack-node-au",
-    title: "GDG × OpenAI Hack Node Australia — YOLO·AU (Full-stack Upgrade)",
+    title: "GDG × OpenAI Hack Node Australia — YOLO (Full-stack Upgrade)",
     institution: "GDG • OpenAI (co-hosted with MIT Sloan AI Club)",
-    practice: "Full-stack · Social App · Tokenized Growth (GXP / Circles / Missions)",
+    practice: "Full-stack · Social App · Tokenized Growth (GXP / Circles / Missions / Scout)",
     term: "2025.08",
     status: "Completed" as const,
     notes: [
-      "/competiton/gdg.png",
+      "/competition/gdg.png",
       "/competition/gdg1.png",
       "/competition/gdg2.png",
     ] as string[],
