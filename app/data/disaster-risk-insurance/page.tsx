@@ -33,7 +33,7 @@ export default function DisasterInsurancePage() {
       "EDA",
     ],
     notes: [
-      "/data/top5.png",
+      "/data/top51.png",
       "/data/data1001top5.png",
     ] 
   };
