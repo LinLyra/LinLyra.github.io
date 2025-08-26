@@ -70,7 +70,6 @@ impact—was key, and it’s also why this project earned recognition.`;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 背景：深色 + 星云 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#090a12]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(59,130,246,0.18),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(99,102,241,0.18),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(56,189,248,0.15),transparent_55%)]" />
@@ -80,7 +79,7 @@ impact—was key, and it’s also why this project earned recognition.`;
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View Report (+ 可选 View More) */}
+    
           <div className="flex items-center justify-between">
             <Link href="/data">
               <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
