@@ -53,7 +53,7 @@ export function SkillsSection() {
   ]
 
   const stats = [
-    { number: "1 Year", label: "Since 2024.08 Starting in Data" },
+    { number: "Since 2024.08", label: " Active in Data" },
     { number: "20+", label: "Projects / Competitions Completed" },
     { number: "Data → Product", label: "Bridge from Insight to Product" },
   ]
@@ -61,7 +61,7 @@ export function SkillsSection() {
   const trajectory = [
     {
       date: "2024.08",
-      title: "First Step",
+      title: "Foundations",
       desc: "Started data journey — Python, stats, first datasets & notebooks.",
     },
     {
@@ -71,7 +71,7 @@ export function SkillsSection() {
     },
     {
       date: "2025.08",
-      title: "Integration",
+      title: "Integration(Ongoing)",
       desc: "Client interviews → pipelines → GenAI & prototypes (end-to-end).",
     },
   ]
