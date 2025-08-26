@@ -23,10 +23,7 @@ export default function DATA1001Page() {
     tagline:
       "Built statistical thinking from study design to hypothesis testing, using base R and ggplot2.",
     tags: ["R", "Statistics", "Visualization", "Hypothesis Testing"],
-    notes: [
-      "/learning/group10.png",
-      "/data/top5.png",
-    ],
+    notes: [] as string[] 
   }
 
   const outcomes = [
