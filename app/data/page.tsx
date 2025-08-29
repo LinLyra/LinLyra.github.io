@@ -28,6 +28,16 @@ export default function DataPage() {
   const [search, setSearch] = useState("");
 
   const items: DataItem[] = [
+      {
+      slug: "taylor-swift-engagement-analysis",
+      title: "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
+      date: "2025.08",
+      description:
+         "Analyzed 5,700+ YouTube comments on Taylor Swift’s engagement using Gemini LLM with ELM theory. Explored sentiment evolution, persuasion pathways, and herding effects in digital discourse.",,
+      skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
+      status: "Completed",
+      type: "project",
+    },
     {
       slug: "ai-wave-nvda-forecast",
       title: "Rising the AI Wave: Forecasting the NVIDIA Stock",
