@@ -1,4 +1,4 @@
-# 🌌 Lyra’s Universe - 3D Galaxy Portfolio
+# 🌌 Lyra’s Universe - Galaxy Portfolio
 
 An interactive portfolio built around **five planets**:  
 **Learning · Data · Business · Product · Nebula**
