@@ -71,11 +71,11 @@ export function HeroSection() {
           </h1>
 
           <p className="text-xl text-gray-200 mb-4">
-            Driven by a passion for data, I start with analytics to understand complex systems, 
-            transform insights into business strategy, design product solutions, and bring them to life through full-stack development.
+            Driven by a passion for data, I begin with analytics to understand complex systems, uncover patterns, and translate them into strategy and action.
+            I design product solutions grounded in insight, and bring them to life through full-stack prototyping.
           </p>
           <p className="text-lg text-gray-300 mb-8">
-            My work connects data, business, and technology into measurable impact.
+            My work connects data, business, and technology — turning understanding into measurable impact.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
