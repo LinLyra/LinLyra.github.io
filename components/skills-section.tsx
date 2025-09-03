@@ -54,7 +54,7 @@ export function SkillsSection() {
 
   const stats = [
     { number: "Since 2024.08", label: " Active in Data" },
-    { number: "20+", label: "Projects / Competitions Completed" },
+    { number: "30+", label: "Projects / Competitions Completed" },
     { number: "Data → Product", label: "Bridge from Insight to Product" },
   ]
 
