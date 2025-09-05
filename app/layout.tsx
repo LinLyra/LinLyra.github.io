@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { GeistSans } from "geist/font/sans";
@@ -17,6 +18,8 @@ const GalaxyBackground = dynamic(
   { ssr: false, loading: () => null }
 );
 
+import { Analytics } from "@/components/analytics";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
@@ -27,10 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <GalaxyBackground />
         {children}
+        <Analytics />
       </body>
     </html>
   );
 }
-
-
-
