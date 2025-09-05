@@ -24,16 +24,20 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          # ⚠️ 这里不要写 cache: 'pnpm'，先让它别碰 pnpm
+          node-version: 20
 
-      - name: Setup pnpm
+      - name: Setup pnpm (auto install)
         uses: pnpm/action-setup@v4
         with:
-          # 不写 version；它会自动读 package.json 里的 "packageManager"
           run_install: true
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
       - name: Build (next build && next export)
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
         run: pnpm run build
 
       - name: Upload artifact
@@ -42,8 +46,8 @@ jobs:
           path: ./out
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -51,4 +55,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
