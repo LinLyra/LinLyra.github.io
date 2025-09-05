@@ -1,9 +1,9 @@
 {
-  "name": "my-v0-project",
+  "name": "my-project",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build && next export",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
@@ -39,6 +39,7 @@
     "@radix-ui/react-tooltip": "1.1.7",
     "@react-three/drei": "9.86.2",
     "@react-three/fiber": "8.15.10",
+    "@supabase/supabase-js": "^2.45.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -82,4 +83,3 @@
   },
   "packageManager": "pnpm@9.12.0"
 }
-
