@@ -1,3 +1,4 @@
+// components/analytics.tsx
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -23,8 +24,9 @@ function getSessionId(): string {
   if (typeof window === 'undefined') return 'server';
   let id = localStorage.getItem('sid');
   if (!id) {
-    id = (globalThis.crypto?.randomUUID?.() ??
-      Math.random().toString(36).slice(2));
+    id =
+      (globalThis.crypto?.randomUUID?.() ??
+        Math.random().toString(36).slice(2));
     localStorage.setItem('sid', id);
   }
   return id;
@@ -33,12 +35,10 @@ function getSessionId(): string {
 function parsePath(path: string) {
   const clean = (path || '/').replace(/\/+$/, '');
   const seg = clean.split('/').filter(Boolean);
-
   const planets = new Set(['business', 'data', 'learning', 'nebula', 'product']);
   const planet_slug = planets.has(seg[0] || '') ? seg[0]! : null;
   const project_id = planet_slug && seg[1] ? seg[1]! : null;
   const first_segment = seg[0] ?? 'home';
-
   return { planet_slug, project_id, first_segment };
 }
 
@@ -68,10 +68,17 @@ export function Analytics() {
       first_segment,
       session_id: getSessionId(),
       referrer: document.referrer ? document.referrer.slice(0, 255) : null,
-      ua: navigator.userAgent ? navigator.userAgent.slice(0, 255) : null
+      ua: navigator.userAgent ? navigator.userAgent.slice(0, 255) : null,
     };
 
-    supabase.from('page_views').insert(row).catch(() => {});
+
+    (async () => {
+      const { error } = await supabase.from('page_views').insert(row);
+      if (error) {
+ 
+      }
+    })();
+
   }, [pathname]);
 
   return null;
