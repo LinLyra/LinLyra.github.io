@@ -8,7 +8,7 @@ import { ArrowLeft, MapPin, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
-type Kind = "Volunteer" | "Networking" | "Talks"
+type Kind = "Volunteer" | "Networking" | "Talks" | "Workshop"
 
 type ActivityItem = {
   slug: string
@@ -26,6 +26,47 @@ export default function NebulaPage() {
   const [selectedKinds, setSelectedKinds] = useState<Kind[]>([])
 
   const activities: ActivityItem[] = [
+    {
+  slug: "google-genai-academy",
+  title: "Google GenAI Academy Launch — Agents and the New Software Paradigm",
+  org: "Google",
+  date: "2025.09",
+  summary: "Introduction to Google's GenAI Academy, highlighting agents, generative AI, and the future of software development.",
+  cover: "/activities/genai.png",
+  location: "Google Sydney",
+  kinds: ["Talks", "Networking"],
+  },
+    {
+  slug: "ignite-chatgpt-nocode",
+  title: "How to Leverage ChatGPT & No-Code AI",
+  org: "StartupLink USYD",
+  date: "2025.09",
+  summary: "Exploring how founders can use ChatGPT and no-code tools to build smarter, faster MVPs.",
+  cover: "/activities/gpt.png",
+  location: "Campus",
+  kinds: ["Talks", "Workshop"],
+  },
+  {
+  slug: "ignite-build-mvp",
+  title: "Build the Right Thing: Ideas to MVP",
+  org: "StartupLink USYD",
+  date: "2025.09",
+  summary: "A practical guide to validating startup ideas and translating them into minimum viable products.",
+  cover: "/activities/mvp.png",
+  location: "Campus",
+  kinds: ["Talks", "Workshop"],
+  },
+  {
+  slug: "ignite-startup-monetisation",
+  title: "How Your Startup Makes Money / Business Models That Work",
+  org: "StartupLink USYD",
+  date: "2025.09",
+  summary: "Insights on sustainable revenue models and monetisation strategies for early-stage startups.",
+  cover: "/activities/ignite.png",
+  location: "The Quad Board Room S445",
+  kinds: ["Talks"],
+  },
+
     {
       slug: "rabobank-office-tour",
       title: "Office Tour — Rabobank Australia",
@@ -158,7 +199,7 @@ export default function NebulaPage() {
     },
   ]
 
-  const chips: Kind[] = useMemo(() => ["Volunteer", "Networking", "Talks"], [])
+  const chips: Kind[] = useMemo(() => ["Volunteer", "Networking", "Talks", "Workshop"], [])
 
   const filtered = activities.filter((a) => {
 
