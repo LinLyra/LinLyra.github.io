@@ -1,45 +1,98 @@
 "use client"
 
 import Image from "next/image"
-import { useMemo, useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useEffect, useMemo, useRef, useState } from "react"
 
-/* ---------------- Types ---------------- */
+/** -------- Types -------- */
 type Category = "Web" | "Database" | "Data" | "ML" | "Analytics" | "DevOps" | "Cloud" | "Design"
 type Tool = {
   slug: string
   name: string
   category: Category
-  logo: string       // e.g. /tools/python.svg
+  logo: string              // e.g. /tools/python.svg
   level?: "Proficient" | "Working" | "Learning"
 }
 
-/* ---------------- SkillsSection (keep your 4 skill cards, replace Tools area) ---------------- */
-export function SkillsSection() {
-  const skillCategories = [
-    {
-      title: "Data Science",
-      skills: [
-        "Predictive Modeling","Time Series Forecasting","Deep Learning",
-        "Scalable Data Processing (Spark)","SQL / NoSQL (MongoDB)",
-        "Data Storytelling (Power BI)","A/B Testing","Gen AI Applications","Statistical Analysis",
-      ],
-    },
-    {
-      title: "Product Strategy",
-      skills: ["User Research","Market Analysis","Roadmapping","MVP Design","Prototyping (Figma)","KPI Frameworks"],
-    },
-    {
-      title: "Business & Consulting",
-      skills: ["Stakeholder Communication","Problem Structuring","Business Modeling","Industry Analysis","Digital Transformation","GTM Planning"],
-    },
-    {
-      title: "Full-stack Prototyping",
-      skills: ["Next.js / React","Tailwind / Node.js","Cloud Databases","API Architecture","Deployment & Scaling"],
-    },
-  ]
+/** -------- Logo with graceful fallback -------- */
+function LogoBadge({ src, alt }: { src: string; alt: string }) {
+  const [err, setErr] = useState(false)
+  if (err || !src) {
+    return (
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-[11px] font-semibold text-white/80">
+        {alt.slice(0, 2).toUpperCase()}
+      </div>
+    )
+  }
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={36}
+      height={36}
+      className="object-contain"
+      onError={() => setErr(true)}
+    />
+  )
+}
 
-  // ✅ Tools you decided to show (Tableau + both SQL + Jupyter + Colab + R included)
+/** -------- 将 items 均匀分布在 path 上 -------- */
+function PathPlacer({
+  d,
+  items,
+  box = { w: 800, h: 420 },
+}: {
+  d: string
+  items: Tool[]
+  box?: { w: number; h: number }
+}) {
+  const pathRef = useRef<SVGPathElement | null>(null)
+  const [pts, setPts] = useState<{ x: number; y: number }[]>([])
+
+  useEffect(() => {
+    const path = pathRef.current
+    if (!path) return
+    const len = path.getTotalLength()
+    const res: { x: number; y: number }[] = []
+    const n = Math.max(items.length, 1)
+    for (let i = 0; i < items.length; i++) {
+      const p = path.getPointAtLength(((i + 0.5) / n) * len)
+      res.push({ x: p.x, y: p.y })
+    }
+    setPts(res)
+  }, [items.length, d])
+
+  return (
+    <div className="pointer-events-none absolute inset-0">
+      {/* 隐形路径（用于采样坐标） */}
+      <svg viewBox={`0 0 ${box.w} ${box.h}`} className="absolute inset-0 h-full w-full">
+        <path ref={pathRef} d={d} fill="none" stroke="transparent" strokeWidth={1} />
+      </svg>
+
+      {/* 真实摆放 */}
+      <div className="absolute inset-0">
+        {pts.map((p, i) => {
+          const t = items[i]
+          return (
+            <div
+              key={`${t.slug}-${i}`}
+              className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${(p.x / box.w) * 100}%`, top: `${(p.y / box.h) * 100}%` }}
+              title={t.name}
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/12 bg-white/8 shadow-lg backdrop-blur transition hover:scale-105 hover:border-white/20 hover:bg-white/12">
+                <LogoBadge src={t.logo} alt={t.name} />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+/** -------- 飞船主组件 -------- */
+export function ToolsSpaceship() {
+  // 你决定展示的工具（Tableau + 两个 SQL + Jupyter + Colab + R 都在）
   const tools: Tool[] = [
     // Web
     { slug: "typescript", name: "TypeScript", category: "Web", logo: "/tools/typescript.svg", level: "Proficient" },
@@ -78,123 +131,73 @@ export function SkillsSection() {
     { slug: "r-lang", name: "R", category: "Data", logo: "/tools/r.svg", level: "Working" },
   ]
 
+  // 分配到不同部位：机身外轮廓/内环、左右机翼、尾翼、机头
+  const by = (c: Category) => tools.filter(t => t.category === c)
+  const hullItems   = useMemo(() => [...by("Web"), ...by("Database")], [tools])
+  const innerItems  = useMemo(() => [...by("Data"), ...by("ML")], [tools])
+  const wingLeft    = useMemo(() => by("Analytics"), [tools])
+  const wingRight   = useMemo(() => by("DevOps"), [tools])
+  const tailItems   = useMemo(() => by("Cloud"), [tools])
+  const cockpit     = useMemo(() => by("Design"), [tools])
+
+  // 画布大小（与 path 坐标匹配）
+  const BOX = { w: 800, h: 420 }
+
+  // 飞船轮廓（右指向）——尽量顺滑并留机头尖
+  const PATH_HULL =
+    "M120,210 C220,130 420,130 560,180 L700,210 L560,240 C420,290 220,290 120,210 Z"
+  // 机身内部一条“次内环”
+  const PATH_INNER =
+    "M170,210 C250,160 410,160 530,200 L610,210 L530,220 C410,260 250,260 170,210 Z"
+  // 左右机翼（上、下合一条）
+  const PATH_WING_L = "M260,210 L180,150 L240,210 L180,270 Z"
+  const PATH_WING_R = "M420,210 L500,150 L440,210 L500,270 Z"
+  // 尾翼
+  const PATH_TAIL   = "M120,210 L90,170 L110,210 L90,250 Z"
+  // 机头/驾驶舱
+  const PATH_COCKPIT = "M610,210 C630,190 650,190 670,210 C650,230 630,230 610,210 Z"
+
   return (
-    <section id="skills" className="min-h-screen flex flex-col items-center justify-center relative z-10 px-4 py-20">
-      <div className="mx-auto max-w-7xl text-center">
+    <section className="relative z-10 mx-auto my-16 max-w-6xl px-4">
+      <div className="rounded-3xl border border-white/10 bg-black/40 p-4 backdrop-blur-md">
+        <h3 className="mb-4 text-center text-2xl md:text-3xl font-semibold text-blue-400">Tools Spaceship</h3>
 
-        {/* Title */}
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">Skills &amp; Tools</h2>
-          <p className="text-lg text-gray-300">Build • Analyze • Strategize • Ship</p>
+        {/* 容器使用固定比例，避免与上面“Explore”重叠 */}
+        <div className="relative mx-auto aspect-[800/420] w-full max-w-5xl">
+          {/* 背景微光 */}
+          <div className="pointer-events-none absolute inset-0 rounded-2xl [background:radial-gradient(ellipse_at_center,rgba(59,130,246,.12),transparent_60%)]" />
+
+          {/* 摆放各部位 */}
+          <PathPlacer d={PATH_HULL}   items={hullItems}  box={BOX} />
+          <PathPlacer d={PATH_INNER}  items={innerItems} box={BOX} />
+          <PathPlacer d={PATH_WING_L} items={wingLeft}   box={BOX} />
+          <PathPlacer d={PATH_WING_R} items={wingRight}  box={BOX} />
+          <PathPlacer d={PATH_TAIL}   items={tailItems}  box={BOX} />
+          <PathPlacer d={PATH_COCKPIT} items={cockpit}   box={BOX} />
+
+          {/* 可选：显示轮廓调试
+          <svg viewBox={`0 0 ${BOX.w} ${BOX.h}`} className="absolute inset-0 h-full w-full">
+            <path d={PATH_HULL} fill="none" stroke="rgba(255,255,255,.15)" />
+            <path d={PATH_INNER} fill="none" stroke="rgba(255,255,255,.1)" />
+            <path d={PATH_WING_L} fill="none" stroke="rgba(255,255,255,.1)" />
+            <path d={PATH_WING_R} fill="none" stroke="rgba(255,255,255,.1)" />
+            <path d={PATH_TAIL} fill="none" stroke="rgba(255,255,255,.1)" />
+            <path d={PATH_COCKPIT} fill="none" stroke="rgba(255,255,255,.1)" />
+          </svg> */}
         </div>
 
-        {/* ✅ Keep: your 4 skills cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-6 mb-14">
-          {skillCategories.map((category, index) => (
-            <Card key={index} className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition h-full">
-              <CardHeader><CardTitle className="text-gray-100 text-xl">{category.title}</CardTitle></CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((s, i) => (
-                    <span key={i} className="px-3 py-1 bg-blue-500/20 text-blue-200 rounded-full text-sm border border-blue-500/30">{s}</span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+        {/* 移动端降级为网格（避免拥挤） */}
+        <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:hidden">
+          {tools.map(t => (
+            <div key={t.slug} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-2">
+              <LogoBadge src={t.logo} alt={t.name} />
+              <span className="text-sm text-white/90">{t.name}</span>
+            </div>
           ))}
-        </div>
-
-        {/* 🌌 New: shaped/constellation layout (desktop) + simple grid (mobile) */}
-        <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6">Tools &amp; Software</h3>
-        <div className="hidden md:block">
-          <ToolsConstellation tools={tools} />
-        </div>
-        <div className="md:hidden">
-          <SimpleToolsGrid tools={tools} />
         </div>
       </div>
     </section>
   )
 }
 
-/* ---------------- Constellation (ring) layout ---------------- */
-function ToolsConstellation({ tools }: { tools: Tool[] }) {
-  // Decide the order & ring radius per category (px)
-  const rings = [
-    { category: "Web" as Category, radius: 120 },
-    { category: "Database" as Category, radius: 180 },
-    { category: "Data" as Category, radius: 240 },
-    { category: "ML" as Category, radius: 300 },
-    { category: "Analytics" as Category, radius: 360 },
-    { category: "DevOps" as Category, radius: 420 },
-    { category: "Cloud" as Category, radius: 480 },
-    { category: "Design" as Category, radius: 540 },
-  ]
-
-  const grouped = useMemo(
-    () => rings.map(r => ({ ...r, items: tools.filter(t => t.category === r.category) })),
-    [tools]
-  )
-
-  return (
-    <div className="relative mx-auto aspect-square w-full max-w-4xl rounded-3xl border border-white/10 bg-black/40 p-4 backdrop-blur-md">
-      {/* subtle glow */}
-      <div className="pointer-events-none absolute inset-0 rounded-3xl [background:radial-gradient(ellipse_at_center,rgba(99,102,241,.12),transparent_60%)]" />
-      <div className="absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2">
-        {grouped.map((ring, ri) => {
-          const n = ring.items.length || 1
-          return ring.items.map((t, i) => {
-            const angle = (i / n) * 2 * Math.PI
-            const x = Math.cos(angle) * ring.radius
-            const y = Math.sin(angle) * ring.radius
-            return <ToolDot key={`${t.slug}-${ri}-${i}`} tool={t} x={x} y={y} />
-          })
-        })}
-      </div>
-    </div>
-  )
-}
-
-function ToolDot({ tool, x, y }: { tool: Tool; x: number; y: number }) {
-  const [err, setErr] = useState(false)
-  return (
-    <div className="absolute" style={{ transform: `translate(${x}px, ${y}px)` }}>
-      <div className="group flex flex-col items-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-white/10 shadow-lg backdrop-blur-md transition hover:scale-105">
-          {err ? (
-            <div className="text-xs font-semibold text-white/80">{tool.name.slice(0, 2).toUpperCase()}</div>
-          ) : (
-            <Image
-              src={tool.logo}
-              alt={tool.name}
-              width={28}
-              height={28}
-              className="object-contain"
-              onError={() => setErr(true)}
-            />
-          )}
-        </div>
-        <div className="pointer-events-none mt-1 hidden min-w-[6rem] rounded-md bg-black/70 px-2 py-1 text-center text-[11px] text-white/80 shadow group-hover:block">
-          {tool.name}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-/* ---------------- Mobile fallback: simple grid ---------------- */
-function SimpleToolsGrid({ tools }: { tools: Tool[] }) {
-  return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {tools.map(t => (
-        <Card key={t.slug} className="border-white/10 bg-white/[0.03]">
-          <CardContent className="flex h-24 flex-col items-center justify-center gap-2">
-            <Image src={t.logo} alt={t.name} width={28} height={28} className="object-contain" />
-            <div className="text-sm text-white/90">{t.name}</div>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  )
-}
 
