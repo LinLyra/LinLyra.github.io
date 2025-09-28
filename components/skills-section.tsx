@@ -1,6 +1,15 @@
 "use client"
 
+import Image from "next/image"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
+type Tool = {
+  slug: string
+  name: string
+  category: "Data" | "ML" | "Analytics" | "Database" | "Cloud" | "Web" | "DevOps" | "Design"
+  logo: string
+  level?: "Proficient" | "Working" | "Learning"
+}
 
 export function SkillsSection() {
   const skillCategories = [
@@ -52,28 +61,34 @@ export function SkillsSection() {
     },
   ]
 
-  const stats = [
-    { number: "Since 2024.08", label: " Active in Data" },
-    { number: "30+", label: "Projects / Competitions Completed" },
-    { number: "Data → Product", label: "Bridge from Insight to Product" },
-  ]
-
-  const trajectory = [
-    {
-      date: "2024.08",
-      title: "Foundations",
-      desc: "Started data journey — Python, stats, first datasets & notebooks.",
-    },
-    {
-      date: "2025.03",
-      title: "Acceleration",
-      desc: "Case comps & internships, mixing analytics with product/strategy.",
-    },
-    {
-      date: "2025.08",
-      title: "Integration(Ongoing)",
-      desc: "Client interviews → pipelines → GenAI & prototypes (end-to-end).",
-    },
+  // Tools & Software (includes Tableau, both SQLs, Jupyter, Colab, R)
+  const tools: Tool[] = [
+    // Web
+    { slug: "typescript", name: "TypeScript", category: "Web", logo: "/tools/typescript.png", level: "Proficient" },
+    { slug: "nextjs", name: "Next.js", category: "Web", logo: "/tools/nextjs.png", level: "Proficient" },
+    { slug: "react", name: "React", category: "Web", logo: "/tools/react.png", level: "Proficient" },
+    { slug: "tailwind", name: "Tailwind CSS", category: "Web", logo: "/tools/tailwind.png", level: "Proficient" },
+    { slug: "nodejs", name: "Node.js", category: "Web", logo: "/tools/nodejs.png", level: "Working" },
+    // Database (both SQLs + Supabase)
+    { slug: "postgres", name: "PostgreSQL", category: "Database", logo: "/tools/postgres.png", level: "Proficient" },
+    { slug: "mysql", name: "MySQL", category: "Database", logo: "/tools/mysql.png", level: "Proficient" },
+    { slug: "supabase", name: "Supabase", category: "Database", logo: "/tools/supabase.png", level: "Working" },
+    // Data / ML core
+    { slug: "python", name: "Python", category: "Data", logo: "/tools/python.svg", level: "Proficient" },
+    { slug: "pandas", name: "pandas", category: "Data", logo: "/tools/pandas.svg", level: "Proficient" },
+    { slug: "numpy", name: "NumPy", category: "Data", logo: "/tools/numpy.svg", level: "Proficient" },
+    { slug: "sklearn", name: "scikit-learn", category: "ML", logo: "/tools/sklearn.png", level: "Proficient" },
+    // Notebooks
+    { slug: "jupyter", name: "Jupyter Notebook", category: "Data", logo: "/tools/jupyter.png", level: "Proficient" },
+    { slug: "colab", name: "Google Colab", category: "Data", logo: "/tools/colab.png", level: "Working" },
+    // Analytics / BI
+    { slug: "tableau", name: "Tableau", category: "Analytics", logo: "/tools/tableau.png", level: "Working" },
+    // DevOps / Cloud
+    { slug: "git", name: "Git", category: "DevOps", logo: "/tools/git.png", level: "Proficient" },
+    // Design
+    { slug: "figma", name: "Figma", category: "Design", logo: "/tools/figma.png", level: "Working" },
+    // R language
+    { slug: "r-lang", name: "R", category: "Data", logo: "/tools/r.png", level: "Working" },
   ]
 
   return (
@@ -82,19 +97,15 @@ export function SkillsSection() {
       className="min-h-screen flex flex-col items-center justify-center relative z-10 px-4 py-20"
     >
       <div className="max-w-7xl mx-auto text-center">
-        {/* Title */}
-        <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-6">
-            Skills & Trajectory
+        {/* Title (dates removed) */}
+        <div className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-100 mb-4">
+            Skills &amp; Tools
           </h2>
-          <p className="text-xl text-gray-200 mb-8">
-            A multidisciplinary toolkit for innovation and growth.
-          </p>
-          <p className="text-lg text-gray-300">Build • Analyze • Strategize • Transform</p>
+          <p className="text-lg text-gray-300">Build • Analyze • Strategize • Ship</p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-6 mb-14">
           {skillCategories.map((category, index) => (
             <Card
               key={index}
@@ -121,34 +132,23 @@ export function SkillsSection() {
           ))}
         </div>
 
-        {/* Stats */}
-        <div className="flex flex-wrap justify-center gap-8 mb-16">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center max-w-xs">
-              <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-gray-200">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Trajectory */}
-        <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-8">
-          Trajectory
+        <h3 className="text-2xl md:text-3xl font-semibold text-blue-400 mb-6">
+          Tools &amp; Software
         </h3>
-        <div className="grid md:grid-cols-3 gap-6">
-          {trajectory.map((step, i) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {tools.map((t) => (
             <Card
-              key={i}
-              className="bg-white/5 backdrop-blur-md border-white/10 h-full flex flex-col"
+              key={t.slug}
+              className="bg-white/5 backdrop-blur-md border-white/10 hover:bg-white/10 transition h-full"
             >
-              <CardHeader>
-                <p className="text-blue-300 font-semibold">{step.date}</p>
-                <CardTitle className="text-white">{step.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p className="text-gray-300 text-sm">{step.desc}</p>
+              <CardContent className="py-4 flex flex-col items-center gap-2">
+                <div className="relative h-9 w-9">
+                  <Image src={t.logo} alt={t.name} fill className="object-contain" />
+                </div>
+                <div className="text-sm text-gray-100">{t.name}</div>
+                <div className="text-[10px] text-gray-400">
+                  {t.category} · {t.level ?? "Working"}
+                </div>
               </CardContent>
             </Card>
           ))}
@@ -157,4 +157,3 @@ export function SkillsSection() {
     </section>
   )
 }
-
