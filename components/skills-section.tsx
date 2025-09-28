@@ -1,98 +1,67 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-/** -------- Types -------- */
 type Category = "Web" | "Database" | "Data" | "ML" | "Analytics" | "DevOps" | "Cloud" | "Design"
 type Tool = {
   slug: string
   name: string
   category: Category
-  logo: string              // e.g. /tools/python.svg
+  logo: string
   level?: "Proficient" | "Working" | "Learning"
 }
 
-/** -------- Logo with graceful fallback -------- */
-function LogoBadge({ src, alt }: { src: string; alt: string }) {
-  const [err, setErr] = useState(false)
-  if (err || !src) {
-    return (
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-[11px] font-semibold text-white/80">
-        {alt.slice(0, 2).toUpperCase()}
-      </div>
-    )
-  }
+function LogoFallback({ name }: { name: string }) {
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={36}
-      height={36}
-      className="object-contain"
-      onError={() => setErr(true)}
-    />
-  )
-}
-
-/** -------- 将 items 均匀分布在 path 上 -------- */
-function PathPlacer({
-  d,
-  items,
-  box = { w: 800, h: 420 },
-}: {
-  d: string
-  items: Tool[]
-  box?: { w: number; h: number }
-}) {
-  const pathRef = useRef<SVGPathElement | null>(null)
-  const [pts, setPts] = useState<{ x: number; y: number }[]>([])
-
-  useEffect(() => {
-    const path = pathRef.current
-    if (!path) return
-    const len = path.getTotalLength()
-    const res: { x: number; y: number }[] = []
-    const n = Math.max(items.length, 1)
-    for (let i = 0; i < items.length; i++) {
-      const p = path.getPointAtLength(((i + 0.5) / n) * len)
-      res.push({ x: p.x, y: p.y })
-    }
-    setPts(res)
-  }, [items.length, d])
-
-  return (
-    <div className="pointer-events-none absolute inset-0">
-      {/* 隐形路径（用于采样坐标） */}
-      <svg viewBox={`0 0 ${box.w} ${box.h}`} className="absolute inset-0 h-full w-full">
-        <path ref={pathRef} d={d} fill="none" stroke="transparent" strokeWidth={1} />
-      </svg>
-
-      {/* 真实摆放 */}
-      <div className="absolute inset-0">
-        {pts.map((p, i) => {
-          const t = items[i]
-          return (
-            <div
-              key={`${t.slug}-${i}`}
-              className="pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${(p.x / box.w) * 100}%`, top: `${(p.y / box.h) * 100}%` }}
-              title={t.name}
-            >
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/12 bg-white/8 shadow-lg backdrop-blur transition hover:scale-105 hover:border-white/20 hover:bg-white/12">
-                <LogoBadge src={t.logo} alt={t.name} />
-              </div>
-            </div>
-          )
-        })}
-      </div>
+    <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-xs font-semibold text-white/80">
+      {name.slice(0, 2).toUpperCase()}
     </div>
   )
 }
 
-/** -------- 飞船主组件 -------- */
-export function ToolsSpaceship() {
-  // 你决定展示的工具（Tableau + 两个 SQL + Jupyter + Colab + R 都在）
+function ToolLogo({ src, name }: { src: string; name: string }) {
+  const [broken, setBroken] = useState(false)
+  return broken ? (
+    <LogoFallback name={name} />
+  ) : (
+    <Image
+      src={src}
+      alt={name}
+      width={36}
+      height={36}
+      className="object-contain opacity-90 transition group-hover:opacity-100"
+      onError={() => setBroken(true)}
+    />
+  )
+}
+
+function SkillsSection() {
+  const skillCategories = [
+    {
+      title: "Data Science",
+      skills: [
+        "Predictive Modeling","Time Series Forecasting","Deep Learning",
+        "Scalable Data Processing (Spark)","SQL / NoSQL (MongoDB)",
+        "Data Storytelling (Power BI)","A/B Testing","Gen AI Applications","Statistical Analysis",
+      ],
+    },
+    {
+      title: "Product Strategy",
+      skills: ["User Research","Market Analysis","Roadmapping","MVP Design","Prototyping (Figma)","KPI Frameworks"],
+    },
+    {
+      title: "Business & Consulting",
+      skills: ["Stakeholder Communication","Problem Structuring","Business Modeling","Industry Analysis","Digital Transformation","GTM Planning"],
+    },
+    {
+      title: "Full-stack Prototyping",
+      skills: ["Next.js / React","Tailwind / Node.js","Cloud Databases","API Architecture","Deployment & Scaling"],
+    },
+  ]
+
+  // ===== Tools=====
   const tools: Tool[] = [
     // Web
     { slug: "typescript", name: "TypeScript", category: "Web", logo: "/tools/typescript.svg", level: "Proficient" },
@@ -131,67 +100,42 @@ export function ToolsSpaceship() {
     { slug: "r-lang", name: "R", category: "Data", logo: "/tools/r.svg", level: "Working" },
   ]
 
-  // 分配到不同部位：机身外轮廓/内环、左右机翼、尾翼、机头
-  const by = (c: Category) => tools.filter(t => t.category === c)
-  const hullItems   = useMemo(() => [...by("Web"), ...by("Database")], [tools])
-  const innerItems  = useMemo(() => [...by("Data"), ...by("ML")], [tools])
-  const wingLeft    = useMemo(() => by("Analytics"), [tools])
-  const wingRight   = useMemo(() => by("DevOps"), [tools])
-  const tailItems   = useMemo(() => by("Cloud"), [tools])
-  const cockpit     = useMemo(() => by("Design"), [tools])
-
-  // 画布大小（与 path 坐标匹配）
-  const BOX = { w: 800, h: 420 }
-
-  // 飞船轮廓（右指向）——尽量顺滑并留机头尖
-  const PATH_HULL =
-    "M120,210 C220,130 420,130 560,180 L700,210 L560,240 C420,290 220,290 120,210 Z"
-  // 机身内部一条“次内环”
-  const PATH_INNER =
-    "M170,210 C250,160 410,160 530,200 L610,210 L530,220 C410,260 250,260 170,210 Z"
-  // 左右机翼（上、下合一条）
-  const PATH_WING_L = "M260,210 L180,150 L240,210 L180,270 Z"
-  const PATH_WING_R = "M420,210 L500,150 L440,210 L500,270 Z"
-  // 尾翼
-  const PATH_TAIL   = "M120,210 L90,170 L110,210 L90,250 Z"
-  // 机头/驾驶舱
-  const PATH_COCKPIT = "M610,210 C630,190 650,190 670,210 C650,230 630,230 610,210 Z"
-
   return (
-    <section className="relative z-10 mx-auto my-16 max-w-6xl px-4">
-      <div className="rounded-3xl border border-white/10 bg-black/40 p-4 backdrop-blur-md">
-        <h3 className="mb-4 text-center text-2xl md:text-3xl font-semibold text-blue-400">Tools Spaceship</h3>
-
-        {/* 容器使用固定比例，避免与上面“Explore”重叠 */}
-        <div className="relative mx-auto aspect-[800/420] w-full max-w-5xl">
-          {/* 背景微光 */}
-          <div className="pointer-events-none absolute inset-0 rounded-2xl [background:radial-gradient(ellipse_at_center,rgba(59,130,246,.12),transparent_60%)]" />
-
-          {/* 摆放各部位 */}
-          <PathPlacer d={PATH_HULL}   items={hullItems}  box={BOX} />
-          <PathPlacer d={PATH_INNER}  items={innerItems} box={BOX} />
-          <PathPlacer d={PATH_WING_L} items={wingLeft}   box={BOX} />
-          <PathPlacer d={PATH_WING_R} items={wingRight}  box={BOX} />
-          <PathPlacer d={PATH_TAIL}   items={tailItems}  box={BOX} />
-          <PathPlacer d={PATH_COCKPIT} items={cockpit}   box={BOX} />
-
-          {/* 可选：显示轮廓调试
-          <svg viewBox={`0 0 ${BOX.w} ${BOX.h}`} className="absolute inset-0 h-full w-full">
-            <path d={PATH_HULL} fill="none" stroke="rgba(255,255,255,.15)" />
-            <path d={PATH_INNER} fill="none" stroke="rgba(255,255,255,.1)" />
-            <path d={PATH_WING_L} fill="none" stroke="rgba(255,255,255,.1)" />
-            <path d={PATH_WING_R} fill="none" stroke="rgba(255,255,255,.1)" />
-            <path d={PATH_TAIL} fill="none" stroke="rgba(255,255,255,.1)" />
-            <path d={PATH_COCKPIT} fill="none" stroke="rgba(255,255,255,.1)" />
-          </svg> */}
+    <section id="skills" className="min-h-screen relative z-10 px-4 py-20">
+      <div className="mx-auto max-w-7xl text-center">
+        <div className="mb-12">
+          <h2 className="mb-4 text-4xl md:text-5xl font-bold text-gray-100">Skills</h2>
+          <p className="mb-3 text-xl text-gray-200">A multidisciplinary toolkit for innovation and growth.</p>
+          <p className="text-lg text-gray-300">Build • Analyze • Strategize • Transform</p>
         </div>
 
-        {/* 移动端降级为网格（避免拥挤） */}
-        <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 md:hidden">
-          {tools.map(t => (
-            <div key={t.slug} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-2">
-              <LogoBadge src={t.logo} alt={t.name} />
-              <span className="text-sm text-white/90">{t.name}</span>
+        <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+          {skillCategories.map((category, index) => (
+            <Card key={index} className="flex h-full flex-col border-white/10 bg-white/5 backdrop-blur-md transition hover:bg-white/10">
+              <CardHeader><CardTitle className="text-xl text-gray-100">{category.title}</CardTitle></CardHeader>
+              <CardContent className="flex-1">
+                <div className="flex flex-wrap items-start gap-2">
+                  {category.skills.map((s, i) => (
+                    <span key={i} className="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-200">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        <h3 className="mb-4 text-2xl md:text-3xl font-semibold text-blue-400">Tools &amp; Software</h3>
+        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+          {tools.map((t) => (
+            <div
+              key={t.slug}
+              className="group flex flex-col items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.08]"
+              title={`${t.name}${t.level ? ` • ${t.level}` : ""}`}
+            >
+              <ToolLogo src={t.logo} name={t.name} />
+              <div className="mt-2 line-clamp-1 text-sm text-white/90">{t.name}</div>
             </div>
           ))}
         </div>
@@ -200,4 +144,5 @@ export function ToolsSpaceship() {
   )
 }
 
-
+export { SkillsSection }
+export default SkillsSection
