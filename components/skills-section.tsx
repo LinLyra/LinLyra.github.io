@@ -13,30 +13,26 @@ type Tool = {
   level?: "Proficient" | "Working" | "Learning"
 }
 
-function ToolCard({ t }: { t: Tool }) {
+function LogoTile({ src, name }: { src: string; name: string }) {
   const [broken, setBroken] = useState(false)
   return (
-    <div className="group rounded-2xl border border-white/12 bg-white/[0.05] p-3 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.08]">
-      {/* 用 fill + object-contain，让 logo 在卡片内“顶格”铺满宽度，比例不失真 */}
-      <div className="relative h-10 w-full md:h-12">
-        {broken ? (
-          <div className="flex h-full w-full items-center justify-center rounded-md bg-white/10 text-[11px] font-semibold text-white/80">
-            {t.name.slice(0, 2).toUpperCase()}
-          </div>
-        ) : (
-          <Image
-            src={t.logo}
-            alt={t.name}
-            fill
-            sizes="(max-width: 768px) 120px, 180px"
-            className="object-contain"
-            onError={() => setBroken(true)}
-            priority={false}
-          />
-        )}
-      </div>
-      <div className="mt-2 text-sm font-medium leading-tight text-white/90">{t.name}</div>
-      {t.level && <div className="text-[11px] text-white/55">{t.level}</div>}
+    <div className="relative h-12 md:h-14 lg:h-16">
+      {broken ? (
+        <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-white/70">
+          {name.slice(0, 2).toUpperCase()}
+        </div>
+      ) : (
+        <Image
+          src={src}
+          alt={name}
+          fill
+          sizes="(max-width: 768px) 80px, (max-width: 1024px) 100px, 120px"
+          className="object-contain"
+          onError={() => setBroken(true)}
+          priority={false}
+        />
+      )}
+      <span className="sr-only">{name}</span>
     </div>
   )
 }
@@ -73,33 +69,33 @@ function SkillsSection() {
 
   const tools: Tool[] = [
     // Database
-    { slug: "postgres",  name: "PostgreSQL",       category: "Database",  logo: "/tools/postgres.png",          level: "Proficient" },
-    { slug: "mysql",     name: "MySQL",            category: "Database",  logo: "/tools/mysql.png",             level: "Proficient" },
-    { slug: "supabase",  name: "Supabase",         category: "Database",  logo: "/tools/supabase.png",          level: "Working" },
+    { slug: "postgres",  name: "PostgreSQL",       category: "Database",  logo: "/tools/postgres.png" },
+    { slug: "mysql",     name: "MySQL",            category: "Database",  logo: "/tools/mysql.png" },
+    { slug: "supabase",  name: "Supabase",         category: "Database",  logo: "/tools/supabase.png" },
 
     // Data
-    { slug: "pandas",      name: "pandas",         category: "Data",      logo: "/tools/pandas.png",            level: "Proficient" },
-    { slug: "numpy",       name: "NumPy",          category: "Data",      logo: "/tools/numpy.png",             level: "Proficient" },
-    { slug: "matplotlib",  name: "Matplotlib",     category: "Data",      logo: "/tools/matplotlib.png",        level: "Proficient" },
-    { slug: "spark",       name: "Apache Spark",   category: "Data",      logo: "/tools/spark.png",             level: "Working" },
+    { slug: "pandas",      name: "pandas",         category: "Data",      logo: "/tools/pandas.png" },
+    { slug: "numpy",       name: "NumPy",          category: "Data",      logo: "/tools/numpy.png" },
+    { slug: "matplotlib",  name: "Matplotlib",     category: "Data",      logo: "/tools/matplotlib.png" },
+    { slug: "spark",       name: "Apache Spark",   category: "Data",      logo: "/tools/spark.png" },
 
     // ML
-    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sklearn.png",           level: "Proficient" },
+    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sklearn.png" },
 
     // Notebooks
-    { slug: "jupyter",     name: "Jupyter Notebook", category: "Data",    logo: "/tools/jupyter.png",           level: "Proficient" },
-    { slug: "colab",       name: "Google Colab",   category: "Data",      logo: "/tools/colab.png",             level: "Working" },
+    { slug: "jupyter",     name: "Jupyter Notebook", category: "Data",    logo: "/tools/jupyter.png" },
+    { slug: "colab",       name: "Google Colab",   category: "Data",      logo: "/tools/colab.png" },
 
     // Analytics / BI
-    { slug: "tableau",     name: "Tableau",        category: "Analytics", logo: "/tools/tableau.png",           level: "Working" },
-    { slug: "ga",          name: "Google Analytics", category: "Analytics", logo: "/tools/google-analytics.png", level: "Working" },
-    { slug: "powerbi",     name: "Power BI",       category: "Analytics", logo: "/tools/powerbi.png",           level: "Working" },
+    { slug: "tableau",     name: "Tableau",        category: "Analytics", logo: "/tools/tableau.png" },
+    { slug: "ga",          name: "Google Analytics", category: "Analytics", logo: "/tools/google-analytics.png" },
+    { slug: "powerbi",     name: "Power BI",       category: "Analytics", logo: "/tools/powerbi.png" },
 
     // Design
-    { slug: "figma",       name: "Figma",          category: "Design",    logo: "/tools/figma.png",             level: "Working" },
+    { slug: "figma",       name: "Figma",          category: "Design",    logo: "/tools/figma.png" },
 
     // R
-    { slug: "r-lang",      name: "R",              category: "Data",      logo: "/tools/r.png",                 level: "Working" },
+    { slug: "r-lang",      name: "R",              category: "Data",      logo: "/tools/r.png" },
   ]
 
   return (
@@ -113,7 +109,6 @@ function SkillsSection() {
           <p className="text-lg text-gray-300">Build • Analyze • Strategize • Transform</p>
         </div>
 
-        {/* Skill chips */}
         <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           {skillCategories.map((category, index) => (
             <Card key={index} className="flex h-full flex-col border-white/10 bg-white/5 backdrop-blur-md transition hover:bg-white/10">
@@ -133,13 +128,10 @@ function SkillsSection() {
           ))}
         </div>
 
-
         <h3 className="mb-4 text-2xl md:text-3xl font-semibold text-blue-400">Tools &amp; Software</h3>
-
-      
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7">
+        <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-8 xl:grid-cols-9">
           {tools.map((t) => (
-            <ToolCard key={t.slug} t={t} />
+            <LogoTile key={t.slug} src={t.logo} name={t.name} />
           ))}
         </div>
       </div>
