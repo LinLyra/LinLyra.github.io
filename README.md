@@ -1,62 +1,39 @@
-# 🌌 Lyra’s Universe - Galaxy Portfolio
+# 🌌 Lyra’s Universe
 
-An interactive portfolio built around **five planets**:  
-**Learning · Data · Business · Product · Nebula**
+*In the vastness of space and the immensity of time, the chance to share the same planet and a moment with you is my greatest honor.*
 
----
-
-## 🪐 Galaxy Planets
-
-### 1. 📘 Learning
-- University courses, self-study tracks, and foundational skills.  
-- Coursework highlights and certifications.  
-
-### 2. 📊 Data
-- Statistics, hypothesis testing, visualization, and data pipelines.  
-- Hands-on projects: from datasets → analysis → insights.  
-
-### 3. 💼 Business
-- Case competitions, consulting frameworks, and ESG strategies.  
-- Industry-focused problem solving with measurable impact.  
-
-### 4. 🚀 Product
-- AI prototyping, product design, prompt engineering.  
-- From interviews & research → flows & pipelines → deployment.  
-
-### 5. 🌠 Nebula
-- Open explorations, creative experiments, and side quests.  
-- A space for curiosity-driven projects and unfinished ideas.  
+Hi, I’m **Lyra**. I learn, analyze, and build — turning curiosity into projects that connect **data** with **people**.  
+This site is my little cosmos: a place to explore what I’m studying, making, and thinking about.
 
 ---
 
-## ✨ Features
+## 🪐 Five Planets
 
-- **3D Galaxy Background** – Interactive universe with stars & spiral arms  
-- **Planet Navigation** – Each planet opens its dedicated section  
-- **Responsive Design** – Works on both desktop and mobile  
-- **Modern UI** – Smooth animations, space-themed styling  
-- **Multiple Sections** – Experience, Learning, Projects, Competitions, Activities  
+- **Learning** — courses and self-study that shape my foundations in algorithms, statistics, and ML.  
+- **Data** — notebooks, experiments, and stories from datasets to insight.  
+- **Business** — cases, research, and structured thinking for real-world decisions.  
+- **Product** — prototypes and small tools, often with GenAI, from idea → flow → ship.  
+- **Nebula** — talks, workshops, volunteering, and sparks of curiosity.
 
----
-
-## 🚀 Live Demo
-👉 [Visit Lyra’s Universe](https://linlyra.github.io/)
+> Tip: Click a planet on the homepage to dive in. Use the search bar and tags to wander.
 
 ---
 
-## 🛠️ Tech Stack
-- **Next.js 14** – App Router  
-- **React Three Fiber** + **Three.js** – 3D graphics  
-- **Tailwind CSS** – Styling  
-- **TypeScript** – Type safety  
-- **Lucide Icons** – Icons  
+## ✨ What I care about
+
+- Learning fast and sharing clearly.  
+- Evidence before opinions; prototypes before promises.  
+- Building things that help — even if small.
 
 ---
 
-## 📦 Installation
+## 🔭 A few themes you’ll notice
 
-```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
-npm install
-npm run dev
+- Analytics that become decisions  
+- GenAI explorations (agents, retrieval, prompts)  
+- Friendly UIs for ideas and insights
+
+---
+
+### 🌟 Credits
+Made with patience, night skies, and a fondness for spiral galaxies.
