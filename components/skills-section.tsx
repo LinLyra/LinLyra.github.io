@@ -13,24 +13,22 @@ type Tool = {
   level?: "Proficient" | "Working" | "Learning"
 }
 
-function LogoFallback({ name }: { name: string }) {
-  return (
-    <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-xs font-semibold text-white/80">
-      {name.slice(0, 2).toUpperCase()}
-    </div>
-  )
-}
-
-function ToolLogo({ src, name }: { src: string; name: string }) {
+/* --- tiny icon with graceful fallback --- */
+function ToolIcon({ src, name, size = 24 }: { src: string; name: string; size?: number }) {
   const [broken, setBroken] = useState(false)
   return broken ? (
-    <LogoFallback name={name} />
+    <div
+      className="flex items-center justify-center rounded-md bg-white/10 text-[10px] font-semibold text-white/80"
+      style={{ width: size + 6, height: size + 6 }}
+    >
+      {name.slice(0, 2).toUpperCase()}
+    </div>
   ) : (
     <Image
       src={src}
       alt={name}
-      width={36}
-      height={36}
+      width={size}
+      height={size}
       className="object-contain opacity-90 transition group-hover:opacity-100"
       onError={() => setBroken(true)}
     />
@@ -61,54 +59,46 @@ function SkillsSection() {
     },
   ]
 
-  // ===== Tools=====
+  /* ===== Tools (logo only, smaller) ===== */
   const tools: Tool[] = [
-    // Web
-    { slug: "typescript", name: "TypeScript", category: "Web", logo: "/tools/typescript.svg", level: "Proficient" },
-    { slug: "nextjs", name: "Next.js", category: "Web", logo: "/tools/nextjs.svg", level: "Proficient" },
-    { slug: "react", name: "React", category: "Web", logo: "/tools/react.svg", level: "Proficient" },
-    { slug: "tailwind", name: "Tailwind CSS", category: "Web", logo: "/tools/tailwind.svg", level: "Proficient" },
-    { slug: "nodejs", name: "Node.js", category: "Web", logo: "/tools/nodejs.svg", level: "Working" },
-
     // Database
-    { slug: "postgres", name: "PostgreSQL", category: "Database", logo: "/tools/postgres.svg", level: "Proficient" },
-    { slug: "mysql", name: "MySQL", category: "Database", logo: "/tools/mysql.svg", level: "Proficient" },
-    { slug: "supabase", name: "Supabase", category: "Database", logo: "/tools/supabase.svg", level: "Working" },
+    { slug: "postgres",  name: "PostgreSQL",       category: "Database", logo: "/tools/postgres.png",  level: "Proficient" },
+    { slug: "mysql",     name: "MySQL",            category: "Database", logo: "/tools/mysql.png",     level: "Proficient" },
+    { slug: "supabase",  name: "Supabase",         category: "Database", logo: "/tools/supabase.png",  level: "Working" },
 
     // Data / ML
-    { slug: "python", name: "Python", category: "Data", logo: "/tools/python.svg", level: "Proficient" },
-    { slug: "pandas", name: "pandas", category: "Data", logo: "/tools/pandas.svg", level: "Proficient" },
-    { slug: "numpy", name: "NumPy", category: "Data", logo: "/tools/numpy.svg", level: "Proficient" },
-    { slug: "sklearn", name: "scikit-learn", category: "ML", logo: "/tools/sklearn.svg", level: "Proficient" },
+    { slug: "pandas",    name: "pandas",           category: "Data",     logo: "/tools/pandas.png",    level: "Proficient" },
+    { slug: "numpy",     name: "NumPy",            category: "Data",     logo: "/tools/numpy.png",     level: "Proficient" },
+    { slug: "matplotlib", name: "Matplotlib", category: "Data", logo: "/tools/matplotlib.png", level: "Proficient" },
+    { slug: "spark", name: "Apache Spark", category: "Data", logo: "/tools/spark.png", level: "Working" },
 
     // Notebooks
-    { slug: "jupyter", name: "Jupyter Notebook", category: "Data", logo: "/tools/jupyter.svg", level: "Proficient" },
-    { slug: "colab", name: "Google Colab", category: "Data", logo: "/tools/colab.svg", level: "Working" },
+    { slug: "jupyter",   name: "Jupyter Notebook", category: "Data",     logo: "/tools/jupyter.png",   level: "Proficient" },
+    { slug: "colab",     name: "Google Colab",     category: "Data",     logo: "/tools/colab.png",     level: "Working" },
 
     // Analytics / BI
-    { slug: "tableau", name: "Tableau", category: "Analytics", logo: "/tools/tableau.svg", level: "Working" },
-
-    // DevOps / Cloud
-    { slug: "git", name: "Git", category: "DevOps", logo: "/tools/git.svg", level: "Proficient" },
-    { slug: "docker", name: "Docker", category: "DevOps", logo: "/tools/docker.svg", level: "Working" },
-    { slug: "aws", name: "AWS", category: "Cloud", logo: "/tools/aws.svg", level: "Working" },
+    { slug: "tableau",   name: "Tableau",          category: "Analytics",logo: "/tools/tableau.png",   level: "Working" },
+    { slug: "google-analytics", name: "Google Analytics", category: "Analytics", logo: "/tools/google-analytics.png", level: "Working" },
+    { slug: "powerbi",          name: "Power BI",         category: "Analytics", logo: "/tools/powerbi.png",          level: "Working" },
 
     // Design
-    { slug: "figma", name: "Figma", category: "Design", logo: "/tools/figma.svg", level: "Working" },
-
+    { slug: "figma",     name: "Figma",            category: "Design",   logo: "/tools/figma.png",     level: "Working" },
     // R
-    { slug: "r-lang", name: "R", category: "Data", logo: "/tools/r.svg", level: "Working" },
-  ]
+    { slug: "r-lang",    name: "R",                category: "Data",     logo: "/tools/r.png",         level: "Working" },
+
 
   return (
     <section id="skills" className="min-h-screen relative z-10 px-4 py-20">
       <div className="mx-auto max-w-7xl text-center">
+        {/* Title + intro (added one more line) */}
         <div className="mb-12">
           <h2 className="mb-4 text-4xl md:text-5xl font-bold text-gray-100">Skills</h2>
-          <p className="mb-3 text-xl text-gray-200">A multidisciplinary toolkit for innovation and growth.</p>
+          <p className="mb-2 text-xl text-gray-200">A multidisciplinary toolkit for innovation and growth.</p>
+          <p className="text-lg text-gray-300">From datasets to deploy — turning insight into product impact.</p>
           <p className="text-lg text-gray-300">Build • Analyze • Strategize • Transform</p>
         </div>
 
+        {/* Skills grid */}
         <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           {skillCategories.map((category, index) => (
             <Card key={index} className="flex h-full flex-col border-white/10 bg-white/5 backdrop-blur-md transition hover:bg-white/10">
@@ -126,16 +116,17 @@ function SkillsSection() {
           ))}
         </div>
 
+        {/* Tools – icons only (smaller) */}
         <h3 className="mb-4 text-2xl md:text-3xl font-semibold text-blue-400">Tools &amp; Software</h3>
-        <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+        <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
           {tools.map((t) => (
             <div
               key={t.slug}
-              className="group flex flex-col items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur transition hover:border-white/20 hover:bg-white/[0.08]"
+              className="group flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] p-2 backdrop-blur transition hover:scale-[1.03] hover:border-white/20 hover:bg-white/[0.08]"
               title={`${t.name}${t.level ? ` • ${t.level}` : ""}`}
             >
-              <ToolLogo src={t.logo} name={t.name} />
-              <div className="mt-2 line-clamp-1 text-sm text-white/90">{t.name}</div>
+              <ToolIcon src={t.logo} name={t.name} size={24} />
+              <span className="sr-only">{t.name}</span>
             </div>
           ))}
         </div>
