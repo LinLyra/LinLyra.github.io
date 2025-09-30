@@ -16,7 +16,7 @@ type Tool = {
 function LogoTile({ src, name }: { src: string; name: string }) {
   const [broken, setBroken] = useState(false)
   return (
-    <div className="relative h-12 md:h-14 lg:h-16">
+    <div className="relative aspect-[5/3]" title={name}>
       {broken ? (
         <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-white/70">
           {name.slice(0, 2).toUpperCase()}
@@ -26,10 +26,9 @@ function LogoTile({ src, name }: { src: string; name: string }) {
           src={src}
           alt={name}
           fill
-          sizes="(max-width: 768px) 80px, (max-width: 1024px) 100px, 120px"
-          className="object-contain"
+          sizes="(max-width: 640px) 90px, (max-width: 1024px) 110px, 120px"
+          className="object-contain p-2"
           onError={() => setBroken(true)}
-          priority={false}
         />
       )}
       <span className="sr-only">{name}</span>
@@ -80,7 +79,7 @@ function SkillsSection() {
     { slug: "spark",       name: "Apache Spark",   category: "Data",      logo: "/tools/spark.png" },
 
     // ML
-    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sk.png" },
+    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sklearn.png" }, // <- 确认文件名
 
     // Notebooks
     { slug: "jupyter",     name: "Jupyter Notebook", category: "Data",    logo: "/tools/jupyter.png" },
@@ -105,10 +104,10 @@ function SkillsSection() {
         <div className="mb-12">
           <h2 className="mb-4 text-4xl md:text-5xl font-bold text-gray-100">Skills</h2>
           <p className="mb-2 text-xl text-gray-200">A multidisciplinary toolkit for innovation and growth.</p>
-          <p className="text-lg text-gray-300">From datasets to deploy — turning insight into product impact.</p>
           <p className="text-lg text-gray-300">Build • Analyze • Strategize • Transform</p>
         </div>
 
+        {/* Skill chips */}
         <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           {skillCategories.map((category, index) => (
             <Card key={index} className="flex h-full flex-col border-white/10 bg-white/5 backdrop-blur-md transition hover:bg-white/10">
@@ -128,8 +127,9 @@ function SkillsSection() {
           ))}
         </div>
 
+    
         <h3 className="mb-4 text-2xl md:text-3xl font-semibold text-blue-400">Tools &amp; Software</h3>
-        <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-8 xl:grid-cols-9">
+        <div className="grid grid-cols-4 gap-4 sm:grid-cols-6 lg:grid-cols-9 xl:grid-cols-9">
           {tools.map((t) => (
             <LogoTile key={t.slug} src={t.logo} name={t.name} />
           ))}
