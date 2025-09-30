@@ -80,7 +80,7 @@ function SkillsSection() {
     { slug: "spark",       name: "Apache Spark",   category: "Data",      logo: "/tools/spark.png" },
 
     // ML
-    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sklearn.png" },
+    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sk.png" },
 
     // Notebooks
     { slug: "jupyter",     name: "Jupyter Notebook", category: "Data",    logo: "/tools/jupyter.png" },
