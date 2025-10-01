@@ -135,6 +135,17 @@ export default function ProductPage() {
       tags: ["GenAI", "Image Recognition", "ESG", "Scoring"],
       skills: ["Prompt Engineering", "API Integration"],
     },
+    {
+      slug: "aussie-adventure",
+      title: "Aussie Adventure — Travel AI meets Fashion",
+      date: "2025.09",
+      type: "hackathon",
+      logo: "/competition/canvalogo.png",
+      description:
+        "A travel-fashion prototype that turns landscapes into outfit palettes.",
+      tags: ["Travel", "Recommender", "Color Palette", "Weather API"],
+      skills: ["Frontend Dev", "API Integration"],
+    },
   ];
 
   const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
