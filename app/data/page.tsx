@@ -28,6 +28,18 @@ export default function DataPage() {
   const [search, setSearch] = useState("");
 
   const items: DataItem[] = [
+    {
+    slug: "datathon-2025-supply-chain",
+    title: "Smart Supply Chain Network Optimisation (Datathon 2025)",
+    date: "2025.10",
+    description:
+      "1st place (50 teams). Built a hub–corridor network from noisy GPS data and ran a prescriptive multi-objective optimisation (Gurobi MIP) trading off Cost / On-time / CO₂. Delivered three policies with maps, schedules, and KPI comparisons.",
+    skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
+    status: "Completed",
+    type: "competition",
+    award: "First Place",
+    logo: "/competition/sudataogo.png",
+  },
       {
       slug: "taylor-swift-engagement-analysis",
       title: "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
