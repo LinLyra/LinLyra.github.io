@@ -3,7 +3,7 @@
 *In the vastness of space and the immensity of time, the chance to share the same planet and a moment with you is my greatest honor.*
 
 Hi, I’m **Lyra**. I learn, analyze, and build — turning curiosity into projects that connect **data** with **people**.  
-This site is my little cosmos: a place to explore what I’m studying, making, and thinking about.
+I’m always exploring—following threads across the fields I love: data & optimization, statistics & time series, product & human-centered design, and the business questions that give models a purpose. This site is my little cosmos: a place to explore what I’m studying, making, and thinking about.
 
 ---
 
@@ -19,19 +19,14 @@ This site is my little cosmos: a place to explore what I’m studying, making, a
 
 ---
 
-## ✨ What I care about
+## 🌌 In this universe…
 
-- Learning fast and sharing clearly.  
-- Evidence before opinions; prototypes before promises.  
-- Building things that help — even if small.
+If something sparks an idea, leave your mark among the stars: draw a few glowing orbs on the canvas. Each one becomes a tiny nebula in this universe—your signature in my sky.
 
----
+If you want to talk, send a message. Share a link, a question, a wild hypothesis, or just say hi. I read everything.
 
-## 🔭 A few themes you’ll notice
+What I hope to build here is simple: a place where curiosity travels, where evidence beats opinion, and where small, kind tools help people think better together. If that resonates, you’re already part of this galaxy. ✨
 
-- Analytics that become decisions  
-- GenAI explorations (agents, retrieval, prompts)  
-- Friendly UIs for ideas and insights
 
 ---
 
