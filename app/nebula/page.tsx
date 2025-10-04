@@ -27,9 +27,42 @@ export default function NebulaPage() {
 
   const activities: ActivityItem[] = [
     {
+  slug: "sudata-forecast-reconciliation-2025",
+  title: "Forecast Reconciliation in Practice (SUData Society)",
+  org: "SUData Society",
+  date: "2025.10",
+  summary:
+    "Campus talk on hierarchical & grouped forecasting: base-model choices (ETS/ARIMA), reconciliation methods (MinT/MinT-Shrink), temporal–hierarchical structures, and evaluation (MAPE, WRMSSE). Practical tips for production pipelines.",
+  cover: "/activities/forecast.png", 
+  location: "University of Sydney (on campus)",
+  kinds: ["Talks"],
+},
+    {
+  slug: "high-flyers-growth-summit-2025",
+  title: "High Flyers 2025 Growth Summit",
+  org: "Macquarie Capital",
+  date: "2025.10",
+  summary:
+    "Full-day summit: growth capital insights, founder playbooks to 10M+ ARR, operator perspectives, and an AI moat panel. Great investor/founder networking.",
+  cover: "/activities/flyers.png",
+  location: "Macquarie, Sydney",
+  kinds: ["Talks", "Networking"],
+},
+{
+  slug: "atlassian-office-tour-2025",
+  title: "Atlassian Office Tour & Graduate Panel",
+  org: "Atlassian",
+  date: "2025.10",
+  summary:
+    "Visit Atlassian’s Sydney HQ: culture and product/engineering overview, plus a graduate panel on roles, recruiting pathways, and Q&A.",
+  cover: "/activities/atlassian.png",
+  location: "Atlassian Sydney HQ",
+  kinds: ["Networking", "Talks"],
+},
+    {
   slug: "google-io-extended-2025-sydney-ai-cloud",
   title: "Google I/O Extended 2025 Sydney — AI/Cloud Edition",
-  org: "Google / GDG Sydney",
+  org: "GDG Sydney",
   date: "2025.09",
   summary: "AI/Cloud：1) How you can extend your platform with agentic features；2) Agentic AI: What Works (And what doesn't) in production。",
   cover: "/activities/googleai.png",
@@ -39,7 +72,7 @@ export default function NebulaPage() {
 {
   slug: "google-io-extended-2025-sydney-mobile",
   title: "Google I/O Extended 2025 Sydney — Mobile Edition",
-  org: "Google / GDG Sydney",
+  org: "GDG Sydney",
   date: "2025.09",
   summary: "Workshop: Optimising development with MCP, Future-Ready & Adaptive: Building Android Apps for All Devices.",
   cover: "/activities/googlemobile.png",
@@ -90,7 +123,7 @@ export default function NebulaPage() {
     {
   slug: "google-genai-academy",
   title: "Google GenAI Academy Launch — Agents and the New Software Paradigm",
-  org: "Google",
+  org: "GDG Sydney",
   date: "2025.09",
   summary: "Introduction to Google's GenAI Academy, highlighting agents, generative AI, and the future of software development.",
   cover: "/activities/genai.png",
