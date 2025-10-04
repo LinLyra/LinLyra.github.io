@@ -16,7 +16,7 @@ export default function Datathon2025SupplyChainPage() {
     slug: "datathon-2025-supply-chain",
     title: "Smart Supply Chain Network Optimisation (Datathon 2025)",
     institution: "University of Sydney · Data Science & Business Analytics Society",
-    role: "Team Lead / Principal Modeller",
+    role: "Principal Modeller",
     term: "2025.10",
     status: "First Place" as const,
     practice: "EDA · Forecasting · Prescriptive Optimisation · Visualisation",
@@ -120,7 +120,7 @@ clear trade‑offs, and artefacts managers can act on.`;
                 onClick={() => setShowMedia(true)}
                 className="bg-amber-500/20 border border-amber-400/40 text-amber-100 hover:bg-amber-500/30"
               >
-                <Video className="mr-2 h-4 w-4" /> View Photos & Video
+                <Video className="mr-2 h-4 w-4" /> View More
               </Button>
             )}
           </div>
