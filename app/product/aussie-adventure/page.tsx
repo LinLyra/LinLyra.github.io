@@ -26,13 +26,13 @@ export default function AussieAdventurePage() {
       "/projects/aussie-adventure/2.png",
       "/projects/aussie-adventure/3.png",
     ] as string[],
-    videos: ["/competition/aussie-adventure-demo.mp4"] as string[],
     links: {
       github: "https://github.com/LinLyra/Aussie-Adventure-Stylist",
     },
   };
 
-  const overview = `Aussie Adventure is a travel–fashion prototype that turns landscape photos into wearable palettes. It extracts 5 key colors and high-level scene tags from destination images, then blends activity (e.g., walking, hiking, dining) with weather to propose 2–3 concise outfit ideas. The goal is speed and delight: get a “looks-right” suggestion in seconds, with one-line explanations that feel human, not robotic. The UI favors quick tweaks—swap a color, change an activity, or toggle layers—so users can nudge results without starting over. The system is intentionally lightweight, designed to be embedded into a trip planner or a retailer’s inspiration page.`;
+  const overview =
+    "Aussie Adventure is a travel–fashion prototype that turns landscape photos into wearable palettes. It extracts 5 key colors and high-level scene tags from destination images, then blends activity (e.g., walking, hiking, dining) with weather to propose 2–3 concise outfit ideas. The goal is speed and delight: get a “looks-right” suggestion in seconds, with one-line explanations that feel human, not robotic. The UI favors quick tweaks—swap a color, change an activity, or toggle layers—so users can nudge results without starting over. The system is intentionally lightweight, designed to be embedded into a trip planner or a retailer’s inspiration page.";
 
   const whatIDid: string[] = [
     "Drove scoping and user research; mapped how travelers currently plan outfits for multi-activity days and weather uncertainty.",
@@ -44,7 +44,8 @@ export default function AussieAdventurePage() {
     "Outlined integration paths for ‘shop the look’ (e-commerce APIs) and feedback loops (accept/reject) to personalize over time.",
   ];
 
-  const reflection = `Turning photos into palettes is delightful, but guardrails matter. Simple, readable tags beat deep hierarchies when the goal is fast inspiration. One crisp line of “why this works” consistently outperformed long paragraphs in user feedback, and small editor affordances (swap a color, toggle layers) made the system feel collaborative rather than prescriptive. If I extend this, I would: (1) plug in e-commerce APIs for instant “shop the look”, (2) learn from accept/reject signals to tune palette prominence and tone, and (3) add a packing-list view that rolls daily outfits into a compact, weather-aware set of items.`;
+  const reflection =
+    "Turning photos into palettes is delightful, but guardrails matter. Simple, readable tags beat deep hierarchies when the goal is fast inspiration. One crisp line of “why this works” consistently outperformed long paragraphs in user feedback, and small editor affordances (swap a color, toggle layers) made the system feel collaborative rather than prescriptive. If I extend this, I would: (1) plug in e-commerce APIs for instant “shop the look”, (2) learn from accept/reject signals to tune palette prominence and tone, and (3) add a packing-list view that rolls daily outfits into a compact, weather-aware set of items.";
 
   const hasImages = meta.images.length > 0;
 
@@ -55,7 +56,7 @@ export default function AussieAdventurePage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-
+      {/* bg */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#0d0a07]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.15),transparent_60%),radial-gradient(circle_at_12%_88%,rgba(251,191,36,0.12),transparent_55%),radial-gradient(circle_at_90%_22%,rgba(234,179,8,0.1),transparent_55%)]" />
@@ -65,7 +66,7 @@ export default function AussieAdventurePage() {
 
       <div className="relative z-10 p-6 pt-16 md:pt-20">
         <div className="mx-auto max-w-5xl space-y-6">
-
+          {/* Top bar (全部黄色按钮) */}
           <div className="flex items-center justify-between">
             <Link href="/product">
               <Button className="border-amber-400/30 bg-amber-500/10 text-gray-100 backdrop-blur-md hover:bg-amber-500/20">
@@ -94,7 +95,7 @@ export default function AussieAdventurePage() {
             </div>
           </div>
 
- 
+          {/* Header card */}
           <Card className="relative overflow-hidden border-amber-400/25 bg-white/10 backdrop-blur-md">
             <div className="absolute right-3 top-3 flex items-center gap-2">
               <span className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border ${statusClass}`}>
@@ -134,7 +135,6 @@ export default function AussieAdventurePage() {
             <h2 className="mb-3 text-xl font-semibold text-amber-300 md:text-2xl">
               Project Overview
             </h2>
-
             <p className="text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
@@ -157,32 +157,10 @@ export default function AussieAdventurePage() {
             <h2 className="mb-3 text-xl font-semibold text-amber-300 md:text-2xl">
               Reflection
             </h2>
-
             <p className="text-base leading-relaxed text-gray-200">{reflection}</p>
           </section>
-
-   
-          {meta.videos.length > 0 && (
-            <section className="rounded-xl border border-amber-400/20 bg-white/10 p-4 md:p-5 backdrop-blur-md">
-              <h2 className="mb-3 text-lg font-semibold text-amber-300 md:text-xl">
-                Demo
-              </h2>
-              <div className="mx-auto w-full md:w-1/2">
-                <div className="relative aspect-video overflow-hidden rounded-lg border border-amber-400/30 bg-black/40">
-                  <video
-                    src={meta.videos[0]}
-                    className="h-full w-full object-contain"
-                    controls
-                    preload="metadata"
-             
-                  />
-                </div>
-              </div>
-            </section>
-          )}
         </div>
       </div>
-
 
       {hasImages && (
         <MediaModel
