@@ -60,7 +60,6 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* Top actions */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30">
@@ -79,7 +78,7 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
             )}
           </div>
 
-          {/* Header card */}
+
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
             <div className="absolute right-3 top-3 flex gap-2">
               <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusPill}`}>
@@ -124,7 +123,6 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
             <div className="h-1 w-full bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20" />
           </Card>
 
-          {/* Overview */}
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">Project Overview</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200 break-words hyphens-auto">
@@ -132,9 +130,9 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
             </p>
           </section>
 
-          {/* What I Worked On */}
+
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">What I Worked On</h2>
+            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">What I did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
                 <li key={i} className="leading-relaxed break-words hyphens-auto">
@@ -144,9 +142,8 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
             </ul>
           </section>
 
-          {/* Takeaways */}
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">Takeaways</h2>
+            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">Reflection</h2>
             <div className="space-y-4 text-base leading-relaxed text-gray-200">
               {takeaways.map((p, i) => (
                 <p key={i} className="whitespace-pre-line break-words hyphens-auto">
