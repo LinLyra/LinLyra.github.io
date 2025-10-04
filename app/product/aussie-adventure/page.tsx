@@ -22,23 +22,20 @@ export default function AussieAdventurePage() {
     role: "Team Lead",
     tags: ["Travel", "Recommender", "Color Palette", "Weather API"],
     images: [
-      "/projects/aussie-adventure/1.png",
-      "/projects/aussie-adventure/2.png",
-      "/projects/aussie-adventure/3.png",
+      "/competition/aussie-adventure/1.png",
+      "/competition/aussie-adventure/2.png",
+      "/competition/aussie-adventure/3.png",
+      "/competition/aussie-adventure/4.png",
     ] as string[],
-    videos: ["/media/aussie-adventure-demo.mp4"] as string[], 
+    videos: ["/competition/aussie-adventure-demo.mp4"] as string[], 
     links: {
-      github: "https://github.com/yourname/Aussie-Adventure-Stylist",
+      github: "https://github.com/LinLyra/Aussie-Adventure-Stylist",
     },
   };
 
-  const overview = `Aussie Adventure is a travel–fashion prototype that turns landscape photos into wearable palettes.
-It extracts 5 key colors and high-level scene tags from destination images, then blends activity
-(e.g., walking, hiking, dining) with weather to propose 2–3 concise outfit ideas. The goal is speed
-and delight: get a “looks-right” suggestion in seconds, with one-line explanations that feel human,
-not robotic. The UI favors quick tweaks—swap a color, change an activity, or toggle layers—so users
-can nudge results without starting over. The system is intentionally lightweight, designed to be
-embedded into a trip planner or a retailer’s inspiration page.`;
+  const overview = `Aussie Adventure is a travel–fashion prototype that turns landscape photos into wearable palettes.It extracts 5 key colors and high-level scene tags from destination images, then blends activity(e.g., walking, hiking, dining) with weather to propose 2–3 concise outfit ideas. 
+  The goal is speed and delight: get a “looks-right” suggestion in seconds, with one-line explanations that feel human, not robotic. The UI favors quick tweaks—swap a color, change an activity, or toggle layers—so users can nudge results without starting over. The system is intentionally lightweight, designed to be
+  embedded into a trip planner or a retailer’s inspiration page.`;
 
   const whatIDid: string[] = [
     "Drove scoping and user research; mapped how travelers currently plan outfits for multi-activity days and weather uncertainty.",
@@ -50,14 +47,9 @@ embedded into a trip planner or a retailer’s inspiration page.`;
     "Outlined integration paths for ‘shop the look’ (e-commerce APIs) and feedback loops (accept/reject) to personalize over time.",
   ];
 
-  const reflection = `Turning photos into palettes is delightful, but guardrails matter. Simple, readable tags beat
-deep hierarchies when the goal is fast inspiration. One crisp line of “why this works” consistently
-outperformed long paragraphs in user feedback, and small editor affordances (swap a color, toggle
-layers) made the system feel collaborative rather than prescriptive.
-
-If I extend this, I would: (1) plug in e-commerce APIs for instant “shop the look”, (2) learn from
-accept/reject signals to tune palette prominence and tone, and (3) add a packing-list view that
-rolls daily outfits into a compact, weather-aware set of items.`;
+  const reflection = `Turning photos into palettes is delightful, but guardrails matter. Simple, readable tags beat deep hierarchies when the goal is fast inspiration. One crisp line of “why this works” consistently outperformed long paragraphs in user feedback, 
+  and small editor affordances (swap a color, toggle layers) made the system feel collaborative rather than prescriptive. If I extend this, I would: (1) plug in e-commerce APIs for instant “shop the look”, (2) learn from accept/reject signals to tune palette prominence and tone, 
+  and (3) add a packing-list view that rolls daily outfits into a compact, weather-aware set of items.`;
 
   const hasMedia = meta.images.length > 0 || meta.videos.length > 0;
   const statusClass =
