@@ -49,7 +49,8 @@ export default function DataPage() {
     },
     {
       slug: "taylor-swift-engagement-analysis",
-      title: "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
+      title:
+        "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
       date: "2025.08",
       description:
         "Analyzed 5,700+ YouTube comments on Taylor Swift’s engagement using Gemini LLM with ELM theory. Explored sentiment evolution, persuasion pathways, and herding effects in digital discourse.",
@@ -80,7 +81,8 @@ export default function DataPage() {
     },
     {
       slug: "data1x01-study",
-      title: "The Study Behaviours and Expectations of DATA1X01 Students",
+      title:
+        "The Study Behaviours and Expectations of DATA1X01 Students",
       date: "2024 S2",
       description:
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
@@ -128,6 +130,7 @@ export default function DataPage() {
       type: "course",
     },
 
+    // In-progress / planned
     {
       slug: "apmcm-2024",
       title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
@@ -151,7 +154,7 @@ export default function DataPage() {
     {
       slug: "food-delivery-insights",
       title: "Food Delivery Market Insights",
-      date: "2025.10",
+      date: "2025.08",
       description:
         "Analyze order-level dataset; cluster consumer segments, model delivery-time drivers, and estimate promo impact with causal inference.",
       skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
@@ -161,7 +164,7 @@ export default function DataPage() {
     {
       slug: "tableau-next-hackathon",
       title: "Tableau Next Hackathon",
-      date: "2025.10",
+      date: "2025.08",
       description:
         "Explore short-video engagement; prototype an agentic analytics dashboard (Tableau + LLM/agents) for retention and recommendations.",
       skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
@@ -171,7 +174,7 @@ export default function DataPage() {
     {
       slug: "kaggle-ncaa-basketball",
       title: "NCAA Basketball Analytics (Kaggle)",
-      date: "2025.12",
+      date: "2025.09",
       description:
         "Feature engineering from play-by-play and seed history; Elo/efficiency ratings; logistic/XGBoost ensemble for upset prediction.",
       skills: ["Python", "Pandas", "Machine Learning"],
@@ -218,20 +221,22 @@ export default function DataPage() {
             />
           </div>
 
-
+          {/* 等高网格 */}
           <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-       
+                {/* 卡片：flex 列布局 + 徽章悬浮 */}
                 <Card className="relative flex h-full flex-col cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
+                  {/* 右上角徽章（不占空间） */}
                   {project.award && (
-                    <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 backdrop-blur-sm">
+                    <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 shadow-sm backdrop-blur-sm">
                       <AwardIcon className="h-3 w-3 text-amber-300" />
                       {project.award}
                     </span>
                   )}
 
-                  <CardHeader className="pb-2">
+                  {/* 有徽章时给 Header 预留空间 */}
+                  <CardHeader className={`pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
                       {project.type === "competition" && project.logo && (
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
@@ -244,15 +249,15 @@ export default function DataPage() {
                       )}
 
                       <div className="min-w-0">
-                 
+                        {/* 标题：两行截断 + 平衡换行 + 固定高度 */}
                         <CardTitle
-                          className="mb-1 text-lg leading-snug text-gray-100 line-clamp-2 min-h-[3.25rem]"
+                          className="mb-1 min-h-[3.25rem] text-lg leading-snug text-gray-100 line-clamp-2"
                           style={{ textWrap: "balance" }}
                         >
                           {project.title}
                         </CardTitle>
 
-              
+                        {/* 日期一行显示 */}
                         <div className="mt-1 flex items-center gap-2 whitespace-nowrap text-sm text-gray-400">
                           {project.type === "competition" ? (
                             <Trophy className="h-4 w-4" />
@@ -323,4 +328,3 @@ export default function DataPage() {
     </div>
   );
 }
-
