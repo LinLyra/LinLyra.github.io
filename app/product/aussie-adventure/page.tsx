@@ -22,9 +22,10 @@ export default function AussieAdventurePage() {
     role: "Team Lead",
     tags: ["Travel", "Recommender", "Color Palette", "Weather API"],
     images: [
-      "/projects/aussie-adventure/1.png",
-      "/projects/aussie-adventure/2.png",
-      "/projects/aussie-adventure/3.png",
+      "/competition/aussie1.png",
+      "/competition/aussie2.png",
+      "/competition/aussie3.png",
+      "/competition/aussie4.png",
     ] as string[],
     links: {
       github: "https://github.com/LinLyra/Aussie-Adventure-Stylist",
