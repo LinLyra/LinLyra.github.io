@@ -45,7 +45,7 @@ export default function DataPage() {
       status: "Completed",
       type: "competition",
       award: "First Place",
-      logo: "/competition/sudataogo.png",
+      logo: "/competition/sudataogo.jpg",
     },
     {
       slug: "taylor-swift-engagement-analysis",
