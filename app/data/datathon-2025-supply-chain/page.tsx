@@ -22,7 +22,7 @@ export default function Datathon2025SupplyChainPage() {
     practice: "EDA · Forecasting · Prescriptive Optimisation · Visualisation",
     tags: ["Supply Chain", "Optimisation", "MIP", "Gurobi", "KMeans", "Geospatial", "Time Series"],
     images: ["/competition/dataslide.png", "/competition/datacet.png", "/competition/team.png"] as string[],
-    links: { github: "https://github.com/LinLyra/2025-Datathon" }, 
+    links: { github: "https://github.com/LinLyra/2025-Datathon" },
   };
 
   const overview =
@@ -34,7 +34,6 @@ export default function Datathon2025SupplyChainPage() {
     "Prescriptive optimisation: minimise λ₁·Cost + λ₂·Delay + λ₃·CO₂ under supply/demand, flow conservation, capacity, SLA/delay caps, and emission caps. Traverse the frontier either by tuning weights (λ’s) or by imposing hard constraints.",
     "Policy simulation: switch weights/caps to realise Cost-first, On-time-first, and Low-carbon-first regimes. Under tighter SLA/CO₂ caps, cost rises and some instances become infeasible — the slope of that curve is the marginal cost of stricter targets.",
   ];
-
 
   const whatIDid: string[] = [
     "Owned analytics & modelling end-to-end: baseline diagnostics, segmentation, KPIs, hub–corridor design, and MIP formulation/solve.",
@@ -56,7 +55,7 @@ export default function Datathon2025SupplyChainPage() {
       ? "bg-amber-500/20 text-amber-100 border-amber-400/40"
       : "bg-blue-600/25 text-blue-100 border-blue-400/40";
 
-  const hasMedia = meta.images.length > 0 || meta.videos.length > 0;
+  const hasMedia = Array.isArray(meta.images) && meta.images.length > 0;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -94,7 +93,7 @@ export default function Datathon2025SupplyChainPage() {
                   className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
                 >
                   <Video className="mr-2 h-4 w-4" />
-                  Photos / Video
+                  Photos
                 </Button>
               )}
             </div>
@@ -112,13 +111,19 @@ export default function Datathon2025SupplyChainPage() {
               <div className="mb-2 inline-flex items-center gap-2 text-sm text-gray-300">
                 <span>{meta.institution}</span>
                 <span>•</span>
-                <span className="inline-flex items-center gap-1"><Calendar className="h-4 w-4" /> {meta.term}</span>
+                <span className="inline-flex items-center gap-1">
+                  <Calendar className="h-4 w-4" /> {meta.term}
+                </span>
                 <span>•</span>
-                <span className="inline-flex items-center gap-1"><Award className="h-4 w-4" /> {meta.role}</span>
+                <span className="inline-flex items-center gap-1">
+                  <Award className="h-4 w-4" /> {meta.role}
+                </span>
               </div>
               <div className="mb-3 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
-                  <Badge key={t} className="bg-blue-500/20 text-blue-100 border-blue-500/30">{t}</Badge>
+                  <Badge key={t} className="bg-blue-500/20 text-blue-100 border-blue-500/30">
+                    {t}
+                  </Badge>
                 ))}
               </div>
               <p className="text-gray-200">{meta.practice}</p>
@@ -137,18 +142,21 @@ export default function Datathon2025SupplyChainPage() {
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Methods</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {methods.map((m, i) => (
-                <li key={i} className="leading-relaxed">{m}</li>
+                <li key={i} className="leading-relaxed">
+                  {m}
+                </li>
               ))}
             </ul>
           </section>
-
 
           {/* What I Did */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
-                <li key={i} className="leading-relaxed">{line}</li>
+                <li key={i} className="leading-relaxed">
+                  {line}
+                </li>
               ))}
             </ul>
           </section>
@@ -158,7 +166,9 @@ export default function Datathon2025SupplyChainPage() {
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Reflection</h2>
             <ul className="list-disc space-y-2 pl-5 text-gray-200">
               {reflectionPoints.map((pt, i) => (
-                <li key={i} className="leading-relaxed">{pt}</li>
+                <li key={i} className="leading-relaxed">
+                  {pt}
+                </li>
               ))}
             </ul>
           </section>
@@ -170,10 +180,11 @@ export default function Datathon2025SupplyChainPage() {
           isOpen={showMedia}
           onClose={() => setShowMedia(false)}
           title={meta.title}
-          media={{ images: meta.images }}
+          media={{ images: meta.images }} 
         />
       )}
     </div>
   );
 }
+
 
