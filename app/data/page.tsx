@@ -7,7 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Github, Globe, Rocket, Trophy, Award as AwardIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  Github,
+  Globe,
+  Rocket,
+  Trophy,
+  Award as AwardIcon,
+} from "lucide-react";
 
 type DataType = "competition" | "course" | "project";
 
@@ -29,23 +36,23 @@ export default function DataPage() {
 
   const items: DataItem[] = [
     {
-    slug: "datathon-2025-supply-chain",
-    title: "Smart Supply Chain Network Optimisation (Datathon 2025)",
-    date: "2025.10",
-    description:
-      "1st place (50 teams). Built a hub–corridor network from noisy GPS data and ran a prescriptive multi-objective optimisation (Gurobi MIP) trading off Cost / On-time / CO₂. Delivered three policies with maps, schedules, and KPI comparisons.",
-    skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
-    status: "Completed",
-    type: "competition",
-    award: "First Place",
-    logo: "/competition/sudataogo.png",
-  },
-      {
+      slug: "datathon-2025-supply-chain",
+      title: "Smart Supply Chain Network Optimisation (Datathon 2025)",
+      date: "2025.10",
+      description:
+        "1st place (50 teams). Built a hub–corridor network from noisy GPS data and ran a prescriptive multi-objective optimisation (Gurobi MIP) trading off Cost / On-time / CO₂. Delivered three policies with maps, schedules, and KPI comparisons.",
+      skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
+      status: "Completed",
+      type: "competition",
+      award: "First Place",
+      logo: "/competition/sudataogo.png",
+    },
+    {
       slug: "taylor-swift-engagement-analysis",
       title: "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
       date: "2025.08",
       description:
-         "Analyzed 5,700+ YouTube comments on Taylor Swift’s engagement using Gemini LLM with ELM theory. Explored sentiment evolution, persuasion pathways, and herding effects in digital discourse.",
+        "Analyzed 5,700+ YouTube comments on Taylor Swift’s engagement using Gemini LLM with ELM theory. Explored sentiment evolution, persuasion pathways, and herding effects in digital discourse.",
       skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
       status: "Completed",
       type: "project",
@@ -88,7 +95,7 @@ export default function DataPage() {
       date: "2024 S2",
       description:
         "Exploratory analysis on employer types and income distributions across Australian regions.",
-      skills: ["EDA", "Gradient Boosting", "Random Forest", "KNN", "Navie Baye", "KNN", "Regression"],
+      skills: ["EDA", "Gradient Boosting", "Random Forest", "KNN", "Naive Bayes", "Regression"],
       status: "Completed",
       type: "course",
     },
@@ -98,7 +105,7 @@ export default function DataPage() {
       date: "2025 S1",
       description:
         "Constructs a composite index to score SA2 areas by resource accessibility; normalization, weighting, and ranking.",
-      skills: ["postgresqL", "Index Scoring", "Database", "ER", "Machine Learning"],
+      skills: ["PostgreSQL", "Index Scoring", "Database", "ER", "Machine Learning"],
       status: "Completed",
       type: "course",
     },
@@ -109,12 +116,18 @@ export default function DataPage() {
       date: "2025 S1",
       description:
         "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes and Room Occupancy Datasets",
-      skills: ["ZeroR", "1R", "Decision Trees", "Multi-Layer Perceptrons","Support Vector Machines", "Random Forests"],
+      skills: [
+        "ZeroR",
+        "1R",
+        "Decision Trees",
+        "Multi-Layer Perceptrons",
+        "Support Vector Machines",
+        "Random Forests",
+      ],
       status: "Completed",
       type: "course",
     },
 
-    // In-progress / planned
     {
       slug: "apmcm-2024",
       title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
@@ -138,7 +151,7 @@ export default function DataPage() {
     {
       slug: "food-delivery-insights",
       title: "Food Delivery Market Insights",
-      date: "2025.08",
+      date: "2025.10",
       description:
         "Analyze order-level dataset; cluster consumer segments, model delivery-time drivers, and estimate promo impact with causal inference.",
       skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
@@ -148,7 +161,7 @@ export default function DataPage() {
     {
       slug: "tableau-next-hackathon",
       title: "Tableau Next Hackathon",
-      date: "2025.08",
+      date: "2025.10",
       description:
         "Explore short-video engagement; prototype an agentic analytics dashboard (Tableau + LLM/agents) for retention and recommendations.",
       skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
@@ -158,16 +171,13 @@ export default function DataPage() {
     {
       slug: "kaggle-ncaa-basketball",
       title: "NCAA Basketball Analytics (Kaggle)",
-      date: "2025.09",
+      date: "2025.12",
       description:
         "Feature engineering from play-by-play and seed history; Elo/efficiency ratings; logistic/XGBoost ensemble for upset prediction.",
       skills: ["Python", "Pandas", "Machine Learning"],
       status: "Planned",
       type: "project",
     },
-
-    // Modeling competitions (with logos, treated as competitions)
-    
   ];
 
   const filtered = items.filter((p) => {
@@ -184,11 +194,11 @@ export default function DataPage() {
     <div className="relative min-h-screen">
       <Navigation activeSection="data" onSectionChange={() => {}} />
 
-      <div className="relative z-10 pt-20 p-6">
+      <div className="relative z-10 p-6 pt-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 text-center">
             <Link href="/">
-              <Button className="mb-4 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
+              <Button className="mb-4 border-blue-400/30 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-gray-100 backdrop-blur-md hover:bg-blue-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Universe
               </Button>
@@ -204,86 +214,99 @@ export default function DataPage() {
               placeholder="Search datasets, topics, or skills…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="mx-auto max-w-md bg-black/30 backdrop-blur-md border-blue-400/30 text-gray-100 placeholder:text-gray-400"
+              className="mx-auto max-w-md border-blue-400/30 bg-black/30 text-gray-100 placeholder:text-gray-400 backdrop-blur-md"
             />
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                <Card className="h-full cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-start gap-3 min-w-0">
-                        {project.type === "competition" && project.logo && (
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
-                            <img
-                              src={project.logo}
-                              alt={`${project.title} logo`}
-                              className="max-h-[2.5rem] max-w-[2.5rem] object-contain"
-                            />
-                          </div>
-                        )}
+       
+                <Card className="relative flex h-full flex-col cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
+                  {project.award && (
+                    <span className="absolute right-3 top-3 z-10 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 backdrop-blur-sm">
+                      <AwardIcon className="h-3 w-3 text-amber-300" />
+                      {project.award}
+                    </span>
+                  )}
 
-                        <div className="min-w-0">
-                          <CardTitle className="mb-1 text-lg text-gray-100">
-                            {project.title}
-                          </CardTitle>
-                          <div className="mt-1 flex items-center gap-2 text-sm text-gray-400">
-                            {project.type === "competition" ? (
-                              <Trophy className="h-4 w-4" />
-                            ) : (
-                              <Rocket className="h-4 w-4" />
-                            )}
-                            <span className="truncate">{project.date}</span>
-                          </div>
+                  <CardHeader className="pb-2">
+                    <div className="flex items-start gap-3">
+                      {project.type === "competition" && project.logo && (
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
+                          <img
+                            src={project.logo}
+                            alt={`${project.title} logo`}
+                            className="max-h-[2.5rem] max-w-[2.5rem] object-contain"
+                          />
+                        </div>
+                      )}
+
+                      <div className="min-w-0">
+                 
+                        <CardTitle
+                          className="mb-1 text-lg leading-snug text-gray-100 line-clamp-2 min-h-[3.25rem]"
+                          style={{ textWrap: "balance" }}
+                        >
+                          {project.title}
+                        </CardTitle>
+
+              
+                        <div className="mt-1 flex items-center gap-2 whitespace-nowrap text-sm text-gray-400">
+                          {project.type === "competition" ? (
+                            <Trophy className="h-4 w-4" />
+                          ) : (
+                            <Rocket className="h-4 w-4" />
+                          )}
+                          <span className="truncate">{project.date}</span>
                         </div>
                       </div>
-
-                      {project.award && (
-                        <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 border border-amber-400/30 backdrop-blur-sm">
-                          <AwardIcon className="h-3 w-3 text-amber-300" />
-                          {project.award}
-                        </span>
-                      )}
                     </div>
                   </CardHeader>
 
-                  <CardContent>
-                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">{project.description}</p>
+                  <CardContent className="flex flex-1 flex-col">
+                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">
+                      {project.description}
+                    </p>
 
                     <div className="mb-4 flex flex-wrap gap-1">
                       {project.skills.slice(0, 4).map((skill) => (
                         <Badge
                           key={skill}
-                          className="border-blue-500/30 bg-blue-500/20 text-blue-200 text-xs"
+                          className="text-xs text-blue-200 border-blue-500/30 bg-blue-500/20"
                         >
                           {skill}
                         </Badge>
                       ))}
                       {project.skills.length > 4 && (
-                        <Badge className="border-gray-500/30 bg-gray-500/20 text-gray-300 text-xs">
+                        <Badge className="text-xs text-gray-300 border-gray-500/30 bg-gray-500/20">
                           +{project.skills.length - 4} more
                         </Badge>
                       )}
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    {/* 底部对齐 */}
+                    <div className="mt-auto flex items-center justify-between">
                       <Badge
                         className={
                           project.status === "Completed"
-                            ? "bg-green-500/20 text-green-200 border-green-500/30"
+                            ? "border-green-500/30 bg-green-500/20 text-green-200"
                             : project.status === "In Progress"
-                            ? "bg-amber-500/20 text-amber-200 border-amber-500/30"
-                            : "bg-blue-500/20 text-blue-200 border-blue-500/30"
+                            ? "border-amber-500/30 bg-amber-500/20 text-amber-200"
+                            : "border-blue-500/30 bg-blue-500/20 text-blue-200"
                         }
                       >
                         {project.status}
                       </Badge>
 
                       <div className="flex gap-2">
-                        {!!project.links?.github && <Github className="h-4 w-4 text-gray-400" />}
-                        {!!project.links?.demo && <Globe className="h-4 w-4 text-gray-400" />}
+                        {!!project.links?.github && (
+                          <Github className="h-4 w-4 text-gray-400" />
+                        )}
+                        {!!project.links?.demo && (
+                          <Globe className="h-4 w-4 text-gray-400" />
+                        )}
                       </div>
                     </div>
                   </CardContent>
@@ -300,3 +323,4 @@ export default function DataPage() {
     </div>
   );
 }
+
