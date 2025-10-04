@@ -92,8 +92,7 @@ export default function Datathon2025SupplyChainPage() {
                   onClick={() => setShowMedia(true)}
                   className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
                 >
-                  <Video className="mr-2 h-4 w-4" />
-                  Photos
+                  View more
                 </Button>
               )}
             </div>
