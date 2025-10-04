@@ -37,10 +37,10 @@ export default function DataPage() {
   const items: DataItem[] = [
     {
       slug: "datathon-2025-supply-chain",
-      title: "Smart Supply Chain Network Optimisation (Datathon 2025)",
+      title: "SUDATA x SUBAA Datathon 2025",
       date: "2025.10",
       description:
-        "1st place (50 teams). Built a hub–corridor network from noisy GPS data and ran a prescriptive multi-objective optimisation (Gurobi MIP) trading off Cost / On-time / CO₂. Delivered three policies with maps, schedules, and KPI comparisons.",
+        "24h Datathon organized by SUDATA and SUBAA Uni Society",
       skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
       status: "Completed",
       type: "competition",
