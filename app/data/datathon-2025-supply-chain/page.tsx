@@ -21,7 +21,7 @@ export default function Datathon2025SupplyChainPage() {
     status: "First Place" as const,
     practice: "EDA · Forecasting · Prescriptive Optimisation · Visualisation",
     tags: ["Supply Chain", "Optimisation", "MIP", "Gurobi", "KMeans", "Geospatial", "Time Series"],
-    images: ["/competition/dataslide.png", "/competition/datacet.png", "/competition/team.png"] as string[],
+    images: ["/data/dataslide.png", "/data/datacet.png"] as string[],
     links: { github: "https://github.com/LinLyra/2025-Datathon" },
   };
 
