@@ -2,7 +2,7 @@
 
 *In the vastness of space and the immensity of time, the chance to share the same planet and a moment with you is my greatest honor.*
 
-Hi, I’m **Lyra**, a student who loves working with data, seeing not just numbers but the stories and opportunities they reveal. I enjoy exploring how insights can shape industries and create value for people. At the same time, I’m a full-stack developer, able to turn ideas into real products that others can use.
+Hi, I’m **Lyra** --- a student who loves working with data, seeing not just numbers but the stories and opportunities they reveal. I enjoy exploring how insights can shape industries and create value for people. At the same time, I’m a full-stack developer, able to turn ideas into real products that others can use.
 
 ---
 
