@@ -26,7 +26,7 @@ export default function AussieAdventurePage() {
       "/projects/aussie-adventure/2.png",
       "/projects/aussie-adventure/3.png",
     ] as string[],
-    videos: ["/media/aussie-adventure-demo.mp4"] as string[],
+    videos: ["/competition/aussie-adventure-demo.mp4"] as string[],
     links: {
       github: "https://github.com/LinLyra/Aussie-Adventure-Stylist",
     },
