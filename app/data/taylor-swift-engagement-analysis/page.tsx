@@ -11,7 +11,7 @@ import { ArrowLeft, Calendar, Github } from "lucide-react";
 export default function TaylorSwiftPage() {
   const meta = {
     slug: "taylor-swift-engagement-analysis",
-    title: "Taylor Swift Engagement Analysis",
+    title: "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
     institution: "Independent Research",
     practice:
       "YouTube API · Gemini API· Sentiment Analysis · ELM Theory · Bayesian Updating",
