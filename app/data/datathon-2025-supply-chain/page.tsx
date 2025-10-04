@@ -22,8 +22,7 @@ export default function Datathon2025SupplyChainPage() {
     practice: "EDA · Forecasting · Prescriptive Optimisation · Visualisation",
     tags: ["Supply Chain", "Optimisation", "MIP", "Gurobi", "KMeans", "Geospatial", "Time Series"],
     images: ["/competition/dataslide.png", "/competition/datacet.png", "/competition/team.png"] as string[],
-    videos: ["/competition/datademo.mp4"] as string[],
-    links: { github: "https://github.com/yourname/2025-Datathon" }, 
+    links: { github: "https://github.com/LinLyra/2025-Datathon" }, 
   };
 
   const overview =
@@ -124,11 +123,10 @@ export default function Datathon2025SupplyChainPage() {
               </div>
               <p className="text-gray-200">{meta.practice}</p>
             </div>
-            {/* 和截图一致的紫-靛渐变细线 */}
+
             <div className="h-1 w-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-blue-500/20" />
           </Card>
 
-          {/* Project Overview —— 蓝色标题 & 边框 */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Project Overview</h2>
             <p className="text-base leading-relaxed text-gray-200">{overview}</p>
@@ -172,7 +170,7 @@ export default function Datathon2025SupplyChainPage() {
           isOpen={showMedia}
           onClose={() => setShowMedia(false)}
           title={meta.title}
-          media={{ images: meta.images, videos: meta.videos }}
+          media={{ images: meta.images }}
         />
       )}
     </div>
