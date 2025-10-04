@@ -137,12 +137,12 @@ export default function ProductPage() {
     },
     {
       slug: "aussie-adventure",
-      title: "Aussie Adventure — Travel AI meets Fashion",
+      title: "Comm-Stem x Canva Hackathon 2025",
       date: "2025.09",
       type: "hackathon",
       logo: "/competition/canvalogo.png",
       description:
-        "A travel-fashion prototype that turns landscapes into outfit palettes.",
+        "2025 Comm-Stem 24 hour hackathon, with the theme'Hack with Nature, Build for Tomorrow'",
       tags: ["Travel", "Recommender", "Color Palette", "Weather API"],
       skills: ["Frontend Dev", "API Integration"],
     },
