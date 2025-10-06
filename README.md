@@ -1,5 +1,5 @@
 # 🌌 Lyra’s Universe
-🔗 LinLyra.github.io
+🔗 <https://LinLyra.github.io>  
 
 *In the vastness of space and the immensity of time, the chance to share the same planet and a moment with you is my greatest honor.*
 
