@@ -39,8 +39,7 @@ export default function ISYS2120Page() {
   ]
 
   const Takeaways = `
-  Build solid relational design habits (conceptual → relational → normalized), write safe and performant SQL,
-  and understand the security and performance levers that matter in real applications.
+  Coming soon.
   `
 
   const hasNotes = meta.notes.length > 0
