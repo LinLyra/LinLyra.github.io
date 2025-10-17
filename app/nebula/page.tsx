@@ -27,6 +27,73 @@ export default function NebulaPage() {
 
   const activities: ActivityItem[] = [
     {
+  slug: "power-bi-workshop-capgemini-2025",
+  title: "Power BI Workshop",
+  org: "Capgemini",
+  date: "2025.10",
+  summary:
+    "An introductory, hands-on session using practice datasets to explore how to build effective Power BI reports and get started with data visualization and business intelligence tools.",
+  cover: "/activities/powerbi.png",
+  location: "Capgemini Sydney",
+  kinds: ["Workshop"],
+},
+{
+  slug: "ey-parthenon-analytics-ma-2025",
+  title: "Analytics Powering the Future of M&A",
+  org: "EY-Parthenon",
+  date: "2025.10",
+  summary:
+    "Session on how to turn data collection, preparation, and analysis into an equity story — covering acquisition-grade KPIs, operational data normalization, revenue-to-cash bridges, QoE lenses, cohort and unit economics views, and scenario/sensitivity modeling for stakeholders.",
+  cover: "/activities/eypar.png",
+  location: "Campus",
+  kinds: ["Talks"],
+},
+{
+  slug: "ibus-industry-speed-mentoring-2025",
+  title: "IBUS Industry Speed Mentoring",
+  org: "IBUS",
+  date: "2025.10",
+  summary:
+    "Speed mentoring event connecting students with industry mentors. Gained practical advice on building a career in Australia as an international student.",
+  cover: "/activities/ibus.png",
+  location: "Campus",
+  kinds: ["Networking"],
+},
+{
+  slug: "ai-amplified-nvidia-2025",
+  title: "AI Amplified (In Partnership with NVIDIA)",
+  org: "NVIDIA",
+  date: "2025.10",
+  summary:
+    "Reflections on Physical AI, robotics, and how accelerating compute plus tighter hardware/software stacks are pushing AI into real-world operations. Sparked many ideas for AI × robotics × industrial digitalization.",
+  cover: "/activities/nvidia.png",
+  location: "Stone & Chalk Tech Central, Sydney",
+  kinds: ["Talks", "Networking"],
+},
+{
+  slug: "design-with-impact-jahin-tanvir-2025",
+  title: "Design with Impact: Confidence and Communication",
+  org: "Canva",
+  date: "2025.10",
+  summary:
+    "Interactive workshop with Jahin Tanvir on building confidence and impactful communication skills, tailored for design and presentation in professional settings.",
+  cover: "/activities/design.png",
+  location: "Canva Sydney",
+  kinds: ["Workshop"],
+},
+{
+  slug: "pathways-into-goldman-sachs-2025",
+  title: "Pathways into Goldman Sachs",
+  org: "Goldman Sachs",
+  date: "2025.10",
+  summary:
+    "Campus info session providing insights into career pathways, recruitment strategies, and opportunities at Goldman Sachs for students interested in finance and investment banking.",
+  cover: "/activities/goldmansachs.png",
+  location: "Campus",
+  kinds: ["Talks"],
+},
+
+    {
   slug: "sudata-forecast-reconciliation-2025",
   title: "Forecast Reconciliation in Practice (SUData Society)",
   org: "SUData Society",
@@ -34,7 +101,7 @@ export default function NebulaPage() {
   summary:
     "Campus talk on hierarchical & grouped forecasting: base-model choices (ETS/ARIMA), reconciliation methods (MinT/MinT-Shrink), temporal–hierarchical structures, and evaluation (MAPE, WRMSSE). Practical tips for production pipelines.",
   cover: "/activities/forecast.png", 
-  location: "University of Sydney (on campus)",
+  location: "Campus",
   kinds: ["Talks"],
 },
     {
