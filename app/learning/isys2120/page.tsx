@@ -38,9 +38,11 @@ export default function ISYS2120Page() {
     { k: "Teamwork", v: "Work effectively in teams with members whose skills and interests differ." }
   ]
 
-  const Takeaways = `
-  Coming soon.
-  `
+  const Takeaways = `This course significantly reshaped the way I think about data as a system rather than just a resource. Through learning conceptual, logical, and physical database design, I developed the ability to translate complex real-world domains into structured data models and to reason about how facts, entities, 
+  and relationships should be represented to support long-term correctness and scalability. Working with SQL in the presence of integrity constraints helped me understand how databases actively enforce business rules, rather than simply storing information, while normalization provided a rigorous framework for evaluating and improving schema quality. 
+  Beyond schema design, the course deepened my understanding of how applications interact with relational DBMSs, including architectural trade-offs, transaction management, concurrency, and recovery, which clarified why certain design decisions have major implications for reliability and performance. Topics such as security, access control, 
+  and privacy further highlighted the importance of designing data systems that are not only functional but also trustworthy and resilient. Finally, the exposure to database internals, data warehousing, and OLAP connected foundational theory with modern analytical and enterprise platforms, giving me a more holistic perspective on how operational databases, 
+  analytical systems, and downstream data and AI applications fit together in practice.`
 
   const hasNotes = meta.notes.length > 0
   const badge =
