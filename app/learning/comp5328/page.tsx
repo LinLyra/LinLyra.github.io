@@ -36,9 +36,13 @@ export default function COMP5328Page() {
     { k: "Model suitability", v: "Compare introduced models—their strengths, weaknesses, and appropriate use cases." },
   ]
 
-  const Takeaways =`
-  Coming soon.
-  `
+  const Takeaways = `This course strengthened my ability to use statistical modelling as a practical tool for understanding data-generating processes and supporting business decision-making, rather than treating models as purely technical artifacts. 
+  By learning how to specify, estimate, and interpret statistical models, I developed a clearer understanding of how relationships between variables can be quantified, tested, and translated into meaningful insights. 
+  Working with Python to manage data, build models, and visualize results reinforced the end-to-end nature of applied data analysis, from raw data preparation to communicating conclusions. The emphasis on interpreting coefficients, uncertainty, 
+  and model assumptions improved my ability to reason about causality, limitations, and robustness, while forecasting and relationship analysis highlighted how statistical models inform planning under uncertainty. Equally important, 
+  the course focused on communicating results clearly to non-technical stakeholders, ensuring that statistical evidence can be used effectively in real decision contexts. Overall, this course provided a strong statistical foundation that complements optimisation and decision analysis, 
+  forming a core pillar for advanced work in data science, analytics, and AI-driven decision support systems.`
+
   
   const hasNotes = meta.notes.length > 0
   const badge =
