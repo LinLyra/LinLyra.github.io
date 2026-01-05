@@ -34,9 +34,13 @@ export default function COMP5338Page() {
     { k: "Physical storage", v: "Describe on-disk/ in-memory layouts and explain their impact on query performance." },
   ]
 
-  const Takeaways =`
-  Coming soon.
-  `
+  const Takeaways =`This course expanded my perspective on data systems beyond the relational model, helping me understand how different data models and storage architectures are designed to serve distinct access patterns, scalability requirements, 
+  and performance constraints. By working with document, key-value, graph, spatial, temporal, and time-series models, I learned to reason about when and why each model is appropriate, rather than defaulting to a one-size-fits-all database solution. 
+  Hands-on experience with systems such as MongoDB and Neo4j reinforced how data modelling choices directly influence query expressiveness, indexing strategies, and execution efficiency, while performance profiling and query tuning highlighted the trade-offs between schema design, 
+  indexing, and workload characteristics. The coverage of distributed databases deepened my understanding of partitioning, replication, consistency, and fault tolerance, clarifying how real-world data platforms balance availability, correctness, and scalability. 
+  At a lower level, studying physical storage layouts and indexing mechanisms connected logical design decisions to their impact on latency and throughput. Overall, this course strengthened my ability to think about data infrastructure as an integrated system, providing a strong foundation for building scalable analytics platforms, 
+  data engineering pipelines, and AI systems that rely on efficient, reliable, and well-architected data storage.`
+
   
   const hasNotes = meta.notes.length > 0
   const badge =
