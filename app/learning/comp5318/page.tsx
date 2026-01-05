@@ -33,9 +33,13 @@ export default function COMP5318Page() {
     { k: "Communication", v: "Present and interpret data, methods, and results clearly in written and verbal formats for technical and non-technical audiences." },
   ]
 
-  const Takeaways =`
-  Coming soon.
-  `
+  const Takeaways =`This course helped me build a solid end-to-end understanding of machine learning as a practical problem-solving workflow, not just a collection of algorithms. Through supervised and unsupervised learning topics such as classification, 
+  regression, clustering, and pattern discovery, I learned how to translate messy real-world questions into well-defined ML tasks, choose appropriate baselines, and reason about the strengths, limitations, and failure modes of different methods. 
+  A major takeaway was that performance comes from the full pipeline—data preprocessing, feature representation, model selection, hyperparameter tuning, and rigorous validation—rather than any single “best” model, 
+  and that evaluation must align with the real objective using metrics that reflect trade-offs like precision/recall, calibration, and robustness. Implementing and comparing models in Python reinforced reproducibility and experimentation discipline (e.g., consistent splits, cross-validation, and controlled comparisons),
+  while also improving my ability to interpret results and communicate them clearly to both technical and non-technical audiences. Overall, this course strengthened my foundations for applied ML engineering and data-driven product work, and it connects naturally to modern AI practice where careful evaluation, iteration, 
+  and deployment-ready thinking matter as much as model complexity.`
+
   
   const hasNotes = meta.notes.length > 0
   const badge =
