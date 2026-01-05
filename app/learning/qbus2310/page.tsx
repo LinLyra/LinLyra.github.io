@@ -35,9 +35,12 @@ export default function QBUS2310Page() {
     { k: "Software proficiency", v: "Use specialised tools (Excel Solver, Python OR libraries, and/or commercial solvers) to solve and analyse management-science models." },
   ]
 
-  const Takeaways =`
-  Coming soon.
-  `
+  const Takeaways =`This course developed my ability to formulate and solve complex management problems through rigorous optimisation thinking, transforming ambiguous operational challenges into structured, solvable models. 
+  By working with linear, integer, and nonlinear programming, I learned how objective functions, constraints, and decision variables interact to represent real-world trade-offs in capacity planning, production scheduling, and resource allocation. 
+  The emphasis on model formulation sharpened my skill in abstracting essential problem structure while being explicit about assumptions and limitations, and sensitivity analysis reinforced how optimal solutions respond to changes in inputs and constraints. 
+  Using tools such as Excel Solver and Python-based optimisation libraries bridged theory and practice, highlighting how optimisation models are implemented, solved, and interpreted in realistic business settings. More broadly, the course strengthened my ability to move from analytical results to managerial recommendations, 
+  understanding that optimisation outputs support decisions rather than replace judgment. This experience provided a strong foundation for advanced work in decision science, operations analytics, and AI-driven optimisation systems, where formal models play a central role in enabling scalable and defensible decision-making.`
+
   
   const hasNotes = meta.notes.length > 0
   const badge =
