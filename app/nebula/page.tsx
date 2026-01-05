@@ -33,7 +33,7 @@ export default function NebulaPage() {
   date: "2025.11",
   summary:
     "Attended Microsoft’s Code; Without Barriers event featuring women leaders and engineers sharing their career journeys, challenges, and growth strategies in tech. Gained insights into building confidence, navigating technical careers as a woman, and the importance of inclusive ecosystems in shaping sustainable innovation.",
-  cover: "/activities/microsoft.png",
+  cover: "/activities/microsoft.jpg",
   location: "Microsoft Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
@@ -44,7 +44,7 @@ export default function NebulaPage() {
   date: "2025.11",
   summary:
     "Panel discussion jointly hosted by EY and the SUEDE Society, exploring career pathways, problem-solving approaches, and real-world consulting experiences. The event offered practical perspectives on how analytical thinking, communication, and stakeholder management come together in professional services.",
-  cover: "/activities/ey-ui.png",
+  cover: "/activities/ey-ui.jpg",
   location: "EY Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
@@ -55,7 +55,7 @@ export default function NebulaPage() {
   date: "2025.11",
   summary:
     "Industry summit at Salesforce focused on Agentforce, Data Cloud, and the future of AI-driven customer platforms. Learned how data unification, real-time intelligence, and AI agents are reshaping enterprise workflows and customer experiences, reinforcing the role of data infrastructure in scalable AI applications.",
-  cover: "/activities/salesforce.png",
+  cover: "/activities/saleforces.jpg",
   location: "Salesforce Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
