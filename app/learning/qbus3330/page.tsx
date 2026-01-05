@@ -36,9 +36,12 @@ export default function QBUS3330Page() {
     { k: "Managerial communication", v: "Explain results clearly to managers and other non-specialists using appropriate statistical/decision-analysis reporting." },
   ]
 
-  const Takeaways =`
-  Coming soon.
-  `
+  const Takeaways =`This course fundamentally strengthened my ability to reason about decisions under uncertainty in a structured and transparent way, shifting my mindset from intuition-driven judgment to formally evaluated choice-making. 
+  By learning how to decompose complex real-world decisions into objectives, alternatives, uncertainties, and consequences, I gained a clear framework for identifying what truly drives decision quality rather than focusing solely on outcomes. 
+  The use of probabilities, expected value, expected utility, and decision trees clarified how uncertainty and risk preferences can be explicitly modeled and compared, while concepts such as value of information and sensitivity analysis highlighted when additional data meaningfully improves decisions and when it does not. 
+  Beyond the quantitative mechanics, the course emphasized the importance of trade-offs, risk attitudes, and multi-attribute decision-making, which are central to managerial and strategic contexts. Equally important, it developed my ability to communicate analytical results to non-technical stakeholders, 
+  translating models and simulations into clear insights that support confident, defensible decisions. Overall, the course provided a rigorous decision-theoretic foundation that complements data science and AI work, reinforcing how models, data, and simulations ultimately serve the goal of better human and organizational decision-making.`
+
   
   const hasNotes = meta.notes.length > 0
   const badge =
