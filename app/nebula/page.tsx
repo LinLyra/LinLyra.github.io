@@ -27,6 +27,40 @@ export default function NebulaPage() {
 
   const activities: ActivityItem[] = [
     {
+  slug: "microsoft-code-without-barriers",
+  title: "Code; Without Barriers",
+  org: "Microsoft",
+  date: "2025.11",
+  summary:
+    "Attended Microsoft’s Code; Without Barriers event featuring women leaders and engineers sharing their career journeys, challenges, and growth strategies in tech. Gained insights into building confidence, navigating technical careers as a woman, and the importance of inclusive ecosystems in shaping sustainable innovation.",
+  cover: "/activities/microsoft.png",
+  location: "Microsoft Office, Sydney",
+  kinds: ["Talks", "Networking"],
+},
+{
+  slug: "ey-suede-panel-event-2025",
+  title: "EY x SUEDE Society Panel Event",
+  org: "EY",
+  date: "2025.11",
+  summary:
+    "Panel discussion jointly hosted by EY and the SUEDE Society, exploring career pathways, problem-solving approaches, and real-world consulting experiences. The event offered practical perspectives on how analytical thinking, communication, and stakeholder management come together in professional services.",
+  cover: "/activities/ey-ui.png",
+  location: "EY Office, Sydney",
+  kinds: ["Talks", "Networking"],
+},
+{
+  slug: "salesforce-summit-agentforce-2025",
+  title: "Salesforce Summit: Agentforce & Data Cloud",
+  org: "Salesforce",
+  date: "2025.11",
+  summary:
+    "Industry summit at Salesforce focused on Agentforce, Data Cloud, and the future of AI-driven customer platforms. Learned how data unification, real-time intelligence, and AI agents are reshaping enterprise workflows and customer experiences, reinforcing the role of data infrastructure in scalable AI applications.",
+  cover: "/activities/salesforce.png",
+  location: "Salesforce Office, Sydney",
+  kinds: ["Talks", "Networking"],
+},
+
+    {
   slug: "power-bi-workshop-capgemini-2025",
   title: "Power BI Workshop",
   org: "Capgemini",
