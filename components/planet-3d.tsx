@@ -22,15 +22,15 @@ export function Planet3D({
 }: Planet3DProps) {
   const meshRef = useRef<Mesh>(null);
 
-  // 避免每次渲染都重建 args
+
   const sphereArgs = useMemo<[number, number, number]>(() => [size, 64, 64], [size]);
 
-  // 用 delta 更平滑，避免帧率依赖
+
   useFrame((state, delta) => {
     const m = meshRef.current;
     if (!m) return;
     m.rotation.x += Math.sin(state.clock.elapsedTime * speed) * 0.1 * delta;
-    m.rotation.y += 0.6 * delta; // ~0.01/帧 @60fps
+    m.rotation.y += 0.6 * delta; 
     m.rotation.z += Math.cos(state.clock.elapsedTime * speed * 0.5) * 0.1 * delta;
   });
 
