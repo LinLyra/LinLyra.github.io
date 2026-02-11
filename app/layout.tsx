@@ -1,9 +1,9 @@
-
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import ShipConsole from "@/components/ShipConsole";
 
 export const metadata: Metadata = {
   title: {
@@ -30,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <GalaxyBackground />
         {children}
+        <ShipConsole />
         <Analytics />
       </body>
     </html>
