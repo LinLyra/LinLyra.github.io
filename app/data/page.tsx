@@ -33,15 +33,29 @@ type DataItem = {
 
 export default function DataPage() {
   const [search, setSearch] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  const featuredTags = [
+    "Python",
+    "SQL",
+    "Time Series",
+    "Machine Learning",
+    "Visualization",
+  ];
 
   const items: DataItem[] = [
     {
       slug: "datathon-2025-supply-chain",
       title: "SUDATA x SUBAA Datathon 2025",
       date: "2025.10",
-      description:
-        "24h Datathon organized by SUDATA and SUBAA Uni Society",
-      skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
+      description: "24h Datathon organized by SUDATA and SUBAA Uni Society",
+      skills: [
+        "Supply Chain",
+        "Optimisation",
+        "Gurobi MIP",
+        "KMeans",
+        "Time Series",
+      ],
       status: "Completed",
       type: "competition",
       award: "First Place",
@@ -54,7 +68,13 @@ export default function DataPage() {
       date: "2025.08",
       description:
         "Analyzed 5,700+ YouTube comments on Taylor Swift’s engagement using Gemini LLM with ELM theory. Explored sentiment evolution, persuasion pathways, and herding effects in digital discourse.",
-      skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
+      skills: [
+        "Python",
+        "YouTube API",
+        "Gemini API",
+        "ELM Theory",
+        "Sentiment Analysis",
+      ],
       status: "Completed",
       type: "project",
     },
@@ -65,6 +85,37 @@ export default function DataPage() {
       description:
         "Univariate & multivariate forecasting (ARIMA+ feature signals) to explore AI-cycle dynamics on NVDA price.",
       skills: ["Python", "Time Series", "ARIMA", "Semiconductor Industry"],
+      status: "Completed",
+      type: "course",
+    },
+    {
+      slug: "youtube-ai-content-strategy",
+      title: "YouTube AI Content Strategy Optimization",
+      date: "2025.10",
+      description:
+        "Built a data-driven posting strategy for AI creators by modeling 3,143 videos across 80+ channels. Identified optimal time-slot × channel-scale combinations and estimated ~10% overall view lift by shifting posting windows.",
+      skills: ["Python", "SQL", "KMeans", "Clustering", "OLS", "Causal Thinking"],
+      status: "Completed",
+      type: "project",
+    },
+    {
+      slug: "education-experience-earnings-model",
+      title: "Education vs Experience: Earnings Model Comparison",
+      date: "2025 S2",
+      description:
+        "Compared multiple regression specifications and nonlinear forecasting models to evaluate the relative impact of education and work experience on earnings. Tested extended models to reduce omitted-variable bias.",
+      skills: ["Regression", "Forecasting", "Econometrics", "Model Evaluation"],
+      status: "Completed",
+      type: "course",
+    },
+    
+    {
+      slug: "wine-quality-analysis",
+      title: "Wine Quality Analysis: Key Drivers of Perceived Quality (Red vs White)",
+      date: "2025 S2",
+      description:
+        "Analyzed UCI Vino Verde wine data (white + red) to identify key physicochemical drivers of sensory quality. Performed assumption checks, log transforms, model selection (stepwise/exhaustive), and stability validation (VIP + Adaptive Fence).",
+      skills: ["R", "Regression", "Model Selection", "AIC/BIC", "Bootstrap", "VIP"],
       status: "Completed",
       type: "course",
     },
@@ -81,8 +132,7 @@ export default function DataPage() {
     },
     {
       slug: "data1x01-study",
-      title:
-        "The Study Behaviours and Expectations of DATA1X01 Students",
+      title: "The Study Behaviours and Expectations of DATA1X01 Students",
       date: "2024 S2",
       description:
         "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
@@ -97,7 +147,14 @@ export default function DataPage() {
       date: "2024 S2",
       description:
         "Exploratory analysis on employer types and income distributions across Australian regions.",
-      skills: ["EDA", "Gradient Boosting", "Random Forest", "KNN", "Naive Bayes", "Regression"],
+      skills: [
+        "EDA",
+        "Gradient Boosting",
+        "Random Forest",
+        "KNN",
+        "Naive Bayes",
+        "Regression",
+      ],
       status: "Completed",
       type: "course",
     },
@@ -130,7 +187,6 @@ export default function DataPage() {
       type: "course",
     },
 
-    // In-progress / planned
     {
       slug: "apmcm-2024",
       title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
@@ -157,7 +213,13 @@ export default function DataPage() {
       date: "2025.08",
       description:
         "Analyze order-level dataset; cluster consumer segments, model delivery-time drivers, and estimate promo impact with causal inference.",
-      skills: ["Python", "Pandas", "Data Visualization", "Clustering", "Causal Inference"],
+      skills: [
+        "Python",
+        "Pandas",
+        "Data Visualization",
+        "Clustering",
+        "Causal Inference",
+      ],
       status: "In Progress",
       type: "project",
     },
@@ -185,12 +247,20 @@ export default function DataPage() {
 
   const filtered = items.filter((p) => {
     const q = search.trim().toLowerCase();
-    if (!q) return true;
-    return (
+
+    const matchSearch =
+      !q ||
       p.title.toLowerCase().includes(q) ||
       p.description.toLowerCase().includes(q) ||
-      p.skills.some((s) => s.toLowerCase().includes(q))
-    );
+      p.skills.some((s) => s.toLowerCase().includes(q));
+
+    const matchTags =
+      selectedTags.length === 0 ||
+      selectedTags.every((tag) =>
+        p.skills.some((s) => s.toLowerCase() === tag.toLowerCase())
+      );
+
+    return matchSearch && matchTags;
   });
 
   return (
@@ -219,15 +289,48 @@ export default function DataPage() {
               onChange={(e) => setSearch(e.target.value)}
               className="mx-auto max-w-md border-blue-400/30 bg-black/30 text-gray-100 placeholder:text-gray-400 backdrop-blur-md"
             />
+
+            {/* 关键词 Tag 快捷筛选 */}
+            <div className="mt-4 flex flex-wrap justify-center gap-2">
+              {featuredTags.map((tag) => {
+                const active = selectedTags.includes(tag);
+                return (
+                  <button
+                    key={tag}
+                    onClick={() =>
+                      setSelectedTags((prev) =>
+                        prev.includes(tag)
+                          ? prev.filter((t) => t !== tag)
+                          : [...prev, tag]
+                      )
+                    }
+                    className={`rounded-full border px-3 py-1 text-xs backdrop-blur-md transition-all ${
+                      active
+                        ? "border-blue-300/60 bg-blue-500/30 text-blue-100 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+                        : "border-blue-400/30 bg-black/25 text-gray-200 hover:bg-black/35"
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                );
+              })}
+
+              {selectedTags.length > 0 && (
+                <button
+                  onClick={() => setSelectedTags([])}
+                  className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
           </div>
 
           {/* 等高网格 */}
           <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                {/* 卡片：flex 列布局 + 徽章悬浮 */}
                 <Card className="relative flex h-full flex-col cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
-                  {/* 右上角徽章（不占空间） */}
                   {project.award && (
                     <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 shadow-sm backdrop-blur-sm">
                       <AwardIcon className="h-3 w-3 text-amber-300" />
@@ -235,7 +338,6 @@ export default function DataPage() {
                     </span>
                   )}
 
-                  {/* 有徽章时给 Header 预留空间 */}
                   <CardHeader className={`pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
                       {project.type === "competition" && project.logo && (
@@ -249,7 +351,6 @@ export default function DataPage() {
                       )}
 
                       <div className="min-w-0">
-                        {/* 标题：两行截断 + 平衡换行 + 固定高度 */}
                         <CardTitle
                           className="mb-1 min-h-[3.25rem] text-lg leading-snug text-gray-100 line-clamp-2"
                           style={{ textWrap: "balance" }}
@@ -257,7 +358,6 @@ export default function DataPage() {
                           {project.title}
                         </CardTitle>
 
-                        {/* 日期一行显示 */}
                         <div className="mt-1 flex items-center gap-2 whitespace-nowrap text-sm text-gray-400">
                           {project.type === "competition" ? (
                             <Trophy className="h-4 w-4" />
@@ -291,7 +391,6 @@ export default function DataPage() {
                       )}
                     </div>
 
-                    {/* 底部对齐 */}
                     <div className="mt-auto flex items-center justify-between">
                       <Badge
                         className={
