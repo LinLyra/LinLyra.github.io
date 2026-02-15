@@ -9,16 +9,29 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Github, ExternalLink } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
+type Meta = {
+  slug: string;
+  title: string;
+  institution: string;
+  practice: string;
+  term: string;
+  status: "Completed" | "In Progress" | "Planned";
+  tags: string[];
+  notes: string[];
+  links?: { github?: string; demo?: string };
+};
+
 export default function YouTubeAIContentStrategyPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  const meta = {
+  const meta: Meta = {
     slug: "youtube-ai-content-strategy",
     title: "YouTube AI Content Strategy Optimization",
     institution: "Personal Project",
-    practice: "Content Analytics · Clustering · Causal-style Estimation · Posting Strategy",
+    practice:
+      "Content Analytics · Clustering · Causal-style Estimation · Posting Strategy",
     term: "2025.10",
-    status: "Completed" as const,
+    status: "Completed",
     tags: [
       "Python",
       "SQL",
@@ -30,10 +43,11 @@ export default function YouTubeAIContentStrategyPage() {
       "Creator Strategy",
       "A/B-ready Insights",
     ],
-
+    // 有图就放到 public/data/ 下，比如 /data/youtube_ai_1.png
     notes: [],
-    links: {
-    },
+    // 没有链接就保持 undefined；有链接再填
+    links: undefined,
+    // links: { github: "https://github.com/xxx", demo: "https://xxx.com" },
   };
 
   const overview = `Goal: help AI content creators and platform recommenders solve “when to post” and “what to post” under high volatility in early performance.
