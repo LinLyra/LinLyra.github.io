@@ -9,17 +9,29 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
+type Meta = {
+  slug: string;
+  title: string;
+  institution: string;
+  practice: string;
+  term: string;
+  status: "Completed" | "In Progress" | "Planned";
+  tags: string[];
+  notes: string[];
+  reportPdf?: string; // ✅ 关键：加上这个
+};
+
 export default function WineQualityAnalysisPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  const meta = {
+  const meta: Meta = {
     slug: "wine-quality-analysis",
     title: "Wine Quality Analysis: Key Drivers of Perceived Quality",
     institution: "Course Project · University of Sydney",
     practice:
       "Statistical Modeling · Model Selection · Robustness & Stability Checks",
     term: "2025 S2",
-    status: "Completed" as const,
+    status: "Completed",
     tags: [
       "R",
       "Multiple Regression",
@@ -30,10 +42,13 @@ export default function WineQualityAnalysisPage() {
       "Stability / Robustness",
       "Interpretation",
     ],
-    // 可选：把图放到 public/data/ 下，例如 /data/wine_1.png
-    // 没有图就写 []，按钮会自动消失
+    // 没图就改成 []
     notes: ["/data/wine_1.png", "/data/wine_2.png"],
-    // 可选：把你的 PDF 放到 public/data/Wine_Quality_Analysis.pdf
+
+    // ✅ 有 PDF 就放 public/data/Wine_Quality_Analysis.pdf
+    // 没有就先设为 undefined（按钮会自动不显示）
+    reportPdf: undefined,
+    // reportPdf: "/data/Wine_Quality_Analysis.pdf",
   };
 
   const overview = `Goal: identify the key physicochemical drivers behind wine quality ratings, and build interpretable models that generalize.
@@ -207,3 +222,4 @@ If iterating further, I’d:
     </div>
   );
 }
+
