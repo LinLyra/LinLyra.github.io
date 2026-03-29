@@ -44,21 +44,15 @@ export default function ProductConsultingInternPage() {
   - Supported deployment through training, permission configuration, and scenario-based testing in real-world settings.`;
 
   const takeaways = `• AI product design starts with human understanding: successful systems depend on aligning user capability, context, and cognitive load, not just model performance.
-
 • Capability-aware design matters: designing for elderly users versus young learners showed that usability changes dramatically with digital literacy, decision behavior, and interaction patterns.
-
 • Effective AI products require systems thinking: strong solutions come from integrating knowledge base design, prompt logic, workflow mapping, and access control into one coherent experience.
-
 • Reusable knowledge systems outperform one-off setups: modularizing content into structured knowledge bases significantly improves scalability, consistency, and long-term maintainability.
-
 • Real product consulting is an end-to-end loop: stakeholder interviews → workflow mapping → solution design → testing → training → iteration. Adoption depends as much on alignment and enablement as on technology.
-
 • The hardest part is not building the bot, but making it understandable, trustworthy, and usable for different groups in real-world contexts.
-
 • Through training and co-building (“vibe coding”), I also observed how individuals differ in learning speed, abstraction ability, and execution, which deepened my interest in capability-based evaluation beyond resumes.`;
 
   const badgeClass =
-    meta.status === "In Progress"
+    meta.status === "Completed"
       ? "bg-green-600/25 text-green-100 border-green-400/40"
       : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
 
