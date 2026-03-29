@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
@@ -8,48 +7,58 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar } from "lucide-react";
 
-export default function AIDevelopmentInternPage() {
+export default function AIProductResearcherPage() {
   const meta = {
-    slug: "ai-development-internship",
-    title: "AI Development (Internship) — GenAI Assistants for Community Services",
+    slug: "ai-product-researcher",
+    title: "AI Product Researcher — GenAI Systems for Community Services",
     institution: "A Better Community",
-    practice: "Product Research · Interview Intake · Prompt/Flows · Data & Guardrails",
+    practice:
+      "Product Research · User Understanding · AI Systems Design · Capability Evaluation",
     term: "2025.03 — Present",
     status: "In Progress" as const,
     tags: [
-      "User Interviews",
-      "Screening/Triage",
-      "Prompt Design",
-      "Agent Flows",
-      "RAG/Indexing",
-      "Localization",
-      "Quality & Guardrails",
-      "Change Management",
+      "User Research",
+      "Capability Assessment",
+      "Prompt & Flow Design",
+      "RAG Systems",
+      "Knowledge Structuring",
+      "Behavior Analysis",
+      "AI Product Strategy",
+      "Human-Centered AI",
     ],
   };
 
-  const whatIDid = `Two lines of work, one product mindset:
+  const whatIDid = `Focused on understanding how AI systems interact with real-world users and organizational workflows, especially in low-digital-literacy contexts:
 
-• Interview Intake & Triage
-  - Built a structured intake for client interviews: eligibility, urgency, domain, and privacy dimensions.
-  - Operationalized scoring rubrics and routing rules so requests auto-triage to the right assistant or human queue.
-  - Turned interview insights into personas, intents, and slot models to drive conversation design.
+• Research Track 1: User Capability & Interaction Modeling
+  - Designed structured interview frameworks to assess user capability (digital literacy, comprehension, decision behavior) across different groups (e.g., elderly vs. educators).
+  - Translated qualitative interview data into personas, intent structures, and behavioral patterns to guide AI system design.
+  - Identified key gaps between “what users can do” vs. “what AI expects,” informing interaction simplification strategies.
 
-• Assistant Design & Delivery
-  - Designed multi-turn flows (greeting → discovery → task → confirmation → handoff) with clear fallbacks and escalation.
-  - Authored reusable prompt templates and tool-use protocols; added retrieval hooks and small knowledge indices.
-  - Provided bilingual (EN/ZH) phrasing guidance and a terminology/glossary layer to improve clarity for seniors and non-native speakers.
-  - Unblocked technical issues across the team: RAG recall gaps, latency spikes, hallucination hotspots, and role/permission config.
-  - Instrumented logs and lightweight analytics (success, deflection, fallback rate, escalation) and wrote runbooks for ops.
-  - Delivered demo scripts and admin training so non-technical staff can configure scenarios and permissions safely.`;
+• Research Track 2: AI System Design & Knowledge Structuring
+  - Designed multi-turn interaction frameworks (discovery → intent clarification → execution → fallback → handoff) to improve task success and reduce confusion.
+  - Built structured knowledge systems combining text, video, and retrieval pipelines to support consistent and scalable responses.
+  - Developed prompt strategies, guardrails, and role definitions to improve reliability and reduce hallucination risks.
+  - Diagnosed system-level issues such as retrieval gaps, latency, and response inconsistency, proposing iterative improvements.
 
-  const takeaways = `• Product over model: start from user goals and constraints; flows, tone, and fallbacks make the experience—not model selection.
-• Measure adoption, not just accuracy: task success, first-response resolution, fallback/escation rate, and time-to-value guided iterations.
-• Guardrails win trust: role-based access, retrieval boundaries, refusal styles, and human-handoff rules reduced operational risk.
-• Language and accessibility matter: bilingual prompts, simpler sentence patterns, and a shared glossary improved comprehension.
-• Delivery loop: interviews → flow/prototype → pilot → analytics/QA → enablement. This kept stakeholders aligned and the bot useful.`;
+• Research Track 3: Deployment, Adoption & Organizational Integration
+  - Studied real-world deployment challenges including permission control, workflow integration, and operational alignment.
+  - Designed onboarding, training materials, and scenario-based demos to enable non-technical teams to use AI systems effectively.
+  - Observed user interaction data and feedback loops to refine system behavior and improve adoption outcomes.
 
-  const hasNotes = false;
+• Research Track 4: AI Learning & Capability Development
+  - Participated as a technical mentor in AI co-learning (“vibe coding”) programs, supporting participants in building 0→1 AI applications.
+  - Observed differences in learning patterns, abstraction ability, and execution across participants, forming early insights into capability-based evaluation.`;
+
+  const takeaways = `• AI is ultimately a human problem, not a technical one: the biggest gap is not model capability, but the mismatch between system design and human understanding.
+• Capability-aware design is critical: users differ significantly in cognitive load tolerance, abstraction ability, and interaction behavior. Systems must adapt to people, not the other way around.
+• From “feature building” to “system thinking”: effective AI products require integrating prompts, workflows, knowledge systems, and guardrails into one coherent structure.
+• Knowledge structuring is more valuable than model tuning: well-organized, modular knowledge systems consistently outperform ad-hoc or prompt-only solutions.
+• Real-world deployment is a socio-technical problem: adoption depends on trust, clarity, and usability as much as on system performance.
+• Interviews are not just for requirements — they reveal capability: user behavior, confusion patterns, and decision-making processes are strong signals of underlying ability.
+• Early signals of talent are observable in learning environments: through AI co-building, differences in learning speed, abstraction, and execution become visible beyond traditional credentials.
+• Bridging AI and people requires interdisciplinary thinking: combining product logic, behavioral understanding, and technical intuition is key to designing meaningful systems.`;
+
   const badgeClass =
     meta.status === "In Progress"
       ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
@@ -61,7 +70,6 @@ export default function AIDevelopmentInternPage() {
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* Top bar */}
           <div className="flex items-center justify-between">
             <Link href="/product">
               <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-gray-100 hover:bg-orange-500/30">
@@ -72,7 +80,6 @@ export default function AIDevelopmentInternPage() {
             <div />
           </div>
 
-          {/* Meta card (orange theme) */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span
@@ -107,22 +114,20 @@ export default function AIDevelopmentInternPage() {
             <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
-          {/* What I Worked On */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               What I Worked On
             </h2>
-            <div className="whitespace-pre-wrap font-sans text-base leading-relaxed text-gray-200">
+            <div className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">
               {whatIDid}
             </div>
           </section>
 
-          {/* Key Takeaways */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Key Takeaways
             </h2>
-            <div className="whitespace-pre-wrap font-sans text-base leading-relaxed text-gray-200">
+            <div className="whitespace-pre-wrap text-base leading-relaxed text-gray-200">
               {takeaways}
             </div>
           </section>
@@ -131,4 +136,3 @@ export default function AIDevelopmentInternPage() {
     </div>
   );
 }
-
