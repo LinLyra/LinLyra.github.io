@@ -15,7 +15,7 @@ export default function ProductConsultingInternPage() {
     practice:
       "AI Product Consulting · User Research · Workflow Design · Knowledge Systems · Rollout & Training",
     term: "2025.03 — 2025.08",
-    status: "In Progress" as const,
+    status: "Completed" as const,
     tags: [
       "Product Discovery",
       "User Research",
