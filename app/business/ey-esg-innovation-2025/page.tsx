@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function EyEsgInnovationPage() {
@@ -25,22 +25,50 @@ export default function EyEsgInnovationPage() {
     tags: ["ESG", "AI + Luxury", "Luxury Supply Chain"],
   };
 
-  const overview = `Data-driven sustainability challenge focused on AI-enabled ESG strategies for luxury supply chains.
-We framed circular-fashion opportunities, mapped LVMH-style governance and data gaps, and proposed an AI × ESG roadmap
-covering digital product passports, Scope-3 visibility, and structured KPI dashboards aligned with CSRD-style disclosure.`;
+  const overview = `This project tackled a data-driven ESG transformation challenge for luxury supply chains, with a focus on translating sustainability strategy into executable systems.
+
+Rather than treating ESG as a reporting exercise, we reframed it as a system design problem. The key challenge was not the lack of ambition, but the lack of structured, reliable, and traceable data infrastructures capable of supporting disclosure, decision-making, and long-term governance.
+
+Starting from the luxury sector's real constraints—fragmented supplier networks, weak Scope-3 visibility, and rising CSRD-style disclosure pressure—we designed an AI × ESG solution architecture that could connect strategy with operations.
+
+Our proposal integrated:
+• Digital Product Passports (DPP) for item-level traceability
+• A structured Scope-3 data model across multi-tier suppliers
+• A centralized indicator warehouse for ESG metrics
+• KPI dashboards for disclosure readiness and management visibility
+• Governance and audit mechanisms to support scalable rollout
+
+We also mapped capability gaps through an LVMH-style operating lens and proposed a phased implementation path from pilot deployment to enterprise-scale adoption.
+
+The final output was not just a conceptual ESG framework, but a system-level roadmap that made sustainability measurable, operational, and implementation-ready.`;
 
   const whatIDid: string[] = [
-    "Led a three-member team to scope the brief, align roles, and time-box deliverables under competition cadence.",
-    "Framed the problem around circular fashion and luxury supply chain traceability; clarified KPIs and decision cadence.",
-    "Designed an AI × ESG architecture: Digital Product Passport (DPP), Scope-3 data model, indicator warehouse, and audit trail.",
-    "Converted ESG theory into operations: ‘objective → risk → control → data source → metric’ with demo dashboards.",
-    "Built a concise pitch outlining adoption path (pilot brands → data connectors → governance & audit), and Q&A playbook.",
+    "Led a three-member team under a compressed competition timeline, defining the project scope, coordinating workstreams, and driving the full process from problem framing to final pitch delivery.",
+    "Reframed the brief from a generic ESG innovation topic into a concrete systems problem, identifying traceability, Scope-3 visibility, and indicator reliability as the core bottlenecks in luxury supply chain transformation.",
+    "Structured the solution around a practical AI × ESG architecture, covering Digital Product Passport (DPP), supplier-level data collection logic, KPI warehousing, governance workflows, and audit trail design.",
+    "Designed an operational logic chain of 'objective → risk → control → data source → metric', translating abstract ESG goals into measurable and monitorable execution mechanisms.",
+    "Defined KPI dimensions aligned with disclosure-oriented standards, while ensuring the indicators remained useful for internal management rather than becoming purely compliance-driven outputs.",
+    "Built a phased adoption roadmap covering pilot brands, supplier data onboarding, system integration, governance ownership, and scalable audit mechanisms, so that the proposal could be defended as realistic rather than aspirational.",
+    "Led synthesis and storytelling for the final presentation, turning a cross-disciplinary solution involving ESG, supply chain, and data systems into a concise narrative understandable to judges from mixed backgrounds.",
+    "Prepared the Q&A playbook and defended core design choices under time pressure, including why DPP was prioritized, how data reliability should be staged, and how governance should evolve alongside technical deployment."
   ];
 
-  const reflection = `Semifinalist as Team Lead taught me to translate ESG ambitions into data systems that actually ship.
-Two lessons stood out. First, strategy must start with data reliability: without unified indicators and a clear Scope-3 model,
-AI scoring is theater. Second, packaging matters—judges want a repeatable path from pilot to rollout with controls, not just slogans.
-I also learned to balance depth and clarity for a mixed audience (ESG, ops, data), and to defend choices under time pressure—why DPP, why those KPIs, why that governance flow. This experience sharpened my ability to lead an outcome-driven, evidence-based pitch.`;
+  const reflection = `Leading this project as Team Lead and advancing to the semifinal stage strengthened my ability to turn strategic ideas into structured systems.
+
+The biggest lesson was that ESG transformation is fundamentally a data and operating model challenge. Without reliable data pipelines, unified indicators, and clear governance ownership, even the strongest sustainability ambition remains presentation-level rather than executable. In that sense, the project taught me to look beneath the strategic narrative and ask a more important question: what system would actually make this possible?
+
+A second lesson was the importance of implementation logic. Judges responded less to abstract vision and more to whether the solution could realistically be adopted: how information is captured, where controls sit, how dashboards are fed, and how governance scales from pilot to rollout. That pushed me to think not only as a strategist, but also as a system designer.
+
+I also developed a sharper sense of communication under complexity. This project required translating across multiple languages at once—ESG disclosure, luxury operations, and data architecture—while still keeping the pitch clear, concise, and decision-oriented. Choosing what to simplify, what to emphasize, and what to defend became as important as the solution itself.
+
+Overall, this experience sharpened my ability to lead through ambiguity, structure high-complexity business problems, and design solutions that bridge strategy, data, and execution in a way that feels both credible and actionable.`;
+
+  const keyTakeaways: string[] = [
+    "Strategy is only as strong as the data system beneath it.",
+    "Good ESG design must satisfy both compliance logic and operational usability.",
+    "Strong pitches do not just present ideas—they prove implementation pathways.",
+    "Cross-functional problem solving requires both structured thinking and narrative clarity."
+  ];
 
   const hasNotes = meta.notes.length > 0;
   const statusPill =
@@ -54,7 +82,6 @@ I also learned to balance depth and clarity for a mixed audience (ESG, ops, data
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-         
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30">
@@ -88,10 +115,12 @@ I also learned to balance depth and clarity for a mixed audience (ESG, ops, data
                 </span>
               )}
             </div>
+
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
               </h1>
+
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">
                 <span>{meta.institution}</span>
                 <span>•</span>
@@ -100,6 +129,7 @@ I also learned to balance depth and clarity for a mixed audience (ESG, ops, data
                 </span>
                 <span>• {meta.role}</span>
               </div>
+
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
                   <Badge
@@ -110,12 +140,13 @@ I also learned to balance depth and clarity for a mixed audience (ESG, ops, data
                   </Badge>
                 ))}
               </div>
+
               <p className="text-gray-200">{meta.practice}</p>
             </div>
+
             <div className="h-1 w-full bg-gradient-to-r from-green-500/20 via-emerald-500/20 to-green-500/20" />
           </Card>
 
-          {/* Overview */}
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               Project Overview
@@ -125,7 +156,6 @@ I also learned to balance depth and clarity for a mixed audience (ESG, ops, data
             </p>
           </section>
 
-          {/* What I Did */}
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               What I Did
@@ -139,7 +169,19 @@ I also learned to balance depth and clarity for a mixed audience (ESG, ops, data
             </ul>
           </section>
 
-          {/* Reflection */}
+          <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
+              Key Takeaways
+            </h2>
+            <ul className="list-disc space-y-3 pl-5 text-gray-200">
+              {keyTakeaways.map((line, i) => (
+                <li key={i} className="leading-relaxed">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </section>
+
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               Reflection
