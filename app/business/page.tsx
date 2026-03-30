@@ -329,7 +329,6 @@ export default function BusinessPage() {
       date: "2025.04",
       type: "sustainability",
       logo: "/competition/eylogo.png",
-      placement: "Semifinalist",
       description:
         "Built ESG strategy recommendations around luxury supply chains, with a focus on sustainability risks, innovation opportunities, and data-backed transformation.",
       summary:
@@ -446,7 +445,7 @@ export default function BusinessPage() {
   const q = searchTerm.trim().toLowerCase();
 
   const filtered = useMemo(() => {
-    const result = businessItems.filter((item) => {
+    return businessItems.filter((item) => {
       const haystack = [
         item.title,
         item.role ?? "",
@@ -469,13 +468,7 @@ export default function BusinessPage() {
 
       return searchHit && typeHit;
     });
-
-    return result.sort((a, b) => {
-      if (a.pinned && !b.pinned) return -1;
-      if (!a.pinned && b.pinned) return 1;
-      return (b.date ?? "").localeCompare(a.date ?? "");
-    });
-  }, [q, selectedTypes]);
+  }, [businessItems, q, selectedTypes]);
 
   const toggleType = (t: BusinessType) => {
     setSelectedTypes((prev) =>
@@ -575,7 +568,7 @@ export default function BusinessPage() {
                             <img
                               src={item.logo || item.image || "/placeholder.svg"}
                               alt={`${item.title} logo`}
-                              className="max-h-[2.5rem] max-w-[2.5rem] object-contain"
+                              className="h-full w-full object-cover"
                               onError={(e) => {
                                 e.currentTarget.src = "/placeholder.svg";
                               }}
