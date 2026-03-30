@@ -60,6 +60,7 @@ export default function BusinessPage() {
       type: "internship",
       pinned: true,
       logo: "/experience/mercer.png",
+      placement: "Intern",
       description:
         "Talent strategy and people analytics work across competency modeling, talent mapping, and succession-related decision support.",
       summary:
@@ -90,6 +91,7 @@ export default function BusinessPage() {
       type: "internship",
       pinned: true,
       logo: "/experience/abclogo.png",
+      placement: "Intern",
       description:
         "AI product consulting for nonprofit clients, spanning stakeholder interviews, low-code AI platform selection, workflow design, deployment, and training.",
       summary:
@@ -120,7 +122,7 @@ export default function BusinessPage() {
       type: "consulting",
       pinned: true,
       logo: "/experience/launchpad.png",
-      placement: "Go-to-Market",
+      placement: "Co-founder",
       description:
         "Built a go-to-market competition mechanism to help hackathon and startup teams validate products, connect with partners, and move toward market readiness.",
       summary:
@@ -141,14 +143,14 @@ export default function BusinessPage() {
       ],
       tags: ["Launchpad", "AI Community", "Builder Ecosystem"],
     },
-     {
+    {
       slug: "kpmg-bluebird-it-audit",
       title: "KPMG Bluebird IT Audit Challenge",
       event: "KPMG",
       date: "2025.08",
       type: "competition",
       logo: "/competition/kpmglogo.png",
-      placement: "finalist",
+      placement: "Finalist",
       description:
         "Analyzed IT audit cases in the automotive-related retail and POS environment, focusing on process risk, system control, and audit logic.",
       summary:
@@ -164,7 +166,7 @@ export default function BusinessPage() {
       ],
       tags: ["IT Audit", "POS", "Risk"],
     },
-     {
+    {
       slug: "net-zero-challenge-gys",
       title: "Global Youth Summit on Net-Zero Future",
       event: "UNESCO East Asia & GAUC",
@@ -186,7 +188,7 @@ export default function BusinessPage() {
       ],
       tags: ["Climate Action", "Youth Leadership", "Innovation"],
     },
-     {
+    {
       slug: "saiep-management",
       title: "Management Consultant",
       role: "Project Member",
@@ -213,7 +215,6 @@ export default function BusinessPage() {
       ],
       tags: ["Strategy", "Nonprofit", "Growth"],
     },
-    
     {
       slug: "YuanQi-forest-universe-2026",
       title: "YuanQi Forest Universe Challenge 2026",
@@ -258,7 +259,6 @@ export default function BusinessPage() {
       ],
       tags: ["Strategy", "Humanoid Robot", "Commercialization"],
     },
-    
     {
       slug: "mengniu-campus-innovation-2025",
       title: "Mengniu Campus Innovation Challenge 2025",
@@ -322,7 +322,6 @@ export default function BusinessPage() {
       ],
       tags: ["Brand", "Campaign", "Promotion"],
     },
-   
     {
       slug: "ey-esg-innovation-2025",
       title: "EY ESG University Innovation Challenge 2025",
@@ -386,7 +385,6 @@ export default function BusinessPage() {
       ],
       tags: ["ESG", "Valuation", "Dairy"],
     },
-   
     {
       slug: "deloitte-technology",
       title: "Technology · Virtual Experience",
@@ -434,7 +432,6 @@ export default function BusinessPage() {
       ],
       tags: ["Strategy", "Analysis", "Consulting"],
     },
-   
   ];
 
   const allTypes: BusinessType[] = [
@@ -478,7 +475,7 @@ export default function BusinessPage() {
       if (!a.pinned && b.pinned) return 1;
       return (b.date ?? "").localeCompare(a.date ?? "");
     });
-  }, [businessItems, q, selectedTypes]);
+  }, [q, selectedTypes]);
 
   const toggleType = (t: BusinessType) => {
     setSelectedTypes((prev) =>
@@ -571,7 +568,7 @@ export default function BusinessPage() {
                       </div>
                     )}
 
-                    <Card className="h-full min-h-[260px] overflow-hidden border-green-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40 hover:border-green-400/35">
+                    <Card className="flex h-full min-h-[260px] flex-col overflow-hidden border-green-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40 hover:border-green-400/35">
                       <CardHeader className="pb-2">
                         <div className="flex items-start gap-3 pr-10">
                           <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-green-400/20 bg-white/5">
@@ -579,6 +576,9 @@ export default function BusinessPage() {
                               src={item.logo || item.image || "/placeholder.svg"}
                               alt={`${item.title} logo`}
                               className="max-h-[2.5rem] max-w-[2.5rem] object-contain"
+                              onError={(e) => {
+                                e.currentTarget.src = "/placeholder.svg";
+                              }}
                             />
                           </div>
 
@@ -594,7 +594,9 @@ export default function BusinessPage() {
                             )}
 
                             <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">
-                              {item.type === "internship" || item.type === "consulting" || item.type === "strategy" ? (
+                              {item.type === "internship" ||
+                              item.type === "consulting" ||
+                              item.type === "strategy" ? (
                                 <>
                                   <BriefcaseBusiness className="h-4 w-4 shrink-0" />
                                   <span>{item.date ?? ""}</span>
@@ -612,7 +614,7 @@ export default function BusinessPage() {
                         </div>
                       </CardHeader>
 
-                      <CardContent className="flex h-[calc(100%-96px)] flex-col">
+                      <CardContent className="flex flex-1 flex-col">
                         <p className="mb-4 line-clamp-4 text-sm leading-6 text-gray-200">
                           {item.description}
                         </p>
