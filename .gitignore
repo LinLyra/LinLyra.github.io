@@ -1,0 +1,10 @@
+.next/
+out/
+node_modules/
+.pnpm-store/
+.DS_Store
+
+# Next.js/TypeScript generated
+next-env.d.ts
+
+node_modules
