@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -264,7 +265,15 @@ export default function DataPage() {
   });
 
   return (
-    <div className="relative min-h-screen">
+    <div
+      className="relative min-h-screen"
+      style={
+        {
+          ["--pgc-glow-a" as any]: "59 130 246",
+          ["--pgc-glow-b" as any]: "99 102 241",
+        } as React.CSSProperties
+      }
+    >
       <Navigation activeSection="data" onSectionChange={() => {}} />
 
       <div className="relative z-10 p-6 pt-20">
@@ -330,7 +339,7 @@ export default function DataPage() {
           <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                <Card className="relative flex h-full flex-col cursor-pointer border-blue-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40">
+                <PremiumGlassCard className="relative flex h-full flex-col cursor-pointer border border-blue-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(59,130,246,0.10)] hover:border-blue-400/35 hover:bg-black/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
                   {project.award && (
                     <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 shadow-sm backdrop-blur-sm">
                       <AwardIcon className="h-3 w-3 text-amber-300" />
@@ -338,7 +347,7 @@ export default function DataPage() {
                     </span>
                   )}
 
-                  <CardHeader className={`pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
+                  <div className={`pb-2 p-6 ${project.award ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
                       {project.type === "competition" && project.logo && (
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
@@ -351,12 +360,12 @@ export default function DataPage() {
                       )}
 
                       <div className="min-w-0">
-                        <CardTitle
+                        <div
                           className="mb-1 min-h-[3.25rem] text-lg leading-snug text-gray-100 line-clamp-2"
                           style={{ textWrap: "balance" }}
                         >
                           {project.title}
-                        </CardTitle>
+                        </div>
 
                         <div className="mt-1 flex items-center gap-2 whitespace-nowrap text-sm text-gray-400">
                           {project.type === "competition" ? (
@@ -368,9 +377,9 @@ export default function DataPage() {
                         </div>
                       </div>
                     </div>
-                  </CardHeader>
+                  </div>
 
-                  <CardContent className="flex flex-1 flex-col">
+                  <div className="flex flex-1 flex-col p-6 pt-0">
                     <p className="mb-4 line-clamp-3 text-sm text-gray-200">
                       {project.description}
                     </p>
@@ -413,8 +422,8 @@ export default function DataPage() {
                         )}
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </PremiumGlassCard>
               </Link>
             ))}
           </div>

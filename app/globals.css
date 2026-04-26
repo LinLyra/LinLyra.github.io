@@ -2,6 +2,175 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .cosmic-heading {
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 18px rgba(56, 189, 248, 0.10), 0 0 40px rgba(99, 102, 241, 0.06);
+  }
+
+  .cosmic-heading .cosmic-gradient {
+    background-image: linear-gradient(90deg, rgba(147,197,253,1), rgba(99,102,241,1), rgba(236,72,153,0.95));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .reveal {
+    --reveal-delay: 0ms;
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    filter: blur(2px);
+    transition:
+      opacity 700ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay),
+      transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay),
+      filter 700ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay);
+    will-change: opacity, transform, filter;
+  }
+
+  .reveal--up {
+    transform: translate3d(0, 18px, 0);
+  }
+
+  .reveal--scale {
+    transform: translate3d(0, 10px, 0) scale(0.985);
+  }
+
+  .reveal--soft {
+    transform: translate3d(0, 10px, 0) scale(0.992);
+    filter: blur(1.5px);
+  }
+
+  .reveal--shown {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal--up,
+    .reveal--scale,
+    .reveal--soft {
+      opacity: 1 !important;
+      transform: none !important;
+      filter: none !important;
+      transition: none !important;
+    }
+  }
+
+  .premium-glass-card {
+    --pgc-rx: 0deg;
+    --pgc-ry: 0deg;
+    --pgc-mx: 50%;
+    --pgc-my: 50%;
+    --pgc-glow-a: 147 197 253; /* sky-300 */
+    --pgc-glow-b: 99 102 241;  /* indigo-500 */
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition: transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+      background-color 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transform: perspective(1100px) rotateX(var(--pgc-rx)) rotateY(var(--pgc-ry));
+  }
+
+  .premium-glass-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: radial-gradient(
+      800px circle at var(--pgc-mx) var(--pgc-my),
+      rgba(var(--pgc-glow-a) / 0.18),
+      rgba(var(--pgc-glow-b) / 0.08) 35%,
+      rgba(0, 0, 0, 0) 60%
+    );
+    opacity: 0;
+    transition: opacity 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    pointer-events: none;
+  }
+
+  .premium-glass-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0) 35%),
+      radial-gradient(600px circle at var(--pgc-mx) var(--pgc-my), rgba(255,255,255,0.10), rgba(255,255,255,0) 55%);
+    mix-blend-mode: screen;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  .premium-glass-card .premium-glass-noise {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='120' height='120' filter='url(%23n)' opacity='.55'/></svg>");
+    background-size: 140px 140px;
+  }
+
+  .premium-glass-card .premium-glass-meteor {
+    position: absolute;
+    top: -40%;
+    left: -80%;
+    width: 160%;
+    height: 220%;
+    transform: translate3d(-18%, -12%, 0) rotate(24deg);
+    opacity: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(var(--pgc-glow-a) / 0.10) 40%,
+      rgba(255, 255, 255, 0.22) 50%,
+      rgba(var(--pgc-glow-b) / 0.12) 60%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(0.2px);
+  }
+
+  .premium-glass-card:hover {
+    transform: perspective(1100px) rotateX(var(--pgc-rx)) rotateY(var(--pgc-ry))
+      translateY(-6px);
+  }
+
+  .premium-glass-card:hover::before {
+    opacity: 1;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .premium-glass-card:hover .premium-glass-meteor {
+      opacity: 1;
+      animation: pgc-meteor 900ms cubic-bezier(0.22, 0.9, 0.2, 1) both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+    .premium-glass-card {
+      transform: none !important;
+    }
+    .premium-glass-card::before,
+    .premium-glass-card::after,
+    .premium-glass-card .premium-glass-meteor {
+      display: none;
+    }
+  }
+}
+
+@keyframes pgc-meteor {
+  from {
+    transform: translate3d(-22%, -16%, 0) rotate(24deg);
+  }
+  to {
+    transform: translate3d(22%, 16%, 0) rotate(24deg);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

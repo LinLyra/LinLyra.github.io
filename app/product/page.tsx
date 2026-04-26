@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -182,7 +183,15 @@ export default function ProductPage() {
   };
 
   return (
-    <div className="relative min-h-screen">
+    <div
+      className="relative min-h-screen"
+      style={
+        {
+          ["--pgc-glow-a" as any]: "245 158 11",
+          ["--pgc-glow-b" as any]: "251 146 60",
+        } as React.CSSProperties
+      }
+    >
       <Navigation activeSection="product" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-20 p-6">
@@ -240,12 +249,13 @@ export default function ProductPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
               <Link key={p.slug} href={`/product/${p.slug}`} className="block">
-                <Card
+                <PremiumGlassCard
                   className="relative min-h-[220px] cursor-pointer overflow-hidden
-                             border-amber-400/20 bg-black/30 backdrop-blur-md
-                             transition-all duration-300 hover:bg-black/40"
+                             border border-amber-400/20 bg-black/25 backdrop-blur-xl
+                             shadow-[0_0_26px_rgba(245,158,11,0.10)]
+                             hover:bg-black/30 hover:border-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]"
                 >
-                  <CardHeader className="pb-2">
+                  <div className="pb-2 p-6">
 
                     <div className="flex items-start justify-between gap-3">
         
@@ -265,9 +275,9 @@ export default function ProductPage() {
                         )}
 
                         <div>
-                          <CardTitle className="text-lg leading-snug text-gray-100">
+                          <div className="text-lg font-semibold leading-snug text-gray-100">
                             {p.title}
-                          </CardTitle>
+                          </div>
                           <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">
                             {metaIconFor(p)}
                             <span>{p.date ?? ""}</span>
@@ -284,9 +294,9 @@ export default function ProductPage() {
                         </div>
                       )}
                     </div>
-                  </CardHeader>
+                  </div>
 
-                  <CardContent>
+                  <div className="p-6 pt-0">
                     <p className="mb-4 line-clamp-3 text-sm text-gray-200">{p.description ?? ""}</p>
                     <div className="flex flex-wrap gap-1">
                       {((p.skills && p.skills.length > 0 ? p.skills : p.tags) ?? [])
@@ -300,8 +310,8 @@ export default function ProductPage() {
                           </Badge>
                         ))}
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </PremiumGlassCard>
               </Link>
             ))}
           </div>

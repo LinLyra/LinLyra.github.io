@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { PremiumGlassCard } from "@/components/premium-glass-card"
 
 type Category = "Web" | "Database" | "Data" | "ML" | "Analytics" | "DevOps" | "Cloud" | "Design"
 type Tool = {
@@ -110,11 +111,15 @@ function SkillsSection() {
         {/* Skill chips */}
         <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="flex h-full flex-col border-white/10 bg-white/5 backdrop-blur-md transition hover:bg-white/10">
-              <CardHeader>
-                <CardTitle className="text-xl text-gray-100">{category.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-1">
+            <PremiumGlassCard
+              key={index}
+              tiltMaxDeg={4}
+              className="flex h-full flex-col border border-sky-400/15 bg-white/[0.04] backdrop-blur-xl shadow-[0_0_26px_rgba(56,189,248,0.08)] hover:bg-white/[0.06] hover:border-sky-400/25"
+            >
+              <div className="p-6 pb-2">
+                <div className="text-xl font-semibold text-gray-100">{category.title}</div>
+              </div>
+              <div className="flex-1 p-6 pt-0">
                 <div className="flex flex-wrap items-start gap-2">
                   {category.skills.map((s, i) => (
                     <span key={i} className="rounded-full border border-blue-500/30 bg-blue-500/20 px-3 py-1 text-sm text-blue-200">
@@ -122,8 +127,8 @@ function SkillsSection() {
                     </span>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </PremiumGlassCard>
           ))}
         </div>
 

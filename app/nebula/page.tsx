@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { ArrowLeft, MapPin, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { PremiumGlassCard } from "@/components/premium-glass-card"
 
 type Kind = "Volunteer" | "Networking" | "Talks" | "Workshop"
 
@@ -417,7 +418,15 @@ export default function NebulaPage() {
     )
 
   return (
-    <div className="relative min-h-screen">
+    <div
+      className="relative min-h-screen"
+      style={
+        {
+          ["--pgc-glow-a" as any]: "248 113 113",
+          ["--pgc-glow-b" as any]: "244 63 94",
+        } as React.CSSProperties
+      }
+    >
       <Navigation activeSection="nebula" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-20 p-6">
@@ -479,9 +488,10 @@ export default function NebulaPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered.map((a) => (
-              <Card
+              <PremiumGlassCard
                 key={a.slug}
-                className="bg-black/30 backdrop-blur-md border-red-400/20 hover:bg-black/40 transition-all duration-300 overflow-hidden"
+                tiltMaxDeg={5}
+                className="bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
                 title={a.title}
               >
                 <div className="relative h-32 w-full">
@@ -493,30 +503,30 @@ export default function NebulaPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                 </div>
 
-                <CardHeader>
+                <div className="p-6 pb-2">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-gray-400 text-xs">{a.org}</span>
                     <span className="text-gray-400 text-xs">{a.date}</span>
                   </div>
-                  <CardTitle className="text-gray-100 text-sm mb-1 line-clamp-1" title={a.title}>
+                  <div className="text-gray-100 text-sm font-semibold mb-1 line-clamp-1" title={a.title}>
                     {a.title}
-                  </CardTitle>
+                  </div>
                   {a.location && (
                     <div className="flex items-center gap-1 text-xs text-gray-400">
                       <MapPin className="w-3 h-3" />
                       {a.location}
                     </div>
                   )}
-                </CardHeader>
+                </div>
 
-                <CardContent>
+                <div className="p-6 pt-0">
                   {a.summary && (
                     <p className="text-gray-200 text-xs line-clamp-2">
                       {a.summary}
                     </p>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+              </PremiumGlassCard>
             ))}
           </div>
 

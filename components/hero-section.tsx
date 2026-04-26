@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Github, Linkedin } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export function HeroSection() {
   const scrollToSkills = () => {
@@ -15,7 +16,7 @@ export function HeroSection() {
     <section id="home" className="min-h-screen flex items-center justify-center relative z-10 px-4">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Profile Card */}
-        <div className="flex justify-center">
+        <ScrollReveal className="flex justify-center" variant="soft">
           <Card className="bg-white/10 backdrop-blur-md border-white/20 p-6 text-center max-w-sm">
             <CardContent className="space-y-4">
              
@@ -61,13 +62,13 @@ export function HeroSection() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </ScrollReveal>
 
         {/* Main Content */}
-        <div className="text-center md:text-left space-y-6">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
+        <ScrollReveal className="text-center md:text-left space-y-6" variant="up" delayMs={80}>
+          <h1 className="cosmic-heading text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
             Learn to change the{" "}
-            <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">World.</span>
+            <span className="cosmic-gradient">World.</span>
           </h1>
 
           <p className="text-xl text-gray-200 mb-4">
@@ -121,7 +122,7 @@ export function HeroSection() {
               </Button>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

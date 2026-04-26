@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -480,7 +481,15 @@ export default function BusinessPage() {
     businessItems.some((b) => b.type === t);
 
   return (
-    <div className="relative min-h-screen">
+    <div
+      className="relative min-h-screen"
+      style={
+        {
+          ["--pgc-glow-a" as any]: "34 197 94",
+          ["--pgc-glow-b" as any]: "16 185 129",
+        } as React.CSSProperties
+      }
+    >
       <Navigation activeSection="business" onSectionChange={() => {}} />
 
       <div className="relative z-10 p-6 pt-20">
@@ -561,8 +570,8 @@ export default function BusinessPage() {
                       </div>
                     )}
 
-                    <Card className="flex h-full min-h-[260px] flex-col overflow-hidden border-green-400/20 bg-black/30 backdrop-blur-md transition-all duration-300 hover:bg-black/40 hover:border-green-400/35">
-                      <CardHeader className="pb-2">
+                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden border border-green-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(34,197,94,0.10)] hover:bg-black/30 hover:border-green-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
+                      <div className="pb-2 p-6">
                         <div className="flex items-start gap-3 pr-10">
                           <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-green-400/20 bg-white/5">
                             <img
@@ -576,9 +585,9 @@ export default function BusinessPage() {
                           </div>
 
                           <div className="min-w-0">
-                            <CardTitle className="line-clamp-2 text-lg leading-snug text-gray-100">
+                            <div className="line-clamp-2 text-lg font-semibold leading-snug text-gray-100">
                               {item.title}
-                            </CardTitle>
+                            </div>
 
                             {item.role && (
                               <p className="mt-1 text-sm font-medium text-gray-300">
@@ -605,9 +614,9 @@ export default function BusinessPage() {
                             </div>
                           </div>
                         </div>
-                      </CardHeader>
+                      </div>
 
-                      <CardContent className="flex flex-1 flex-col">
+                      <div className="flex flex-1 flex-col p-6 pt-0">
                         <p className="mb-4 line-clamp-4 text-sm leading-6 text-gray-200">
                           {item.description}
                         </p>
@@ -622,8 +631,8 @@ export default function BusinessPage() {
                             </Badge>
                           ))}
                         </div>
-                      </CardContent>
-                    </Card>
+                      </div>
+                    </PremiumGlassCard>
                   </div>
                 </Link>
               );
