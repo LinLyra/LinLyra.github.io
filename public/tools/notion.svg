@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="192" viewBox="0 0 320 192">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e2e8f0" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#94a3b8" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect x="14" y="14" width="292" height="164" rx="22" fill="url(#g)" stroke="#e2e8f0" stroke-opacity="0.14"/>
+  <rect x="22" y="22" width="276" height="148" rx="18" fill="rgba(0,0,0,0.22)" stroke="rgba(255,255,255,0.10)"/>
+  <text x="160" y="112" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system" font-size="44" font-weight="800" fill="#e2e8f0" fill-opacity="0.92">Notion</text>
+</svg>
+

@@ -570,7 +570,7 @@ export default function BusinessPage() {
                       </div>
                     )}
 
-                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden border border-green-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(34,197,94,0.10)] hover:bg-black/30 hover:border-green-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
+                    <PremiumGlassCard className="flex h-full min-h-[280px] flex-col overflow-hidden border border-green-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(34,197,94,0.10)] hover:bg-black/30 hover:border-green-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
                       <div className="pb-2 p-6">
                         <div className="flex items-start gap-3 pr-10">
                           <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-green-400/20 bg-white/5">
@@ -585,7 +585,7 @@ export default function BusinessPage() {
                           </div>
 
                           <div className="min-w-0">
-                            <div className="line-clamp-2 text-lg font-semibold leading-snug text-gray-100">
+                            <div className="min-h-[3.25rem] line-clamp-2 text-lg font-semibold leading-snug text-gray-100">
                               {item.title}
                             </div>
 
@@ -617,11 +617,11 @@ export default function BusinessPage() {
                       </div>
 
                       <div className="flex flex-1 flex-col p-6 pt-0">
-                        <p className="mb-4 line-clamp-4 text-sm leading-6 text-gray-200">
+                        <p className="mb-4 min-h-[6rem] line-clamp-4 text-sm leading-6 text-gray-200">
                           {item.description}
                         </p>
 
-                        <div className="mt-auto flex flex-wrap gap-1.5">
+                        <div className="mt-auto min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1.5">
                           {visibleBadges.map((tag) => (
                             <Badge
                               key={tag}

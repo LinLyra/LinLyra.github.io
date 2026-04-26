@@ -521,7 +521,7 @@ export default function NebulaPage() {
 
                 <div className="p-6 pt-0">
                   {a.summary && (
-                    <p className="text-gray-200 text-xs line-clamp-2">
+                    <p className="min-h-[2.75rem] text-gray-200 text-xs leading-5 line-clamp-2">
                       {a.summary}
                     </p>
                   )}

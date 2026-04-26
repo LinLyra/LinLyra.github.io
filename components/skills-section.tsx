@@ -17,7 +17,11 @@ type Tool = {
 function LogoTile({ src, name }: { src: string; name: string }) {
   const [broken, setBroken] = useState(false)
   return (
-    <div className="relative aspect-[5/3]" title={name}>
+    <div
+      className="group relative aspect-[5/3] overflow-hidden rounded-xl border border-white/10 bg-white/[0.035] backdrop-blur-xl shadow-[0_0_22px_rgba(56,189,248,0.06)]"
+      title={name}
+    >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_30%_40%,rgba(56,189,248,0.20),transparent_60%),radial-gradient(circle_at_70%_60%,rgba(99,102,241,0.12),transparent_55%)]" />
       {broken ? (
         <div className="flex h-full w-full items-center justify-center text-xs font-semibold text-white/70">
           {name.slice(0, 2).toUpperCase()}
@@ -28,7 +32,7 @@ function LogoTile({ src, name }: { src: string; name: string }) {
           alt={name}
           fill
           sizes="(max-width: 640px) 90px, (max-width: 1024px) 110px, 120px"
-          className="object-contain p-2"
+          className="object-contain p-3 opacity-90 transition duration-500 group-hover:opacity-100 [mix-blend-mode:multiply] [filter:brightness(1.2)_contrast(1.15)_saturate(1.05)]"
           onError={() => setBroken(true)}
         />
       )}
@@ -96,6 +100,19 @@ function SkillsSection() {
 
     // R
     { slug: "r-lang",      name: "R",              category: "Data",      logo: "/tools/r.png" },
+
+    // PM / Consulting essentials (lightweight SVG badges; you can replace later)
+    { slug: "jira",        name: "Jira",           category: "Design",    logo: "/tools/jira.svg" },
+    { slug: "confluence",  name: "Confluence",     category: "Design",    logo: "/tools/confluence.svg" },
+    { slug: "miro",        name: "Miro",           category: "Design",    logo: "/tools/miro.svg" },
+    { slug: "notion",      name: "Notion",         category: "Design",    logo: "/tools/notion.svg" },
+    { slug: "axure",       name: "Axure RP",       category: "Design",    logo: "/tools/axure.svg" },
+    { slug: "excel",       name: "Excel",          category: "Analytics", logo: "/tools/excel.svg" },
+    { slug: "ppt",         name: "PowerPoint",     category: "Analytics", logo: "/tools/powerpoint.svg" },
+
+    // Dev workflow
+    { slug: "git",         name: "Git",            category: "DevOps",    logo: "/tools/git.svg" },
+    { slug: "docker",      name: "Docker",         category: "DevOps",    logo: "/tools/docker.svg" },
   ]
 
   return (

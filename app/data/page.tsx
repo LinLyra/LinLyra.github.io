@@ -354,7 +354,7 @@ export default function DataPage() {
                           <img
                             src={project.logo}
                             alt={`${project.title} logo`}
-                            className="max-h-[2.5rem] max-w-[2.5rem] object-contain"
+                            className="h-full w-full object-contain p-1"
                           />
                         </div>
                       )}
@@ -380,11 +380,11 @@ export default function DataPage() {
                   </div>
 
                   <div className="flex flex-1 flex-col p-6 pt-0">
-                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">
+                    <p className="mb-4 min-h-[4.5rem] line-clamp-3 text-sm leading-6 text-gray-200">
                       {project.description}
                     </p>
 
-                    <div className="mb-4 flex flex-wrap gap-1">
+                    <div className="mb-4 min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
                       {project.skills.slice(0, 4).map((skill) => (
                         <Badge
                           key={skill}
@@ -400,19 +400,7 @@ export default function DataPage() {
                       )}
                     </div>
 
-                    <div className="mt-auto flex items-center justify-between">
-                      <Badge
-                        className={
-                          project.status === "Completed"
-                            ? "border-green-500/30 bg-green-500/20 text-green-200"
-                            : project.status === "In Progress"
-                            ? "border-amber-500/30 bg-amber-500/20 text-amber-200"
-                            : "border-blue-500/30 bg-blue-500/20 text-blue-200"
-                        }
-                      >
-                        {project.status}
-                      </Badge>
-
+                    <div className="mt-auto flex items-center justify-end">
                       <div className="flex gap-2">
                         {!!project.links?.github && (
                           <Github className="h-4 w-4 text-gray-400" />

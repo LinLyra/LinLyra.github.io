@@ -107,16 +107,7 @@ export default function ProductPage() {
         "KPMG innovation program focused on digital products & insights.",
       tags: ["Product", "AI+Audit","AuditX", "Business Plan"],
     },
-    {
-      slug: "loreal-brandstorm",
-      title: "L'Oréal BRANDSTORM 2025",
-      date: "2025.04",
-      type: "product",
-      logo: "/competition/loreallogo.png",
-      description:
-        "Global youth challenge — men’s beauty through tech & product innovation.",
-      tags: ["Marketing", "Product", "Pitch","Men's Skincare"],
-    },
+    
     {
       slug: "microsoft-chat-hack-promptathon",
       title: "Microsoft Chat & Hack Promptathon",
@@ -246,7 +237,7 @@ export default function ProductPage() {
             </div>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
               <Link key={p.slug} href={`/product/${p.slug}`} className="block">
                 <PremiumGlassCard
@@ -265,7 +256,7 @@ export default function ProductPage() {
                             <img
                               src={p.image || p.logo || "/placeholder.svg"}
                               alt={`${p.title} logo`}
-                              className={p.image ? "h-full w-full object-cover" : "max-h-[2.5rem] max-w-[2.5rem] object-contain"}
+                              className={p.image ? "h-full w-full object-cover" : "h-full w-full object-contain p-1"}
                               onError={(e) => {
                                 const el = e.currentTarget as HTMLImageElement;
                                 if (!el.src.includes("placeholder.svg")) el.src = "/placeholder.svg";
@@ -275,7 +266,7 @@ export default function ProductPage() {
                         )}
 
                         <div>
-                          <div className="text-lg font-semibold leading-snug text-gray-100">
+                          <div className="min-h-[3.25rem] text-lg font-semibold leading-snug text-gray-100 line-clamp-2">
                             {p.title}
                           </div>
                           <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">
@@ -297,8 +288,8 @@ export default function ProductPage() {
                   </div>
 
                   <div className="p-6 pt-0">
-                    <p className="mb-4 line-clamp-3 text-sm text-gray-200">{p.description ?? ""}</p>
-                    <div className="flex flex-wrap gap-1">
+                    <p className="mb-4 min-h-[4.5rem] line-clamp-3 text-sm leading-6 text-gray-200">{p.description ?? ""}</p>
+                    <div className="min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
                       {((p.skills && p.skills.length > 0 ? p.skills : p.tags) ?? [])
                         .slice(0, 4)
                         .map((tag) => (

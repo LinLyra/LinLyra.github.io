@@ -95,14 +95,6 @@ export default function ContactSection() {
   
           <ScrollReveal className="relative" variant="up">
             <AdvancedGalaxyCanvas />
-
-            {/* tiny astronaut widgets */}
-            <div className="pointer-events-none absolute -right-2 top-6 hidden lg:block">
-              <MiniAstronautWidget variant="sketch" />
-            </div>
-            <div className="pointer-events-none absolute -left-2 bottom-8 hidden lg:block">
-              <MiniAstronautWidget variant="comms" />
-            </div>
           </ScrollReveal>
 
           <ScrollReveal variant="up" delayMs={80}>
@@ -215,65 +207,4 @@ export default function ContactSection() {
       </div>
     </section>
   );
-}
-
-function MiniAstronautWidget({ variant }: { variant: "sketch" | "comms" }) {
-  const title = variant === "sketch" ? "Sketch Pad" : "Comms"
-  const subtitle =
-    variant === "sketch" ? "Draw constellations" : "Ping me anytime"
-
-  return (
-    <div className="relative w-44 rounded-2xl border border-white/10 bg-black/35 px-3 py-3 backdrop-blur-xl shadow-[0_0_30px_rgba(99,102,241,0.10)]">
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-pink-500/10 opacity-70" />
-      <div className="relative flex items-center gap-2">
-        <AstronautMiniSVG className="h-10 w-10 text-sky-200/90" />
-        <div className="min-w-0">
-          <div className="text-xs font-semibold tracking-[0.18em] text-gray-200/80">{title}</div>
-          <div className="mt-0.5 truncate text-xs text-gray-300/80">{subtitle}</div>
-        </div>
-      </div>
-
-      <div className="relative mt-2 h-7 overflow-hidden rounded-lg border border-white/10 bg-white/[0.04]">
-        {variant === "sketch" ? (
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(56,189,248,0.18),transparent_60%),radial-gradient(circle_at_70%_60%,rgba(99,102,241,0.12),transparent_55%)]" />
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_50%,rgba(34,197,94,0.10),transparent_55%),radial-gradient(circle_at_75%_55%,rgba(56,189,248,0.14),transparent_60%)]" />
-        )}
-        <div className="absolute -left-6 top-1/2 h-[2px] w-24 -translate-y-1/2 rotate-6 bg-white/25 blur-[0.5px]" />
-      </div>
-    </div>
-  )
-}
-
-function AstronautMiniSVG({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      className={className}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        d="M32 8c-9.4 0-17 7.6-17 17v1.8c0 4.1 1.4 8 4 11v12c0 3.4 2.8 6.2 6.2 6.2h13.6c3.4 0 6.2-2.8 6.2-6.2v-12c2.6-3 4-6.9 4-11V25c0-9.4-7.6-17-17-17Z"
-        stroke="currentColor"
-        strokeOpacity="0.7"
-        strokeWidth="2"
-      />
-      <path
-        d="M22 26c0-5.5 4.5-10 10-10h0c5.5 0 10 4.5 10 10v1.4c0 5.5-4.5 10-10 10h0c-5.5 0-10-4.5-10-10V26Z"
-        fill="currentColor"
-        fillOpacity="0.10"
-        stroke="currentColor"
-        strokeOpacity="0.35"
-      />
-      <path
-        d="M24 44h16"
-        stroke="currentColor"
-        strokeOpacity="0.5"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  )
 }
