@@ -585,7 +585,7 @@ export default function BusinessPage() {
                           </div>
 
                           <div className="min-w-0">
-                            <div className="min-h-[3.25rem] line-clamp-2 text-lg font-semibold leading-snug text-gray-100">
+                            <div className="min-h-[3.25rem] line-clamp-3 text-lg font-semibold leading-snug text-gray-100">
                               {item.title}
                             </div>
 

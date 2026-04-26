@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavigationProps {
   activeSection: string;
@@ -15,6 +15,7 @@ interface NavigationProps {
 export function Navigation({ activeSection, onSectionChange }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname() || "/";
+  const router = useRouter();
 
 
   const navItems = [
@@ -28,6 +29,11 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
 
   const scrollToSection = (sectionId: string) => {
     if (sectionId === "home") {
+      if (pathname !== "/") {
+        router.push("/");
+        setIsMenuOpen(false);
+        return;
+      }
       const el = document.getElementById(sectionId);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });

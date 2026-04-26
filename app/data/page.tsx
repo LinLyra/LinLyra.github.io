@@ -361,7 +361,7 @@ export default function DataPage() {
 
                       <div className="min-w-0">
                         <div
-                          className="mb-1 min-h-[3.25rem] text-lg leading-snug text-gray-100 line-clamp-2"
+                          className="mb-1 min-h-[3.25rem] text-lg leading-snug text-gray-100 line-clamp-3"
                           style={{ textWrap: "balance" }}
                         >
                           {project.title}
@@ -385,7 +385,7 @@ export default function DataPage() {
                     </p>
 
                     <div className="mb-4 min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
-                      {project.skills.slice(0, 4).map((skill) => (
+                      {project.skills.map((skill) => (
                         <Badge
                           key={skill}
                           className="text-xs text-blue-200 border-blue-500/30 bg-blue-500/20"
@@ -393,11 +393,6 @@ export default function DataPage() {
                           {skill}
                         </Badge>
                       ))}
-                      {project.skills.length > 4 && (
-                        <Badge className="text-xs text-gray-300 border-gray-500/30 bg-gray-500/20">
-                          +{project.skills.length - 4} more
-                        </Badge>
-                      )}
                     </div>
 
                     <div className="mt-auto flex items-center justify-end">

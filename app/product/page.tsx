@@ -266,7 +266,7 @@ export default function ProductPage() {
                         )}
 
                         <div>
-                          <div className="min-h-[3.25rem] text-lg font-semibold leading-snug text-gray-100 line-clamp-2">
+                          <div className="min-h-[3.25rem] text-lg font-semibold leading-snug text-gray-100 line-clamp-3">
                             {p.title}
                           </div>
                           <div className="mt-1 flex items-center gap-2 text-xs text-gray-400">

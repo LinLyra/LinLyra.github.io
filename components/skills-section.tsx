@@ -100,19 +100,6 @@ function SkillsSection() {
 
     // R
     { slug: "r-lang",      name: "R",              category: "Data",      logo: "/tools/r.png" },
-
-    // PM / Consulting essentials (lightweight SVG badges; you can replace later)
-    { slug: "jira",        name: "Jira",           category: "Design",    logo: "/tools/jira.svg" },
-    { slug: "confluence",  name: "Confluence",     category: "Design",    logo: "/tools/confluence.svg" },
-    { slug: "miro",        name: "Miro",           category: "Design",    logo: "/tools/miro.svg" },
-    { slug: "notion",      name: "Notion",         category: "Design",    logo: "/tools/notion.svg" },
-    { slug: "axure",       name: "Axure RP",       category: "Design",    logo: "/tools/axure.svg" },
-    { slug: "excel",       name: "Excel",          category: "Analytics", logo: "/tools/excel.svg" },
-    { slug: "ppt",         name: "PowerPoint",     category: "Analytics", logo: "/tools/powerpoint.svg" },
-
-    // Dev workflow
-    { slug: "git",         name: "Git",            category: "DevOps",    logo: "/tools/git.svg" },
-    { slug: "docker",      name: "Docker",         category: "DevOps",    logo: "/tools/docker.svg" },
   ]
 
   return (
