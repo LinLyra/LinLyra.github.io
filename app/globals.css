@@ -244,6 +244,45 @@
   }
 }
 
+@keyframes equipment-claw-sway {
+  0%, 100% {
+    transform: translateX(-50%) rotate(-1.8deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(1.8deg);
+  }
+}
+
+@keyframes equipment-bay-sweep {
+  0% {
+    opacity: 0.1;
+    transform: translateX(-10%);
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.12;
+    transform: translateX(10%);
+  }
+}
+
+.equipment-claw-sway {
+  animation: equipment-claw-sway 5.8s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.equipment-bay-sweep {
+  animation: equipment-bay-sweep 4.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  .equipment-claw-sway,
+  .equipment-bay-sweep {
+    animation: none !important;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

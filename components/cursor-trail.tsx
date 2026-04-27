@@ -35,11 +35,12 @@ export function CursorTrail() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
-    type P = { x: number; y: number; vx: number; vy: number; life: number }
+    type P = { x: number; y: number; vx: number; vy: number; life: number; hue: number; size: number }
     const pts: P[] = []
     let lastX = 0
     let lastY = 0
     let hasLast = false
+    let hue = 190
 
     const onMove = (e: PointerEvent) => {
       const x = e.clientX
@@ -55,7 +56,8 @@ export function CursorTrail() {
       const dist = Math.hypot(dx, dy)
       if (dist < 3) return
 
-      const n = Math.min(10, Math.max(2, Math.floor(dist / 14)))
+      hue = (hue + Math.max(8, dist * 0.8)) % 360
+      const n = Math.min(14, Math.max(3, Math.floor(dist / 10)))
       for (let i = 0; i < n; i++) {
         const t = i / n
         const px = lastX + dx * t
@@ -63,9 +65,11 @@ export function CursorTrail() {
         pts.push({
           x: px,
           y: py,
-          vx: -dx * 0.006 + (Math.random() - 0.5) * 0.2,
-          vy: -dy * 0.006 + (Math.random() - 0.5) * 0.2,
+          vx: -dx * 0.008 + (Math.random() - 0.5) * 0.36,
+          vy: -dy * 0.008 + (Math.random() - 0.5) * 0.36,
           life: 1,
+          hue: (hue + i * 9) % 360,
+          size: 4 + Math.random() * 7,
         })
       }
 
@@ -85,21 +89,22 @@ export function CursorTrail() {
       // fade & integrate
       for (let i = pts.length - 1; i >= 0; i--) {
         const p = pts[i]
-        p.life -= 0.02
+        p.life -= 0.017
         p.x += p.vx
         p.y += p.vy
-        p.vx *= 0.96
-        p.vy *= 0.96
+        p.vx *= 0.965
+        p.vy *= 0.965
         if (p.life <= 0) pts.splice(i, 1)
       }
 
       // draw
       for (const p of pts) {
         const a = Math.max(0, Math.min(1, p.life))
-        const r = 6 * a
+        const r = p.size * a
         const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r)
-        grad.addColorStop(0, `rgba(147,197,253,${0.22 * a})`)
-        grad.addColorStop(0.5, `rgba(99,102,241,${0.10 * a})`)
+        grad.addColorStop(0, `hsla(${p.hue}, 100%, 76%, ${0.42 * a})`)
+        grad.addColorStop(0.34, `hsla(${(p.hue + 28) % 360}, 100%, 68%, ${0.24 * a})`)
+        grad.addColorStop(0.7, `hsla(${(p.hue + 68) % 360}, 100%, 62%, ${0.10 * a})`)
         grad.addColorStop(1, `rgba(0,0,0,0)`)
         ctx.fillStyle = grad
         ctx.beginPath()
@@ -124,4 +129,3 @@ export function CursorTrail() {
 
   return <canvas ref={canvasRef} className="pointer-events-none fixed inset-0 z-[25]" />
 }
-
