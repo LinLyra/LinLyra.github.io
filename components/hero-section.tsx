@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Github, Linkedin } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { AstronautCompanion } from "@/components/astronaut-companion";
 
 export function HeroSection() {
   const scrollToSkills = () => {
@@ -79,8 +78,6 @@ export function HeroSection() {
           <p className="text-lg text-gray-300 mb-8">
             My work connects data, business, and technology — turning understanding into measurable impact.
           </p>
-
-          <AstronautCompanion />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Button
