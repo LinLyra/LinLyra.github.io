@@ -204,10 +204,10 @@ export default function ProductPage() {
 
           <div className="mb-8 space-y-4">
             <Input
-              placeholder="Search by title / company / tags / skills..."
+              placeholder="Search by title / company / tags / skills…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="mx-auto max-w-md border-amber-400/30 bg-black/30 text-gray-100 backdrop-blur-md placeholder:text-gray-400"
+              className="mx-auto max-w-xl border-amber-400/30 bg-black/30 text-gray-100 backdrop-blur-md placeholder:text-gray-400"
             />
             <div className="flex flex-wrap justify-center gap-2">
               {allTypes.map((t) =>

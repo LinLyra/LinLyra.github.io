@@ -3,6 +3,64 @@
 @tailwind utilities;
 
 @layer components {
+  .music-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(10px);
+    transition: background-color 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  }
+
+  .music-toggle[data-on="true"] {
+    border-color: rgba(96, 165, 250, 0.38);
+    background: rgba(59, 130, 246, 0.10);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.14);
+  }
+
+  .music-wave {
+    width: 22px;
+    height: 12px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    opacity: 0.95;
+  }
+
+  .music-wave span {
+    display: block;
+    width: 100%;
+    border-radius: 9999px;
+    background: rgba(226, 232, 240, 0.70);
+    height: 2px;
+    align-self: center;
+    transform-origin: center;
+  }
+
+  .music-toggle[data-on="true"] .music-wave span {
+    background: rgba(147, 197, 253, 0.85);
+    animation: music-wave 900ms ease-in-out infinite;
+  }
+
+  .music-toggle[data-on="true"] .music-wave span:nth-child(2) {
+    animation-delay: 120ms;
+  }
+  .music-toggle[data-on="true"] .music-wave span:nth-child(3) {
+    animation-delay: 240ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .music-toggle[data-on="true"] .music-wave span {
+      animation: none;
+      height: 2px;
+    }
+  }
+
   .cosmic-heading {
     letter-spacing: -0.02em;
     text-shadow: 0 0 18px rgba(56, 189, 248, 0.10), 0 0 40px rgba(99, 102, 241, 0.06);
@@ -168,6 +226,21 @@
   }
   to {
     transform: translate3d(22%, 16%, 0) rotate(24deg);
+  }
+}
+
+@keyframes music-wave {
+  0% {
+    height: 2px;
+    opacity: 0.7;
+  }
+  40% {
+    height: 10px;
+    opacity: 1;
+  }
+  100% {
+    height: 2px;
+    opacity: 0.7;
   }
 }
 

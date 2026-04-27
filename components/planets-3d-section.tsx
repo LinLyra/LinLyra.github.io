@@ -73,8 +73,9 @@ export default function Planets3DSection() {
             ))}
 
             <OrbitControls
-              enablePan
-              enableZoom
+              // Allow page scrolling through this section: wheel zoom will "trap" scroll.
+              enablePan={false}
+              enableZoom={false}
               enableRotate
               minDistance={8}
               maxDistance={25}

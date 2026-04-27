@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
+import { ScrollReveal } from "@/components/scroll-reveal"
 
 type Category = "Web" | "Database" | "Data" | "ML" | "Analytics" | "DevOps" | "Cloud" | "Design"
 type Tool = {
@@ -72,34 +73,28 @@ function SkillsSection() {
   ]
 
   const tools: Tool[] = [
-    // Database
-    { slug: "postgres",  name: "PostgreSQL",       category: "Database",  logo: "/tools/postgres.png" },
-    { slug: "mysql",     name: "MySQL",            category: "Database",  logo: "/tools/mysql.png" },
-    { slug: "supabase",  name: "Supabase",         category: "Database",  logo: "/tools/supabase.png" },
+    // Core DS/DA/BA/PM toolbox (based on current public/tools)
+    { slug: "python",     name: "Python",         category: "Data",      logo: "/tools/python.png" },
+    { slug: "r",          name: "R",              category: "Data",      logo: "/tools/r.png" },
+    { slug: "sql-postgres", name: "PostgreSQL",   category: "Database",  logo: "/tools/postgres.png" },
+    { slug: "mysql",      name: "MySQL",          category: "Database",  logo: "/tools/mysql.png" },
+    { slug: "supabase",   name: "Supabase",       category: "Database",  logo: "/tools/supabase.png" },
 
-    // Data
-    { slug: "pandas",      name: "pandas",         category: "Data",      logo: "/tools/pandas.png" },
-    { slug: "numpy",       name: "NumPy",          category: "Data",      logo: "/tools/numpy.png" },
-    { slug: "matplotlib",  name: "Matplotlib",     category: "Data",      logo: "/tools/matplotlib.png" },
-    { slug: "spark",       name: "Apache Spark",   category: "Data",      logo: "/tools/spark.png" },
+    { slug: "tableau",    name: "Tableau",        category: "Analytics", logo: "/tools/tableau.png" },
+    { slug: "powerbi",    name: "Power BI",       category: "Analytics", logo: "/tools/powerbi.png" },
+    { slug: "excel",      name: "Excel",          category: "Analytics", logo: "/tools/excel.png" },
+    { slug: "ppt",        name: "PowerPoint",     category: "Design",    logo: "/tools/ppt.jpg" },
+    { slug: "thinkcell",  name: "think-cell",     category: "Design",    logo: "/tools/thinkcell.png" },
 
-    // ML
-    { slug: "sklearn",     name: "scikit-learn",   category: "ML",        logo: "/tools/sk.png" }, 
+    { slug: "spark",      name: "Spark",          category: "Data",      logo: "/tools/spark.png" },
+    { slug: "airflow",    name: "Airflow",        category: "DevOps",    logo: "/tools/airflow.png" },
+    { slug: "databricks", name: "Databricks",     category: "Cloud",     logo: "/tools/databrick.png" },
+    { slug: "gurobi",     name: "Gurobi",         category: "Data",      logo: "/tools/gurobi.png" },
 
-    // Notebooks
-    { slug: "jupyter",     name: "Jupyter Notebook", category: "Data",    logo: "/tools/jupyter.png" },
-    { slug: "colab",       name: "Google Colab",   category: "Data",      logo: "/tools/colab.png" },
-
-    // Analytics / BI
-    { slug: "tableau",     name: "Tableau",        category: "Analytics", logo: "/tools/tableau.png" },
-    { slug: "ga",          name: "Google Analytics", category: "Analytics", logo: "/tools/google-analytics.png" },
-    { slug: "powerbi",     name: "Power BI",       category: "Analytics", logo: "/tools/powerbi.png" },
-
-    // Design
-    { slug: "figma",       name: "Figma",          category: "Design",    logo: "/tools/figma.png" },
-
-    // R
-    { slug: "r-lang",      name: "R",              category: "Data",      logo: "/tools/r.png" },
+    { slug: "ga",         name: "Google Analytics", category: "Analytics", logo: "/tools/google-analytics.png" },
+    { slug: "figma",      name: "Figma",          category: "Design",    logo: "/tools/figma.png" },
+    { slug: "notion",     name: "Notion",         category: "Design",    logo: "/tools/notion.png" },
+    { slug: "axure",      name: "Axure",          category: "Design",    logo: "/tools/axure.png" },
   ]
 
   return (
@@ -137,12 +132,44 @@ function SkillsSection() {
         </div>
 
     
-        <h3 className="mb-4 text-2xl md:text-3xl font-semibold text-blue-400">Tools &amp; Software</h3>
-        <div className="grid grid-cols-4 gap-4 sm:grid-cols-6 lg:grid-cols-9 xl:grid-cols-9">
-          {tools.map((t) => (
-            <LogoTile key={t.slug} src={t.logo} name={t.name} />
-          ))}
-        </div>
+        <ScrollReveal variant="soft" className="mx-auto max-w-6xl">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-black/25 p-6 backdrop-blur-xl shadow-[0_0_60px_rgba(59,130,246,0.10)]">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-blue-500/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-purple-500/10 blur-3xl" />
+            <div className="pointer-events-none absolute inset-0 opacity-60 [background-image:radial-gradient(circle_at_20%_30%,rgba(56,189,248,0.16),transparent_55%),radial-gradient(circle_at_70%_60%,rgba(168,85,247,0.12),transparent_55%)]" />
+
+            <div className="relative flex items-end justify-between gap-4">
+              <div className="text-left">
+                <div className="text-[11px] font-semibold tracking-[0.22em] text-white/60">EQUIPMENT BAY</div>
+                <div className="mt-1 text-2xl md:text-3xl font-semibold text-gray-100">
+                  Tools I ship with
+                </div>
+                <div className="mt-1 text-sm text-gray-300/80">
+                  Drag your attention across the bay — each badge is a capability.
+                </div>
+              </div>
+              <div className="hidden sm:flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 py-2 text-xs text-white/70">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
+                Loaded & ready
+              </div>
+            </div>
+
+            <div className="relative mt-6 grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-8">
+              {tools.map((t) => (
+                <div
+                  key={t.slug}
+                  className="group/tool relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl transition
+                             hover:border-white/20 hover:bg-white/[0.05]"
+                >
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/tool:opacity-100 bg-[radial-gradient(circle_at_30%_40%,rgba(56,189,248,0.18),transparent_60%),radial-gradient(circle_at_70%_60%,rgba(168,85,247,0.12),transparent_55%)]" />
+                  <div className="relative p-3">
+                    <LogoTile src={t.logo} name={t.name} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )

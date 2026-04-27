@@ -293,10 +293,10 @@ export default function DataPage() {
 
           <div className="mb-8">
             <Input
-              placeholder="Search datasets, topics, or skills…"
+              placeholder="Search by dataset / topic / skill…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="mx-auto max-w-md border-blue-400/30 bg-black/30 text-gray-100 placeholder:text-gray-400 backdrop-blur-md"
+              className="mx-auto max-w-xl border-blue-400/30 bg-black/30 text-gray-100 placeholder:text-gray-400 backdrop-blur-md"
             />
 
             {/* 关键词 Tag 快捷筛选 */}

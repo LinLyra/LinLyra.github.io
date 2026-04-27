@@ -106,13 +106,17 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
             <button
               type="button"
               onClick={() => toggleMusic()}
-              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm backdrop-blur-md transition
-                ${musicOn ? "border-blue-400/40 bg-blue-500/15 text-blue-100" : "border-white/15 bg-black/20 text-white/80 hover:bg-black/30"}`}
+              className="music-toggle"
+              data-on={musicOn ? "true" : "false"}
               aria-label={musicOn ? "Turn music off" : "Turn music on"}
               title={musicOn ? "Music: On" : "Music: Off"}
             >
-              <Headphones className="h-4 w-4" />
-              <span className="hidden lg:inline">{musicOn ? "Music On" : "Music Off"}</span>
+              <Headphones className="h-4 w-4 text-white/80" />
+              <span className="music-wave" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
             </button>
           </div>
 
@@ -130,15 +134,19 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
             <button
               type="button"
               onClick={() => toggleMusic()}
-              className={`mb-2 flex w-full items-center justify-between rounded-md border px-3 py-2 text-sm transition
-                ${musicOn ? "border-blue-400/40 bg-blue-500/15 text-blue-100" : "border-white/15 bg-black/20 text-white/80 hover:bg-black/30"}`}
+              className="music-toggle mb-2 w-full justify-between"
+              data-on={musicOn ? "true" : "false"}
               aria-label={musicOn ? "Turn music off" : "Turn music on"}
             >
               <span className="flex items-center gap-2">
-                <Headphones className="h-4 w-4" />
-                Music
+                <Headphones className="h-4 w-4 text-white/80" />
+                <span className="text-sm text-white/85">Music</span>
               </span>
-              <span className="text-xs opacity-80">{musicOn ? "On" : "Off"}</span>
+              <span className="music-wave" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
             </button>
             {navItems.map((item) => (
               <div key={item.id}>

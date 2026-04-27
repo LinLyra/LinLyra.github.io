@@ -509,10 +509,10 @@ export default function BusinessPage() {
 
           <div className="mb-8 space-y-4">
             <Input
-              placeholder="Search by skill, industry, company, project theme, or keyword..."
+              placeholder="Search by skill / industry / company / theme / keyword…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="mx-auto max-w-2xl border-green-400/30 bg-black/30 text-gray-100 backdrop-blur-md placeholder:text-gray-400"
+              className="mx-auto max-w-xl border-green-400/30 bg-black/30 text-gray-100 backdrop-blur-md placeholder:text-gray-400"
             />
 
             <div className="flex flex-wrap justify-center gap-2">

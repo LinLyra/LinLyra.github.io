@@ -43,7 +43,7 @@ function ensureAudioEl() {
   audioEl = new Audio("/audio/ambient.mp3")
   audioEl.loop = true
   audioEl.preload = "none"
-  audioEl.volume = 0.42
+  audioEl.volume = 0.62
   return audioEl
 }
 
@@ -100,8 +100,20 @@ export async function toggleMusic() {
   if (!el) return
 
   try {
+    // Gentle fade-in so it doesn't jump (and avoids "too quiet then sudden" feeling).
+    el.volume = 0.0
     // Must be called from a user gesture to avoid autoplay restrictions.
     await el.play()
+    const target = 0.62
+    const start = performance.now()
+    const dur = 800
+    const tick = (t: number) => {
+      if (!state.musicEnabled || !audioEl) return
+      const p = Math.min(1, (t - start) / dur)
+      audioEl.volume = target * p
+      if (p < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
   } catch {
     // If browser blocks it or file missing, revert state.
     setMusicEnabled(false)
