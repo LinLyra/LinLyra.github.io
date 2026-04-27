@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import { playCardClick } from "@/lib/sound"
 
 type PremiumGlassCardProps = Omit<React.HTMLAttributes<HTMLDivElement>, "children"> & {
   tiltMaxDeg?: number
@@ -10,7 +11,7 @@ type PremiumGlassCardProps = Omit<React.HTMLAttributes<HTMLDivElement>, "childre
 }
 
 export const PremiumGlassCard = React.forwardRef<HTMLDivElement, PremiumGlassCardProps>(
-  ({ className, tiltMaxDeg = 6, onMouseMove, onMouseLeave, ...props }, ref) => {
+  ({ className, tiltMaxDeg = 6, onMouseMove, onMouseLeave, onClick, ...props }, ref) => {
     const localRef = React.useRef<HTMLDivElement | null>(null)
 
     const setRef = React.useCallback(
@@ -56,6 +57,10 @@ export const PremiumGlassCard = React.forwardRef<HTMLDivElement, PremiumGlassCar
             el.style.setProperty("--pgc-my", `50%`)
           }
           onMouseLeave?.(e)
+        }}
+        onClick={(e) => {
+          playCardClick()
+          onClick?.(e)
         }}
         {...props}
       >

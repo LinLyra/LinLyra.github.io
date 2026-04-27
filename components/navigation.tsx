@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Headphones, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { getSoundState, initSoundFromStorage, toggleMusic } from "@/lib/sound";
+import { useEffect, useMemo, useState as useReactState } from "react";
 
 interface NavigationProps {
   activeSection: string;
@@ -16,6 +18,19 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname() || "/";
   const router = useRouter();
+  const [musicOn, setMusicOn] = useReactState(false);
+
+  useEffect(() => {
+    initSoundFromStorage();
+    const current = getSoundState();
+    setMusicOn(current.musicEnabled);
+    const onChange = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { musicEnabled?: boolean };
+      if (typeof detail?.musicEnabled === "boolean") setMusicOn(detail.musicEnabled);
+    };
+    window.addEventListener("lyra-sound-change", onChange);
+    return () => window.removeEventListener("lyra-sound-change", onChange);
+  }, []);
 
 
   const navItems = [
@@ -61,7 +76,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
             <span className="text-white text-lg font-bold">Welcome to Lyra&apos;s Universe. LLAP🖖</span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
               <div key={item.id}>
                 {item.route === "/" ? (
@@ -87,6 +102,18 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
                 )}
               </div>
             ))}
+
+            <button
+              type="button"
+              onClick={() => toggleMusic()}
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-sm backdrop-blur-md transition
+                ${musicOn ? "border-blue-400/40 bg-blue-500/15 text-blue-100" : "border-white/15 bg-black/20 text-white/80 hover:bg-black/30"}`}
+              aria-label={musicOn ? "Turn music off" : "Turn music on"}
+              title={musicOn ? "Music: On" : "Music: Off"}
+            >
+              <Headphones className="h-4 w-4" />
+              <span className="hidden lg:inline">{musicOn ? "Music On" : "Music Off"}</span>
+            </button>
           </div>
 
  
@@ -100,6 +127,19 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
 
         {isMenuOpen && (
           <div className="md:hidden mt-2 rounded-lg bg-black/40 p-4 backdrop-blur-md">
+            <button
+              type="button"
+              onClick={() => toggleMusic()}
+              className={`mb-2 flex w-full items-center justify-between rounded-md border px-3 py-2 text-sm transition
+                ${musicOn ? "border-blue-400/40 bg-blue-500/15 text-blue-100" : "border-white/15 bg-black/20 text-white/80 hover:bg-black/30"}`}
+              aria-label={musicOn ? "Turn music off" : "Turn music on"}
+            >
+              <span className="flex items-center gap-2">
+                <Headphones className="h-4 w-4" />
+                Music
+              </span>
+              <span className="text-xs opacity-80">{musicOn ? "On" : "Off"}</span>
+            </button>
             {navItems.map((item) => (
               <div key={item.id}>
                 {item.route === "/" ? (

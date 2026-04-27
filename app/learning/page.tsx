@@ -4,10 +4,10 @@ import { useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, Calendar, X } from "lucide-react"
+import { PremiumGlassCard } from "@/components/premium-glass-card"
 
 type Status = "completed" | "in-progress"
 type LearnType = "degree" | "course" | "online-course"
@@ -77,7 +77,15 @@ export default function LearningPage() {
   const hasToken = (token: string) => q.split(/\s+/).filter(Boolean).includes(token)
 
   return (
-    <div className="relative min-h-screen">
+    <div
+      className="relative min-h-screen"
+      style={
+        {
+          ["--pgc-glow-a" as any]: "168 85 247",
+          ["--pgc-glow-b" as any]: "217 70 239",
+        } as React.CSSProperties
+      }
+    >
       <Navigation activeSection="learning" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-20 p-6">
@@ -97,7 +105,7 @@ export default function LearningPage() {
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
-                placeholder="Search by code, title, institution, or tag…"
+                placeholder="Search by code / title / institution / tag…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 className="w-full bg-black/30 backdrop-blur-md border-purple-400/30 text-white placeholder:text-gray-400 pr-10"
@@ -145,7 +153,10 @@ export default function LearningPage() {
 
               return (
                 <Link key={it.slug} href={`/learning/${it.slug}`} className="block">
-                  <Card className="relative h-full min-h-[240px] bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 overflow-hidden">
+                  <PremiumGlassCard
+                    tiltMaxDeg={5}
+                    className="relative h-full min-h-[260px] bg-black/25 backdrop-blur-xl border border-purple-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(168,85,247,0.10)] hover:border-purple-400/35 hover:shadow-[0_0_40px_rgba(217,70,239,0.14)]"
+                  >
                     {/* 右上角状态角标（在卡片内部） */}
                     <div className="absolute right-3 top-2 z-20">
                       <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}>
@@ -165,9 +176,9 @@ export default function LearningPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <CardTitle className="text-white text-xl font-semibold leading-snug line-clamp-2">
+                        <div className="text-white text-xl font-semibold leading-snug line-clamp-3 min-h-[4.5rem]">
                           {it.title}
-                        </CardTitle>
+                        </div>
                         <div className="mt-1 text-gray-400 text-sm inline-flex items-center gap-2">
                           <span>{it.institution}</span>
                           <span>•</span>
@@ -180,7 +191,7 @@ export default function LearningPage() {
                     </div>
 
   
-                    <CardHeader className="pt-2">
+                    <div className="px-5 pb-5 pt-2">
                       <div className="flex flex-wrap gap-2 min-h-[36px]">
                         {(it.tags ?? []).map((t) => (
                           <span
@@ -205,10 +216,8 @@ export default function LearningPage() {
                           </div>
                         )}
                       </div>
-                    </CardHeader>
-
-                    <CardContent />
-                  </Card>
+                    </div>
+                  </PremiumGlassCard>
                 </Link>
               )
             })}

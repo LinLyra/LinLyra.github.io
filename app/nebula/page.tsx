@@ -8,6 +8,13 @@ import { ArrowLeft, MapPin, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 type Kind = "Volunteer" | "Networking" | "Talks" | "Workshop"
 
@@ -25,6 +32,8 @@ type ActivityItem = {
 export default function NebulaPage() {
   const [q, setQ] = useState("")
   const [selectedKinds, setSelectedKinds] = useState<Kind[]>([])
+  const [open, setOpen] = useState(false)
+  const [selected, setSelected] = useState<ActivityItem | null>(null)
 
   const activities: ActivityItem[] = [
     {
@@ -60,6 +69,106 @@ export default function NebulaPage() {
   location: "Salesforce Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
+
+    {
+      slug: "pimco-career-catalyst-evening",
+      title: "PIMCO Career Catalyst Evening",
+      org: "PIMCO",
+      date: "TBD",
+      summary:
+        "Perspectives on macro investing and the role of analysts in navigating market uncertainty.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "jane-street-strategy-product",
+      title: "Jane Street — Strategy & Product Discussion",
+      org: "Jane Street",
+      date: "TBD",
+      summary:
+        "A session on structured thinking, decision-making under uncertainty, and turning ideas into execution.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks"],
+    },
+    {
+      slug: "vercel-relevance-ai-syd",
+      title: "Vercel × Relevance AI (AI SYD)",
+      org: "Vercel × Relevance AI",
+      date: "TBD",
+      summary:
+        "Building agents, rapid feedback loops, and how tooling accelerates iteration in practice.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "sydney-data-engineering-meetup-delta-sharing",
+      title: "Sydney Data Engineering Meetup",
+      org: "Data Engineering Meetup",
+      date: "TBD",
+      summary:
+        "Deep dives into Delta Sharing, data contracts, and how modern data systems are becoming more open and interoperable.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "paypal-developer-meetup",
+      title: "PayPal Developer Meetup",
+      org: "PayPal",
+      date: "TBD",
+      summary:
+        "Insights into real-world developer ecosystems and the product infrastructure behind them.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "cursor-meetup-unsw",
+      title: "Cursor Meetup @ UNSW",
+      org: "Cursor",
+      date: "TBD",
+      summary:
+        "Hands-on exposure to AI-assisted development and how modern workflows are being reshaped.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Workshop", "Networking"],
+    },
+    {
+      slug: "visagio-insights-night",
+      title: "Visagio Insights Night",
+      org: "Visagio",
+      date: "TBD",
+      summary:
+        "Consulting perspectives on problem-solving, structured thinking, and communicating decisions clearly.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "international-womens-day-inner-circle",
+      title: "International Women’s Day Inner Circle",
+      org: "IWD Inner Circle",
+      date: "TBD",
+      summary:
+        "Listening to people share where they started, what shaped them, and how they built confidence and momentum through uncertainty.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "data-ai-con-2026-dataops-agentic-ai",
+      title: "Data + AI Con ’26: When DataOps Meets Agentic AI",
+      org: "Data + AI Con",
+      date: "2026",
+      summary:
+        "How DataOps principles and agentic AI patterns are converging to reshape modern data platforms and delivery.",
+      cover: "/placeholder.svg",
+      location: "TBD",
+      kinds: ["Talks"],
+    },
 
     {
   slug: "power-bi-workshop-capgemini-2025",
@@ -448,7 +557,7 @@ export default function NebulaPage() {
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
-                placeholder="Search by title, organization, place, or keyword…"
+                placeholder="Search by title / organization / place / keyword…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 className="w-full bg-black/30 backdrop-blur-md border-red-400/30 text-gray-100 placeholder:text-gray-400 pr-10"
@@ -475,7 +584,7 @@ export default function NebulaPage() {
                       "inline-flex items-center h-7 rounded-full px-3 text-sm border whitespace-nowrap cursor-pointer " +
                       (active
                         ? "bg-red-500/30 border-red-400/40 text-red-100"
-                        : "bg-black/30 text-gray-200 border-red-400/20 hover:bg-red-500/10")
+                        : "bg-black/30 text-red-200 border-red-400/20 hover:bg-red-500/10")
                     }
                   >
                     {k}
@@ -488,47 +597,87 @@ export default function NebulaPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {filtered.map((a) => (
-              <PremiumGlassCard
+              <button
                 key={a.slug}
-                tiltMaxDeg={5}
-                className="bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
-                title={a.title}
+                type="button"
+                className="text-left"
+                onClick={() => {
+                  setSelected(a)
+                  setOpen(true)
+                }}
+                aria-label={`Open details: ${a.title}`}
               >
-                <div className="relative h-32 w-full">
-                  <img
-                    src={a.cover || "/placeholder.svg"}
-                    alt={a.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                </div>
+                <PremiumGlassCard
+                  tiltMaxDeg={5}
+                  className="bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
+                  title={a.title}
+                >
+                  <div className="relative h-32 w-full">
+                    <img
+                      src={a.cover || "/placeholder.svg"}
+                      alt={a.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                  </div>
 
-                <div className="p-6 pb-2">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-gray-400 text-xs">{a.org}</span>
-                    <span className="text-gray-400 text-xs">{a.date}</span>
-                  </div>
-                  <div className="text-gray-100 text-sm font-semibold mb-1 line-clamp-1" title={a.title}>
-                    {a.title}
-                  </div>
-                  {a.location && (
-                    <div className="flex items-center gap-1 text-xs text-gray-400">
-                      <MapPin className="w-3 h-3" />
-                      {a.location}
+                  <div className="p-6 pb-2">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-gray-400 text-xs">{a.org}</span>
+                      <span className="text-gray-400 text-xs">{a.date}</span>
                     </div>
-                  )}
-                </div>
+                    <div className="text-gray-100 text-sm font-semibold mb-1 line-clamp-2" title={a.title}>
+                      {a.title}
+                    </div>
+                    {a.location && (
+                      <div className="flex items-center gap-1 text-xs text-gray-400">
+                        <MapPin className="w-3 h-3" />
+                        {a.location}
+                      </div>
+                    )}
+                  </div>
 
-                <div className="p-6 pt-0">
-                  {a.summary && (
-                    <p className="min-h-[2.75rem] text-gray-200 text-xs leading-5 line-clamp-2">
-                      {a.summary}
-                    </p>
-                  )}
-                </div>
-              </PremiumGlassCard>
+                  <div className="p-6 pt-0">
+                    {a.summary && (
+                      <p className="min-h-[2.75rem] text-gray-200 text-xs leading-5 line-clamp-2">
+                        {a.summary}
+                      </p>
+                    )}
+                  </div>
+                </PremiumGlassCard>
+              </button>
             ))}
           </div>
+
+          <Dialog open={open} onOpenChange={setOpen}>
+            <DialogContent className="border-red-400/20 bg-slate-950/85 text-slate-100 backdrop-blur-xl shadow-[0_0_60px_rgba(248,113,113,0.14)]">
+              <DialogHeader>
+                <DialogTitle className="text-slate-100">{selected?.title ?? "Details"}</DialogTitle>
+                <DialogDescription className="text-slate-300/80">
+                  <span className="text-slate-200/90">{selected?.org ?? ""}</span>
+                  {selected?.date ? <span> · {selected.date}</span> : null}
+                  {selected?.location ? <span> · {selected.location}</span> : null}
+                </DialogDescription>
+              </DialogHeader>
+
+              {selected?.summary ? (
+                <p className="text-sm leading-6 text-slate-200/90">{selected.summary}</p>
+              ) : null}
+
+              {selected?.kinds?.length ? (
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {selected.kinds.map((k) => (
+                    <span
+                      key={k}
+                      className="inline-flex items-center h-7 rounded-full px-3 text-xs border border-red-400/25 bg-red-500/10 text-red-100"
+                    >
+                      {k}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </DialogContent>
+          </Dialog>
 
           <div className="text-center mt-10 text-gray-400 text-sm">
             If you’re curious about any of these, I’m always happy to chat and share more—coffee’s on me ☕
