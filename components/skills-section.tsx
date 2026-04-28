@@ -6,6 +6,7 @@ import { useMemo } from "react"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { portfolioHighlights } from "@/lib/portfolio-highlights"
+import { MissionHighlights } from "./mission-highlights"
 
 type Tool = {
   slug: string
@@ -66,21 +67,27 @@ function Rail({
 function ToolTile({ src, name, index }: { src: string; name: string; index: number }) {
   return (
     <div
-      className="flex flex-col items-center gap-1.5 text-center transition duration-300 hover:-translate-y-0.5"
+      className="group flex flex-col items-center gap-2 text-center transition duration-300 hover:-translate-y-0.5"
       style={{ animationDelay: `${index * 60}ms` }}
       title={name}
     >
-      <Image
-        src={src}
-        alt={name}
-        width={72}
-        height={72}
-        className="h-14 w-14 object-contain"
-        style={{
-          filter: "saturate(1.04) contrast(1.04) brightness(1.02) drop-shadow(0 0 10px rgba(148,163,184,0.08))",
-        }}
-      />
-      <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/42">{name}</div>
+      <div className="relative grid h-[76px] w-[76px] place-items-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl transition group-hover:border-white/18 group-hover:bg-white/[0.05]">
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background-image:radial-gradient(circle_at_30%_40%,rgba(56,189,248,0.16),transparent_62%),radial-gradient(circle_at_70%_60%,rgba(168,85,247,0.12),transparent_60%)]" />
+        <Image
+          src={src}
+          alt={name}
+          width={80}
+          height={80}
+          className="relative h-12 w-12 object-contain"
+          style={{
+            filter:
+              "saturate(1.06) contrast(1.08) brightness(1.14) drop-shadow(0 0 14px rgba(148,163,184,0.14))",
+          }}
+        />
+      </div>
+      <div className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/50 group-hover:text-white/70">
+        {name}
+      </div>
     </div>
   )
 }
@@ -136,17 +143,15 @@ function SkillsSection() {
     { slug: "axure", name: "Axure", logo: "/tools/axure.png" },
   ]
 
-  const businessItems = useMemo(() => portfolioHighlights.filter((item) => item.section === "business"), [])
-  const dataItems = useMemo(() => portfolioHighlights.filter((item) => item.section === "data"), [])
-  const productItems = useMemo(() => portfolioHighlights.filter((item) => item.section === "product"), [])
+  const allHighlights = useMemo(() => portfolioHighlights, [])
 
   return (
     <section id="skills" className="relative z-10 px-4 py-16 md:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-100 md:text-5xl">Skills</h2>
-          <p className="mb-2 text-xl text-gray-200">Three orbits, one universe.</p>
-          <p className="text-base text-gray-300 md:text-lg">Business, data, and product stories moving quietly across the page.</p>
+          <p className="mb-2 text-xl text-gray-200">A multidisciplinary toolkit for innovation and growth.</p>
+          <p className="text-base text-gray-300 md:text-lg">Build • Analyze • Strategize • Transform</p>
         </div>
 
         <div className="mb-8 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
@@ -176,24 +181,21 @@ function SkillsSection() {
           <div className="grid gap-7 lg:grid-cols-[minmax(0,1.55fr)_minmax(300px,360px)]">
             <div className="space-y-5">
               <div>
-                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">FEATURED PROJECTS</div>
-                <div className="mt-2 text-2xl font-semibold text-gray-100">My best hits, rolling like a news ticker.</div>
+                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">MORE IN ORBIT</div>
+                <div className="mt-2 text-2xl font-semibold text-gray-100">One rail. Color-coded worlds.</div>
                 <div className="mt-2 max-w-2xl text-sm leading-6 text-gray-300/78">
-                  This rail reads directly from the shared highlight list, so the same source can power business, data, and product pages.
+                  Business, data, and product highlights share the same orbit — the dot color tells you which planet it belongs to.
                 </div>
               </div>
-              <Rail title="BUSINESS ORBIT" accentClass="text-emerald-200" items={businessItems} speed="60s" />
-              <Rail title="DATA ORBIT" accentClass="text-sky-200" items={dataItems} speed="66s" />
-              <Rail title="PRODUCT ORBIT" accentClass="text-amber-200" items={productItems} speed="72s" />
+              <Rail title="ORBIT FEED" accentClass="text-white/70" items={allHighlights} speed="66s" />
+
+              <MissionHighlights />
             </div>
 
             <div className="space-y-4 justify-self-end">
               <div>
-                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">TOOLS BAY</div>
-                <div className="mt-2 text-2xl font-semibold text-gray-100">Loose logos, dark space, no loud frames.</div>
-                <div className="mt-2 max-w-xs text-sm leading-6 text-gray-300/78">
-                  Transparent logos sit directly on the page.
-                </div>
+                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">TOOLKIT GALAXY</div>
+                <div className="mt-2 text-2xl font-semibold text-gray-100">Tools behind my projects.</div>
               </div>
 
               <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-3 lg:grid-cols-3">
