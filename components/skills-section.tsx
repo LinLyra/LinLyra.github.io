@@ -145,7 +145,7 @@ function SkillsSection() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 text-center">
           <h2 className="mb-4 text-4xl font-bold text-gray-100 md:text-5xl">Skills</h2>
-          <p className="mb-2 text-xl text-gray-200">Three orbits, one toolkit.</p>
+          <p className="mb-2 text-xl text-gray-200">Three orbits, one universe.</p>
           <p className="text-base text-gray-300 md:text-lg">Business, data, and product stories moving quietly across the page.</p>
         </div>
 
@@ -173,13 +173,13 @@ function SkillsSection() {
         </div>
 
         <ScrollReveal variant="soft" className="mx-auto max-w-7xl">
-          <div className="grid gap-7 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="grid gap-7 lg:grid-cols-[minmax(0,1.55fr)_minmax(300px,360px)]">
             <div className="space-y-5">
               <div>
-                <div className="text-[10px] font-semibold tracking-[0.38em] text-white/50">PROJECT ORBITS</div>
-                <div className="mt-2 text-xl font-semibold text-gray-100 md:text-2xl">A slower drift, so each project can breathe.</div>
-                <div className="mt-2 max-w-2xl text-sm leading-6 text-gray-300/80">
-                  Business, data, and product highlights run on separate orbits, each with its own tone and color so the story stays readable.
+                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">FEATURED PROJECTS</div>
+                <div className="mt-2 text-2xl font-semibold text-gray-100">My best hits, rolling like a news ticker.</div>
+                <div className="mt-2 max-w-2xl text-sm leading-6 text-gray-300/78">
+                  This rail reads directly from the shared highlight list, so the same source can power business, data, and product pages.
                 </div>
               </div>
               <Rail title="BUSINESS ORBIT" accentClass="text-emerald-200" items={businessItems} speed="60s" />
@@ -187,16 +187,16 @@ function SkillsSection() {
               <Rail title="PRODUCT ORBIT" accentClass="text-amber-200" items={productItems} speed="72s" />
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 justify-self-end">
               <div>
-                <div className="text-[10px] font-semibold tracking-[0.38em] text-white/50">TOOLS CONSTELLATION</div>
-                <div className="mt-2 text-xl font-semibold text-gray-100 md:text-2xl">No frames, just the stack itself.</div>
-                <div className="mt-2 max-w-2xl text-sm leading-6 text-gray-300/80">
-                  The logos sit directly on the page. If a source asset carried a baked background, it has been converted to a transparent PNG so it reads cleanly on the dark sky.
+                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">TOOLS BAY</div>
+                <div className="mt-2 text-2xl font-semibold text-gray-100">Loose logos, dark space, no loud frames.</div>
+                <div className="mt-2 max-w-xs text-sm leading-6 text-gray-300/78">
+                  Transparent logos sit directly on the page.
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-x-4 gap-y-7 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+              <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-3 lg:grid-cols-3">
                 {tools.map((tool, index) => (
                   <ToolTile key={tool.slug} src={tool.logo} name={tool.name} index={index} />
                 ))}
