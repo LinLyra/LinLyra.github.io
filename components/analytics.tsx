@@ -15,10 +15,12 @@ type InsertRow = {
   ua: string | null;
 };
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+function getSupabaseClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+  return createClient(url, key);
+}
 
 function getSessionId(): string {
   if (typeof window === 'undefined') return 'server';
@@ -48,6 +50,8 @@ export function Analytics() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    const supabase = getSupabaseClient();
+    if (!supabase) return;
 
     const path = pathname || '/';
     if (lastPath.current === path) return;

@@ -11,7 +11,7 @@ import { useEffect, useMemo, useState as useReactState } from "react";
 
 interface NavigationProps {
   activeSection: string;
-  onSectionChange: (section: string) => void;
+  onSectionChange?: (section: string) => void;
 }
 
 export function Navigation({ activeSection, onSectionChange }: NavigationProps) {
@@ -52,7 +52,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
       const el = document.getElementById(sectionId);
       if (el) {
         el.scrollIntoView({ behavior: "smooth" });
-        onSectionChange(sectionId);
+        onSectionChange?.(sectionId);
       }
     }
     setIsMenuOpen(false);

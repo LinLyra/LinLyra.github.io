@@ -37,11 +37,12 @@ export default function DataPage() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const featuredTags = [
-    "Python",
-    "SQL",
-    "Time Series",
-    "Machine Learning",
-    "Visualization",
+    "E-commerce",
+    "Finance",
+    "Entertainment",
+    "Healthcare",
+    "Public Policy",
+    "Supply Chain",
   ];
 
   const items: DataItem[] = [
@@ -261,7 +262,7 @@ export default function DataPage() {
               placeholder="Search by dataset / topic / skill…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="mx-auto max-w-xl border-blue-400/30 bg-black/30 text-gray-100 placeholder:text-gray-400 backdrop-blur-md"
+              className="mx-auto max-w-xl border-blue-400/30 bg-black/30 text-blue-100 placeholder:text-blue-200/60 backdrop-blur-md"
             />
 
             {/* 关键词 Tag 快捷筛选 */}
