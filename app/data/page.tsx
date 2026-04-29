@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,10 +20,12 @@ type DataType = "competition" | "course" | "project";
 
 type DataItem = {
   slug: string;
-  title: string;
+  projectName: string;
+  subtitle: string;
   date: string;
   description: string;
   skills: string[];
+  industries: string[];
   status: "Completed" | "In Progress" | "Planned";
   type: DataType;
   award?: string;
@@ -43,192 +44,268 @@ export default function DataPage() {
     "Healthcare",
     "Public Policy",
     "Supply Chain",
+    "Machine Learning",
   ];
 
   const items: DataItem[] = [
     {
       slug: "datathon-2025-supply-chain",
-      title: "SUDATA x SUBAA Datathon 2025",
+      projectName: "Supply Chain Optimization (24h)",
+      subtitle: "SUDATA × SUBAA Datathon",
       date: "2025.10",
-      description: "24h Datathon organized by SUDATA and SUBAA Uni Society",
-      skills: [
-        "Supply Chain",
-        "Optimisation",
-        "Gurobi MIP",
-        "KMeans",
-        "Time Series",
-      ],
+      description:
+        "24-hour optimization sprint on a supply-chain case blending MIP, clustering, and time-series signals.",
+      skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
+      industries: ["Supply Chain", "Operations", "E-commerce"],
       status: "Completed",
       type: "competition",
       award: "First Place",
       logo: "/competition/sudatalogo.jpg",
     },
     {
+      slug: "meituan-subsidy-efficiency",
+      projectName: "Subsidy Incrementality (PSM)",
+      subtitle: "Meituan Business Analytics Challenge",
+      date: "2026.04",
+      description:
+        "Causal inference on subsidy batches to estimate true incremental GMV and reallocate budget to higher-ROI segments.",
+      skills: ["Causal Inference", "PSM", "ROI", "Segmentation", "Business Analytics"],
+      industries: ["E-commerce", "Local Services", "Finance"],
+      status: "Completed",
+      type: "competition",
+    },
+    {
       slug: "taylor-swift-engagement-analysis",
-      title:
-        "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
+      projectName: "Engagement & Herding Signals",
+      subtitle: "YouTube comments × ELM + Gemini",
       date: "2025.08",
       description:
-        "Analyzed 5,700+ YouTube comments on Taylor Swift’s engagement using Gemini LLM with ELM theory. Explored sentiment evolution, persuasion pathways, and herding effects in digital discourse.",
-      skills: [
-        "Python",
-        "YouTube API",
-        "Gemini API",
-        "ELM Theory",
-        "Sentiment Analysis",
-      ],
+        "Large-scale comment mining to trace sentiment shifts, persuasion routes, and herding in a major pop-culture event.",
+      skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
+      industries: ["Entertainment", "Social Media", "Marketing"],
+      status: "Completed",
+      type: "project",
+    },
+    {
+      slug: "youtube-ai-content-strategy",
+      projectName: "Posting Window Lift Model",
+      subtitle: "Creator growth analytics",
+      date: "2025.10",
+      description:
+        "Clustered thousands of AI-creator uploads to find better time-slot × scale combinations and quantify view lift.",
+      skills: ["Python", "SQL", "KMeans", "OLS", "Causal Thinking"],
+      industries: ["Entertainment", "Creator Economy", "Marketing"],
+      status: "Completed",
+      type: "project",
+    },
+    {
+      slug: "short-drama-text-analysis",
+      projectName: "Human–AI Dialogue Mining",
+      subtitle: "Short drama training corpus",
+      date: "2025.09",
+      description:
+        "JSON→tabular pipeline with dialogue metrics for rhythm, diversity, and engagement in role-play training data.",
+      skills: ["Python", "NLP", "JSON", "Feature Engineering", "Text Mining"],
+      industries: ["Beauty", "Consumer Services", "AI Training"],
       status: "Completed",
       type: "project",
     },
     {
       slug: "ai-wave-nvda-forecast",
-      title: "Rising the AI Wave: Forecasting the NVIDIA Stock",
+      projectName: "NVDA Cycle Forecast",
+      subtitle: "Course · Time series",
       date: "2025.07",
       description:
-        "Univariate & multivariate forecasting (ARIMA+ feature signals) to explore AI-cycle dynamics on NVDA price.",
-      skills: ["Python", "Time Series", "ARIMA", "Semiconductor Industry"],
+        "Univariate and multivariate forecasting experiments to relate AI-cycle narratives to NVDA price dynamics.",
+      skills: ["Python", "Time Series", "ARIMA", "Feature Signals"],
+      industries: ["Finance", "Semiconductors"],
       status: "Completed",
       type: "course",
-    },
-    {
-      slug: "youtube-ai-content-strategy",
-      title: "YouTube AI Content Strategy Optimization",
-      date: "2025.10",
-      description:
-        "Built a data-driven posting strategy for AI creators by modeling 3,143 videos across 80+ channels. Identified optimal time-slot × channel-scale combinations and estimated ~10% overall view lift by shifting posting windows.",
-      skills: ["Python", "SQL", "KMeans", "Clustering", "OLS", "Causal Thinking"],
-      status: "Completed",
-      type: "project",
     },
     {
       slug: "education-experience-earnings-model",
-      title: "Education vs Experience: Earnings Model Comparison",
+      projectName: "Education vs Experience on Earnings",
+      subtitle: "Course · Econometrics",
       date: "2025 S2",
       description:
-        "Compared multiple regression specifications and nonlinear forecasting models to evaluate the relative impact of education and work experience on earnings. Tested extended models to reduce omitted-variable bias.",
+        "Compared regression and nonlinear forecast specs to test robustness and omitted-variable bias on earnings drivers.",
       skills: ["Regression", "Forecasting", "Econometrics", "Model Evaluation"],
+      industries: ["Labor Economics", "Education", "Public Policy"],
       status: "Completed",
       type: "course",
     },
-    
     {
       slug: "wine-quality-analysis",
-      title: "Wine Quality Analysis: Key Drivers of Perceived Quality (Red vs White)",
+      projectName: "Wine Quality Drivers",
+      subtitle: "Course · Statistical modeling",
       date: "2025 S2",
       description:
-        "Analyzed UCI Vino Verde wine data (white + red) to identify key physicochemical drivers of sensory quality. Performed assumption checks, log transforms, model selection (stepwise/exhaustive), and stability validation (VIP + Adaptive Fence).",
-      skills: ["R", "Regression", "Model Selection", "AIC/BIC", "Bootstrap", "VIP"],
+        "Red vs white Vino Verde modeling with selection, stability checks, and interpretable drivers of perceived quality.",
+      skills: ["R", "Regression", "Model Selection", "Bootstrap", "VIP"],
+      industries: ["Food & Beverage", "Agri-food"],
       status: "Completed",
       type: "course",
     },
     {
       slug: "disaster-risk-insurance",
-      title: "Disaster Risk Insurance: Insights and Recommendations",
+      projectName: "Disaster Risk & Insurance Levers",
+      subtitle: "Course · Risk & policy",
       date: "2024 S2",
       description:
-        "Quantifies hazard exposure and proposes parametric insurance levers; combines hazard indices with socio-economic layers.",
-      skills: ["Risk Modeling", "R", "Data Visualization", "Policy Analysis"],
+        "Hazard exposure scoring with socio-economic layers and parametric insurance recommendations.",
+      skills: ["Risk Modeling", "R", "Visualization", "Policy Analysis"],
+      industries: ["Insurance", "Public Policy", "Climate Risk"],
       status: "Completed",
       type: "course",
       award: "Excellence Award",
     },
     {
       slug: "data1x01-study",
-      title: "The Study Behaviours and Expectations of DATA1X01 Students",
+      projectName: "DATA1X01 Learning Survey",
+      subtitle: "Course · Survey analysis",
       date: "2024 S2",
       description:
-        "Student survey analysis on learning behaviours and expectations; cleaning, Likert scaling and reporting.",
-      skills: ["Survey", "Cleaning", "R Visualization", "Reporting"],
+        "Cleaned Likert survey data on study habits and expectations with clear reporting-ready visuals.",
+      skills: ["Survey", "Cleaning", "R", "Reporting"],
+      industries: ["Education", "Higher Ed"],
       status: "Completed",
       type: "course",
       award: "Excellence Award",
     },
     {
       slug: "employer-income-correlation-au",
-      title: "Employer–Income Correlation Analysis in Australia",
+      projectName: "Employer Types vs Income (AU)",
+      subtitle: "Course · ML classifiers",
       date: "2024 S2",
       description:
-        "Exploratory analysis on employer types and income distributions across Australian regions.",
-      skills: [
-        "EDA",
-        "Gradient Boosting",
-        "Random Forest",
-        "KNN",
-        "Naive Bayes",
-        "Regression",
-      ],
+        "Explored regional employer–income patterns with tree ensembles, KNN, NB, and regression baselines.",
+      skills: ["EDA", "Gradient Boosting", "Random Forest", "KNN", "Naive Bayes", "Regression"],
+      industries: ["Labor Economics", "Public Policy"],
       status: "Completed",
       type: "course",
     },
     {
       slug: "greater-sydney-sa2-scoring",
-      title: "Greater Sydney SA2 Resources Scoring Report",
+      projectName: "Sydney SA2 Resource Index",
+      subtitle: "Course · Spatial scoring",
       date: "2025 S1",
       description:
-        "Constructs a composite index to score SA2 areas by resource accessibility; normalization, weighting, and ranking.",
-      skills: ["PostgreSQL", "Index Scoring", "Database", "ER", "Machine Learning"],
+        "Composite accessibility index with normalization, weighting, and defensible ranking across SA2 units.",
+      skills: ["PostgreSQL", "Index Scoring", "Database", "Machine Learning"],
+      industries: ["Urban Analytics", "Public Policy"],
       status: "Completed",
       type: "course",
     },
     {
       slug: "pima-diabetes",
-      title:
-        "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes",
+      projectName: "Classifier Benchmark (Pima vs Occupancy)",
+      subtitle: "Course · Model comparison",
       date: "2025 S1",
       description:
-        "Comparative Analysis of Classifier Accuracy and Runtime on Pima Indians Diabetes and Room Occupancy Datasets",
-      skills: [
-        "ZeroR",
-        "1R",
-        "Decision Trees",
-        "Multi-Layer Perceptrons",
-        "Support Vector Machines",
-        "Random Forests",
-      ],
+        "Accuracy vs runtime trade-offs across classical learners with stratified CV on medical vs sensor data.",
+      skills: ["k-NN", "Naive Bayes", "SVM", "Random Forest", "Weka", "Python"],
+      industries: ["Healthcare", "Machine Learning"],
       status: "Completed",
       type: "course",
     },
-
+    {
+      slug: "pathology-image-classification",
+      projectName: "H&E Tumour vs Immune Cells",
+      subtitle: "Course · Medical imaging",
+      date: "2026 S1",
+      description:
+        "CV pipeline from HOG/KNN baselines toward CNN/ResNet-style models with explainability hooks.",
+      skills: ["Computer Vision", "CNN", "ResNet", "HOG", "KNN", "SVM", "Python"],
+      industries: ["Healthcare", "Medical Imaging", "Machine Learning"],
+      status: "Completed",
+      type: "course",
+    },
+    {
+      slug: "revenue-prediction",
+      projectName: "QSR Daily Outlet Revenue",
+      subtitle: "Course · Regression suite",
+      date: "2026 S1",
+      description:
+        "Predictive modeling for quick-service daily sales with elastic net, ridge/lasso, KNN, and rigorous CV.",
+      skills: ["Regression", "Elastic Net", "Feature Engineering", "Python", "scikit-learn"],
+      industries: ["Retail", "Hospitality", "Finance"],
+      status: "Completed",
+      type: "course",
+    },
+    {
+      slug: "future-financial-analyst",
+      projectName: "Growth-Based Repricing Framework",
+      subtitle: "CFA Institute Research Challenge",
+      date: "2026.03",
+      description:
+        "Empirical valuation lens linking innovation-heavy productive forces to market repricing with panel-style evidence.",
+      skills: ["Finance", "Valuation", "Panel Data", "Empirical Research"],
+      industries: ["Finance", "Asset Management", "Public Policy"],
+      status: "Completed",
+      type: "competition",
+      logo: "/competition/CFAlogo.png",
+    },
     {
       slug: "apmcm-2024",
-      title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
+      projectName: "APMCM Modeling Solution",
+      subtitle: "Asia-Pacific Mathematical Contest in Modeling",
       date: "2024.11",
-      description: "Asia-Pacific mathematical modeling contest.",
+      description:
+        "Contest-style modeling sprint with optimization-heavy formulation and sensitivity-ready writeup.",
       skills: ["Modeling", "Optimization"],
+      industries: ["Research", "Applied Math"],
       status: "Completed",
       type: "competition",
       logo: "/competition/apmcmlogo.png",
     },
     {
       slug: "mcm-icm-2025",
-      title: "MCM/ICM Mathematical Contest in Modeling 2025",
+      projectName: "MCM/ICM Modeling Solution",
+      subtitle: "COMAP Mathematical Contest in Modeling",
       date: "2025.02",
-      description: "International mathematical modeling competition.",
+      description:
+        "International modeling competition entry emphasizing statistics, assumptions, and defensible conclusions.",
       skills: ["Modeling", "Statistics"],
+      industries: ["Research", "Applied Math"],
       status: "Completed",
       type: "competition",
       logo: "/competition/COMAPlogo.svg",
     },
-    
   ];
 
-  const filtered = items.filter((p) => {
-    const q = search.trim().toLowerCase();
+  const q = search.trim().toLowerCase();
 
-    const matchSearch =
-      !q ||
-      p.title.toLowerCase().includes(q) ||
-      p.description.toLowerCase().includes(q) ||
-      p.skills.some((s) => s.toLowerCase().includes(q));
+  const filtered = useMemo(() => {
+    return items.filter((p) => {
+      const haystack = [
+        p.projectName,
+        p.subtitle,
+        p.description,
+        p.award ?? "",
+        ...p.skills,
+        ...p.industries,
+      ]
+        .join(" ")
+        .toLowerCase();
 
-    const matchTags =
-      selectedTags.length === 0 ||
-      selectedTags.every((tag) =>
-        p.skills.some((s) => s.toLowerCase() === tag.toLowerCase())
-      );
+      const matchSearch = !q || haystack.includes(q);
 
-    return matchSearch && matchTags;
-  });
+      const matchTags =
+        selectedTags.length === 0 ||
+        selectedTags.every((tag) =>
+          p.industries.some((i) => i.toLowerCase() === tag.toLowerCase())
+        );
+
+      return matchSearch && matchTags;
+    });
+  }, [items, q, selectedTags]);
+
+  const metaIcon = (t: DataType) =>
+    t === "competition" ? (
+      <Trophy className="h-4 w-4 shrink-0 text-gray-400" />
+    ) : (
+      <Rocket className="h-4 w-4 shrink-0 text-gray-400" />
+    );
 
   return (
     <div
@@ -259,19 +336,19 @@ export default function DataPage() {
 
           <div className="mb-8">
             <Input
-              placeholder="Search by dataset / topic / skill…"
+              placeholder="Search by project, competition, industry, method…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="mx-auto max-w-xl border-blue-400/30 bg-black/30 text-blue-100 placeholder:text-blue-200/60 backdrop-blur-md"
             />
 
-            {/* 关键词 Tag 快捷筛选 */}
             <div className="mt-4 flex flex-wrap justify-center gap-2">
               {featuredTags.map((tag) => {
                 const active = selectedTags.includes(tag);
                 return (
                   <button
                     key={tag}
+                    type="button"
                     onClick={() =>
                       setSelectedTags((prev) =>
                         prev.includes(tag)
@@ -292,6 +369,7 @@ export default function DataPage() {
 
               {selectedTags.length > 0 && (
                 <button
+                  type="button"
                   onClick={() => setSelectedTags([])}
                   className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
                 >
@@ -301,11 +379,10 @@ export default function DataPage() {
             </div>
           </div>
 
-          {/* 等高网格 */}
           <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
-              <Link key={project.slug} href={`/data/${project.slug}`} className="block">
-                <PremiumGlassCard className="relative flex h-full flex-col cursor-pointer border border-blue-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(59,130,246,0.10)] hover:border-blue-400/35 hover:bg-black/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
+              <Link key={project.slug} href={`/data/${project.slug}`} className="block h-full">
+                <PremiumGlassCard className="relative flex h-full min-h-[300px] flex-col cursor-pointer border border-blue-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(59,130,246,0.10)] hover:border-blue-400/35 hover:bg-black/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
                   {project.award && (
                     <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 shadow-sm backdrop-blur-sm">
                       <AwardIcon className="h-3 w-3 text-amber-300" />
@@ -313,32 +390,33 @@ export default function DataPage() {
                     </span>
                   )}
 
-                  <div className={`pb-2 p-6 ${project.award ? "pt-8 pr-24" : ""}`}>
+                  <div className={`p-6 pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
-                      {project.type === "competition" && project.logo && (
+                      {project.logo ? (
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
                           <img
                             src={project.logo}
-                            alt={`${project.title} logo`}
-                            className="h-full w-full object-contain p-1"
+                            alt=""
+                            className="h-full w-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.src = "/placeholder.svg";
+                            }}
                           />
+                        </div>
+                      ) : (
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-white/5 text-blue-200/80">
+                          {metaIcon(project.type)}
                         </div>
                       )}
 
-                      <div className="min-w-0">
-                        <div
-                          className="mb-1 min-h-[3.25rem] text-lg leading-snug text-gray-100 line-clamp-3"
-                          style={{ textWrap: "balance" }}
-                        >
-                          {project.title}
-                        </div>
-
-                        <div className="mt-1 flex items-center gap-2 whitespace-nowrap text-sm text-gray-400">
-                          {project.type === "competition" ? (
-                            <Trophy className="h-4 w-4" />
-                          ) : (
-                            <Rocket className="h-4 w-4" />
-                          )}
+                      <div className="min-w-0 flex-1">
+                        <h2 className="line-clamp-2 text-xl font-bold leading-snug tracking-tight text-gray-100 md:text-2xl">
+                          {project.projectName}
+                        </h2>
+                        <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-300">
+                          {project.subtitle}
+                        </p>
+                        <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
                           <span className="truncate">{project.date}</span>
                         </div>
                       </div>
@@ -346,17 +424,17 @@ export default function DataPage() {
                   </div>
 
                   <div className="flex flex-1 flex-col p-6 pt-0">
-                    <p className="mb-4 min-h-[4.5rem] line-clamp-3 text-sm leading-6 text-gray-200">
+                    <p className="mb-4 min-h-[3.25rem] line-clamp-3 text-sm leading-relaxed text-gray-200">
                       {project.description}
                     </p>
 
                     <div className="mb-4 min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
-                      {project.skills.map((skill) => (
+                      {project.industries.slice(0, 4).map((ind) => (
                         <Badge
-                          key={skill}
+                          key={ind}
                           className="text-xs text-blue-200 border-blue-500/30 bg-blue-500/20"
                         >
-                          {skill}
+                          {ind}
                         </Badge>
                       ))}
                     </div>

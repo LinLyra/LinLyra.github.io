@@ -20,7 +20,7 @@ export default function MersenCampusChallengePage() {
     term: "2026.04",
     role: "Solo",
     status: "Completed" as const,
-    award: "🏅 Top 10",
+    award: "Top 10",
     notes: ["/competition/mersen.png"],
     tags: ["Employer Branding", "Campaign Strategy", "Industrial Brand"],
   };
