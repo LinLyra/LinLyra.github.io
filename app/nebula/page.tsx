@@ -57,7 +57,7 @@ export default function NebulaPage() {
       summary:
         "A session on structured thinking, decision-making under uncertainty, and turning ideas into execution.",
       cover: "/activities/js.jpg",
-      location: "TBD",
+      location: "Saltbox",
       kinds: ["Talks"],
     },
     {
