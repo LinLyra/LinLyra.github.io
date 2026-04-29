@@ -208,42 +208,7 @@ export default function DataPage() {
       type: "competition",
       logo: "/competition/COMAPlogo.svg",
     },
-    {
-      slug: "food-delivery-insights",
-      title: "Food Delivery Market Insights",
-      date: "2025.08",
-      description:
-        "Analyze order-level dataset; cluster consumer segments, model delivery-time drivers, and estimate promo impact with causal inference.",
-      skills: [
-        "Python",
-        "Pandas",
-        "Data Visualization",
-        "Clustering",
-        "Causal Inference",
-      ],
-      status: "In Progress",
-      type: "project",
-    },
-    {
-      slug: "tableau-next-hackathon",
-      title: "Tableau Next Hackathon",
-      date: "2025.08",
-      description:
-        "Explore short-video engagement; prototype an agentic analytics dashboard (Tableau + LLM/agents) for retention and recommendations.",
-      skills: ["Tableau", "SQL", "Machine Learning", "Agentic Analytics"],
-      status: "In Progress",
-      type: "project",
-    },
-    {
-      slug: "kaggle-ncaa-basketball",
-      title: "NCAA Basketball Analytics (Kaggle)",
-      date: "2025.09",
-      description:
-        "Feature engineering from play-by-play and seed history; Elo/efficiency ratings; logistic/XGBoost ensemble for upset prediction.",
-      skills: ["Python", "Pandas", "Machine Learning"],
-      status: "Planned",
-      type: "project",
-    },
+    
   ];
 
   const filtered = items.filter((p) => {

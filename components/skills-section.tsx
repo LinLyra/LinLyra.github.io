@@ -95,30 +95,26 @@ function ToolTile({ src, name, index }: { src: string; name: string; index: numb
 function SkillsSection() {
   const skillCategories = [
     {
-      title: "Data Science",
+      title: "Data & Analytics",
       skills: [
         "Predictive Modeling",
         "Time Series Forecasting",
-        "Deep Learning",
-        "Scalable Data Processing (Spark)",
-        "SQL / NoSQL (MongoDB)",
-        "Data Storytelling (Power BI)",
-        "A/B Testing",
-        "Gen AI Applications",
-        "Statistical Analysis",
+        "Experimentation (A/B Testing)",
+        "Data Engineering (Spark, SQL)",
+        "Data Storytelling (Power BI, Tableau)",
       ],
     },
     {
-      title: "Product Strategy",
-      skills: ["User Research", "Market Analysis", "Roadmapping", "MVP Design", "Prototyping (Figma)", "KPI Frameworks"],
+      title: "Product & Strategy",
+      skills: ["User Research", "Market Analysis", "Roadmapping", "MVP Design", "Prototyping", "KPI Frameworks"],
     },
     {
       title: "Business & Consulting",
-      skills: ["Stakeholder Communication", "Problem Structuring", "Business Modeling", "Industry Analysis", "Digital Transformation", "GTM Planning"],
+      skills: ["Stakeholder Communication", "Problem Structuring", "Business Modeling", "Industry Analysis", "Digital Transformation", "Go-to-Market Strategy"],
     },
     {
-      title: "Full-stack Prototyping",
-      skills: ["Next.js / React", "Tailwind / Node.js", "Cloud Databases", "API Architecture", "Deployment & Scaling"],
+      title: "Technical Build",
+      skills: ["Next.js / React", "System Design", "Cloud Databases", "API Architecture", "Deployment & Scaling"],
     },
   ]
 
@@ -195,7 +191,7 @@ function SkillsSection() {
             <div className="space-y-4 justify-self-end">
               <div>
                 <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">TOOLKIT GALAXY</div>
-                <div className="mt-2 text-2xl font-semibold text-gray-100">Tools behind my projects.</div>
+                <div className="mt-2 text-2xl font-semibold text-gray-100">Tech Stack & Tools</div>
               </div>
 
               <div className="grid grid-cols-3 gap-x-3 gap-y-6 sm:grid-cols-3 lg:grid-cols-3">

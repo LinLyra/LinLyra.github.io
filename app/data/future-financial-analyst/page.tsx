@@ -13,9 +13,9 @@ export default function GrowthValueFrameworkPage() {
   const [showNotes, setShowNotes] = useState(false);
 
   const meta = {
-    slug: "growth-value-framework",
+    slug: "future-financial-analyst-competition",
     title: "Repricing the Future: A Growth-Based Financial Framework for Emerging Productive Forces",
-    institution: "Research Project · Future Financial Analyst Competition",
+    institution: "CFA Institute",
     practice:
       "Financial Research · Valuation, Innovation, and Real Economy",
     term: "2026.03",
