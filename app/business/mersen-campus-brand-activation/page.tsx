@@ -14,39 +14,19 @@ export default function MersenCampusChallengePage() {
 
   const meta = {
     slug: "mersen-campus-challenge-2026",
-    title: "Mersen China Campus Challenge 2026",
+    title: "Mersen Campus Challenge 2026",
     institution: "Mersen China",
     practice: "Employer Branding · Campaign Strategy · Industrial Branding",
-    term: "2025.08",
-    role: "Team Lead / Strategy Lead",
+    term: "2026.04",
+    role: "Solo",
     status: "Completed" as const,
-    award: "Campus Competition Project",
+    award: "🏅 Top 10",
     notes: ["/competition/mersen.png"],
     tags: ["Employer Branding", "Campaign Strategy", "Industrial Brand"],
   };
 
-  const overview = `This project focused on employer branding strategy for Mersen, a global expert in electrical systems and advanced materials.
-
-The core challenge was not a lack of technical strength, but a lack of public perception. As a typical B2B industrial company, Mersen plays a critical role in enabling safety, efficiency, and sustainability across modern industrial systems—yet for students, its value remains largely invisible.
-
-We therefore approached the brief as a perception design problem: how do you make an "invisible but essential" company emotionally legible to young talent?
-
-Our solution centered on the employer-brand keyword "Invisible Guardian" and proposed an integrated campaign built around one core creative question: What if the world lost Mersen for 24 hours?
-
-Based on this concept, we designed a three-layer activation path:
-• online interactive simulation to visualize system failure without protection
-• offline immersive campus installations to demonstrate hidden industrial value
-• recruitment conversion mechanisms that turn brand understanding into career identification
-
-Rather than simply positioning Mersen as professional or innovative, the project translated its technical role into a memorable identity: a hidden force that quietly protects how the world runs.`;
-
-  const strategicInsight: string[] = [
-    "Mersen’s challenge is not weak capability, but low perceptibility: its value sits deep within industrial systems and is rarely visible to end users or students.",
-    "Campus audiences do not naturally reject industrial companies; they struggle to understand why these companies matter in real life and where their own role could fit in.",
-    "Traditional employer branding language—innovation, professionalism, global presence—is too generic to differentiate an industrial company with low public exposure.",
-    "Therefore, the strategy had to do more than communicate strengths. It had to translate hidden technical value into an emotionally understandable and experienceable story.",
-    "This led us to define Mersen not as a background manufacturer, but as an invisible guardian: a company whose importance is best understood when its protection disappears."
-  ];
+  const overview =
+    `This project focused on employer branding strategy for Mersen, a global expert in electrical systems and advanced materials. The core challenge was not a lack of technical strength, but a lack of public perception. As a typical B2B industrial company, Mersen plays a critical role in enabling safety, efficiency, and sustainability across modern industrial systems, yet for students its value remains largely invisible. We therefore approached the brief as a perception design problem: how do you make an "invisible but essential" company emotionally legible to young talent? Our solution centered on the employer-brand keyword "Invisible Guardian" and proposed an integrated campaign built around one core creative question: What if the world lost Mersen for 24 hours? Based on this concept, we designed a three-layer activation path including online interactive simulation to visualize system failure without protection, offline immersive campus installations to demonstrate hidden industrial value, and recruitment conversion mechanisms that turn brand understanding into career identification. Rather than simply positioning Mersen as professional or innovative, the project translated its technical role into a memorable identity: a hidden force that quietly protects how the world runs.`;
 
   const whatIDid: string[] = [
     "Led the team in reframing the brief from a conventional event-planning task into an employer-brand perception challenge, clarifying that the real issue was visibility rather than capability.",
@@ -55,17 +35,11 @@ Rather than simply positioning Mersen as professional or innovative, the project
     "Developed the campaign’s central creative proposition—'What if the world lost Mersen for 24 hours?'—to transform abstract industrial value into a vivid, experience-based narrative.",
     "Designed a three-stage user journey covering awareness, immersion, and conversion, including online failure simulation, offline campus installations, and identity-based recruitment engagement.",
     "Structured the proposal so that campaign creativity remained tied to employer-brand objectives, ensuring the solution functioned not only as a communication concept but also as a recruitment funnel.",
-    "Built the presentation logic, messaging hierarchy, and narrative flow, balancing strategic insight, brand consistency, user empathy, and execution feasibility in the final output."
+    "Built the presentation logic, messaging hierarchy, and narrative flow, balancing strategic insight, brand consistency, user empathy, and execution feasibility in the final output.",
   ];
 
-  const keyTakeaways: string[] = [
-    "Great employer branding is not about saying a company is strong; it is about making its value perceivable.",
-    "For industrial brands, the challenge is often not differentiation, but translation.",
-    "A strong campaign needs both a memorable creative hook and a clear conversion pathway.",
-    "Brand strategy becomes much stronger when technical value is turned into emotional understanding."
-  ];
-
-  const reflection = `This project strengthened my ability to translate abstract business value into audience-facing brand strategy.
+  const reflection =
+    `This project strengthened my ability to translate abstract business value into audience-facing brand strategy.
 
 What stood out most was how different industrial branding is from consumer branding. Mersen does not suffer from weak fundamentals—it suffers from low visibility. That forced me to think beyond slogans and focus on perception design: what exactly do students fail to see, and how can strategy make that hidden value understandable, memorable, and relevant?
 
@@ -76,6 +50,7 @@ Another important takeaway was the value of strategic simplification. Mersen’s
 Overall, this experience sharpened my ability to work across business insight, user perception, and campaign architecture. It trained me to turn low-visibility strengths into compelling narratives that people can not only understand, but remember—and act on.`;
 
   const hasNotes = meta.notes.length > 0;
+
   const statusPill =
     meta.status === "Completed"
       ? "bg-green-600/25 text-green-100 border-green-400/40"
@@ -114,6 +89,7 @@ Overall, this experience sharpened my ability to work across business insight, u
               >
                 {meta.status}
               </span>
+
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏅 {meta.award}
@@ -156,22 +132,9 @@ Overall, this experience sharpened my ability to work across business insight, u
             <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
               Project Overview
             </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
+            <p className="text-base leading-relaxed text-gray-200">
               {overview}
             </p>
-          </section>
-
-          <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
-              Strategic Insight
-            </h2>
-            <ul className="list-disc space-y-3 pl-5 text-gray-200">
-              {strategicInsight.map((line, i) => (
-                <li key={i} className="leading-relaxed">
-                  {line}
-                </li>
-              ))}
-            </ul>
           </section>
 
           <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
@@ -180,19 +143,6 @@ Overall, this experience sharpened my ability to work across business insight, u
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
-                <li key={i} className="leading-relaxed">
-                  {line}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="rounded-xl border border-green-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-green-400 md:text-2xl">
-              Key Takeaways
-            </h2>
-            <ul className="list-disc space-y-3 pl-5 text-gray-200">
-              {keyTakeaways.map((line, i) => (
                 <li key={i} className="leading-relaxed">
                   {line}
                 </li>
