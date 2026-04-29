@@ -36,59 +36,27 @@ export default function NebulaPage() {
   const [selected, setSelected] = useState<ActivityItem | null>(null)
 
   const activities: ActivityItem[] = [
-    {
-  slug: "microsoft-code-without-barriers",
-  title: "Code; Without Barriers",
-  org: "Microsoft",
-  date: "2025.11",
-  summary:
-    "Attended Microsoft’s Code; Without Barriers event featuring women leaders and engineers sharing their career journeys, challenges, and growth strategies in tech. Gained insights into building confidence, navigating technical careers as a woman, and the importance of inclusive ecosystems in shaping sustainable innovation.",
-  cover: "/activities/microsoft.jpg",
-  location: "Microsoft Office, Sydney",
-  kinds: ["Talks", "Networking"],
-},
-{
-  slug: "ey-suede-panel-event-2025",
-  title: "EY x SUEDE Society Panel Event",
-  org: "EY",
-  date: "2025.11",
-  summary:
-    "Panel discussion jointly hosted by EY and the SUEDE Society, exploring career pathways, problem-solving approaches, and real-world consulting experiences. The event offered practical perspectives on how analytical thinking, communication, and stakeholder management come together in professional services.",
-  cover: "/activities/ey-ui.jpg",
-  location: "EY Office, Sydney",
-  kinds: ["Talks", "Networking"],
-},
-{
-  slug: "salesforce-summit-agentforce-2025",
-  title: "Salesforce Summit: Agentforce & Data Cloud",
-  org: "Salesforce",
-  date: "2025.11",
-  summary:
-    "Industry summit at Salesforce focused on Agentforce, Data Cloud, and the future of AI-driven customer platforms. Learned how data unification, real-time intelligence, and AI agents are reshaping enterprise workflows and customer experiences, reinforcing the role of data infrastructure in scalable AI applications.",
-  cover: "/activities/saleforces.jpg",
-  location: "Salesforce Office, Sydney",
-  kinds: ["Talks", "Networking"],
-},
+   
 
     {
       slug: "pimco-career-catalyst-evening",
       title: "PIMCO Career Catalyst Evening",
       org: "PIMCO",
-      date: "TBD",
+      date: "2026.4",
       summary:
         "Perspectives on macro investing and the role of analysts in navigating market uncertainty.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/PIMCO.jpg",
+      location: "PIMCO Office, Sydney",
       kinds: ["Networking", "Talks"],
     },
     {
       slug: "jane-street-strategy-product",
       title: "Jane Street — Strategy & Product Discussion",
       org: "Jane Street",
-      date: "TBD",
+      date: "2026.3",
       summary:
         "A session on structured thinking, decision-making under uncertainty, and turning ideas into execution.",
-      cover: "/placeholder.svg",
+      cover: "/activities/js.jpg",
       location: "TBD",
       kinds: ["Talks"],
     },
@@ -96,80 +64,112 @@ export default function NebulaPage() {
       slug: "vercel-relevance-ai-syd",
       title: "Vercel × Relevance AI (AI SYD)",
       org: "Vercel × Relevance AI",
-      date: "TBD",
+      date: "2026.4",
       summary:
         "Building agents, rapid feedback loops, and how tooling accelerates iteration in practice.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/Revelance.jpg",
+      location: "Revelance AI Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
     {
       slug: "sydney-data-engineering-meetup-delta-sharing",
       title: "Sydney Data Engineering Meetup",
       org: "Data Engineering Meetup",
-      date: "TBD",
+      date: "2026.4",
       summary:
         "Deep dives into Delta Sharing, data contracts, and how modern data systems are becoming more open and interoperable.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/optiver.jpg",
+      location: "Optiver Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
     {
       slug: "paypal-developer-meetup",
       title: "PayPal Developer Meetup",
       org: "PayPal",
-      date: "TBD",
+      date: "2026.4",
       summary:
         "Insights into real-world developer ecosystems and the product infrastructure behind them.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/Paypal.jpg",
+      location: "Paypal Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
     {
       slug: "cursor-meetup-unsw",
       title: "Cursor Meetup @ UNSW",
       org: "Cursor",
-      date: "TBD",
+      date: "2026.3",
       summary:
         "Hands-on exposure to AI-assisted development and how modern workflows are being reshaped.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/cursor.jpg",
+      location: "UNSW Campus",
       kinds: ["Workshop", "Networking"],
     },
     {
       slug: "visagio-insights-night",
       title: "Visagio Insights Night",
       org: "Visagio",
-      date: "TBD",
+      date: "2026.3",
       summary:
         "Consulting perspectives on problem-solving, structured thinking, and communicating decisions clearly.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/Visagio.jpg",
+      location: "Stone & Chalk Tech Central, Sydney",
       kinds: ["Talks", "Networking"],
     },
     {
       slug: "international-womens-day-inner-circle",
       title: "International Women’s Day Inner Circle",
       org: "IWD Inner Circle",
-      date: "TBD",
+      date: "2026.3",
       summary:
         "Listening to people share where they started, what shaped them, and how they built confidence and momentum through uncertainty.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/women.jpg",
+      location: "TStone & Chalk Tech Central, Sydney",
       kinds: ["Talks", "Networking"],
     },
     {
       slug: "data-ai-con-2026-dataops-agentic-ai",
       title: "Data + AI Con ’26: When DataOps Meets Agentic AI",
       org: "Data + AI Con",
-      date: "2026",
+      date: "2026.3",
       summary:
         "How DataOps principles and agentic AI patterns are converging to reshape modern data platforms and delivery.",
-      cover: "/placeholder.svg",
-      location: "TBD",
+      cover: "/activities/dataai.jpg",
+      location: "UTS Startup",
       kinds: ["Talks"],
     },
-
+    {
+      slug: "microsoft-code-without-barriers",
+      title: "Code; Without Barriers",
+      org: "Microsoft",
+      date: "2025.11",
+      summary:
+        "Attended Microsoft’s Code; Without Barriers event featuring women leaders and engineers sharing their career journeys, challenges, and growth strategies in tech. Gained insights into building confidence, navigating technical careers as a woman, and the importance of inclusive ecosystems in shaping sustainable innovation.",
+      cover: "/activities/microsoft.jpg",
+      location: "Microsoft Office, Sydney",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "ey-suede-panel-event-2025",
+      title: "EY x SUEDE Society Panel Event",
+      org: "EY",
+      date: "2025.11",
+      summary:
+        "Panel discussion jointly hosted by EY and the SUEDE Society, exploring career pathways, problem-solving approaches, and real-world consulting experiences. The event offered practical perspectives on how analytical thinking, communication, and stakeholder management come together in professional services.",
+      cover: "/activities/ey-ui.jpg",
+      location: "EY Office, Sydney",
+      kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "salesforce-summit-agentforce-2025",
+      title: "Salesforce Summit: Agentforce & Data Cloud",
+      org: "Salesforce",
+      date: "2025.11",
+      summary:
+        "Industry summit at Salesforce focused on Agentforce, Data Cloud, and the future of AI-driven customer platforms. Learned how data unification, real-time intelligence, and AI agents are reshaping enterprise workflows and customer experiences, reinforcing the role of data infrastructure in scalable AI applications.",
+      cover: "/activities/saleforces.jpg",
+      location: "Salesforce Office, Sydney",
+      kinds: ["Talks", "Networking"],
+    },
     {
   slug: "power-bi-workshop-capgemini-2025",
   title: "Power BI Workshop",
@@ -178,7 +178,7 @@ export default function NebulaPage() {
   summary:
     "An introductory, hands-on session using practice datasets to explore how to build effective Power BI reports and get started with data visualization and business intelligence tools.",
   cover: "/activities/powerbi.png",
-  location: "Capgemini Sydney",
+  location: "Capgemini Office, Sydney",
   kinds: ["Workshop"],
 },
 {
@@ -189,7 +189,7 @@ export default function NebulaPage() {
   summary:
     "Session on how to turn data collection, preparation, and analysis into an equity story — covering acquisition-grade KPIs, operational data normalization, revenue-to-cash bridges, QoE lenses, cohort and unit economics views, and scenario/sensitivity modeling for stakeholders.",
   cover: "/activities/eypar.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks"],
 },
 {
@@ -200,7 +200,7 @@ export default function NebulaPage() {
   summary:
     "Speed mentoring event connecting students with industry mentors. Gained practical advice on building a career in Australia as an international student.",
   cover: "/activities/ibus.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Networking"],
 },
 {
@@ -222,7 +222,7 @@ export default function NebulaPage() {
   summary:
     "Interactive workshop with Jahin Tanvir on building confidence and impactful communication skills, tailored for design and presentation in professional settings.",
   cover: "/activities/design.png",
-  location: "Canva Sydney",
+  location: "Canva Office,Sydney",
   kinds: ["Workshop"],
 },
 {
@@ -233,7 +233,7 @@ export default function NebulaPage() {
   summary:
     "Campus info session providing insights into career pathways, recruitment strategies, and opportunities at Goldman Sachs for students interested in finance and investment banking.",
   cover: "/activities/goldmansachs.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks"],
 },
 
@@ -245,7 +245,7 @@ export default function NebulaPage() {
   summary:
     "Campus talk on hierarchical & grouped forecasting: base-model choices (ETS/ARIMA), reconciliation methods (MinT/MinT-Shrink), temporal–hierarchical structures, and evaluation (MAPE, WRMSSE). Practical tips for production pipelines.",
   cover: "/activities/forecast.png", 
-  location: "Campus",
+  location: "USYDCampus",
   kinds: ["Talks"],
 },
     {
@@ -256,7 +256,7 @@ export default function NebulaPage() {
   summary:
     "Full-day summit: growth capital insights, founder playbooks to 10M+ ARR, operator perspectives, and an AI moat panel. Great investor/founder networking.",
   cover: "/activities/flyers.png",
-  location: "Macquarie, Sydney",
+  location: "Macquarie Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
 {
@@ -267,7 +267,7 @@ export default function NebulaPage() {
   summary:
     "Visit Atlassian’s Sydney HQ: culture and product/engineering overview, plus a graduate panel on roles, recruiting pathways, and Q&A.",
   cover: "/activities/atlassian.png",
-  location: "Atlassian Sydney HQ",
+  location: "Atlassian Office, Sydney",
   kinds: ["Networking", "Talks"],
 },
     {
@@ -277,7 +277,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "AI/Cloud：1) How you can extend your platform with agentic features；2) Agentic AI: What Works (And what doesn't) in production。",
   cover: "/activities/googleai.png",
-  location: "Google Sydney",
+  location: "Google Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
 {
@@ -287,7 +287,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Workshop: Optimising development with MCP, Future-Ready & Adaptive: Building Android Apps for All Devices.",
   cover: "/activities/googlemobile.png",
-  location: "Google Sydney",
+  location: "Google Office, Sydney",
   kinds: ["Talks", "Networking"],
 },
 {
@@ -297,7 +297,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Career development and leadership experiences from women in science.",
   cover: "/activities/women-in-science.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks", "Networking"],
 },
 {
@@ -307,7 +307,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Stories, resources, and pathways for women entering and growing in tech.",
   cover: "/activities/her-tech-journey.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks", "Networking"],
 },
 {
@@ -317,7 +317,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Onsite visit to explore products, engineering culture, and career paths.",
   cover: "/activities/bloomberg-discover.png",
-  location: "Bloomberg Sydney Office",
+  location: "Bloomberg Office, Sydney ",
   kinds: ["Networking", "Talks"],
 },
 {
@@ -327,7 +327,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Interns and alumni share project experiences, interview prep, and skill building.",
   cover: "/activities/ds-intern-panel.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks", "Networking"],
 },
 
@@ -338,7 +338,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Introduction to Google's GenAI Academy, highlighting agents, generative AI, and the future of software development.",
   cover: "/activities/genai.png",
-  location: "Google Sydney",
+  location: "Google Office, Sydney",
   kinds: ["Talks", "Networking"],
   },
     {
@@ -348,7 +348,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Exploring how founders can use ChatGPT and no-code tools to build smarter, faster MVPs.",
   cover: "/activities/gpt.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks", "Workshop"],
   },
   {
@@ -358,7 +358,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "A practical guide to validating startup ideas and translating them into minimum viable products.",
   cover: "/activities/mvp.png",
-  location: "Campus",
+  location: "USYD Campus",
   kinds: ["Talks", "Workshop"],
   },
   {
@@ -368,7 +368,7 @@ export default function NebulaPage() {
   date: "2025.09",
   summary: "Insights on sustainable revenue models and monetisation strategies for early-stage startups.",
   cover: "/activities/ignite.png",
-  location: "The Quad Board Room S445",
+  location: "USYD Campus",
   kinds: ["Talks"],
   },
 
@@ -379,7 +379,7 @@ export default function NebulaPage() {
       date: "2025.08",
       summary: "Banking tech stack, risk systems, and a peek into product operations.",
       cover: "/activities/ra1.png",
-      location: "Rabobank office",
+      location: "Rabobank Office, Sydney",
       kinds: ["Networking"],
     },
     {
@@ -389,7 +389,7 @@ export default function NebulaPage() {
       date: "2025.08",
       summary: "Insights on EY application processes, interview prep, and career pathways.",
       cover: "/activities/ey1.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Networking", "Talks"],
     },
     {
@@ -409,7 +409,7 @@ export default function NebulaPage() {
       date: "2025.03",
       summary: "Career chats, hack-style demos, and routes into product & engineering.",
       cover: "/activities/microsoft1.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Networking", "Talks"],
     },
     {
@@ -419,7 +419,7 @@ export default function NebulaPage() {
       date: "2025.03",
       summary: "Pathways into strategy consulting, recruiting tips, and day-in-the-life insights.",
       cover: "/activities/bain1.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Networking", "Talks"],
     },
     {
@@ -429,7 +429,7 @@ export default function NebulaPage() {
       date: "2025.03",
       summary: "Flow trading landscape, pricing, risk, and life on the trading floor.",
       cover: "/activities/flow1.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Talks"],
     },
     {
@@ -439,7 +439,7 @@ export default function NebulaPage() {
       date: "2025.04",
       summary: "Global AI regulation, safety vs. innovation, cross-border governance trends.",
       cover: "/activities/ai.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Talks"],
     },
     {
@@ -449,7 +449,7 @@ export default function NebulaPage() {
       date: "2025.04",
       summary: "Hands-on with LLM tooling, data pipelines, and prompt workflows.",
       cover: "/activities/rhombus.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Talks"],
     },
     {
@@ -459,7 +459,7 @@ export default function NebulaPage() {
       date: "2024.08",
       summary: "Panel discussion on STEM careers, research opportunities, and student pathways.",
       cover: "/activities/stem.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Talks"],
     },
     {
@@ -469,7 +469,7 @@ export default function NebulaPage() {
       date: "2024.08",
       summary: "Profile optimisation, storytelling, and networking best practices.",
       cover: "/activities/linkedin.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Networking", "Talks"],
     },
     {
@@ -499,7 +499,7 @@ export default function NebulaPage() {
       date: "2025.04 - Present",
       summary: "Contributed to student life by supporting campus events, and engaging with diverse student communities.",
       cover: "/activities/usu.png",
-      location: "Campus",
+      location: "USYD Campus",
       kinds: ["Volunteer"],
     },
   ]
