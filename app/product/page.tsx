@@ -7,13 +7,7 @@ import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import {
-  Rocket,
-  ArrowLeft,
-  Award as AwardIcon,
-  Trophy,
-  BriefcaseBusiness,
-} from "lucide-react";
+import { ArrowLeft, Award as AwardIcon } from "lucide-react";
 
 type ProductType = "product" | "project" | "hackathon" | "development";
 
@@ -32,9 +26,27 @@ type ProductItem = {
   logo?: string;
 };
 
+function mergeProductCardTags(p: ProductItem, max = 6): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of [
+    ...(p.industries ?? []),
+    ...(p.tags ?? []),
+    ...(p.skills ?? []),
+  ]) {
+    const x = raw.trim();
+    if (!x || seen.has(x)) continue;
+    seen.add(x);
+    out.push(x);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
 export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<ProductType[]>([]);
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   const products: ProductItem[] = [
     {
@@ -54,6 +66,7 @@ export default function ProductPage() {
         "API Integration",
       ],
       industries: ["Nonprofit", "AI Applications"],
+      tags: ["GenAI", "APIs", "Community"],
     },
     {
       slug: "agentlens",
@@ -64,7 +77,8 @@ export default function ProductPage() {
       logo: "/competition/microsoftlogo.png",
       description:
         "LLM agent evaluation console with multi-dimension scoring, hallucination flags, and diagnostic reports.",
-      tags: ["AI Evaluation", "Hallucination Detection", "Next.js"],
+      tags: ["AI Evaluation", "Hallucination Detection", "Next.js", "LLM"],
+      skills: ["OpenRouter", "Dashboard UX", "JSON Pipelines"],
       industries: ["AI", "Developer Tools", "Software"],
     },
     {
@@ -76,7 +90,8 @@ export default function ProductPage() {
       logo: "/competition/foodguard.png",
       description:
         "Nutrition and allergen assistant that turns meal photos into fast, actionable eating guidance.",
-      tags: ["HealthTech", "Computer Vision", "AI Product"],
+      tags: ["HealthTech", "Computer Vision", "AI Product", "Nutrition"],
+      skills: ["Product Design", "UX Writing"],
       industries: ["HealthTech", "Consumer App"],
     },
     {
@@ -89,7 +104,8 @@ export default function ProductPage() {
       placement: "First Runner-up",
       description:
         "Digital product story for AI-enabled audit workflows with a shippable UI slice and narrative.",
-      tags: ["AI + Audit", "Frontend Dev", "Digital Transformation"],
+      tags: ["AI + Audit", "Frontend Dev", "Digital Transformation", "Figma"],
+      skills: ["Storytelling", "Prototyping"],
       industries: ["Professional Services", "Audit", "Enterprise"],
     },
     {
@@ -101,7 +117,8 @@ export default function ProductPage() {
       logo: "/competition/gdglogo.png",
       description:
         "Full-stack social growth app with reputation, circles, missions, and a lightweight scout console.",
-      tags: ["Full-stack", "Next.js", "Social"],
+      tags: ["Full-stack", "Next.js", "Social", "PostgreSQL"],
+      skills: ["Auth", "Realtime"],
       industries: ["Social", "Community", "Creator Economy"],
     },
     {
@@ -114,7 +131,8 @@ export default function ProductPage() {
       placement: "Top 9",
       description:
         "Accessible media + product concept for social-impact storytelling and inclusive UX.",
-      tags: ["Accessibility", "Product Design", "Social Impact"],
+      tags: ["Accessibility", "Product Design", "Social Impact", "Inclusive UX"],
+      skills: ["Research", "Wireframes"],
       industries: ["Social Impact", "Media", "Accessibility"],
     },
     {
@@ -126,7 +144,8 @@ export default function ProductPage() {
       logo: "/competition/advxlogo.jpg",
       description:
         "Youth growth platform prototype that makes projects and peer support visible as dynamic “growth equity.”",
-      tags: ["Growth", "Community", "Prototype"],
+      tags: ["Growth", "Community", "Prototype", "Pitch"],
+      skills: ["UX", "Narrative"],
       industries: ["Community", "Career", "EdTech"],
     },
     {
@@ -138,7 +157,8 @@ export default function ProductPage() {
       logo: "/competition/kpmglogo.png",
       description:
         "Tight-timeline product narrative on digital assurance / insights with a credible rollout sketch.",
-      tags: ["Product", "AI + Audit", "Business Plan"],
+      tags: ["Product", "AI + Audit", "Business Plan", "Stakeholders"],
+      skills: ["Slide Deck", "Roadmap"],
       industries: ["Professional Services", "Audit", "Enterprise"],
     },
     {
@@ -150,7 +170,8 @@ export default function ProductPage() {
       logo: "/competition/microsoftlogo.png",
       description:
         "Rapid GenAI prototype built around strong prompting patterns and demo-ready UX.",
-      tags: ["GenAI", "Prompting", "Product"],
+      tags: ["GenAI", "Prompting", "Product", "Microsoft 365"],
+      skills: ["Demo Script", "UI"],
       industries: ["AI", "Enterprise Software"],
     },
     {
@@ -161,8 +182,8 @@ export default function ProductPage() {
       type: "project",
       description:
         "Lightweight multimodal scoring: image signals for environmental cues, documents for social/governance structure.",
-      tags: ["GenAI", "Image Recognition", "ESG"],
-      skills: ["Prompt Engineering", "API Integration"],
+      tags: ["GenAI", "Image Recognition", "ESG", "Multimodal"],
+      skills: ["Prompt Engineering", "API Integration", "Scoring Rubric"],
       industries: ["Fashion", "ESG", "Sustainability"],
     },
     {
@@ -174,8 +195,8 @@ export default function ProductPage() {
       logo: "/competition/canvalogo.png",
       description:
         "Nature-first travel recommender pairing weather, palette, and route inspiration in a 24h build.",
-      tags: ["Travel", "Recommender", "Weather API"],
-      skills: ["Frontend Dev", "API Integration"],
+      tags: ["Travel", "Recommender", "Weather API", "Canva"],
+      skills: ["Frontend Dev", "API Integration", "Maps"],
       industries: ["Travel", "Consumer App"],
     },
     {
@@ -187,7 +208,8 @@ export default function ProductPage() {
       logo: "/competition/gdglogo.png",
       description:
         "Offline tutoring matchmaking with trial booking, check-ins, and two-sided trust signals.",
-      tags: ["Education", "Marketplace", "Trust"],
+      tags: ["Education", "Marketplace", "Trust", "Hackathon"],
+      skills: ["Matching", "Payments Flow"],
       industries: ["Education", "Local Services"],
     },
     {
@@ -199,9 +221,23 @@ export default function ProductPage() {
       logo: "/competition/gaodelogo.png",
       description:
         "Map-first tutoring flows: nearby demand, routing, and proof-of-arrival to reduce offline friction.",
-      tags: ["Amap API", "Location", "Education"],
+      tags: ["Amap API", "Location", "Education", "Check-in"],
+      skills: ["Geocoding", "Routing"],
       industries: ["Education", "Location Services"],
     },
+  ];
+
+  const featuredTopics = [
+    "GenAI",
+    "Education",
+    "HealthTech",
+    "Next.js",
+    "Audit",
+    "Social Impact",
+    "Travel",
+    "ESG",
+    "Full-stack",
+    "AI",
   ];
 
   const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
@@ -224,20 +260,27 @@ export default function ProductPage() {
 
       const hit = q === "" || bag.includes(q);
       const typeOK = selectedTags.length === 0 || selectedTags.includes(p.type);
-      return hit && typeOK;
+      const topicOK =
+        selectedTopics.length === 0 ||
+        selectedTopics.some((topic) => {
+          const t = topic.toLowerCase();
+          return [...(p.industries ?? []), ...(p.tags ?? []), ...(p.skills ?? [])].some(
+            (x) => x.toLowerCase() === t
+          );
+        });
+      return hit && typeOK && topicOK;
     });
-  }, [products, q, selectedTags]);
+  }, [products, q, selectedTags, selectedTopics]);
 
   const toggle = (t: ProductType) =>
     setSelectedTags((prev) =>
       prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]
     );
 
-  const workIcon = (t: ProductType) => {
-    if (t === "development") return <BriefcaseBusiness className="h-4 w-4 shrink-0 text-gray-400" />;
-    if (t === "project") return <Rocket className="h-4 w-4 shrink-0 text-gray-400" />;
-    return <Trophy className="h-4 w-4 shrink-0 text-gray-400" />;
-  };
+  const toggleTopic = (topic: string) =>
+    setSelectedTopics((prev) =>
+      prev.includes(topic) ? prev.filter((x) => x !== topic) : [...prev, topic]
+    );
 
   return (
     <div
@@ -295,8 +338,36 @@ export default function ProductPage() {
                   className="h-6 px-2 text-gray-300"
                   onClick={() => setSelectedTags([])}
                 >
-                  Clear
+                  Clear types
                 </Button>
+              )}
+            </div>
+            <div className="flex flex-wrap justify-center gap-2">
+              {featuredTopics.map((topic) => {
+                const active = selectedTopics.includes(topic);
+                return (
+                  <button
+                    key={topic}
+                    type="button"
+                    onClick={() => toggleTopic(topic)}
+                    className={`rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all ${
+                      active
+                        ? "border-amber-300/60 bg-orange-500/30 text-amber-50 shadow-[0_0_12px_rgba(245,158,11,0.3)]"
+                        : "border-amber-400/35 bg-black/25 text-amber-200/90 hover:border-amber-400/50 hover:bg-orange-500/10 hover:text-amber-100"
+                    }`}
+                  >
+                    {topic}
+                  </button>
+                );
+              })}
+              {selectedTopics.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedTopics([])}
+                  className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
+                >
+                  Clear topics
+                </button>
               )}
             </div>
           </div>
@@ -323,14 +394,13 @@ export default function ProductPage() {
                         )}
 
                         <div className="min-w-0 flex-1 pr-2">
-                          <h2 className="line-clamp-2 text-xl font-bold leading-snug tracking-tight text-gray-100 md:text-2xl">
+                          <h2 className="line-clamp-2 text-base font-semibold leading-snug text-gray-100">
                             {p.projectName}
                           </h2>
-                          <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-300">
+                          <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
                             {p.subtitle}
                           </p>
                           <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
-                            {workIcon(p.type)}
                             <span className="truncate">{p.date ?? ""}</span>
                           </div>
                         </div>
@@ -350,10 +420,10 @@ export default function ProductPage() {
                       {p.description ?? ""}
                     </p>
                     <div className="mt-auto min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
-                      {(p.industries ?? []).slice(0, 4).map((tag) => (
+                      {mergeProductCardTags(p).map((tag) => (
                         <Badge
                           key={tag}
-                          className="border-amber-500/30 bg-orange-500/20 text-xs text-orange-200"
+                          className="border-amber-500/30 bg-orange-500/20 text-xs font-normal text-orange-100"
                         >
                           {tag}
                         </Badge>

@@ -7,7 +7,7 @@ import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, ArrowLeft, Award, BriefcaseBusiness } from "lucide-react";
+import { ArrowLeft, Award } from "lucide-react";
 
 type BusinessType =
   | "internship"
@@ -45,6 +45,19 @@ const TYPE_LABELS: Record<BusinessType, string> = {
   sustainability: "sustainability",
   marketing: "marketing",
 };
+
+function mergeBusinessBadges(item: BusinessItem, max = 6): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of [...(item.industries ?? []), ...(item.skills ?? [])]) {
+    const x = raw.trim();
+    if (!x || seen.has(x)) continue;
+    seen.add(x);
+    out.push(x);
+    if (out.length >= max) break;
+  }
+  return out;
+}
 
 export default function BusinessPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -343,13 +356,6 @@ export default function BusinessPage() {
   const isTypeUsed = (t: BusinessType) =>
     businessItems.some((b) => b.type === t);
 
-  const workIcon = (t: BusinessType) =>
-    t === "internship" || t === "consulting" || t === "strategy" ? (
-      <BriefcaseBusiness className="h-4 w-4 shrink-0 text-gray-400" />
-    ) : (
-      <Trophy className="h-4 w-4 shrink-0 text-gray-400" />
-    );
-
   return (
     <div
       className="relative min-h-screen"
@@ -416,7 +422,7 @@ export default function BusinessPage() {
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((item) => {
-              const visibleBadges = [...(item.industries ?? [])].slice(0, 4);
+              const visibleBadges = mergeBusinessBadges(item);
 
               return (
                 <Link
@@ -451,14 +457,13 @@ export default function BusinessPage() {
                           </div>
 
                           <div className="min-w-0 flex-1">
-                            <h2 className="line-clamp-2 text-xl font-bold leading-snug tracking-tight text-gray-100 md:text-2xl">
+                            <h2 className="line-clamp-2 text-base font-semibold leading-snug text-gray-100">
                               {item.projectName}
                             </h2>
-                            <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-300">
+                            <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
                               {item.subtitle}
                             </p>
                             <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
-                              {workIcon(item.type)}
                               <span className="truncate">{item.date ?? ""}</span>
                             </div>
                           </div>
@@ -474,7 +479,7 @@ export default function BusinessPage() {
                           {visibleBadges.map((tag) => (
                             <Badge
                               key={tag}
-                              className="border-green-500/30 bg-green-500/20 text-xs text-green-200"
+                              className="border-green-500/30 bg-green-500/20 text-xs font-normal text-green-200"
                             >
                               {tag}
                             </Badge>

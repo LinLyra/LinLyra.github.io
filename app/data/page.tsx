@@ -33,10 +33,28 @@ type DataItem = {
   links?: { github?: string; demo?: string };
 };
 
+function mergeCardKeywords(
+  industries: string[],
+  skills: string[],
+  max = 6
+): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const raw of [...industries, ...skills]) {
+    const x = raw.trim();
+    if (!x || seen.has(x)) continue;
+    seen.add(x);
+    out.push(x);
+    if (out.length >= max) break;
+  }
+  return out;
+}
+
 export default function DataPage() {
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
+  /** Pills above search: industries + methods; card filter matches industry OR skill */
   const featuredTags = [
     "E-commerce",
     "Finance",
@@ -45,6 +63,13 @@ export default function DataPage() {
     "Public Policy",
     "Supply Chain",
     "Machine Learning",
+    "Python",
+    "NLP",
+    "Time Series",
+    "Computer Vision",
+    "Causal Inference",
+    "Regression",
+    "Modeling",
   ];
 
   const items: DataItem[] = [
@@ -73,18 +98,32 @@ export default function DataPage() {
       industries: ["E-commerce", "Local Services", "Finance"],
       status: "Completed",
       type: "competition",
+      logo: "/competition/meituanlogo.png",
     },
     {
-      slug: "taylor-swift-engagement-analysis",
-      projectName: "Engagement & Herding Signals",
-      subtitle: "YouTube comments × ELM + Gemini",
-      date: "2025.08",
+      slug: "pathology-image-classification",
+      projectName: "H&E Tumour vs Immune Cells",
+      subtitle: "Course · Medical imaging",
+      date: "2026 S1",
       description:
-        "Large-scale comment mining to trace sentiment shifts, persuasion routes, and herding in a major pop-culture event.",
-      skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
-      industries: ["Entertainment", "Social Media", "Marketing"],
+        "CV pipeline from HOG/KNN baselines toward CNN/ResNet-style models with explainability hooks.",
+      skills: ["Computer Vision", "CNN", "ResNet", "HOG", "KNN", "SVM", "Python"],
+      industries: ["Healthcare", "Medical Imaging", "Machine Learning"],
       status: "Completed",
-      type: "project",
+      type: "course",
+    },
+    {
+      slug: "future-financial-analyst",
+      projectName: "Growth-Based Repricing Framework",
+      subtitle: "CFA Institute Research Challenge",
+      date: "2026.03",
+      description:
+        "Empirical valuation lens linking innovation-heavy productive forces to market repricing with panel-style evidence.",
+      skills: ["Finance", "Valuation", "Panel Data", "Empirical Research"],
+      industries: ["Finance", "Asset Management", "Public Policy"],
+      status: "Completed",
+      type: "competition",
+      logo: "/competition/CFAlogo.png",
     },
     {
       slug: "youtube-ai-content-strategy",
@@ -209,16 +248,16 @@ export default function DataPage() {
       type: "course",
     },
     {
-      slug: "pathology-image-classification",
-      projectName: "H&E Tumour vs Immune Cells",
-      subtitle: "Course · Medical imaging",
-      date: "2026 S1",
+      slug: "taylor-swift-engagement-analysis",
+      projectName: "Engagement & Herding Signals",
+      subtitle: "YouTube comments × ELM + Gemini",
+      date: "2025.08",
       description:
-        "CV pipeline from HOG/KNN baselines toward CNN/ResNet-style models with explainability hooks.",
-      skills: ["Computer Vision", "CNN", "ResNet", "HOG", "KNN", "SVM", "Python"],
-      industries: ["Healthcare", "Medical Imaging", "Machine Learning"],
+        "Large-scale comment mining to trace sentiment shifts, persuasion routes, and herding in a major pop-culture event.",
+      skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
+      industries: ["Entertainment", "Social Media", "Marketing"],
       status: "Completed",
-      type: "course",
+      type: "project",
     },
     {
       slug: "revenue-prediction",
@@ -232,27 +271,15 @@ export default function DataPage() {
       status: "Completed",
       type: "course",
     },
-    {
-      slug: "future-financial-analyst",
-      projectName: "Growth-Based Repricing Framework",
-      subtitle: "CFA Institute Research Challenge",
-      date: "2026.03",
-      description:
-        "Empirical valuation lens linking innovation-heavy productive forces to market repricing with panel-style evidence.",
-      skills: ["Finance", "Valuation", "Panel Data", "Empirical Research"],
-      industries: ["Finance", "Asset Management", "Public Policy"],
-      status: "Completed",
-      type: "competition",
-      logo: "/competition/CFAlogo.png",
-    },
+   
     {
       slug: "apmcm-2024",
       projectName: "APMCM Modeling Solution",
       subtitle: "Asia-Pacific Mathematical Contest in Modeling",
       date: "2024.11",
       description:
-        "Contest-style modeling sprint with optimization-heavy formulation and sensitivity-ready writeup.",
-      skills: ["Modeling", "Optimization"],
+        "My APMCM paper: optimization-first model, parameter sensitivity, and a tight writeup for our problem track.",
+      skills: ["Mathematical Modeling", "Optimization", "Sensitivity Analysis", "LaTeX"],
       industries: ["Research", "Applied Math"],
       status: "Completed",
       type: "competition",
@@ -264,8 +291,8 @@ export default function DataPage() {
       subtitle: "COMAP Mathematical Contest in Modeling",
       date: "2025.02",
       description:
-        "International modeling competition entry emphasizing statistics, assumptions, and defensible conclusions.",
-      skills: ["Modeling", "Statistics"],
+        "Our MCM/ICM entry: clear assumptions, statistical core models, and evidence-backed answers for the chosen problem.",
+      skills: ["Mathematical Modeling", "Statistics", "Simulation", "Technical Writing"],
       industries: ["Research", "Applied Math"],
       status: "Completed",
       type: "competition",
@@ -292,9 +319,13 @@ export default function DataPage() {
 
       const matchTags =
         selectedTags.length === 0 ||
-        selectedTags.every((tag) =>
-          p.industries.some((i) => i.toLowerCase() === tag.toLowerCase())
-        );
+        selectedTags.some((tag) => {
+          const t = tag.toLowerCase();
+          return (
+            p.industries.some((i) => i.toLowerCase() === t) ||
+            p.skills.some((s) => s.toLowerCase() === t)
+          );
+        });
 
       return matchSearch && matchTags;
     });
@@ -356,10 +387,10 @@ export default function DataPage() {
                           : [...prev, tag]
                       )
                     }
-                    className={`rounded-full border px-3 py-1 text-xs backdrop-blur-md transition-all ${
+                    className={`rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all ${
                       active
-                        ? "border-blue-300/60 bg-blue-500/30 text-blue-100 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
-                        : "border-blue-400/30 bg-black/25 text-gray-200 hover:bg-black/35"
+                        ? "border-blue-300/60 bg-blue-500/30 text-blue-50 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+                        : "border-blue-400/35 bg-black/25 text-blue-200/90 hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-100"
                     }`}
                   >
                     {tag}
@@ -392,28 +423,29 @@ export default function DataPage() {
 
                   <div className={`p-6 pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
-                      {project.logo ? (
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
-                          <img
-                            src={project.logo}
-                            alt=""
-                            className="h-full w-full object-cover"
-                            onError={(e) => {
-                              e.currentTarget.src = "/placeholder.svg";
-                            }}
-                          />
-                        </div>
-                      ) : (
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-white/5 text-blue-200/80">
-                          {metaIcon(project.type)}
-                        </div>
-                      )}
+                      {project.type !== "course" &&
+                        (project.logo ? (
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
+                            <img
+                              src={project.logo}
+                              alt=""
+                              className="h-full w-full object-cover"
+                              onError={(e) => {
+                                e.currentTarget.src = "/placeholder.svg";
+                              }}
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-white/5 text-blue-200/80">
+                            {metaIcon(project.type)}
+                          </div>
+                        ))}
 
                       <div className="min-w-0 flex-1">
-                        <h2 className="line-clamp-2 text-xl font-bold leading-snug tracking-tight text-gray-100 md:text-2xl">
+                        <h2 className="line-clamp-2 text-base font-semibold leading-snug text-gray-100">
                           {project.projectName}
                         </h2>
-                        <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-300">
+                        <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
                           {project.subtitle}
                         </p>
                         <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
@@ -429,12 +461,12 @@ export default function DataPage() {
                     </p>
 
                     <div className="mb-4 min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
-                      {project.industries.slice(0, 4).map((ind) => (
+                      {mergeCardKeywords(project.industries, project.skills).map((kw) => (
                         <Badge
-                          key={ind}
-                          className="text-xs text-blue-200 border-blue-500/30 bg-blue-500/20"
+                          key={kw}
+                          className="text-xs font-normal text-blue-100 border-blue-500/30 bg-blue-500/20"
                         >
-                          {ind}
+                          {kw}
                         </Badge>
                       ))}
                     </div>

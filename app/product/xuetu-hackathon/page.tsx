@@ -66,14 +66,14 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
 
   const badgeClass =
     meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-sky-400/40"
-      : "bg-sky-600/25 text-sky-100 border-sky-400/40";
+      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
+      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#07111f]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(56,189,248,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(59,130,246,0.16),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(14,165,233,0.14),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(251,191,36,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(234,88,12,0.12),transparent_55%)]" />
       </div>
 
       <Navigation activeSection="product" onSectionChange={() => {}} />
@@ -82,7 +82,7 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/product">
-              <Button className="bg-gradient-to-r from-blue-500/20 to-sky-500/20 backdrop-blur-md border-sky-400/30 text-gray-100 hover:bg-blue-500/30">
+              <Button className="bg-gradient-to-r from-amber-500/20 to-orange-500/20 backdrop-blur-md border-amber-400/30 text-gray-100 hover:bg-amber-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Product
               </Button>
@@ -91,7 +91,7 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
             <div className="flex items-center gap-2">
               {meta.repoUrl && (
                 <Link href={meta.repoUrl} target="_blank">
-                  <Button className="bg-blue-500/20 border border-sky-400/40 text-blue-100 hover:bg-blue-500/30">
+                  <Button className="bg-amber-500/20 border border-amber-400/40 text-amber-100 hover:bg-amber-500/30">
                     <ExternalLink className="mr-2 h-4 w-4" />
                     GitHub
                   </Button>
@@ -101,7 +101,7 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
-                  className="bg-blue-500/20 border border-sky-400/40 text-blue-100 hover:bg-blue-500/30"
+                  className="bg-amber-500/20 border border-amber-400/40 text-amber-100 hover:bg-amber-500/30"
                 >
                   View More
                 </Button>
@@ -136,7 +136,7 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
                 {meta.tags.map((t) => (
                   <Badge
                     key={t}
-                    className="bg-blue-500/20 text-blue-100 border-blue-500/30"
+                    className="bg-amber-500/20 text-amber-100 border-amber-500/30"
                   >
                     {t}
                   </Badge>
@@ -146,11 +146,11 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
               <p className="text-gray-200">{meta.practice}</p>
             </div>
 
-            <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-sky-500/20 to-blue-500/20" />
+            <div className="h-1 w-full bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20" />
           </Card>
 
-          <section className="rounded-xl border border-sky-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-sky-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Project Overview
             </h2>
             <p className="text-base leading-relaxed text-gray-200">
@@ -158,8 +158,8 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
             </p>
           </section>
 
-          <section className="rounded-xl border border-sky-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-sky-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               What I Built
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -171,8 +171,8 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
             </ul>
           </section>
 
-          <section className="rounded-xl border border-sky-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-sky-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               System Logic & Business Model
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -184,8 +184,8 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
             </ul>
           </section>
 
-          <section className="rounded-xl border border-sky-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-sky-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Reflection
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">

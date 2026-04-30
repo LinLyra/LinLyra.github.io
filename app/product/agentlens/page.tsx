@@ -67,7 +67,7 @@ export default function AgentLensPage() {
       {/* 背景 */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#0b1020]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(59,130,246,0.15),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(99,102,241,0.12),transparent_60%),radial-gradient(circle_at_90%_20%,rgba(14,165,233,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.16),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(251,191,36,0.12),transparent_60%),radial-gradient(circle_at_90%_20%,rgba(234,88,12,0.10),transparent_60%)]" />
       </div>
 
       <Navigation activeSection="product" onSectionChange={() => {}} />
@@ -77,7 +77,7 @@ export default function AgentLensPage() {
           {/* 顶部 */}
           <div className="flex items-center justify-between">
             <Link href="/product">
-              <Button className="border-blue-400/30 bg-blue-500/10 text-white hover:bg-blue-500/20">
+              <Button className="border-amber-400/30 bg-amber-500/10 text-white hover:bg-amber-500/20">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back
               </Button>
@@ -85,7 +85,7 @@ export default function AgentLensPage() {
 
             <div className="flex gap-2">
               <Link href={meta.links.github} target="_blank">
-                <Button className="border-blue-400/30 bg-blue-500/10 text-white hover:bg-blue-500/20">
+                <Button className="border-amber-400/30 bg-amber-500/10 text-white hover:bg-amber-500/20">
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
                 </Button>
@@ -94,7 +94,7 @@ export default function AgentLensPage() {
               {hasImages && (
                 <Button
                   onClick={() => setShowMedia(true)}
-                  className="border-blue-400/30 bg-blue-500/10 text-white hover:bg-blue-500/20"
+                  className="border-amber-400/30 bg-amber-500/10 text-white hover:bg-amber-500/20"
                 >
                   View Screenshots
                 </Button>
@@ -103,7 +103,7 @@ export default function AgentLensPage() {
           </div>
 
           {/* Header */}
-          <Card className="border-blue-400/20 bg-white/10 backdrop-blur-md">
+          <Card className="border-amber-400/20 bg-white/10 backdrop-blur-md">
             <div className="p-6">
               <h1 className="text-2xl font-semibold text-white">
                 {meta.title}
@@ -123,7 +123,7 @@ export default function AgentLensPage() {
                 {meta.tags.map((tag) => (
                   <Badge
                     key={tag}
-                    className="bg-blue-500/20 text-blue-100 border-blue-400/30"
+                    className="bg-amber-500/20 text-amber-100 border-amber-400/30"
                   >
                     {tag}
                   </Badge>
@@ -135,16 +135,16 @@ export default function AgentLensPage() {
           </Card>
 
           {/* Overview */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-6 backdrop-blur-md">
-            <h2 className="text-xl font-semibold text-blue-300 mb-3">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-6 backdrop-blur-md">
+            <h2 className="text-xl font-semibold text-amber-300 mb-3">
               Project Overview
             </h2>
             <p className="text-gray-200 whitespace-pre-line">{overview}</p>
           </section>
 
           {/* What I Did */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-6 backdrop-blur-md">
-            <h2 className="text-xl font-semibold text-blue-300 mb-3">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-6 backdrop-blur-md">
+            <h2 className="text-xl font-semibold text-amber-300 mb-3">
               What I Built
             </h2>
             <ul className="list-disc pl-5 text-gray-200 space-y-2">
@@ -155,8 +155,8 @@ export default function AgentLensPage() {
           </section>
 
           {/* Reflection */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-6 backdrop-blur-md">
-            <h2 className="text-xl font-semibold text-blue-300 mb-3">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-6 backdrop-blur-md">
+            <h2 className="text-xl font-semibold text-amber-300 mb-3">
               Reflection
             </h2>
             <p className="text-gray-200 whitespace-pre-line">
