@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { ArrowLeft, Calendar, X } from "lucide-react"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
 
-type Status = "completed" | "in-progress"
+type Status = "completed" | "in-progress" | "planned"
 type LearnType = "degree" | "course" | "online-course"
 
 type LearningItem = {
@@ -46,12 +46,17 @@ export default function LearningPage() {
     { slug:"sjtu-ma4704", title:"MA4704 / STAT3023: Stochastic Process", institution:"Shanghai Jiao Tong University (Summer)", date:"2025", type:"degree", logo:"/learning/sjtulogo.png", tags:["Poisson","CTMC/DTMC","Queueing"], status:"completed", level:"undergrad" },
     { slug:"google-advanced-data-analytics", title:"Google Advanced Data Analytics Professional Certificate", institution:"Google x Coursera", date:"2024", type:"online-course", logo:"/learning/googlelogo.png", tags:["Python","Regression","Visualization"], status:"completed" },
     { slug:"genai-intensive-2025q1", title:"Gen AI Intensive Course 2025Q1", institution:"Google × Kaggle", date:"2025", type:"online-course", logo:"/learning/googlelogo.png", tags:["Prompting","Embeddings/RAG","Agents","MLOps"], status:"completed" },
+    { slug:"google-genai-skill-badges-2025", title:"Google GenAI Program — Skill Badges", institution:"Google", date:"2025.10 — 2025.12", type:"online-course", logo:"/learning/googlelogo.png", tags:["GenAI","Vertex AI","GKE","Data Engineering","LLMs","MLOps"], status:"completed" },
+    { slug:"oracle-cloud-data-science-professional-2025", title:"Oracle Cloud Infrastructure 2025 Certified Data Science Professional", institution:"Oracle", date:"2025.10", type:"online-course", logo:"/learning/oraclelogo.png", tags:["Oracle Cloud","Data Science","Machine Learning","MLOps","Deployment"], status:"completed" },
 
 
     { slug:"qbus2810", title:"QBUS2810: Statistical Modelling for Business", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Statiscal Modeling","Forecasting","Python"], status:"in-progress", level:"undergrad" },
     { slug:"data2902", title:"DATA2902: Data Analytics (Advanced)", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["R","Statistical ML","Quarto/RMarkdown"], status:"in-progress", level:"undergrad" },
     { slug:"qbus2310", title:"QBUS2310: Management Science", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["LP/IP/NLP","Optimisation","Excel Solver","Python"], status:"in-progress", level:"undergrad" },
     { slug:"qbus3330", title:"QBUS3330: Methods of Decision Analysis", institution:"University of Sydney", date:"2025 S2", type:"degree", logo:"/learning/usydlogo.png", tags:["Decision Trees","Sensitivity","Riskassssment","Managerial Decision Making"], status:"in-progress", level:"undergrad" },
+    { slug:"qbus3310", title:"QBUS3310: Advanced Management Science", institution:"University of Sydney", date:"2026 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Optimisation","Management Science","Decision Analysis"], status:"planned", level:"undergrad" },
+    { slug:"data3404", title:"DATA3404: Scalable Data Management", institution:"University of Sydney", date:"2026 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Big Data","Database Systems","Distributed Data"], status:"in-progress", level:"undergrad" },
+    { slug:"data3888", title:"DATA3888: Data Science Capstone", institution:"University of Sydney", date:"2026 S1", type:"degree", logo:"/learning/usydlogo.png", tags:["Data Science","Capstone","Public Data Product"], status:"in-progress", level:"undergrad" },
     { slug:"isys2120", title: "ISYS2120: Data and Information Management", institution: "University of Sydney", date: "2025 S2", type: "course", logo: "/learning/usydlogo.png", tags: ["Database Design","SQL","Normalization","Transaction Management","OLAP"], status: "in-progress",level: "undergrad", audited:true },
     { slug:"comp5338", title:"COMP5338: Advanced Data Models", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["SQL","MongoDB","Neo4j","Distribution System"], status:"in-progress", level:"postgrad", audited:true },
     { slug:"comp5318", title:"COMP5318: Machine Learning and Data Mining", institution:"University of Sydney", date:"2025 S2", type:"course", logo:"/learning/usydlogo.png", tags:["Deep Learning","Data Mining","Python"], status:"in-progress", level:"postgrad", audited:true },
@@ -67,7 +72,10 @@ export default function LearningPage() {
   })
 
 
-  const tagSuggestions = useMemo(() => ["Python", "ML", "Time Series", "SQL"], [])
+  const tagSuggestions = useMemo(
+    () => ["Python", "SQL", "GenAI", "MLOps", "Cloud", "Databases", "Time Series", "Optimisation"],
+    []
+  )
 
   const toggleToken = (token: string) => {
     const cur = q.split(/\s+/).filter(Boolean)
@@ -149,7 +157,9 @@ export default function LearningPage() {
               const statusClass =
                 it.status === "completed"
                   ? "bg-purple-600/25 text-purple-100 border-purple-400/40"
-                  : "bg-fuchsia-600/25 text-fuchsia-100 border-fuchsia-400/40"
+                  : it.status === "planned"
+                    ? "bg-white/5 text-gray-200 border-white/10"
+                    : "bg-fuchsia-600/25 text-fuchsia-100 border-fuchsia-400/40"
 
               return (
                 <Link key={it.slug} href={`/learning/${it.slug}`} className="block">
@@ -160,7 +170,11 @@ export default function LearningPage() {
                     {/* 右上角状态角标（在卡片内部） */}
                     <div className="absolute right-3 top-2 z-20">
                       <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm whitespace-nowrap ${statusClass}`}>
-                        {it.status === "completed" ? "Completed" : "In Progress"}
+                        {it.status === "completed"
+                          ? "Completed"
+                          : it.status === "planned"
+                            ? "Planned"
+                            : "In Progress"}
                       </span>
                     </div>
 
@@ -176,7 +190,7 @@ export default function LearningPage() {
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-white text-xl font-semibold leading-snug line-clamp-3 min-h-[4.5rem]">
+                        <div className="text-white text-base font-semibold leading-snug line-clamp-2">
                           {it.title}
                         </div>
                         <div className="mt-1 text-gray-400 text-sm inline-flex items-center gap-2">
@@ -192,8 +206,8 @@ export default function LearningPage() {
 
   
                     <div className="px-5 pb-5 pt-2">
-                      <div className="flex flex-wrap gap-2 min-h-[36px]">
-                        {(it.tags ?? []).map((t) => (
+                      <div className="flex flex-wrap gap-2">
+                        {(it.tags ?? []).slice(0, 6).map((t) => (
                           <span
                             key={t}
                             className="inline-flex items-center h-7 rounded-full px-2.5 text-xs bg-purple-500/20 text-purple-100 border border-purple-500/30 whitespace-nowrap"

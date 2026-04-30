@@ -289,7 +289,6 @@ export default function BusinessPage() {
       subtitle: "PMSoc × KordaMentha Case Competition",
       date: "2026.04",
       type: "strategy",
-      placement: "Submission",
       description:
         "PPP toll-corridor thesis for Western Sydney—demand, revenue stack, and bankable delivery narrative.",
       skills: ["Infrastructure", "PPP", "Commercial Strategy", "Feasibility"],
@@ -442,7 +441,7 @@ export default function BusinessPage() {
                       </div>
                     )}
 
-                    <PremiumGlassCard className="flex h-full min-h-[300px] flex-col overflow-hidden border border-green-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(34,197,94,0.10)] hover:bg-black/30 hover:border-green-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
+                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden border border-green-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(34,197,94,0.10)] hover:bg-black/30 hover:border-green-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
                       <div className="p-6 pb-2">
                         <div className="flex items-start gap-3 pr-10">
                           <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-green-400/20 bg-white/5">
@@ -471,11 +470,11 @@ export default function BusinessPage() {
                       </div>
 
                       <div className="flex flex-1 flex-col p-6 pt-0">
-                        <p className="mb-4 min-h-[3.25rem] line-clamp-3 text-sm leading-relaxed text-gray-200">
+                        <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
                           {item.description}
                         </p>
 
-                        <div className="mt-auto min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1.5">
+                        <div className="mt-auto overflow-hidden flex flex-wrap gap-1.5">
                           {visibleBadges.map((tag) => (
                             <Badge
                               key={tag}

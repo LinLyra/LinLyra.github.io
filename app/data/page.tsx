@@ -9,10 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import {
   ArrowLeft,
-  Github,
-  Globe,
-  Rocket,
-  Trophy,
   Award as AwardIcon,
 } from "lucide-react";
 
@@ -54,22 +50,14 @@ export default function DataPage() {
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  /** Pills above search: industries + methods; card filter matches industry OR skill */
+  /** Pills above search: keep it small and industry-first */
   const featuredTags = [
-    "E-commerce",
     "Finance",
-    "Entertainment",
+    "E-commerce",
     "Healthcare",
+    "Entertainment",
     "Public Policy",
-    "Supply Chain",
     "Machine Learning",
-    "Python",
-    "NLP",
-    "Time Series",
-    "Computer Vision",
-    "Causal Inference",
-    "Regression",
-    "Modeling",
   ];
 
   const items: DataItem[] = [
@@ -331,13 +319,6 @@ export default function DataPage() {
     });
   }, [items, q, selectedTags]);
 
-  const metaIcon = (t: DataType) =>
-    t === "competition" ? (
-      <Trophy className="h-4 w-4 shrink-0 text-gray-400" />
-    ) : (
-      <Rocket className="h-4 w-4 shrink-0 text-gray-400" />
-    );
-
   return (
     <div
       className="relative min-h-screen"
@@ -410,10 +391,10 @@ export default function DataPage() {
             </div>
           </div>
 
-          <div className="grid auto-rows-fr gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block h-full">
-                <PremiumGlassCard className="relative flex h-full min-h-[300px] flex-col cursor-pointer border border-blue-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(59,130,246,0.10)] hover:border-blue-400/35 hover:bg-black/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
+                <PremiumGlassCard className="relative flex h-full min-h-[260px] flex-col cursor-pointer border border-blue-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(59,130,246,0.10)] hover:border-blue-400/35 hover:bg-black/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
                   {project.award && (
                     <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 shadow-sm backdrop-blur-sm">
                       <AwardIcon className="h-3 w-3 text-amber-300" />
@@ -423,23 +404,18 @@ export default function DataPage() {
 
                   <div className={`p-6 pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
-                      {project.type !== "course" &&
-                        (project.logo ? (
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
-                            <img
-                              src={project.logo}
-                              alt=""
-                              className="h-full w-full object-cover"
-                              onError={(e) => {
-                                e.currentTarget.src = "/placeholder.svg";
-                              }}
-                            />
-                          </div>
-                        ) : (
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-blue-400/20 bg-white/5 text-blue-200/80">
-                            {metaIcon(project.type)}
-                          </div>
-                        ))}
+                      {project.type !== "course" && !!project.logo && (
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
+                          <img
+                            src={project.logo}
+                            alt=""
+                            className="h-full w-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.src = "/placeholder.svg";
+                            }}
+                          />
+                        </div>
+                      )}
 
                       <div className="min-w-0 flex-1">
                         <h2 className="line-clamp-2 text-base font-semibold leading-snug text-gray-100">
@@ -456,11 +432,11 @@ export default function DataPage() {
                   </div>
 
                   <div className="flex flex-1 flex-col p-6 pt-0">
-                    <p className="mb-4 min-h-[3.25rem] line-clamp-3 text-sm leading-relaxed text-gray-200">
+                    <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
                       {project.description}
                     </p>
 
-                    <div className="mb-4 min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
+                    <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
                       {mergeCardKeywords(project.industries, project.skills).map((kw) => (
                         <Badge
                           key={kw}
@@ -469,17 +445,6 @@ export default function DataPage() {
                           {kw}
                         </Badge>
                       ))}
-                    </div>
-
-                    <div className="mt-auto flex items-center justify-end">
-                      <div className="flex gap-2">
-                        {!!project.links?.github && (
-                          <Github className="h-4 w-4 text-gray-400" />
-                        )}
-                        {!!project.links?.demo && (
-                          <Globe className="h-4 w-4 text-gray-400" />
-                        )}
-                      </div>
                     </div>
                   </div>
                 </PremiumGlassCard>

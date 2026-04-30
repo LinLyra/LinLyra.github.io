@@ -228,16 +228,12 @@ export default function ProductPage() {
   ];
 
   const featuredTopics = [
-    "GenAI",
+    "AI",
     "Education",
     "HealthTech",
-    "Next.js",
-    "Audit",
     "Social Impact",
-    "Travel",
-    "ESG",
-    "Full-stack",
-    "AI",
+    "Enterprise",
+    "Consumer App",
   ];
 
   const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
@@ -375,7 +371,13 @@ export default function ProductPage() {
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
               <Link key={p.slug} href={`/product/${p.slug}`} className="block h-full">
-                <PremiumGlassCard className="relative flex h-full min-h-[300px] flex-col cursor-pointer overflow-hidden border border-amber-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(245,158,11,0.10)] hover:bg-black/30 hover:border-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
+                <PremiumGlassCard className="relative flex h-full min-h-[260px] flex-col cursor-pointer overflow-hidden border border-amber-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(245,158,11,0.10)] hover:bg-black/30 hover:border-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
+                  {p.placement && (
+                    <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-300/40 bg-yellow-500/20 px-2 py-1 text-xs font-semibold text-yellow-200 shadow-sm backdrop-blur-sm">
+                      <AwardIcon className="h-3 w-3 text-yellow-300" />
+                      {p.placement}
+                    </span>
+                  )}
                   <div className="p-6 pb-2">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 flex-1 items-start gap-3">
@@ -405,21 +407,14 @@ export default function ProductPage() {
                           </div>
                         </div>
                       </div>
-
-                      {p.placement && (
-                        <div className="flex shrink-0 items-center gap-1 rounded-full bg-yellow-500/20 px-2 py-1 backdrop-blur-sm border border-amber-300/40">
-                          <AwardIcon className="h-3 w-3 text-yellow-300" />
-                          <span className="text-xs font-semibold text-yellow-300">{p.placement}</span>
-                        </div>
-                      )}
                     </div>
                   </div>
 
                   <div className="flex flex-1 flex-col p-6 pt-0">
-                    <p className="mb-4 min-h-[3.25rem] line-clamp-3 text-sm leading-relaxed text-gray-200">
+                    <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
                       {p.description ?? ""}
                     </p>
-                    <div className="mt-auto min-h-[2.75rem] overflow-hidden flex flex-wrap gap-1">
+                    <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
                       {mergeProductCardTags(p).map((tag) => (
                         <Badge
                           key={tag}

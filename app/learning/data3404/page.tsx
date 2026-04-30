@@ -10,38 +10,59 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, Calendar } from "lucide-react"
 import MediaModel from "@/components/media-model"
 
-export default function QBUS2820Page() {
+export default function DATA3404Page() {
   const [showNotes, setShowNotes] = useState(false)
 
   const meta = {
-    slug: "qbus2820",
-    title: "QBUS2820: Predictive Analytics",
+    slug: "data3404",
+    title: "DATA3404: Scalable Data Management",
     institution: "University of Sydney",
     term: "2026 S1",
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
-      "Applied predictive models and forecasting techniques to business and financial data, focusing on classification, time-series forecasting, and decision-making under uncertainty.",
-    tags: ["Python", "Predictive Modelling", "Forecasting", "Classification"], 
-    notes: [] as string[]    
+      "Explores large-scale data management systems, database internals, query optimisation, distributed platforms, and performance tuning for big data.",
+    tags: ["Big Data", "Database Systems", "Distributed Data"],
+    notes: [] as string[],
   }
 
   const outcomes = [
-    { k: "Multivariate Analysis", v: "Selected and applied techniques to analyse structured data, especially classification problems (e.g. credit default, fraud detection)." },
-    { k: "Predictive Modelling", v: "Built models with training datasets to classify and predict real-world business outcomes." },
-    { k: "Time-Series Forecasting", v: "Understood and applied methods for analysing and forecasting business time-series data." },
-    { k: "Business Applications", v: "Predicted discrete outcomes and future behaviour of variables for finance, retail, and consumer analytics contexts." },
-    { k: "Practical Implementation", v: "Worked with up-to-date datasets to translate theory into applied predictive tasks." }
+    {
+      k: "Platform tuning",
+      v: "Demonstrate experience with using and tuning data science platforms such as Apache Spark.",
+    },
+    {
+      k: "Physical data organisation",
+      v: "Understand different physical data organisations, including data partitioning and data replication.",
+    },
+    {
+      k: "Indexing structures",
+      v: "Understand disk-based indexing structures such as B-Trees, extensible hashing, and bitmap indexes.",
+    },
+    {
+      k: "Query optimisation",
+      v: "Understand the principles of query processing and query optimisation.",
+    },
+    {
+      k: "Distributed platforms",
+      v: "Understand the principles of distributed data science platforms.",
+    },
+    {
+      k: "Sharding and replication",
+      v: "Understand data sharding algorithms and data replication protocols.",
+    },
+    {
+      k: "Physical design",
+      v: "Make effective physical data design decisions.",
+    },
+    {
+      k: "Performance tuning",
+      v: "Identify performance problems and effectively tune the performance of distributed data processing systems.",
+    },
   ]
 
-  const Takeaways =`
-  Since I am only eligible to officially enrol in this unit next year, I chose to audit it this semester to gain early exposure. 
-  Although I was not formally assessed, attending the lectures gave me a meaningful first look at predictive analytics and its broad range of applications in business, from modelling consumer credit risk to forecasting financial returns and marketing behaviour. 
-  The lecturer was exceptionally patient and approachable, often answering my questions in detail and clarifying concepts beyond the lecture slides, which helped me build confidence with material that would otherwise have felt overwhelming. 
-  The pace of the unit challenged me to keep up, but it also motivated me to consolidate my understanding of multivariate techniques and time-series forecasting. 
-  Overall, auditing this course not only broadened my technical awareness but also reinforced my interest in predictive modelling, and I look forward to revisiting the content in depth when I officially enrol next year.
-  `
-  
+  const takeaways = `Coming soon.`
+
   const hasNotes = meta.notes.length > 0
   const badge =
     meta.status === "In Progress"
@@ -51,6 +72,7 @@ export default function QBUS2820Page() {
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="learning" onSectionChange={() => {}} />
+
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
@@ -60,6 +82,7 @@ export default function QBUS2820Page() {
                 Back to Learning
               </Button>
             </Link>
+
             {hasNotes && (
               <Button
                 onClick={() => setShowNotes(true)}
@@ -71,10 +94,15 @@ export default function QBUS2820Page() {
           </div>
 
           <header className="text-center space-y-2">
-            <h1 className="text-3xl md:text-4xl font-bold text-white">{meta.title}</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white">
+              {meta.title}
+            </h1>
             <div className="text-gray-300 inline-flex items-center gap-2 text-sm md:text-base">
-              <span>{meta.institution}</span><span>•</span>
-              <span className="inline-flex items-center gap-1"><Calendar className="w-4 h-4" /> {meta.term}</span>
+              <span>{meta.institution}</span>
+              <span>•</span>
+              <span className="inline-flex items-center gap-1">
+                <Calendar className="w-4 h-4" /> {meta.term}
+              </span>
             </div>
           </header>
 
@@ -84,13 +112,15 @@ export default function QBUS2820Page() {
                 {meta.status}
               </span>
             </div>
+
             <div className="p-5 md:p-6 flex items-start gap-4">
               <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
                 <Image src={meta.logo} alt="logo" fill sizes="48px" className="object-cover" priority />
               </div>
+
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap gap-2 mb-3">
-                  {meta.tags.map(t => (
+                  {meta.tags.map((t) => (
                     <Badge key={t} className="bg-purple-500/20 text-purple-100 border-purple-500/30">
                       {t}
                     </Badge>
@@ -99,13 +129,16 @@ export default function QBUS2820Page() {
                 <p className="text-gray-200">{meta.tagline}</p>
               </div>
             </div>
+
             <div className="h-1 w-full bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-fuchsia-500/20" />
           </Card>
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-4">Learning Outcomes</h2>
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-4">
+              Learning Outcomes
+            </h2>
             <ul className="space-y-3 text-gray-200">
-              {outcomes.map(o => (
+              {outcomes.map((o) => (
                 <li key={o.k} className="[&>strong]:text-white leading-relaxed">
                   <strong>{o.k}:</strong> {o.v}
                 </li>
@@ -114,9 +147,11 @@ export default function QBUS2820Page() {
           </section>
 
           <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
-            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-3">Takeaways</h2>
-            <p className="text-gray-200 text-base leading-relaxed">
-              {Takeaways}
+            <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-3">
+              Takeaways
+            </h2>
+            <p className="whitespace-pre-line text-gray-200 text-base leading-relaxed">
+              {takeaways}
             </p>
           </section>
         </div>
