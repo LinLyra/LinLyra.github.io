@@ -14,7 +14,7 @@ export default function GenkiForestCodeEnergyPage() {
 
   const meta = {
     slug: "YuanQi-forest-universe-2026",
-    title: "YuanQi Forest Code Energy Water",
+    title: "Code Energy Water",
     institution: "YuanQiForest",
     practice: "Brand Innovation · Product Strategy · Youth Marketing",
     term: "2025.12",

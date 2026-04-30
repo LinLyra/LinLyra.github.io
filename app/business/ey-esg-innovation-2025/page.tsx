@@ -14,7 +14,7 @@ export default function EyEsgInnovationPage() {
 
   const meta = {
     slug: "ey-esg-innovation-2025",
-    title: "EY ESG University Innovation Challenge 2025",
+    title: "AI × ESG Luxury Supply Chain",
     institution: "EY × Gaodun Education",
     practice: "ESG Strategy · AI + Luxury · Supply Chain",
     term: "2025.04",

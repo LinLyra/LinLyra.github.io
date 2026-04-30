@@ -14,7 +14,7 @@ export default function MeituanSubsidyEfficiencyPage() {
 
   const meta = {
     slug: "meituan-subsidy-efficiency",
-    title: "Subsidy Efficiency & Causal Impact Analysis",
+    title: "Subsidy Incrementality (PSM)",
     institution: "Meituan Business Analytics Challenge",
     practice: "Causal Inference · PSM · ATT · Incremental ROI · User Segmentation · Budget Reallocation",
     term: "2026.04",

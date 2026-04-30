@@ -14,7 +14,7 @@ export default function Data1x01StudyBehavioursPage() {
 
   const meta = {
     slug: "data1x01-study-behaviours",
-    title: "The study behaviours and expectations of DATA1X01 students",
+    title: "DATA1X01 Learning Survey",
     institution: "Course Project · University of Sydney",
     practice: "Exploratory Data Analysis · Survey Analytics (DATA1X01)",
     term: "2024 S2",

@@ -14,7 +14,7 @@ export default function Datathon2025SupplyChainPage() {
 
   const meta = {
     slug: "datathon-2025-supply-chain",
-    title: "Smart Supply Chain Network Optimisation (Datathon 2025)",
+    title: "Supply Chain Optimization (24h)",
     institution: "University of Sydney · Data Science & Business Analytics Society",
     role: "Principal Modeller",
     term: "2025.10",

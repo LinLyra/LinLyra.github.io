@@ -14,7 +14,7 @@ export default function KpmgBluebirdItAuditPage() {
 
   const meta = {
     slug: "kpmg-bluebird-it-audit-2025",
-    title: "KPMG Bluebird IT Audit Challenge 2025",
+    title: "POS / Payments IT Audit Case",
     institution: "KPMG China",
     practice: "IT Audit · POS/Payments · Cybersecurity Controls",
     term: "2025.08",

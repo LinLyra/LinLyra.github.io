@@ -14,7 +14,7 @@ export default function GDGOpenAIHackNodeAustraliaPage() {
 
   const meta = {
     slug: "gdg-openai-hack-node-au",
-    title: "GDG × OpenAI Hack Node Australia — YOLO (Full-stack Upgrade)",
+    title: "YOLO·AU",
     institution: "GDG • OpenAI (co-hosted with MIT Sloan AI Club)",
     practice: "Full-stack · Social App · Tokenized Growth (GXP / Circles / Missions / Scout)",
     term: "2025.08",

@@ -14,7 +14,7 @@ export default function NetZeroGYSPage() {
 
   const meta = {
     slug: "net-zero-gys-2024",
-    title: "Global Youth Summit on Net-Zero Future",
+    title: "Smart Green Homestay",
     institution: "UNESCO East Asia & GAUC @ Tsinghua",
     practice: "Climate Action · Youth Innovation · Low-carbon Product Proposal",
     term: "2024.09",

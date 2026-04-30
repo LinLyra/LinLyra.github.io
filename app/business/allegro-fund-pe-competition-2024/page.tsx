@@ -15,7 +15,7 @@ export default function BegaEsgValuationPage() {
   // —— META（绿色主题；1 张图；无外链/无荣誉）——
   const meta = {
     slug: "bega-esg-valuation",
-    title: "Bega Group ESG Strategy & Valuation",
+    title: "Bega Group ESG & Valuation",
     institution: "Allegro Fund",
     practice: "ESG Strategy · DCF Valuation · Food & Beverage",
     term: "2024.10",

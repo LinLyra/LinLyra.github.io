@@ -51,7 +51,7 @@ export default function ProductPage() {
   const products: ProductItem[] = [
     {
       slug: "abc-ai-development",
-      projectName: "AI Development",
+      projectName: "AI Product Researcher",
       subtitle: "A Better Community",
       date: "2025.3 — Present",
       type: "development",
@@ -70,7 +70,7 @@ export default function ProductPage() {
     },
     {
       slug: "agentlens",
-      projectName: "AgentLens",
+      projectName: "AgentLens — AI Agent Evaluation Platform",
       subtitle: "Meituan NoCode Challenge",
       date: "2026.03",
       type: "project",
@@ -83,7 +83,7 @@ export default function ProductPage() {
     },
     {
       slug: "foodguard-lyra-buildthon",
-      projectName: "FoodGuard",
+      projectName: "FoodGuard — AI Nutrition & Allergen Assistant",
       subtitle: "Lyra Buildthon",
       date: "2025.11",
       type: "project",
@@ -96,17 +96,17 @@ export default function ProductPage() {
     },
     {
       slug: "deloitte-digital-elite-2025",
-      projectName: "AI + Audit Product Concept",
+      projectName: "PinSight: AI-Driven Audit Execution Platform",
       subtitle: "Deloitte Digital Elite Challenge",
       date: "2025.05",
       type: "product",
       logo: "/competition/deloittelogo.png",
       placement: "First Runner-up",
       description:
-        "Digital product story for AI-enabled audit workflows with a shippable UI slice and narrative.",
-      tags: ["AI + Audit", "Frontend Dev", "Digital Transformation", "Figma"],
-      skills: ["Storytelling", "Prototyping"],
-      industries: ["Professional Services", "Audit", "Enterprise"],
+        "Designed and prototyped an AI-enabled audit execution platform for SME audit teams, automating smart sampling, document understanding, logic testing, and working paper generation through a modular AI workflow.",
+      tags: ["AI Audit","Smart Sampling","Document AI","Workflow Automation","Digital Transformation",],
+      skills: ["Product Strategy","AI Workflow Design","Audit Process Modeling","Prototyping","Business Storytelling","Frontend UI Design",],
+      industries: ["Audit","Professional Services","Enterprise Software", "Financial Compliance","AI Automation",],
     },
     {
       slug: "gdgx-openai-hack",
@@ -123,7 +123,7 @@ export default function ProductPage() {
     },
     {
       slug: "ccf-tech-for-good-2025",
-      projectName: "Tech-for-Good Prototype",
+      projectName: "Accessible Media Interpretation Platform",
       subtitle: "CCF Tech for Good Hackathon",
       date: "2025.05",
       type: "hackathon",
@@ -137,7 +137,7 @@ export default function ProductPage() {
     },
     {
       slug: "adventurex-2025",
-      projectName: "YOLO Growth Stock",
+      projectName: "YOLO Growth Stock Platform",
       subtitle: "AdventureX Hackathon",
       date: "2025.07",
       type: "hackathon",
@@ -150,7 +150,7 @@ export default function ProductPage() {
     },
     {
       slug: "kpmg-innovate-day-2025",
-      projectName: "Innovation Day Sprint",
+      projectName: "Checkwise: A Multi-Agent Platform for Intelligent Audit Collaboration",
       subtitle: "KPMG Innovate Day",
       date: "2024.10",
       type: "product",
@@ -176,7 +176,7 @@ export default function ProductPage() {
     },
     {
       slug: "ai-esg-circular-fashion",
-      projectName: "Circular Fashion ESG Scoring",
+      projectName: "AI × ESG: Generative Scoring for Circular Fashion (GreenSync)",
       subtitle: "Personal project",
       date: "2025.04",
       type: "project",

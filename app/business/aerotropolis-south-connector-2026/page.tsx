@@ -29,7 +29,7 @@ export default function AerotropolisSouthConnectorPage() {
     status: "Completed" as const,
     role: "Strategy & Commercial Analysis",
     placement: "Case Competition Submission",
-    canvaUrl: "https://lyar1.my.canva.site/lyra-aerotropolis-south-connectory", 
+    canvaUrl: "https://peridot-eocursor-4db.notion.site/Aerotropolis-South-Connector-3523be3c13158057a5c3ddf8944f9d3a", 
     notes: [] as string[],
     tags: [
       "Infrastructure Advisory",

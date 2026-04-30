@@ -14,7 +14,7 @@ export default function McmIcm2025Page() {
 
   const meta = {
     slug: "mcm-icm-2025",
-    title: "MCM/ICM Mathematical Contest in Modeling 2025",
+    title: "MCM/ICM Modeling Solution",
     institution: "COMAP (Consortium for Mathematics and Its Applications)",
     practice: "Modeling · Statistics · Visualization",
     term: "2025.02",

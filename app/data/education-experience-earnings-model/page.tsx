@@ -14,7 +14,7 @@ export default function EducationExperienceModelPage() {
 
   const meta = {
     slug: "education-experience-earnings-model",
-    title: "Education vs Experience: Earnings Model Comparison",
+    title: "Education vs Experience on Earnings",
     institution: "Course Project · University of Sydney",
     practice:
       "Econometrics · Multiple Regression · Model Specification · Forecasting",

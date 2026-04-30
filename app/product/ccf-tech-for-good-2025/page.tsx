@@ -14,7 +14,7 @@ export default function CcfTechForGood2025Page() {
 
   const meta = {
     slug: "ccf-tech-for-good-2025",
-    title: "CCF Tech for Good Hackathon 2025",
+    title: "Tech-for-Good Prototype",
     institution: "CCF · Tech for Good",
     practice: "Hackathon · Accessible Films · Product Design",
     term: "2025.05",

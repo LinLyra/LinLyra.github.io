@@ -13,7 +13,7 @@ export default function AccentureStrategyVirtualPage() {
 
   const meta = {
     slug: "accenture-strategy-virtual",
-    title: "Strategy Consulting · Virtual Experience",
+    title: "Strategy Consulting Simulation",
     institution: "Accenture (Forage)",
     practice: "Scoping · Prioritisation · Analysis · Client Communication",
     term: "2024.12",

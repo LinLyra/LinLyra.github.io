@@ -14,7 +14,7 @@ export default function AIStockForecastPage() {
 
   const meta = {
     slug: "ai-stock-forecast",
-    title: "Riding the AI Wave: Forecasting NVIDIA (with AMD & Intel)",
+    title: "NVDA Cycle Forecast",
     institution: "Course Project · University of Sydney",
     practice:
       "Applied Data Science · Financial Time Series (ABS stakeholder scenario)",

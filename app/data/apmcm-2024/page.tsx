@@ -14,7 +14,7 @@ export default function APMCM2024Page() {
 
   const meta = {
     slug: "apmcm-2024",
-    title: "APMCM (Asia-Pacific Mathematical Contest in Modeling) 2024",
+    title: "APMCM Modeling Solution",
     institution: "APMCM",
     practice:
       "Mathematical Modeling · Time Series & Regression · Policy Scenario Analysis",

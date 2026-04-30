@@ -14,7 +14,7 @@ export default function MengniuYouyiCCodeEnergyPage() {
 
   const meta = {
     slug: "mengniu-youyi-c-code-energy",
-    title: "CodeEnergy × Youyi C Clear-Mind Challenge Bottle",
+    title: "Clear-Mind Challenge Bottle",
     institution: "Mengniu",
     practice: "Product Innovation · Youth Marketing · Interactive Campaign",
     term: "2025.11",

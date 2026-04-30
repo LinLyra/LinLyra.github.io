@@ -14,7 +14,7 @@ export default function LorealBrandstorm2025Page() {
 
   const meta = {
     slug: "loreal-brandstorm-2025",
-    title: "L'Oréal BRANDSTORM 2025",
+    title: "Men’s Beauty Tech Concept",
     institution: "L'Oréal",
     practice: "Marketing · Product Innovation · Pitch",
     term: "2025.04",

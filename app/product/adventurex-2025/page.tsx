@@ -14,7 +14,7 @@ export default function AdventureXYolo2025Page() {
 
   const meta = {
     slug: "adventurex-yolo-2025",
-    title: "AdventureX 2025 — YOLO “Growth Stock” Platform",
+    title: "YOLO Growth Stock",
     institution: "AdventureX Hackathon",
     practice: "Product Ops · Growth Platform · Web App Prototype",
     term: "2025.07",

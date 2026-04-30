@@ -14,7 +14,7 @@ export default function Data2901SydneyResourcesPage() {
 
   const meta = {
     slug: "data2901-sydney-resources",
-    title: "Greater Sydney SA2 Resource Scoring",
+    title: "Sydney SA2 Resource Index",
     institution: "Group Project · University of Sydney",
     practice: "Spatial Analytics · PostgreSQL/PostGIS · Composite Scoring",
     term: "2025 S1",

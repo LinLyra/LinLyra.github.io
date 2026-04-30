@@ -14,7 +14,7 @@ export default function CommonwealthTreasuryCasePage() {
 
   const meta = {
     slug: "commonwealth-treasury-case",
-    title: "Commonwealth Treasury Case Competition",
+    title: "Policy Package Evaluation",
     institution: "Commonwealth Bank of Australia (CBA)",
     practice: "Public Policy · Economic Analysis · Case Competition",
     term: "2025.04",

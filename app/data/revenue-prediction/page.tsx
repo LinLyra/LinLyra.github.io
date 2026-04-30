@@ -14,7 +14,7 @@ export default function QBUSRevenuePredictionPage() {
 
   const meta = {
     slug: "revenue-prediction",
-    title: "QSR Revenue Prediction: Regression Modelling for Daily Outlet Sales",
+    title: "QSR Daily Outlet Revenue",
     institution: "Course Project · University of Sydney",
     practice:
       "Predictive Analytics · Regression · EDA · Feature Engineering · Model Selection",

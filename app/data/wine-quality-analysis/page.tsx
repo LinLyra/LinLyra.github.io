@@ -26,7 +26,7 @@ export default function WineQualityAnalysisPage() {
 
   const meta: Meta = {
     slug: "wine-quality-analysis",
-    title: "Wine Quality Analysis: Key Drivers of Perceived Quality",
+    title: "Wine Quality Drivers",
     institution: "Course Project · University of Sydney",
     practice:
       "Statistical Modeling · Model Selection · Robustness & Stability Checks",

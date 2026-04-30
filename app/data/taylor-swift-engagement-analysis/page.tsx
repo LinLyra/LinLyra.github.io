@@ -12,7 +12,7 @@ export default function TaylorSwiftPage() {
   const meta = {
     slug: "taylor-swift-engagement-analysis",
     title: "Taylor Swift Engagement Analysis: Online Sentiment & Herding Dynamics",
-    institution: "Independent Research",
+    institution: "Independent Data Project",
     practice:
       "YouTube API · Gemini API· Sentiment Analysis · ELM Theory · Bayesian Updating",
     term: "2025.08",

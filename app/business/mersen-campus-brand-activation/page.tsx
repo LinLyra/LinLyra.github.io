@@ -14,7 +14,7 @@ export default function MersenCampusChallengePage() {
 
   const meta = {
     slug: "mersen-campus-challenge-2026",
-    title: "Mersen Campus Challenge 2026",
+    title: "Invisible Guardian",
     institution: "Mersen China",
     practice: "Employer Branding · Campaign Strategy · Industrial Branding",
     term: "2026.04",

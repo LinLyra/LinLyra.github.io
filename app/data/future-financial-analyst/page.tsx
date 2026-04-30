@@ -14,7 +14,7 @@ export default function GrowthValueFrameworkPage() {
 
   const meta = {
     slug: "future-financial-analyst-competition",
-    title: "Repricing the Future: A Growth-Based Financial Framework for Emerging Productive Forces",
+    title: "Growth-Based Repricing Framework",
     institution: "CFA Institute",
     practice:
       "Financial Research · Valuation, Innovation, and Real Economy",

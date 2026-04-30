@@ -14,7 +14,7 @@ export default function KpmgEsgCasePage() {
 
   const meta = {
     slug: "kpmg-esg-case-competition-2024",
-    title: "KPMG ESG Case Competition",
+    title: "Automotive Supply Chain ESG",
     institution: "KPMG China",
     practice: "ESG · Sustainability · Automotive Supply Chain",
     term: "2024.09",

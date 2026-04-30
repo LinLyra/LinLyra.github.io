@@ -26,7 +26,7 @@ export default function YouTubeAIContentStrategyPage() {
 
   const meta: Meta = {
     slug: "youtube-ai-content-strategy",
-    title: "YouTube AI Content Strategy Optimization",
+    title: "Posting Window Lift Model",
     institution: "Personal Project",
     practice:
       "Content Analytics · Clustering · Causal-style Estimation · Posting Strategy",

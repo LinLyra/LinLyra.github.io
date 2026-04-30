@@ -14,7 +14,7 @@ export default function RolandBergerCampus2025Page() {
 
   const meta = {
     slug: "roland-berger-campus-2025",
-    title: "Roland Berger Campus Challenge 2025",
+    title: "Humanoid Robot GTM",
     institution: "Roland Berger",
     practice: "Strategy Case · Humanoid Robotics Go-to-Market",
     term: "2025.06",

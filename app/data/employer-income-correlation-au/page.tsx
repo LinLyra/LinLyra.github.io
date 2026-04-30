@@ -14,7 +14,7 @@ export default function Data1002Project3Page() {
 
   const meta = {
     slug: "employer-income-correlation-au",
-    title: "Modeling Australia’s Weekly Earnings with Employment Signals",
+    title: "Employer Types vs Income (AU)",
     institution: "Course Project · University of Sydney",
     practice: "Predictive Modeling · EDA · Model Comparison (Python / scikit-learn)",
     term: "2024 S2",

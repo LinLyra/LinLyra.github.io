@@ -14,7 +14,7 @@ export default function MicrosoftPromptathonPage() {
 
   const meta = {
     slug: "microsoft-promptathon-2025",
-    title: "Microsoft Chat & Hack Promptathon",
+    title: "Promptathon Prototype",
     institution: "Microsoft",
     practice: "GenAI Prompt Engineering · Product Prototyping",
     term: "2025.03",

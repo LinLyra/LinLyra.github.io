@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useMemo } from "react"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
 import { ScrollReveal } from "@/components/scroll-reveal"
-import { portfolioHighlights } from "@/lib/portfolio-highlights"
+import { orbitItems } from "@/lib/portfolio-orbit"
 import { MissionHighlights } from "./mission-highlights"
 
 type Tool = {
@@ -22,7 +22,7 @@ function Rail({
 }: {
   title: string
   accentClass: string
-  items: typeof portfolioHighlights
+  items: typeof orbitItems
   speed: string
 }) {
   const track = [...items, ...items]
@@ -49,9 +49,7 @@ function Rail({
               />
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-semibold text-gray-100">{item.title}</span>
-                <span className="block truncate text-xs text-white/55">
-                  {item.badge} · {item.date}
-                </span>
+                <span className="block truncate text-xs text-white/55">{item.industries.join(" · ")}</span>
               </span>
               <span className="text-[10px] uppercase tracking-[0.22em] text-white/35 opacity-0 transition group-hover:opacity-100">
                 Open
@@ -139,7 +137,13 @@ function SkillsSection() {
     { slug: "axure", name: "Axure", logo: "/tools/axure.png" },
   ]
 
-  const allHighlights = useMemo(() => portfolioHighlights, [])
+  const orbit = useMemo(() => orbitItems, [])
+
+  const orbitRows = useMemo(() => {
+    const rows = [[], [], []] as typeof orbitItems[]
+    orbit.forEach((x, i) => rows[i % 3].push(x))
+    return rows
+  }, [orbit])
 
   return (
     <section id="skills" className="relative z-10 px-4 py-16 md:py-20">
@@ -183,7 +187,11 @@ function SkillsSection() {
                   Business, data, and product highlights share the same orbit — the dot color tells you which planet it belongs to.
                 </div>
               </div>
-              <Rail title="ORBIT FEED" accentClass="text-white/70" items={allHighlights} speed="66s" />
+              <div className="space-y-4">
+                <Rail title="ORBIT FEED · ROW 1" accentClass="text-white/70" items={orbitRows[0]} speed="62s" />
+                <Rail title="ORBIT FEED · ROW 2" accentClass="text-white/55" items={orbitRows[1]} speed="74s" />
+                <Rail title="ORBIT FEED · ROW 3" accentClass="text-white/45" items={orbitRows[2]} speed="86s" />
+              </div>
 
               <MissionHighlights />
             </div>

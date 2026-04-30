@@ -14,7 +14,7 @@ export default function DisasterInsurancePage() {
 
   const meta = {
     slug: "disaster-insurance",
-    title: "Disaster Risk Insurance: Insights and Recommendations",
+    title: "Disaster Risk & Insurance Levers",
     institution: "Course Project · University of Sydney",
     practice: "Risk Finance · Protection Gap Analytics · EDA & Hypothesis Test",
     term: "2024 S2",

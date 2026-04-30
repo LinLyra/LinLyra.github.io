@@ -14,7 +14,7 @@ export default function Comp3308ClassifiersPage() {
 
   const meta = {
     slug: "pima-diabetes-accuracy-vs-runtime",
-    title: "Classifier Accuracy & Runtime — Pima Diabetes vs Room Occupancy",
+    title: "Classifier Benchmark (Pima vs Occupancy)",
     institution: "Course Project · University of Sydney",
     practice: "Machine Learning · Model Comparison (Weka vs Python)",
     term: "2025 S1",

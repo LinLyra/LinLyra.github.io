@@ -13,7 +13,7 @@ export default function DeloitteTechnologyVirtualPage() {
 
   const meta = {
     slug: "deloitte-technology-virtual",
-    title: "Technology · Virtual Experience",
+    title: "Digital Consulting Simulation",
     institution: "Deloitte (Forage)",
     practice: "Digital Consulting · Data Analysis · Insights & Dashboards",
     term: "2024.12",
