@@ -23,7 +23,7 @@ export default function QBUS2810Page() {
     tagline:
       "Develops practical skills in statistical modelling and Python to analyze business data, quantify relationships, and support data-driven decision-making.",
     tags: ["Statistical Modelling", "Forecasting", "Python"],
-    notes: [] as string[],
+    notes: ["/learning/qbus28101.png", "/learning/qbus28102.png", "/learning/qbus28103.png", "/learning/qbus2810.png"] as string[],
   }
 
   const outcomes = [

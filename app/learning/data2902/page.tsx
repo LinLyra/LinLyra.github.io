@@ -23,7 +23,7 @@ export default function DATA2902Page() {
     tagline:
       "Develops advanced data analytics skills using R, focusing on data acquisition, integration, statistical modelling, machine learning, and reproducible reporting with version control.",
     tags: ["R", "MachineLearning", "Statistical Modelling"],
-    notes: [] as string[]   
+    notes: ["/learning/data2902.png","/learning/data29021.png","/learning/data29022.png","/learning/data29023.png"] as string[]   
   }
 
   const outcomes = [

@@ -23,7 +23,7 @@ export default function QBUS3330Page() {
     tagline:
       "Provides formal methods for decision-making under uncertainty using probabilities, decision trees, sensitivity analysis, and simulations to evaluate choices and improve managerial decision quality.",
     tags: ["RiskAssessment", "DecisionTrees", "ManagerialDecisionMaking"],
-    notes: [] as string[]    
+    notes: ["/learning/qbus3330.png","/learning/qbus33301.png",] as string[]    
   }
 
   const outcomes = [

@@ -30,7 +30,7 @@
      tagline:
        "A focused learning sprint across GenAI, cloud MLOps, data engineering, and AI infrastructure. I packaged the outcomes as a single program page to keep the Learning section scannable (badges as screenshots, links optional).",
      tags: ["GenAI", "Vertex AI", "MLOps", "GKE", "Data Engineering", "AI Infrastructure"],
-     notes: ["/learning/google1.png", "/learning/google2.png", "/learning/google3.png", "/learning/group10.png"],
+     notes: [] as string[],
    }
  
    const badge =

@@ -18,13 +18,14 @@ export default function QBUS2310Page() {
     title: "QBUS2310: Management Science",
     institution: "University of Sydney",
     term: "2025 S2",
-    // 去掉学分与语言显示
     logo: "/learning/usydlogo.png",
     status: "In Progress" as const,
     tagline:
       "Using optimisation modelling and analytical skills to solve real-world management problems in capacity planning, production, and resource allocation.",
     tags: ["Optimisation", "LP/IP/NLP", "Python","ExcelSolver"],
-    notes: [] as string[]    
+    notes: ["/learning/qbus23101.png", "/learning/qbus23102.png",
+      "/learning/qbus23103.png", "/learning/qbus23104.png",
+    ] as string[]    
   }
 
   const outcomes = [
