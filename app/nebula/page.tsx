@@ -45,7 +45,7 @@ export default function NebulaPage() {
       date: "2026.4",
       summary:
         "Perspectives on macro investing and the role of analysts in navigating market uncertainty.",
-      cover: "/activities/PIMCO.jpg",
+      cover: "/activities/PIMCO.png",
       location: "PIMCO Office, Sydney",
       kinds: ["Networking", "Talks"],
     },
@@ -67,7 +67,7 @@ export default function NebulaPage() {
       date: "2026.4",
       summary:
         "Building agents, rapid feedback loops, and how tooling accelerates iteration in practice.",
-      cover: "/activities/Revelance.jpg",
+      cover: "/activities/revelanceai.png",
       location: "Revelance AI Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
@@ -78,7 +78,7 @@ export default function NebulaPage() {
       date: "2026.4",
       summary:
         "Deep dives into Delta Sharing, data contracts, and how modern data systems are becoming more open and interoperable.",
-      cover: "/activities/optiver.jpg",
+      cover: "/activities/optiver.png",
       location: "Optiver Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
@@ -100,7 +100,7 @@ export default function NebulaPage() {
       date: "2026.3",
       summary:
         "Hands-on exposure to AI-assisted development and how modern workflows are being reshaped.",
-      cover: "/activities/cursor.jpg",
+      cover: "/activities/cursorunsw.png",
       location: "UNSW Campus",
       kinds: ["Workshop", "Networking"],
     },
@@ -111,7 +111,7 @@ export default function NebulaPage() {
       date: "2026.3",
       summary:
         "Consulting perspectives on problem-solving, structured thinking, and communicating decisions clearly.",
-      cover: "/activities/Visagio.jpg",
+      cover: "/activities/Visagio.png",
       location: "Stone & Chalk Tech Central, Sydney",
       kinds: ["Talks", "Networking"],
     },
@@ -122,7 +122,7 @@ export default function NebulaPage() {
       date: "2026.3",
       summary:
         "Listening to people share where they started, what shaped them, and how they built confidence and momentum through uncertainty.",
-      cover: "/activities/women.jpg",
+      cover: "/activities/founderedge.png",
       location: "TStone & Chalk Tech Central, Sydney",
       kinds: ["Talks", "Networking"],
     },
