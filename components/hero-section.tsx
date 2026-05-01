@@ -43,18 +43,35 @@ export function HeroSection() {
 
 
               <div className="flex flex-wrap gap-2 justify-center">
-                {[
-                  "Fast Learner",
-                  "Strategic Communicator",
-                  "Cross-functional Collaborator",
-                  "Problem-to-Product Builder",
-                  "Curiosity Driven",
-                ].map((t) => (
+                {(
+                  [
+                    {
+                      label: "Fast Learner",
+                      cls: "border-sky-400/30 bg-sky-500/15 text-sky-100 hover:bg-sky-500/20",
+                    },
+                    {
+                      label: "Strategic Communicator",
+                      cls: "border-violet-400/30 bg-violet-500/15 text-violet-100 hover:bg-violet-500/20",
+                    },
+                    {
+                      label: "Cross-functional Collaborator",
+                      cls: "border-emerald-400/30 bg-emerald-500/15 text-emerald-100 hover:bg-emerald-500/20",
+                    },
+                    {
+                      label: "Problem-to-Product Builder",
+                      cls: "border-amber-400/30 bg-amber-500/15 text-amber-50 hover:bg-amber-500/20",
+                    },
+                    {
+                      label: "Curiosity Driven",
+                      cls: "border-fuchsia-400/30 bg-fuchsia-500/15 text-fuchsia-50 hover:bg-fuchsia-500/20",
+                    },
+                  ] as const
+                ).map((t) => (
                   <span
-                    key={t}
-                    className="px-3 py-1.5 rounded-full text-xs font-medium border border-white/15 bg-white/5 text-gray-100 hover:bg-white/10 transition"
+                    key={t.label}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium border backdrop-blur-sm transition ${t.cls}`}
                   >
-                    {t}
+                    {t.label}
                   </span>
                 ))}
               </div>
@@ -64,7 +81,7 @@ export function HeroSection() {
 
         {/* Main Content */}
         <ScrollReveal className="text-center md:text-left space-y-6" variant="up" delayMs={80}>
-          <div className="text-sm text-white/65 italic tracking-wide">
+          <div className="text-base md:text-lg text-white/70 italic tracking-wide font-serif -rotate-[0.5deg]">
             Learn to change the World.
           </div>
 

@@ -74,7 +74,7 @@ export function MissionHighlights() {
         </div>
       </div>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2">
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {MISSIONS.map((m) => (
           <MissionCard key={m.href} mission={m} />
         ))}

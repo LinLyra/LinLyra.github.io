@@ -74,7 +74,18 @@ function Rail({
   )
 }
 
-function ToolTile({ src, name, index }: { src: string; name: string; index: number }) {
+function ToolTile({
+  slug,
+  src,
+  name,
+  index,
+}: {
+  slug: string
+  src: string
+  name: string
+  index: number
+}) {
+  const needsDarkPlate = slug === "figma" || slug === "notion" || slug === "axure"
   return (
     <div
       className="group flex flex-col items-center gap-2 text-center transition duration-300 hover:-translate-y-0.5"
@@ -83,17 +94,24 @@ function ToolTile({ src, name, index }: { src: string; name: string; index: numb
     >
       <div className="relative grid h-[64px] w-[64px] place-items-center overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl transition group-hover:border-white/18 group-hover:bg-white/[0.05]">
         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background-image:radial-gradient(circle_at_30%_40%,rgba(56,189,248,0.16),transparent_62%),radial-gradient(circle_at_70%_60%,rgba(168,85,247,0.12),transparent_60%)]" />
-        <Image
-          src={src}
-          alt={name}
-          width={80}
-          height={80}
-          className="relative h-9 w-9 object-contain"
-          style={{
-            filter:
-              "saturate(1.06) contrast(1.08) brightness(1.14) drop-shadow(0 0 14px rgba(148,163,184,0.14))",
-          }}
-        />
+        <div
+          className={[
+            "relative grid place-items-center rounded-xl",
+            needsDarkPlate ? "h-11 w-11 bg-black/60 ring-1 ring-white/10" : "h-10 w-10",
+          ].join(" ")}
+        >
+          <Image
+            src={src}
+            alt={name}
+            width={80}
+            height={80}
+            className="h-8 w-8 object-contain"
+            style={{
+              filter:
+                "saturate(1.06) contrast(1.08) brightness(1.14) drop-shadow(0 0 14px rgba(148,163,184,0.14))",
+            }}
+          />
+        </div>
       </div>
       <div className="text-[10px] font-semibold uppercase tracking-[0.26em] text-white/50 group-hover:text-white/70">
         {name}
@@ -195,38 +213,57 @@ function SkillsSection() {
         <div className="mb-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12">
           {capabilityCards.map((c) => {
             const base =
-              "relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/[0.035] backdrop-blur-xl transition will-change-transform"
-            const motion = "hover:-translate-y-1 hover:scale-[1.02] md:hover:scale-[1.03]"
-            const sideDim = c.weight === "side" ? "opacity-90 hover:opacity-100" : "opacity-100"
+              "group relative flex h-full flex-col overflow-hidden rounded-3xl border bg-white/[0.035] backdrop-blur-xl transition will-change-transform"
+            const motion = "hover:-translate-y-1 hover:scale-[1.02] md:hover:scale-[1.05]"
 
             const toneBorder =
               c.tone === "sky"
-                ? "border-sky-400/18 hover:border-sky-300/30"
+                ? "border-sky-400/22 hover:border-sky-300/40"
                 : c.tone === "violet"
-                  ? "border-violet-400/18 hover:border-violet-300/30"
+                  ? "border-violet-400/22 hover:border-violet-300/40"
                   : c.tone === "emerald"
-                    ? "border-emerald-400/18 hover:border-emerald-300/30"
-                    : "border-amber-400/18 hover:border-amber-300/30"
+                    ? "border-emerald-400/22 hover:border-emerald-300/40"
+                    : "border-amber-400/22 hover:border-amber-300/40"
 
             const glow =
               c.tone === "sky"
-                ? "[background-image:radial-gradient(circle_at_30%_35%,rgba(56,189,248,0.18),transparent_62%)]"
+                ? "bg-[radial-gradient(circle_at_35%_25%,rgba(56,189,248,0.22),transparent_62%)]"
                 : c.tone === "violet"
-                  ? "[background-image:radial-gradient(circle_at_30%_35%,rgba(167,139,250,0.20),transparent_62%)]"
+                  ? "bg-[radial-gradient(circle_at_35%_25%,rgba(167,139,250,0.24),transparent_62%)]"
                   : c.tone === "emerald"
-                    ? "[background-image:radial-gradient(circle_at_30%_35%,rgba(52,211,153,0.18),transparent_62%)]"
-                    : "[background-image:radial-gradient(circle_at_30%_35%,rgba(251,191,36,0.16),transparent_62%)]"
+                    ? "bg-[radial-gradient(circle_at_35%_25%,rgba(52,211,153,0.22),transparent_62%)]"
+                    : "bg-[radial-gradient(circle_at_35%_25%,rgba(251,191,36,0.20),transparent_62%)]"
+
+            const chipTone =
+              c.tone === "sky"
+                ? "border-sky-400/25 bg-sky-500/10 text-sky-100"
+                : c.tone === "violet"
+                  ? "border-violet-400/25 bg-violet-500/10 text-violet-100"
+                  : c.tone === "emerald"
+                    ? "border-emerald-400/25 bg-emerald-500/10 text-emerald-100"
+                    : "border-amber-400/25 bg-amber-500/10 text-amber-50"
 
             const gridSpan =
-              c.weight === "highlight"
-                ? "lg:col-span-6 lg:row-span-2"
-                : "lg:col-span-3 lg:row-span-2"
+              c.title === "Product Thinking"
+                ? "lg:col-span-8"
+                : c.title === "Business Impact"
+                  ? "lg:col-span-8"
+                  : "lg:col-span-4"
+
+            const rowPos =
+              c.title === "Product Thinking"
+                ? "lg:row-start-1"
+                : c.title === "Data & Intelligence"
+                  ? "lg:row-start-1"
+                  : c.title === "Business Impact"
+                    ? "lg:row-start-2"
+                    : "lg:row-start-2"
 
             return (
               <PremiumGlassCard
                 key={c.title}
                 tiltMaxDeg={4}
-                className={[base, toneBorder, motion, sideDim, gridSpan].join(" ")}
+                className={[base, toneBorder, motion, gridSpan, rowPos].join(" ")}
               >
                 <div className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${glow}`} />
                 <div className="p-7 pb-3">
@@ -239,7 +276,7 @@ function SkillsSection() {
                     {c.items.map((s) => (
                       <span
                         key={s}
-                        className="rounded-full border border-white/12 bg-white/[0.04] px-3 py-1 text-xs text-white/80"
+                        className={`rounded-full border px-3 py-1 text-xs ${chipTone}`}
                       >
                         {s}
                       </span>
@@ -258,9 +295,9 @@ function SkillsSection() {
                 <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">INDUSTRY DIVERSITY</div>
                 <div className="mt-2 text-2xl font-semibold text-gray-100">Exploring multiple worlds.</div>
                 <div className="mt-2 max-w-2xl text-sm leading-6 text-gray-300/78">
-                  Each orbit is a different industry.
+                  Cross-industry experience, unified by one approach:
                   <br />
-                  The method stays the same — find the signal, build the solution, deliver the impact.
+                  turn data into insight, and insight into action.
                 </div>
               </div>
               <div className="space-y-4">
@@ -301,7 +338,7 @@ function SkillsSection() {
                     </div>
                     <div className="grid grid-cols-4 gap-x-2 gap-y-4">
                       {g.tools.map((tool, index) => (
-                        <ToolTile key={tool.slug} src={tool.logo} name={tool.name} index={index} />
+                        <ToolTile key={tool.slug} slug={tool.slug} src={tool.logo} name={tool.name} index={index} />
                       ))}
                     </div>
                   </div>
