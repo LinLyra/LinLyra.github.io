@@ -17,21 +17,21 @@ type Mission = {
 const MISSIONS: Mission[] = [
   {
     title: "Supply Chain Optimization (24h)",
-    subtitle: "Datathon · Supply Chain / Operations",
+    subtitle: "Research Build · Supply Chain / Operations",
     href: "/data/datathon-2025-supply-chain",
     images: ["/data/dataslide.png", "/data/datacet.png", "/competition/sudatalogo.jpg"],
     accent: "blue",
   },
   {
     title: "H&E Tumour vs Immune Cells",
-    subtitle: "Course project · Healthcare / Medical Imaging",
+    subtitle: "Research Build · Medical Imaging",
     href: "/data/pathology-image-classification",
     images: ["/competition/check.png", "/competition/check2.png", "/competition/COMAPlogo.svg"],
     accent: "purple",
   },
   {
     title: "Aerotropolis South Connector",
-    subtitle: "Case · Infrastructure / Transport",
+    subtitle: "Case Competition · Infrastructure / Transport",
     href: "/business/aerotropolis-south-connector-2026",
     images: ["/competition/Kordamentha.png", "/competition/commonwealth.png", "/competition/rblogo.png"],
     accent: "green",
@@ -45,14 +45,14 @@ const MISSIONS: Mission[] = [
   },
   {
     title: "AgentLens — AI Agent Evaluation Platform",
-    subtitle: "Product build · AI / Developer Tools",
+    subtitle: "Product Build · AI / Developer Tools",
     href: "/product/agentlens",
     images: ["/competition/microsoftlogo.png", "/competition/yolo1.png", "/competition/advxlogo.jpg"],
     accent: "red",
   },
   {
     title: "Technology Risk & ESG Consulting",
-    subtitle: "Internship · Banking / Risk / ESG",
+    subtitle: "Industry Internship · Banking / Risk / ESG",
     href: "/business/mercer-business-analyst",
     images: ["/experience/mercer.png", "/competition/commonwealth.png", "/competition/rblogo.png"],
     accent: "green",
@@ -69,7 +69,7 @@ export function MissionHighlights() {
           </div>
           <div className="mt-2 text-xl font-semibold text-gray-100">Top Missions</div>
           <div className="mt-1 text-sm text-gray-300/78">
-            Hover to preview. Click to enter.
+            Selected missions across different worlds — each one a different problem, the same commitment to impact.
           </div>
         </div>
       </div>

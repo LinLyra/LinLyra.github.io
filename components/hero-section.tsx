@@ -17,7 +17,7 @@ export function HeroSection() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Profile Card */}
         <ScrollReveal className="flex justify-center" variant="soft">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20 p-6 text-center max-w-sm">
+          <Card className="bg-white/10 backdrop-blur-md border-white/15 p-6 text-center max-w-sm">
             <CardContent className="space-y-4">
              
               <div className="mx-auto w-32 h-32 rounded-2xl p-[2px] bg-gradient-to-br from-blue-400 to-purple-600">
@@ -37,28 +37,26 @@ export function HeroSection() {
               <div>
                 <h3 className="text-xl font-bold text-gray-100 mb-2">Long (Lyra) LIN</h3>
                 <p className="text-gray-200 text-sm mb-1">University of Sydney</p>
-                <p className="text-gray-200 text-sm mb-1">Bachelor of Science</p>
-                <p className="text-gray-200 text-sm mb-1">Data Science &amp; Business Analytics</p>
-                <p className="text-gray-200 text-sm">July. 2024 - Expected Dec. 2026</p>
+                <p className="text-gray-200 text-sm mb-1">BSc Data Science &amp; Business Analytics</p>
+                <p className="text-gray-200 text-sm">July 2024 – Expected Dec 2026</p>
               </div>
 
 
               <div className="flex flex-wrap gap-2 justify-center">
-                <span className="px-4 py-2 bg-blue-500/30 text-blue-200 rounded-full text-sm font-medium">
-                  Lifelong Learner
-                </span>
-                <span className="px-4 py-2 bg-purple-500/30 text-purple-200 rounded-full text-sm font-medium">
-                  Curiosity Driven
-                </span>
-                <span className="px-4 py-2 bg-pink-500/30 text-pink-200 rounded-full text-sm font-medium">
-                  Impact Creator
-                </span>
-                <span className="px-4 py-2 bg-pink-500/30 text-pink-200 rounded-full text-sm font-medium">
-                  Data Storyteller
-                </span>
-                <span className="px-4 py-2 bg-orange-500/30 text-orange-200 rounded-full text-sm font-medium">
-                  Problem-to-Product Builder
-                </span>
+                {[
+                  "Fast Learner",
+                  "Strategic Communicator",
+                  "Cross-functional Collaborator",
+                  "Problem-to-Product Builder",
+                  "Curiosity Driven",
+                ].map((t) => (
+                  <span
+                    key={t}
+                    className="px-3 py-1.5 rounded-full text-xs font-medium border border-white/15 bg-white/5 text-gray-100 hover:bg-white/10 transition"
+                  >
+                    {t}
+                  </span>
+                ))}
               </div>
             </CardContent>
           </Card>
@@ -66,18 +64,27 @@ export function HeroSection() {
 
         {/* Main Content */}
         <ScrollReveal className="text-center md:text-left space-y-6" variant="up" delayMs={80}>
+          <div className="text-sm text-white/65 italic tracking-wide">
+            Learn to change the World.
+          </div>
+
           <h1 className="cosmic-heading text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
-            Learn to change the{" "}
-            <span className="cosmic-gradient">World.</span>
+            From Data to{" "}
+            <span className="cosmic-gradient">Decisions</span>{" "}
+            to Products.
           </h1>
 
-          <p className="text-xl text-gray-200 mb-4">
-            Driven by a passion for data, I begin with analytics to understand complex systems, uncover patterns, and translate them into strategy and action.
-            I design product solutions grounded in insight, and bring them to life through full-stack prototyping.
-          </p>
-          <p className="text-lg text-gray-300 mb-8">
-            My work connects data, business, and technology — turning understanding into measurable impact.
-          </p>
+          <div className="space-y-4">
+            <p className="text-xl text-gray-200">
+              I don’t just analyze — I build.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              Starting from data, I uncover what’s really happening in complex systems, then translate that into strategy, product design, and working prototypes.
+            </p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              What sets me apart is range: I move fast across industries, collaborate across functions, and turn ambiguous problems into shipped solutions.
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Button
