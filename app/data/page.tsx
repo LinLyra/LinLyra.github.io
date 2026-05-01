@@ -395,14 +395,14 @@ export default function DataPage() {
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="block h-full">
                 <PremiumGlassCard className="relative flex h-full min-h-[260px] flex-col cursor-pointer border border-blue-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(59,130,246,0.10)] hover:border-blue-400/35 hover:bg-black/30 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
-                  {project.award && (
+                  {(project.award || project.type === "competition") && (
                     <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-400/30 bg-amber-500/20 px-2 py-1 text-xs font-semibold text-amber-200 shadow-sm backdrop-blur-sm">
                       <AwardIcon className="h-3 w-3 text-amber-300" />
-                      {project.award}
+                      {project.award ?? "Competition"}
                     </span>
                   )}
 
-                  <div className={`p-6 pb-2 ${project.award ? "pt-8 pr-24" : ""}`}>
+                  <div className={`p-6 pb-2 ${project.award || project.type === "competition" ? "pt-8 pr-24" : ""}`}>
                     <div className="flex items-start gap-3">
                       {project.type !== "course" && !!project.logo && (
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-blue-400/20 bg-white/5">
@@ -418,7 +418,7 @@ export default function DataPage() {
                       )}
 
                       <div className="min-w-0 flex-1">
-                        <h2 className="line-clamp-2 text-base font-semibold leading-snug text-gray-100">
+                        <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
                           {project.projectName}
                         </h2>
                         <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">

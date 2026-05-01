@@ -372,12 +372,27 @@ export default function ProductPage() {
             {filtered.map((p) => (
               <Link key={p.slug} href={`/product/${p.slug}`} className="block h-full">
                 <PremiumGlassCard className="relative flex h-full min-h-[260px] flex-col cursor-pointer overflow-hidden border border-amber-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(245,158,11,0.10)] hover:bg-black/30 hover:border-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
-                  {p.placement && (
-                    <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-300/40 bg-yellow-500/20 px-2 py-1 text-xs font-semibold text-yellow-200 shadow-sm backdrop-blur-sm">
-                      <AwardIcon className="h-3 w-3 text-yellow-300" />
-                      {p.placement}
-                    </span>
-                  )}
+                  {(() => {
+                    const corner =
+                      p.placement ??
+                      (p.type === "hackathon"
+                        ? "Hackathon"
+                        : p.type === "development"
+                          ? "Experience"
+                          : p.type === "product"
+                            ? "Challenge"
+                            : p.type === "project"
+                              ? "Project"
+                              : undefined);
+
+                    if (!corner) return null;
+                    return (
+                      <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-300/40 bg-yellow-500/20 px-2 py-1 text-xs font-semibold text-yellow-200 shadow-sm backdrop-blur-sm">
+                        <AwardIcon className="h-3 w-3 text-yellow-300" />
+                        {corner}
+                      </span>
+                    );
+                  })()}
                   <div className="p-6 pb-2">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 flex-1 items-start gap-3">
@@ -396,7 +411,7 @@ export default function ProductPage() {
                         )}
 
                         <div className="min-w-0 flex-1 pr-2">
-                          <h2 className="line-clamp-2 text-base font-semibold leading-snug text-gray-100">
+                          <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
                             {p.projectName}
                           </h2>
                           <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">

@@ -36,7 +36,14 @@ function Rail({
             <Link
               key={`${item.slug}-${idx}`}
               href={item.href}
-              className="group mx-2 inline-flex min-w-[14.5rem] items-center gap-3 rounded-full border border-white/10 bg-white/[0.015] px-4 py-2.5 text-left transition hover:border-white/18 hover:bg-white/[0.045]"
+              className={[
+                "group mx-2 inline-flex min-w-[14.5rem] items-center gap-3 rounded-full border px-4 py-2.5 text-left transition",
+                item.section === "business"
+                  ? "border-emerald-400/25 bg-emerald-500/[0.08] hover:border-emerald-300/40 hover:bg-emerald-500/[0.14]"
+                  : item.section === "data"
+                    ? "border-sky-400/25 bg-sky-500/[0.08] hover:border-sky-300/40 hover:bg-sky-500/[0.14]"
+                    : "border-amber-400/25 bg-amber-500/[0.08] hover:border-amber-300/40 hover:bg-amber-500/[0.14]",
+              ].join(" ")}
             >
               <span
                 className={`mt-0.5 h-2.5 w-2.5 rounded-full ${
@@ -140,8 +147,8 @@ function SkillsSection() {
   const orbit = useMemo(() => orbitItems, [])
 
   const orbitRows = useMemo(() => {
-    const rows = [[], [], []] as typeof orbitItems[]
-    orbit.forEach((x, i) => rows[i % 3].push(x))
+    const rows = [[], []] as typeof orbitItems[]
+    orbit.forEach((x, i) => rows[i % 2].push(x))
     return rows
   }, [orbit])
 
@@ -181,16 +188,15 @@ function SkillsSection() {
           <div className="grid gap-7 lg:grid-cols-[minmax(0,1.55fr)_minmax(300px,360px)]">
             <div className="space-y-5">
               <div>
-                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">MORE IN ORBIT</div>
-                <div className="mt-2 text-2xl font-semibold text-gray-100">One rail. Color-coded worlds.</div>
+                <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">INDUSTRY DIVERSITY</div>
+                <div className="mt-2 text-2xl font-semibold text-gray-100">Exploring multiple worlds.</div>
                 <div className="mt-2 max-w-2xl text-sm leading-6 text-gray-300/78">
-                  Business, data, and product highlights share the same orbit — the dot color tells you which planet it belongs to.
+                  A rolling feed across business, data, and product. Each pill is tinted by its “planet” so you can scan how I move between industries.
                 </div>
               </div>
               <div className="space-y-4">
-                <Rail title="ORBIT FEED · ROW 1" accentClass="text-white/70" items={orbitRows[0]} speed="62s" />
-                <Rail title="ORBIT FEED · ROW 2" accentClass="text-white/55" items={orbitRows[1]} speed="74s" />
-                <Rail title="ORBIT FEED · ROW 3" accentClass="text-white/45" items={orbitRows[2]} speed="86s" />
+                <Rail title="ORBIT FEED · MULTI-INDUSTRY TRAILS" accentClass="text-white/70" items={orbitRows[0]} speed="66s" />
+                <Rail title="ORBIT FEED · CROSS-SECTOR EXPERIMENTS" accentClass="text-white/55" items={orbitRows[1]} speed="78s" />
               </div>
 
               <MissionHighlights />

@@ -43,6 +43,20 @@ const MISSIONS: Mission[] = [
     images: ["/competition/canvalogo.png", "/competition/advxlogo.jpg", "/competition/yolo1.png"],
     accent: "amber",
   },
+  {
+    title: "AgentLens — AI Agent Evaluation Platform",
+    subtitle: "Product build · AI / Developer Tools",
+    href: "/product/agentlens",
+    images: ["/competition/microsoftlogo.png", "/competition/yolo1.png", "/competition/advxlogo.jpg"],
+    accent: "red",
+  },
+  {
+    title: "Technology Risk & ESG Consulting",
+    subtitle: "Internship · Banking / Risk / ESG",
+    href: "/business/mercer-business-analyst",
+    images: ["/experience/mercer.png", "/competition/commonwealth.png", "/competition/rblogo.png"],
+    accent: "green",
+  },
 ]
 
 export function MissionHighlights() {
