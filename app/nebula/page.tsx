@@ -44,21 +44,11 @@ export default function NebulaPage() {
       date: "2026.04",
       summary:
         "Office session hosted by Morgan Stanley’s UNIT program, focused on how teams think about industry structure, competitive dynamics, and client problems. Took away a clearer picture of day-to-day analyst work, plus concrete recruiting advice and CV/behavioral signals that matter.",
-      cover: "/activities/goldmansachs.png",
+      cover: "/activities/morgan.png",
       location: "Morgan Stanley Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
-    {
-      slug: "salesforce-agentforce-summit-2026",
-      title: "Agentforce Summit",
-      org: "Salesforce",
-      date: "2026.04",
-      summary:
-        "Summit on Agentforce patterns, Data Cloud, and how enterprises operationalize agent workflows with governance and observability. Collected practical examples of agent-to-CRM automation, customer service playbooks, and what “trusted AI” looks like in production.",
-      cover: "/activities/saleforces.jpg",
-      location: "Salesforce Office, Sydney",
-      kinds: ["Talks", "Networking"],
-    },
+    
     {
       slug: "postgresql-sydney-meetup-april-2026",
       title: "PostgreSQL Sydney Meetup — April 2026",
@@ -66,7 +56,7 @@ export default function NebulaPage() {
       date: "2026.04",
       summary:
         "Community meetup covering Postgres performance tuning, indexing trade-offs, and operational reliability in real systems. Left with a tighter mental model for query planning, observability signals, and how teams keep data services stable under load.",
-      cover: "/activities/optiver.png",
+      cover: "/activities/postgre.png",
       location: "Fujitsu Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
@@ -122,7 +112,7 @@ export default function NebulaPage() {
       date: "2026.4",
       summary:
         "Insights into real-world developer ecosystems and the product infrastructure behind them. Focused on platform thinking (docs, SDKs, trust), and how product teams measure activation and reduce friction for builders.",
-      cover: "/activities/Paypal.jpg",
+      cover: "/activities/paypal.png",
       location: "Paypal Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
@@ -169,6 +159,17 @@ export default function NebulaPage() {
       cover: "/activities/dataai.jpg",
       location: "UTS Startup",
       kinds: ["Talks"],
+    },
+    {
+      slug: "salesforce-agentforce-summit-2026",
+      title: "Agentforce Summit",
+      org: "Salesforce",
+      date: "2026.2",
+      summary:
+        "Summit on Agentforce patterns, Data Cloud, and how enterprises operationalize agent workflows with governance and observability. Collected practical examples of agent-to-CRM automation, customer service playbooks, and what “trusted AI” looks like in production.",
+      cover: "/activities/agentforce.png",
+      location: "Salesforce Office, Sydney",
+      kinds: ["Talks", "Networking"],
     },
     {
       slug: "microsoft-code-without-barriers",

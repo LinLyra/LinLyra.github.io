@@ -46,7 +46,6 @@ function mergeProductCardTags(p: ProductItem, max = 6): string[] {
 export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<ProductType[]>([]);
-  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
   const products: ProductItem[] = [
     {
@@ -227,15 +226,6 @@ export default function ProductPage() {
     },
   ];
 
-  const featuredTopics = [
-    "AI",
-    "Education",
-    "HealthTech",
-    "Social Impact",
-    "Enterprise",
-    "Consumer App",
-  ];
-
   const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
   const used = (t: ProductType) => products.some((p) => p.type === t);
 
@@ -256,26 +246,13 @@ export default function ProductPage() {
 
       const hit = q === "" || bag.includes(q);
       const typeOK = selectedTags.length === 0 || selectedTags.includes(p.type);
-      const topicOK =
-        selectedTopics.length === 0 ||
-        selectedTopics.some((topic) => {
-          const t = topic.toLowerCase();
-          return [...(p.industries ?? []), ...(p.tags ?? []), ...(p.skills ?? [])].some(
-            (x) => x.toLowerCase() === t
-          );
-        });
-      return hit && typeOK && topicOK;
+      return hit && typeOK;
     });
-  }, [products, q, selectedTags, selectedTopics]);
+  }, [products, q, selectedTags]);
 
   const toggle = (t: ProductType) =>
     setSelectedTags((prev) =>
       prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]
-    );
-
-  const toggleTopic = (topic: string) =>
-    setSelectedTopics((prev) =>
-      prev.includes(topic) ? prev.filter((x) => x !== topic) : [...prev, topic]
     );
 
   return (
@@ -334,44 +311,16 @@ export default function ProductPage() {
                   className="h-6 px-2 text-gray-300"
                   onClick={() => setSelectedTags([])}
                 >
-                  Clear types
+                  Clear
                 </Button>
-              )}
-            </div>
-            <div className="flex flex-wrap justify-center gap-2">
-              {featuredTopics.map((topic) => {
-                const active = selectedTopics.includes(topic);
-                return (
-                  <button
-                    key={topic}
-                    type="button"
-                    onClick={() => toggleTopic(topic)}
-                    className={`rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all ${
-                      active
-                        ? "border-amber-300/60 bg-orange-500/30 text-amber-50 shadow-[0_0_12px_rgba(245,158,11,0.3)]"
-                        : "border-amber-400/35 bg-black/25 text-amber-200/90 hover:border-amber-400/50 hover:bg-orange-500/10 hover:text-amber-100"
-                    }`}
-                  >
-                    {topic}
-                  </button>
-                );
-              })}
-              {selectedTopics.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedTopics([])}
-                  className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
-                >
-                  Clear topics
-                </button>
               )}
             </div>
           </div>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (
-              <Link key={p.slug} href={`/product/${p.slug}`} className="block h-full">
-                <PremiumGlassCard className="relative flex h-full min-h-[260px] flex-col cursor-pointer overflow-hidden border border-amber-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(245,158,11,0.10)] hover:bg-black/30 hover:border-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
+              <Link key={p.slug} href={`/product/${p.slug}`} className="group block h-full">
+                <div className="relative h-full">
                   {(() => {
                     const corner =
                       p.placement ??
@@ -387,17 +336,20 @@ export default function ProductPage() {
 
                     if (!corner) return null;
                     return (
-                      <span className="pointer-events-none absolute right-3 top-3 z-20 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-amber-300/40 bg-yellow-500/20 px-2 py-1 text-xs font-semibold text-yellow-200 shadow-sm backdrop-blur-sm">
-                        <AwardIcon className="h-3 w-3 text-yellow-300" />
-                        {corner}
-                      </span>
+                      <div className="pointer-events-none absolute -right-2 -top-2 z-20">
+                        <div className="flex items-center gap-1 rounded-full border border-amber-300/40 bg-yellow-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
+                          <AwardIcon className="h-3.5 w-3.5 text-yellow-300" />
+                          <span className="text-xs font-semibold text-yellow-200">{corner}</span>
+                        </div>
+                      </div>
                     );
                   })()}
+                <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(245,158,11,0.10)] ring-1 ring-amber-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
                   <div className="p-6 pb-2">
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex min-w-0 flex-1 items-start gap-3">
                         {(p.image || p.logo) && (
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-amber-400/20 bg-white/5">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-amber-400/20">
                             <img
                               src={p.image || p.logo || "/placeholder.svg"}
                               alt=""
@@ -441,6 +393,7 @@ export default function ProductPage() {
                     </div>
                   </div>
                 </PremiumGlassCard>
+                </div>
               </Link>
             ))}
           </div>

@@ -90,11 +90,11 @@ function OrbitDualTracks({
       key={`${item.slug}-${idx}-${rev ? "r" : "f"}`}
       href={item.href}
       className={cn(
-        "mx-0.5 inline-flex max-w-[13rem] shrink-0 items-center gap-1.5 rounded-full border px-2 py-0.5 text-left transition",
-        "border-white/10 bg-white/[0.04] hover:border-indigo-400/35 hover:bg-white/[0.07]",
-        item.section === "business" && "hover:border-emerald-400/35",
-        item.section === "data" && "hover:border-sky-400/35",
-        item.section === "product" && "hover:border-amber-400/35"
+        "mx-0.5 inline-flex max-w-[13rem] shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition",
+        "bg-white/[0.05] ring-1 ring-white/[0.06] hover:bg-white/[0.08] hover:ring-white/[0.12]",
+        item.section === "business" && "hover:ring-emerald-400/25",
+        item.section === "data" && "hover:ring-sky-400/25",
+        item.section === "product" && "hover:ring-amber-400/25"
       )}
     >
       <span
@@ -110,13 +110,13 @@ function OrbitDualTracks({
   )
 
   return (
-    <div className="space-y-2">
-      <div className="overflow-hidden rounded-full border border-white/10 bg-black/35 py-1 shadow-inner shadow-black/40 backdrop-blur-sm">
+    <div className="space-y-2.5">
+      <div className="overflow-hidden rounded-full bg-black/40 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] ring-1 ring-white/[0.05] backdrop-blur-sm">
         <div className="ticker-track items-center gap-2 py-0.5" style={{ animationDuration: "78s" }}>
           {a.map((item, idx) => chip(item, idx, false))}
         </div>
       </div>
-      <div className="overflow-hidden rounded-full border border-white/10 bg-black/35 py-1 shadow-inner shadow-black/40 backdrop-blur-sm">
+      <div className="overflow-hidden rounded-full bg-black/40 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] ring-1 ring-white/[0.05] backdrop-blur-sm">
         <div className="ticker-track-reverse items-center gap-2 py-0.5" style={{ animationDuration: "92s" }}>
           {b.map((item, idx) => chip(item, idx, true))}
         </div>
@@ -148,7 +148,7 @@ function CompactToolTile({
     <div className="group relative" title={name}>
       <div
         className={cn(
-          "grid h-[4.25rem] w-[4.25rem] place-items-center overflow-hidden rounded-2xl border border-white/11 bg-white/[0.05] backdrop-blur-md transition md:h-[4.5rem] md:w-[4.5rem]",
+          "grid h-[4.25rem] w-[4.25rem] place-items-center overflow-hidden rounded-2xl bg-white/[0.06] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] ring-1 ring-white/[0.06] backdrop-blur-md transition md:h-[4.5rem] md:w-[4.5rem]",
           ring
         )}
       >
@@ -226,14 +226,8 @@ function SkillsSection() {
     },
   ]
 
-  const toneBorder = (tone: CapabilityTone) =>
-    tone === "sky"
-      ? "border-sky-400/22 hover:border-sky-300/45"
-      : tone === "violet"
-        ? "border-violet-400/22 hover:border-violet-300/45"
-        : tone === "emerald"
-          ? "border-emerald-400/22 hover:border-emerald-300/45"
-          : "border-amber-400/22 hover:border-amber-300/45"
+  const toneBorder = (_tone: CapabilityTone) =>
+    "border border-white/[0.06] shadow-[0_16px_50px_rgba(0,0,0,0.35)] hover:border-white/[0.1]"
 
   const glow = (tone: CapabilityTone) =>
     tone === "sky"
@@ -246,52 +240,41 @@ function SkillsSection() {
 
   const chipTone = (tone: CapabilityTone) =>
     tone === "sky"
-      ? "border-sky-400/30 bg-sky-500/12 text-sky-100 hover:border-indigo-400/40 hover:bg-indigo-500/12"
+      ? "bg-sky-500/10 text-sky-100/95 ring-1 ring-sky-400/20 hover:bg-sky-500/16"
       : tone === "violet"
-        ? "border-violet-400/30 bg-violet-500/12 text-violet-100 hover:border-indigo-400/40 hover:bg-indigo-500/12"
+        ? "bg-violet-500/10 text-violet-100/95 ring-1 ring-violet-400/20 hover:bg-violet-500/16"
         : tone === "emerald"
-          ? "border-emerald-400/30 bg-emerald-500/12 text-emerald-100 hover:border-indigo-400/40 hover:bg-indigo-500/12"
-          : "border-amber-400/30 bg-amber-500/12 text-amber-50 hover:border-indigo-400/40 hover:bg-indigo-500/12"
+          ? "bg-emerald-500/10 text-emerald-100/95 ring-1 ring-emerald-400/20 hover:bg-emerald-500/16"
+          : "bg-amber-500/10 text-amber-50/95 ring-1 ring-amber-400/20 hover:bg-amber-500/16"
 
   return (
-    <section id="skills" className="relative z-10 px-4 py-12 md:py-16">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-8 text-center md:text-left">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500">Overview</p>
-          <h2 className="mt-2 text-[1.75rem] font-semibold leading-tight tracking-tight text-slate-50 md:text-[2rem]">
+    <section id="skills" className="relative z-10 px-4 py-10 md:py-14">
+      <div className="mx-auto max-w-6xl">
+        <header className="mb-8 text-center">
+          <h2 className="text-[1.75rem] font-semibold leading-tight tracking-tight text-slate-50 md:text-[2rem]">
             Capabilities
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:mx-0 md:text-base">
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-base">
             A multidisciplinary toolkit — bridging data, strategy, and technology.
           </p>
-          <p className="mt-1.5 text-xs font-medium tracking-wide text-slate-500 md:text-sm">
+          <p className="mt-2 text-xs font-medium tracking-wide text-slate-500 md:text-sm">
             Data → Business → Product → Tech
           </p>
         </header>
 
-        <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-5 lg:items-stretch">
-          <div className="flex flex-col lg:col-span-3">
-            <div className="grid flex-1 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-12 lg:gap-x-5 lg:gap-y-5">
+        <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-5 lg:items-stretch">
+          <div className="flex min-h-0 flex-col lg:col-span-3">
+            <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
               {CAPABILITY_CARDS.map((c) => {
                 const base =
-                  "group relative flex min-h-[10rem] flex-col overflow-hidden rounded-3xl border bg-white/[0.035] backdrop-blur-xl transition will-change-transform"
-                const motion = "hover:-translate-y-2 hover:scale-[1.02]"
-
-                const gridSpan =
-                  c.title === "Product Thinking"
-                    ? "lg:col-span-8"
-                    : c.title === "Business Impact"
-                      ? "lg:col-span-4"
-                      : "lg:col-span-6"
-
-                const rowPos =
-                  c.title === "Product Thinking" || c.title === "Business Impact" ? "lg:row-start-2" : "lg:row-start-1"
+                  "group relative flex min-h-[10rem] flex-col overflow-hidden rounded-3xl bg-white/[0.025] backdrop-blur-xl transition will-change-transform"
+                const motion = "hover:-translate-y-1 hover:scale-[1.01]"
 
                 return (
                   <PremiumGlassCard
                     key={c.title}
                     tiltMaxDeg={3}
-                    className={cn(base, toneBorder(c.tone), motion, gridSpan, rowPos)}
+                    className={cn(base, toneBorder(c.tone), motion)}
                   >
                     <div
                       className={cn(
@@ -311,7 +294,7 @@ function SkillsSection() {
                           <span
                             key={s}
                             className={cn(
-                              "rounded-full border px-2 py-0.5 text-[11px] font-medium leading-tight transition md:px-2.5 md:py-1 md:text-[12px]",
+                              "rounded-full px-2 py-0.5 text-[11px] font-medium leading-tight transition md:px-2.5 md:py-1 md:text-[12px]",
                               chipTone(c.tone)
                             )}
                           >
@@ -326,8 +309,8 @@ function SkillsSection() {
             </div>
           </div>
 
-          <aside className="flex lg:col-span-2">
-            <div className="flex h-full min-h-[28rem] w-full flex-col rounded-3xl border border-white/12 bg-[linear-gradient(145deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] p-5 shadow-[0_14px_44px_rgba(0,0,0,0.35)] backdrop-blur-xl md:min-h-full md:p-6">
+          <aside className="flex min-h-0 lg:col-span-2">
+            <div className="flex h-full min-h-[28rem] w-full flex-col rounded-3xl bg-[linear-gradient(165deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.4)] ring-1 ring-white/[0.06] backdrop-blur-xl md:min-h-full md:p-6">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">Toolkit</p>
                 <h3 className="mt-2 text-lg font-semibold text-slate-100 md:text-xl">Tools Behind Every Mission</h3>
@@ -379,20 +362,15 @@ function SkillsSection() {
           </aside>
         </div>
 
-        <ScrollReveal variant="soft" className="mx-auto max-w-7xl">
-          <div className="space-y-8">
-            <div className="rounded-2xl border border-white/8 bg-black/25 px-4 py-4 backdrop-blur-sm md:px-6">
+        <ScrollReveal variant="soft" className="mx-auto max-w-6xl">
+          <div className="space-y-6">
+            <div className="rounded-2xl bg-black/20 px-3 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/[0.05] backdrop-blur-sm md:px-5">
               <div className="mb-4 text-center">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-slate-500">Industry breadth</p>
-                <h3 className="mt-2 text-xl font-semibold text-slate-100 md:text-2xl">行业广度</h3>
-                <p className="mt-1 text-base font-semibold text-slate-200 md:text-lg">Exploration Across Industries</p>
-                <p className="mx-auto mt-2 max-w-2xl text-xs leading-relaxed text-slate-500 md:text-sm">
+                <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">
+                  Exploration Across Industries
+                </h3>
+                <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
                   A snapshot of projects across domains — from data analysis to product builds.
-                </p>
-                <p className="mt-2 text-[11px] text-slate-600">
-                  Names sync from Business / Data / Product overview pages when you run{" "}
-                  <code className="rounded bg-white/10 px-1 py-0.5 text-slate-400">npm run build</code> or{" "}
-                  <code className="rounded bg-white/10 px-1 py-0.5 text-slate-400">npm run sync:orbit</code>.
                 </p>
               </div>
 

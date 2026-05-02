@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { X } from "lucide-react"
 
 import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"
+import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slides"
 import { getFeaturedEmbedUrl } from "@/lib/featured-embed-urls"
 import { pathologyHeSlidePaths } from "@/lib/pathology-he-slides"
 import {
@@ -30,14 +31,14 @@ const MISSIONS: Mission[] = [
     title: "Supply Chain Optimization (SUDATA × SUBAA Datathon)",
     subtitle: "First Place · Supply Chain / Operations",
     href: "/data/datathon-2025-supply-chain",
-    images: ["/data/dataslide.png", "/data/datacet.png", "/competition/sudatalogo.jpg"],
+    images: [...datathonSupplyChainSlidePaths()],
     accent: "blue",
   },
   {
     title: "H&E Tumour vs Immune Cells",
     subtitle: "Pathology · Medical Imaging",
     href: "/data/pathology-image-classification",
-    images: [...pathologyHeSlidePaths(), "/competition/check.png", "/competition/check2.png", "/competition/COMAPlogo.svg"],
+    images: [...pathologyHeSlidePaths()],
     accent: "purple",
   },
   {
@@ -55,11 +56,11 @@ const MISSIONS: Mission[] = [
     accent: "amber",
   },
   {
-    title: "AgentLens — AI Agent Evaluation Platform",
-    subtitle: "Product Build · AI / Developer Tools",
-    href: "/product/agentlens",
-    images: ["/competition/microsoftlogo.png", "/competition/yolo1.png", "/competition/advxlogo.jpg"],
-    accent: "red",
+    title: "Long BeOne, Short Akeso",
+    subtitle: "UBS Finance Challenge 2026 · Equity Research",
+    href: "/business/ubs-finance-challenge-2026",
+    images: ["/competition/ubslogo.png", "/competition/microsoftlogo.png", "/competition/rblogo.png"],
+    accent: "green",
   },
   {
     title: "Technology Risk & ESG Consulting",
@@ -72,12 +73,11 @@ const MISSIONS: Mission[] = [
 
 export function MissionHighlights() {
   return (
-    <div className="pt-6">
-      <div className="mb-5 text-center">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500">Featured work</p>
-        <h3 className="mt-2 text-xl font-semibold tracking-wide text-slate-100 md:text-2xl">项目深度</h3>
+    <div className="pt-4">
+      <div className="mb-4 text-center">
+        <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">Featured mission</h3>
         <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-slate-500 md:text-sm">
-          Deeper dives — click to preview the Notion write-up in-site when configured, then continue on the project page.
+          Click a card to preview the write-up in-site when a link is configured; closing the window opens the project page.
         </p>
       </div>
 
@@ -132,12 +132,12 @@ function MissionCard({ mission }: { mission: Mission }) {
     <>
       <div className={cn("pointer-events-none absolute -inset-16 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100", accentBg(mission.accent))} />
 
-      <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-white/10 bg-black/35">
+      <div className="relative aspect-[5/3] w-full overflow-hidden border-b border-white/[0.06] bg-black/40">
         <Image
           src={src}
           alt={mission.title}
           fill
-          sizes="220px"
+          sizes="200px"
           className="object-cover transition duration-500 ease-out"
           priority={false}
         />
@@ -173,9 +173,8 @@ function MissionCard({ mission }: { mission: Mission }) {
   )
 
   const cardClass = cn(
-    "group relative flex min-w-[min(11.5rem,68vw)] max-w-[13rem] shrink-0 snap-start flex-col overflow-hidden rounded-lg border bg-white/[0.04] backdrop-blur-xl transition",
-    "border-white/12 hover:-translate-y-0.5 hover:border-white/22 hover:shadow-md hover:shadow-black/45",
-    "ring-1 ring-transparent hover:ring-white/5"
+    "group relative flex min-w-[min(10.5rem,62vw)] max-w-[11.5rem] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white/[0.035] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition",
+    "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
   )
 
   if (embedUrl) {
@@ -186,14 +185,14 @@ function MissionCard({ mission }: { mission: Mission }) {
         </button>
 
         <Dialog open={embedOpen} onOpenChange={onDialogChange}>
-          <DialogContent className="max-h-[90vh] max-w-[min(96vw,920px)] gap-0 overflow-hidden border-white/15 bg-[#0b0b12] p-0">
-            <DialogHeader className="flex flex-row items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+          <DialogContent className="max-h-[90vh] max-w-[min(96vw,920px)] gap-0 overflow-hidden border-0 bg-[#0b0b12] p-0 shadow-[0_24px_80px_rgba(0,0,0,0.65)] ring-1 ring-white/10">
+            <DialogHeader className="flex flex-row items-center justify-between gap-3 border-b border-white/[0.07] px-4 py-3">
               <DialogTitle className="truncate pr-8 text-left text-sm font-semibold text-slate-100">
                 {mission.title}
               </DialogTitle>
               <button
                 type="button"
-                className="rounded-full border border-white/15 bg-white/5 p-2 text-slate-300 transition hover:bg-white/10 hover:text-white"
+                className="rounded-full bg-white/[0.06] p-2 text-slate-300 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
                 aria-label="Close and open project page"
                 onClick={() => onDialogChange(false)}
               >

@@ -455,10 +455,10 @@ export default function BusinessPage() {
                       </div>
                     )}
 
-                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden border border-green-400/20 bg-black/25 backdrop-blur-xl shadow-[0_0_26px_rgba(34,197,94,0.10)] hover:bg-black/30 hover:border-green-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
+                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(34,197,94,0.10)] ring-1 ring-emerald-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-emerald-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
                       <div className="p-6 pb-2">
                         <div className="flex items-start gap-3 pr-10">
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-green-400/20 bg-white/5">
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-emerald-400/20">
                             <img
                               src={item.logo || item.image || "/placeholder.svg"}
                               alt=""
