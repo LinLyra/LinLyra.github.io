@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import * as React from "react"
 
+import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"
 import { cn } from "@/lib/utils"
 
 type Mission = {
@@ -33,7 +34,12 @@ const MISSIONS: Mission[] = [
     title: "Aerotropolis South Connector",
     subtitle: "Case Competition · Infrastructure / Transport",
     href: "/business/aerotropolis-south-connector-2026",
-    images: ["/competition/Kordamentha.png", "/competition/commonwealth.png", "/competition/rblogo.png"],
+    images: [
+      ...aerotropolisSlidePaths(),
+      "/competition/Kordamentha.png",
+      "/competition/commonwealth.png",
+      "/competition/rblogo.png",
+    ],
     accent: "green",
   },
   {
@@ -75,9 +81,8 @@ export function MissionHighlights() {
       <div className="relative mt-6">
         <div
           className={cn(
-            "flex gap-4 overflow-x-auto pb-3 pt-1",
-            "snap-x snap-mandatory scroll-px-4 [-ms-overflow-style:none] [scrollbar-width:none]",
-            "[&::-webkit-scrollbar]:hidden"
+            "missions-scroll flex gap-3 overflow-x-auto pb-2 pt-1",
+            "snap-x snap-mandatory scroll-px-3 md:scroll-px-0"
           )}
         >
           {MISSIONS.map((m) => (
@@ -99,7 +104,7 @@ function MissionCard({ mission }: { mission: Mission }) {
     if (mq.matches) return
     const t = window.setInterval(() => {
       setIdx((i) => (i + 1) % n)
-    }, 2400)
+    }, 2800)
     return () => window.clearInterval(t)
   }, [n])
 
@@ -109,41 +114,48 @@ function MissionCard({ mission }: { mission: Mission }) {
     <Link
       href={mission.href}
       className={cn(
-        "group relative flex min-w-[min(19rem,82vw)] max-w-[20rem] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border bg-white/[0.04] backdrop-blur-xl transition",
+        "group relative flex min-w-[min(14rem,72vw)] max-w-[16rem] shrink-0 snap-start flex-col overflow-hidden rounded-xl border bg-white/[0.04] backdrop-blur-xl transition",
         "border-white/12 hover:-translate-y-1 hover:border-white/22 hover:shadow-lg hover:shadow-black/40"
       )}
     >
       <div className={cn("pointer-events-none absolute -inset-20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100", accentBg(mission.accent))} />
 
-      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 bg-black/35">
+      <div className="relative aspect-[5/3] w-full overflow-hidden border-b border-white/10 bg-black/35">
         <Image
           src={src}
           alt={mission.title}
           fill
-          sizes="320px"
+          sizes="260px"
           className="object-cover transition duration-500 ease-out"
           priority={false}
         />
       </div>
 
-      <div className="relative p-4">
-        <div className="line-clamp-2 text-[1.05rem] font-semibold leading-snug text-slate-100 md:text-[1.125rem]">
+      <div className="relative p-3">
+        <div className="line-clamp-2 text-sm font-semibold leading-snug text-slate-100 md:text-[0.95rem]">
           {mission.title}
         </div>
-        <div className="mt-2 text-[12px] leading-snug text-slate-400 md:text-[13px]">{mission.subtitle}</div>
-        {n > 1 && (
-          <div className="mt-3 flex items-center gap-1.5">
+        <div className="mt-1.5 text-[11px] leading-snug text-slate-500 md:text-[12px]">{mission.subtitle}</div>
+        {n > 1 && n < 8 ? (
+          <div className="mt-2 flex items-center gap-1">
             {mission.images.map((_, i) => (
               <span
                 key={i}
                 className={cn(
-                  "h-1.5 rounded-full transition-all",
-                  i === idx ? "w-4 bg-slate-200" : "w-1.5 bg-white/25"
+                  "h-1 rounded-full transition-all",
+                  i === idx ? "w-3 bg-slate-300" : "w-1 bg-white/22"
                 )}
               />
             ))}
           </div>
-        )}
+        ) : n > 1 ? (
+          <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-slate-400/90 transition-[width] duration-300 ease-out"
+              style={{ width: `${((idx + 1) / n) * 100}%` }}
+            />
+          </div>
+        ) : null}
       </div>
     </Link>
   )

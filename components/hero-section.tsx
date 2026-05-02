@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Github, Linkedin } from "lucide-react";
+import { GlowProfileCard } from "@/components/glow-profile-card";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 export function HeroSection() {
@@ -17,8 +17,8 @@ export function HeroSection() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Profile Card */}
         <ScrollReveal className="flex justify-center" variant="soft">
-          <Card className="bg-white/10 backdrop-blur-md border-white/15 p-6 text-center max-w-sm">
-            <CardContent className="space-y-4">
+          <GlowProfileCard>
+            <div className="space-y-4">
              
               <div className="mx-auto w-32 h-32 rounded-2xl p-[2px] bg-gradient-to-br from-blue-400 to-purple-600">
                 <div className="w-full h-full rounded-[14px] overflow-hidden bg-black/40">
@@ -38,8 +38,8 @@ export function HeroSection() {
                 <h3 className="mb-2 text-[1.125rem] font-semibold leading-snug text-slate-100 md:text-xl">
                   Long (Lyra) LIN
                 </h3>
-                <p className="mb-1 text-sm text-slate-400">University of Sydney</p>
-                <p className="mb-1 text-sm text-slate-300">BSc Data Science &amp; Business Analytics</p>
+                <p className="mb-1 text-sm text-slate-400/90">University of Sydney</p>
+                <p className="mb-1 text-sm text-slate-300/95">BSc Data Science &amp; Business Analytics</p>
                 <p className="text-sm text-slate-500">July 2024 – Expected Dec 2026</p>
               </div>
 
@@ -59,7 +59,7 @@ export function HeroSection() {
                   ).map((t) => (
                     <span
                       key={t.label}
-                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition ${t.cls}`}
+                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_14px_rgba(129,140,248,0.25)] ${t.cls}`}
                     >
                       {t.label}
                     </span>
@@ -84,15 +84,15 @@ export function HeroSection() {
                   ).map((t) => (
                     <span
                       key={t.label}
-                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition ${t.cls}`}
+                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_14px_rgba(129,140,248,0.25)] ${t.cls}`}
                     >
                       {t.label}
                     </span>
                   ))}
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </GlowProfileCard>
         </ScrollReveal>
 
         {/* Main Content */}

@@ -157,6 +157,20 @@ export default function BusinessPage() {
       tags: ["Product", "Brand"],
     },
     {
+      slug: "ubs-finance-challenge-2026",
+      projectName: "Long BeOne, Short Akeso",
+      subtitle: "UBS Finance Challenge 2026",
+      date: "2026.05",
+      type: "competition",
+      logo: "/competition/ubslogo.png",
+      description:
+        "Equity research pitch proposing a long BeOne / short Akeso pair trade in China biotech, combining fundamental valuation, pipeline risk analysis, and AI-assisted sentiment research.",
+      skills: ["Equity Research", "Long/Short Strategy","Valuation","NLP Sentiment Analysis","Pipeline Analysis",],
+      industries: ["Healthcare", "Biotech", "Capital Markets"],
+      keywords: ["beone", "akeso", "china biotech", "long short", "finbert"],
+      tags: ["Equity Research", "Healthcare", "AI Analysis"],
+    },
+    {
       slug: "roland-berger-campus-2025",
       projectName: "Humanoid Robot GTM",
       subtitle: "Roland Berger Campus Challenge",

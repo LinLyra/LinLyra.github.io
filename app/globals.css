@@ -312,6 +312,24 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .missions-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+  }
+
+  .missions-scroll::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .missions-scroll::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 9999px;
+  }
+
+  .missions-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 @layer base {
