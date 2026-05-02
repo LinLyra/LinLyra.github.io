@@ -14,7 +14,6 @@ import {
   TrendingUp,
   BarChart3,
   Activity,
-  ShieldAlert,
 } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
@@ -30,7 +29,6 @@ export default function UBSFinanceChallengePage() {
     term: "2026.05",
     status: "Completed" as const,
     role: "Investment Thesis, Valuation & AI Analysis",
-    placement: "Competition Submission",
     pdfUrl: "",
     notes: [] as string[],
     tags: [
@@ -103,7 +101,7 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/business">
-              <Button className="bg-gradient-to-r from-red-500/20 to-rose-500/20 backdrop-blur-md border-red-400/30 text-gray-100 hover:bg-red-500/30">
+              <Button className="border border-emerald-400/35 bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-gray-100 backdrop-blur-md hover:bg-emerald-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Business
               </Button>
@@ -111,7 +109,7 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
 
             <div className="flex items-center gap-2">
               <a href={meta.pdfUrl} target="_blank" rel="noopener noreferrer">
-                <Button className="bg-red-500/20 border border-red-400/40 text-red-100 hover:bg-red-500/30">
+                <Button className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30">
                   View Project PDF
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
@@ -120,7 +118,7 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
-                  className="bg-red-500/20 border border-red-400/40 text-red-100 hover:bg-red-500/30"
+                  className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30"
                 >
                   View More
                 </Button>
@@ -136,11 +134,6 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
                 {meta.status}
               </span>
 
-              {meta.placement && (
-                <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
-                  üèÜ {meta.placement}
-                </span>
-              )}
             </div>
 
             <div className="p-5 md:p-6">
@@ -156,7 +149,7 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
                 </span>
 
                 {meta.role && (
-                  <span className="ml-2 inline-flex items-center rounded-full border border-red-400/30 bg-red-500/10 px-2 py-0.5 text-[11px] text-red-200">
+                  <span className="ml-2 inline-flex items-center rounded-full border border-emerald-400/35 bg-emerald-500/10 px-2 py-0.5 text-[11px] text-emerald-200">
                     {meta.role}
                   </span>
                 )}
@@ -166,7 +159,7 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
                 {meta.tags.map((t) => (
                   <Badge
                     key={t}
-                    className="bg-red-500/20 text-red-100 border-red-500/30"
+                    className="border border-emerald-500/30 bg-emerald-500/20 text-emerald-100"
                   >
                     {t}
                   </Badge>
@@ -176,11 +169,11 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
               <p className="text-gray-200">{meta.practice}</p>
             </div>
 
-            <div className="h-1 w-full bg-gradient-to-r from-red-500/20 via-rose-500/20 to-red-500/20" />
+            <div className="h-1 w-full bg-gradient-to-r from-emerald-500/30 via-green-500/20 to-emerald-500/30" />
           </Card>
 
-          <section className="rounded-xl border border-red-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-red-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Project Overview
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
@@ -188,8 +181,8 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
             </p>
           </section>
 
-          <section className="rounded-xl border border-red-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-4 text-xl font-semibold text-red-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-4 text-xl font-semibold text-emerald-400 md:text-2xl">
               Key Analysis Areas
             </h2>
 
@@ -202,7 +195,7 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
                     key={item.title}
                     className="rounded-xl border border-white/10 bg-white/5 p-4"
                   >
-                    <Icon className="mb-3 h-6 w-6 text-red-300" />
+                    <Icon className="mb-3 h-6 w-6 text-emerald-300" />
                     <h3 className="mb-2 text-lg font-semibold text-white">
                       {item.title}
                     </h3>
@@ -215,8 +208,8 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
             </div>
           </section>
 
-          <section className="rounded-xl border border-red-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-red-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -228,8 +221,8 @@ Through this case, I improved my ability to translate biotech-specific factors ‚
             </ul>
           </section>
 
-          <section className="rounded-xl border border-red-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-red-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Reflection
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">

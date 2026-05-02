@@ -302,8 +302,28 @@
   animation-play-state: paused;
 }
 
+.ticker-track-reverse {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll-reverse 85s linear infinite;
+}
+
+.ticker-track-reverse:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .ticker-track {
+  .ticker-track,
+  .ticker-track-reverse {
     animation: none !important;
   }
 }
