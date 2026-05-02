@@ -35,45 +35,61 @@ export function HeroSection() {
 
         
               <div>
-                <h3 className="text-xl font-bold text-gray-100 mb-2">Long (Lyra) LIN</h3>
-                <p className="text-gray-200 text-sm mb-1">University of Sydney</p>
-                <p className="text-gray-200 text-sm mb-1">BSc Data Science &amp; Business Analytics</p>
-                <p className="text-gray-200 text-sm">July 2024 – Expected Dec 2026</p>
+                <h3 className="mb-2 text-[1.125rem] font-semibold leading-snug text-slate-100 md:text-xl">
+                  Long (Lyra) LIN
+                </h3>
+                <p className="mb-1 text-sm text-slate-400">University of Sydney</p>
+                <p className="mb-1 text-sm text-slate-300">BSc Data Science &amp; Business Analytics</p>
+                <p className="text-sm text-slate-500">July 2024 – Expected Dec 2026</p>
               </div>
 
-
-              <div className="flex flex-wrap gap-2 justify-center">
-                {(
-                  [
-                    {
-                      label: "Fast Learner",
-                      cls: "border-sky-400/30 bg-sky-500/15 text-sky-100 hover:bg-sky-500/20",
-                    },
-                    {
-                      label: "Strategic Communicator",
-                      cls: "border-violet-400/30 bg-violet-500/15 text-violet-100 hover:bg-violet-500/20",
-                    },
-                    {
-                      label: "Cross-functional Collaborator",
-                      cls: "border-emerald-400/30 bg-emerald-500/15 text-emerald-100 hover:bg-emerald-500/20",
-                    },
-                    {
-                      label: "Problem-to-Product Builder",
-                      cls: "border-amber-400/30 bg-amber-500/15 text-amber-50 hover:bg-amber-500/20",
-                    },
-                    {
-                      label: "Curiosity Driven",
-                      cls: "border-fuchsia-400/30 bg-fuchsia-500/15 text-fuchsia-50 hover:bg-fuchsia-500/20",
-                    },
-                  ] as const
-                ).map((t) => (
-                  <span
-                    key={t.label}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium border backdrop-blur-sm transition ${t.cls}`}
-                  >
-                    {t.label}
-                  </span>
-                ))}
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {(
+                    [
+                      {
+                        label: "Fast Learner",
+                        cls: "border-sky-400/35 bg-sky-500/15 text-sky-100 hover:bg-sky-500/22",
+                      },
+                      {
+                        label: "Curiosity Driven",
+                        cls: "border-fuchsia-400/35 bg-fuchsia-500/15 text-fuchsia-100 hover:bg-fuchsia-500/22",
+                      },
+                    ] as const
+                  ).map((t) => (
+                    <span
+                      key={t.label}
+                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition ${t.cls}`}
+                    >
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {(
+                    [
+                      {
+                        label: "Strategic Communicator",
+                        cls: "border-violet-400/35 bg-violet-500/15 text-violet-100 hover:bg-violet-500/22",
+                      },
+                      {
+                        label: "Cross-functional Collaborator",
+                        cls: "border-emerald-400/35 bg-emerald-500/15 text-emerald-100 hover:bg-emerald-500/22",
+                      },
+                      {
+                        label: "Problem-to-Product Builder",
+                        cls: "border-amber-400/35 bg-amber-500/15 text-amber-50 hover:bg-amber-500/22",
+                      },
+                    ] as const
+                  ).map((t) => (
+                    <span
+                      key={t.label}
+                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition ${t.cls}`}
+                    >
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -81,24 +97,24 @@ export function HeroSection() {
 
         {/* Main Content */}
         <ScrollReveal className="text-center md:text-left space-y-6" variant="up" delayMs={80}>
-          <div className="text-base md:text-lg text-white/70 italic tracking-wide font-serif -rotate-[0.5deg]">
+          <div className="font-serif text-lg italic tracking-wide text-slate-400 md:text-xl -rotate-[0.35deg]">
             Learn to change the World.
           </div>
 
-          <h1 className="cosmic-heading text-5xl md:text-6xl font-bold text-gray-100 leading-tight">
-            From Data to{" "}
-            <span className="cosmic-gradient">Decisions</span>{" "}
+          <h1 className="cosmic-heading text-balance text-[clamp(2.75rem,5vw,3.5rem)] font-bold leading-[1.12] tracking-tight text-slate-50 md:leading-[1.1]">
+            From Data to <span className="cosmic-gradient">Decisions</span>
+            <br />
             to Products.
           </h1>
 
-          <div className="space-y-4">
-            <p className="text-xl text-gray-200">
+          <div className="space-y-3 md:space-y-4">
+            <p className="text-base font-medium text-slate-200 md:text-lg">
               I don’t just analyze — I build.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-sm leading-relaxed text-slate-400 md:text-base md:leading-relaxed">
               Starting from data, I uncover what’s really happening in complex systems, then translate that into strategy, product design, and working prototypes.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-sm leading-relaxed text-slate-500 md:text-base md:leading-relaxed">
               What sets me apart is range: I move fast across industries, collaborate across functions, and turn ambiguous problems into shipped solutions.
             </p>
           </div>

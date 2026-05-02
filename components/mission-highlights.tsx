@@ -61,23 +61,29 @@ const MISSIONS: Mission[] = [
 
 export function MissionHighlights() {
   return (
-    <div className="pt-2">
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <div className="text-[11px] font-semibold tracking-[0.32em] text-white/58">
-            MISSION HIGHLIGHTS
-          </div>
-          <div className="mt-2 text-xl font-semibold text-gray-100">Top Missions</div>
-          <div className="mt-1 text-sm text-gray-300/78">
-            Selected missions across different worlds — each one a different problem, the same commitment to impact.
-          </div>
-        </div>
+    <div className="pt-4">
+      <div className="max-w-3xl">
+        <div className="text-[11px] font-semibold uppercase tracking-[0.32em] text-slate-500">Featured</div>
+        <h3 className="mt-2 text-[1.75rem] font-semibold leading-tight tracking-tight text-slate-50 md:text-[2rem]">
+          Featured Missions
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-slate-400 md:text-[0.95rem] md:leading-relaxed">
+          Selected missions across different worlds — each one a different problem, the same commitment to impact.
+        </p>
       </div>
 
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {MISSIONS.map((m) => (
-          <MissionCard key={m.href} mission={m} />
-        ))}
+      <div className="relative mt-6">
+        <div
+          className={cn(
+            "flex gap-4 overflow-x-auto pb-3 pt-1",
+            "snap-x snap-mandatory scroll-px-4 [-ms-overflow-style:none] [scrollbar-width:none]",
+            "[&::-webkit-scrollbar]:hidden"
+          )}
+        >
+          {MISSIONS.map((m) => (
+            <MissionCard key={m.href} mission={m} />
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -85,57 +91,59 @@ export function MissionHighlights() {
 
 function MissionCard({ mission }: { mission: Mission }) {
   const [idx, setIdx] = React.useState(0)
-  const timer = React.useRef<number | null>(null)
+  const n = mission.images.length
 
-  const start = () => {
-    if (timer.current != null) return
-    timer.current = window.setInterval(() => {
-      setIdx((i) => (i + 1) % mission.images.length)
-    }, 900)
-  }
+  React.useEffect(() => {
+    if (n <= 1) return
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
+    if (mq.matches) return
+    const t = window.setInterval(() => {
+      setIdx((i) => (i + 1) % n)
+    }, 2400)
+    return () => window.clearInterval(t)
+  }, [n])
 
-  const stop = () => {
-    if (timer.current != null) {
-      window.clearInterval(timer.current)
-      timer.current = null
-    }
-    setIdx(0)
-  }
-
-  React.useEffect(() => () => stop(), [])
+  const src = mission.images[idx] ?? mission.images[0] ?? "/placeholder.svg"
 
   return (
     <Link
       href={mission.href}
       className={cn(
-        "group relative overflow-hidden rounded-2xl border bg-white/[0.02] p-4 backdrop-blur-xl transition",
-        "border-white/10 hover:border-white/18 hover:bg-white/[0.04]"
+        "group relative flex min-w-[min(19rem,82vw)] max-w-[20rem] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border bg-white/[0.04] backdrop-blur-xl transition",
+        "border-white/12 hover:-translate-y-1 hover:border-white/22 hover:shadow-lg hover:shadow-black/40"
       )}
-      onMouseEnter={start}
-      onMouseLeave={stop}
     >
-      <div className={cn("pointer-events-none absolute -inset-16 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100", accentBg(mission.accent))} />
+      <div className={cn("pointer-events-none absolute -inset-20 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100", accentBg(mission.accent))} />
 
-      <div className="relative flex items-start gap-4">
-        <div className="relative h-16 w-24 overflow-hidden rounded-xl border border-white/10 bg-black/25">
-          <Image
-            src={mission.images[idx] ?? mission.images[0] ?? "/placeholder.svg"}
-            alt={mission.title}
-            fill
-            sizes="96px"
-            className="object-cover"
-            priority={false}
-          />
+      <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-white/10 bg-black/35">
+        <Image
+          src={src}
+          alt={mission.title}
+          fill
+          sizes="320px"
+          className="object-cover transition duration-500 ease-out"
+          priority={false}
+        />
+      </div>
+
+      <div className="relative p-4">
+        <div className="line-clamp-2 text-[1.05rem] font-semibold leading-snug text-slate-100 md:text-[1.125rem]">
+          {mission.title}
         </div>
-
-        <div className="min-w-0 flex-1">
-          <div className="truncate text-sm font-semibold text-gray-100">{mission.title}</div>
-          <div className="mt-1 truncate text-xs text-white/60">{mission.subtitle}</div>
-          <div className="mt-3 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/40 opacity-0 transition group-hover:opacity-100">
-            Preview playing
-            <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
+        <div className="mt-2 text-[12px] leading-snug text-slate-400 md:text-[13px]">{mission.subtitle}</div>
+        {n > 1 && (
+          <div className="mt-3 flex items-center gap-1.5">
+            {mission.images.map((_, i) => (
+              <span
+                key={i}
+                className={cn(
+                  "h-1.5 rounded-full transition-all",
+                  i === idx ? "w-4 bg-slate-200" : "w-1.5 bg-white/25"
+                )}
+              />
+            ))}
           </div>
-        </div>
+        )}
       </div>
     </Link>
   )
@@ -156,4 +164,3 @@ function accentBg(a: Mission["accent"]) {
       return "bg-sky-500/12"
   }
 }
-
