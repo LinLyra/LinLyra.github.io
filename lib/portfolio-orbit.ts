@@ -168,6 +168,13 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Finance","Asset Management","Public Policy"],
   },
   {
+    slug: "citi-global-market-challenge-2026",
+    title: "Cost-Efficient Alpha",
+    section: "data" as OrbitSection,
+    href: "/data/citi-global-market-challenge-2026",
+    industries: ["Capital Markets","Portfolio Management","Investment Strategy"],
+  },
+  {
     slug: "youtube-ai-content-strategy",
     title: "Posting Window Lift Model",
     section: "data" as OrbitSection,
