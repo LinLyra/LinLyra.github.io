@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@dotlottie/player-component": "^2.7.12",
     "@hookform/resolvers": "^3.9.1",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -79,6 +80,8 @@
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   },
-  "engines": { "node": "20.x" },
+  "engines": {
+    "node": "20.x"
+  },
   "packageManager": "pnpm@9.12.0"
 }

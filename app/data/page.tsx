@@ -7,6 +7,7 @@ import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { SearchAnimationStrip } from "@/components/search-animation-strip";
 import {
   ArrowLeft,
   Award as AwardIcon,
@@ -346,50 +347,56 @@ export default function DataPage() {
             </p>
           </div>
 
-          <div className="mb-8">
-            <Input
-              placeholder="Search by project, competition, industry, method…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="mx-auto max-w-xl border-blue-400/30 bg-black/30 text-blue-100 placeholder:text-blue-200/60 backdrop-blur-md"
-            />
+          <SearchAnimationStrip
+            side="right"
+            src="/animations/astronaut-illustration.lottie"
+            alt="Astronaut illustration animation"
+          >
+            <div className="space-y-4">
+              <Input
+                placeholder="Search by project, competition, industry, method…"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="mx-auto max-w-xl border-blue-400/30 bg-black/30 text-blue-100 placeholder:text-blue-200/60 backdrop-blur-md"
+              />
 
-            <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {featuredTags.map((tag) => {
-                const active = selectedTags.includes(tag);
-                return (
+              <div className="mt-4 flex flex-wrap justify-center gap-2">
+                {featuredTags.map((tag) => {
+                  const active = selectedTags.includes(tag);
+                  return (
+                    <button
+                      key={tag}
+                      type="button"
+                      onClick={() =>
+                        setSelectedTags((prev) =>
+                          prev.includes(tag)
+                            ? prev.filter((t) => t !== tag)
+                            : [...prev, tag]
+                        )
+                      }
+                      className={`rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all ${
+                        active
+                          ? "border-blue-300/60 bg-blue-500/30 text-blue-50 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
+                          : "border-blue-400/35 bg-black/25 text-blue-200/90 hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-100"
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  );
+                })}
+
+                {selectedTags.length > 0 && (
                   <button
-                    key={tag}
                     type="button"
-                    onClick={() =>
-                      setSelectedTags((prev) =>
-                        prev.includes(tag)
-                          ? prev.filter((t) => t !== tag)
-                          : [...prev, tag]
-                      )
-                    }
-                    className={`rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all ${
-                      active
-                        ? "border-blue-300/60 bg-blue-500/30 text-blue-50 shadow-[0_0_12px_rgba(59,130,246,0.35)]"
-                        : "border-blue-400/35 bg-black/25 text-blue-200/90 hover:border-blue-400/50 hover:bg-blue-500/10 hover:text-blue-100"
-                    }`}
+                    onClick={() => setSelectedTags([])}
+                    className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
                   >
-                    {tag}
+                    Clear
                   </button>
-                );
-              })}
-
-              {selectedTags.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedTags([])}
-                  className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
-                >
-                  Clear
-                </button>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          </SearchAnimationStrip>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((project) => (

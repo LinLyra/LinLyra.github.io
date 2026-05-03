@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ArrowLeft, Calendar, X } from "lucide-react"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
+import { SearchAnimationStrip } from "@/components/search-animation-strip"
 
 type Status = "completed" | "in-progress" | "planned"
 type LearnType = "degree" | "course" | "online-course"
@@ -110,46 +111,51 @@ export default function LearningPage() {
           </div>
 
 
-          <div className="mb-6 space-y-4">
-            <div className="relative max-w-xl mx-auto">
-              <Input
-                placeholder="Search by code / title / institution / tag…"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                className="w-full bg-black/30 backdrop-blur-md border-purple-400/30 text-gray-100 placeholder:text-gray-400 pr-10 text-sm md:text-base"
-              />
-              {q && (
-                <button
-                  aria-label="Clear search"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-md hover:bg-white/10 text-gray-300"
-                  onClick={() => setQ("")}
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-
-
-            <div className="flex flex-wrap gap-2 justify-center">
-              {tagSuggestions.map((t) => {
-                const active = hasToken(t)
-                return (
-                  <span
-                    key={t}
-                    onClick={() => toggleToken(t)}
-                    className={
-                      "inline-flex items-center h-7 rounded-full px-3 text-sm border whitespace-nowrap cursor-pointer " +
-                      (active
-                        ? "bg-purple-500/30 border-purple-400/40 text-purple-100"
-                        : "bg-fuchsia-500/10 border-fuchsia-400/30 text-fuchsia-200 hover:bg-fuchsia-500/20")
-                    }
+          <SearchAnimationStrip
+            side="left"
+            src="/animations/space-boy-developer.lottie"
+            alt="Space boy developer animation"
+          >
+            <div className="space-y-4">
+              <div className="relative mx-auto max-w-xl">
+                <Input
+                  placeholder="Search by code / title / institution / tag…"
+                  value={q}
+                  onChange={(e) => setQ(e.target.value)}
+                  className="w-full bg-black/30 backdrop-blur-md border-purple-400/30 text-gray-100 placeholder:text-gray-400 pr-10 text-sm md:text-base"
+                />
+                {q && (
+                  <button
+                    aria-label="Clear search"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-md hover:bg-white/10 text-gray-300"
+                    onClick={() => setQ("")}
                   >
-                    {t}
-                  </span>
-                )
-              })}
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-2">
+                {tagSuggestions.map((t) => {
+                  const active = hasToken(t)
+                  return (
+                    <span
+                      key={t}
+                      onClick={() => toggleToken(t)}
+                      className={
+                        "inline-flex items-center h-7 rounded-full px-3 text-sm border whitespace-nowrap cursor-pointer " +
+                        (active
+                          ? "bg-purple-500/30 border-purple-400/40 text-purple-100"
+                          : "bg-fuchsia-500/10 border-fuchsia-400/30 text-fuchsia-200 hover:bg-fuchsia-500/20")
+                      }
+                    >
+                      {t}
+                    </span>
+                  )
+                })}
+              </div>
             </div>
-          </div>
+          </SearchAnimationStrip>
 
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -241,5 +247,4 @@ export default function LearningPage() {
     </div>
   )
 }
-
 

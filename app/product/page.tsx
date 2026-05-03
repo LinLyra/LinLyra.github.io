@@ -7,6 +7,7 @@ import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { SearchAnimationStrip } from "@/components/search-animation-strip";
 import { ArrowLeft, Award as AwardIcon } from "lucide-react";
 
 type ProductType = "product" | "project" | "hackathon" | "development";
@@ -282,40 +283,46 @@ export default function ProductPage() {
             </p>
           </div>
 
-          <div className="mb-8 space-y-4">
-            <Input
-              placeholder="Search by project, hackathon, industry, stack…"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="mx-auto max-w-xl border-amber-400/30 bg-black/30 text-amber-50 backdrop-blur-md placeholder:text-amber-200/55"
-            />
-            <div className="flex flex-wrap justify-center gap-2">
-              {allTypes.map((t) =>
-                used(t) ? (
-                  <Badge
-                    key={t}
-                    onClick={() => toggle(t)}
-                    className={`cursor-pointer ${
-                      selectedTags.includes(t)
-                        ? "bg-orange-500/30 text-orange-100 border-amber-400/50"
-                        : "bg-orange-500/10 text-orange-200 border-amber-400/30"
-                    }`}
+          <SearchAnimationStrip
+            side="right"
+            src="/animations/victory-sign-baby-astronaut.lottie"
+            alt="Victory sign baby astronaut animation"
+          >
+            <div className="space-y-4">
+              <Input
+                placeholder="Search by project, hackathon, industry, stack…"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="mx-auto max-w-xl border-amber-400/30 bg-black/30 text-amber-50 backdrop-blur-md placeholder:text-amber-200/55"
+              />
+              <div className="flex flex-wrap justify-center gap-2">
+                {allTypes.map((t) =>
+                  used(t) ? (
+                    <Badge
+                      key={t}
+                      onClick={() => toggle(t)}
+                      className={`cursor-pointer ${
+                        selectedTags.includes(t)
+                          ? "bg-orange-500/30 text-orange-100 border-amber-400/50"
+                          : "bg-orange-500/10 text-orange-200 border-amber-400/30"
+                      }`}
+                    >
+                      {t}
+                    </Badge>
+                  ) : null
+                )}
+                {selectedTags.length > 0 && (
+                  <Button
+                    variant="ghost"
+                    className="h-6 px-2 text-gray-300"
+                    onClick={() => setSelectedTags([])}
                   >
-                    {t}
-                  </Badge>
-                ) : null
-              )}
-              {selectedTags.length > 0 && (
-                <Button
-                  variant="ghost"
-                  className="h-6 px-2 text-gray-300"
-                  onClick={() => setSelectedTags([])}
-                >
-                  Clear
-                </Button>
-              )}
+                    Clear
+                  </Button>
+                )}
+              </div>
             </div>
-          </div>
+          </SearchAnimationStrip>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p) => (

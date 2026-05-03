@@ -7,6 +7,7 @@ import { PremiumGlassCard } from "@/components/premium-glass-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { SearchAnimationStrip } from "@/components/search-animation-strip";
 import { ArrowLeft, Award } from "lucide-react";
 
 type BusinessType =
@@ -396,42 +397,48 @@ export default function BusinessPage() {
             </p>
           </div>
 
-          <div className="mb-8 space-y-4">
-            <Input
-              placeholder="Search by project, competition, industry, skill…"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="mx-auto max-w-xl border-green-400/30 bg-black/30 text-green-50 backdrop-blur-md placeholder:text-green-200/55"
-            />
+          <SearchAnimationStrip
+            side="left"
+            src="/animations/star-in-hand-baby-astronaut.lottie"
+            alt="Star in hand baby astronaut animation"
+          >
+            <div className="space-y-4">
+              <Input
+                placeholder="Search by project, competition, industry, skill…"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="mx-auto max-w-xl border-green-400/30 bg-black/30 text-green-50 backdrop-blur-md placeholder:text-green-200/55"
+              />
 
-            <div className="flex flex-wrap justify-center gap-2">
-              {allTypes.map((t) =>
-                isTypeUsed(t) ? (
-                  <Badge
-                    key={t}
-                    onClick={() => toggleType(t)}
-                    className={`cursor-pointer capitalize ${
-                      selectedTypes.includes(t)
-                        ? "border-green-400/50 bg-green-500/30 text-green-100"
-                        : "border-green-400/30 bg-green-500/10 text-green-200"
-                    }`}
+              <div className="flex flex-wrap justify-center gap-2">
+                {allTypes.map((t) =>
+                  isTypeUsed(t) ? (
+                    <Badge
+                      key={t}
+                      onClick={() => toggleType(t)}
+                      className={`cursor-pointer capitalize ${
+                        selectedTypes.includes(t)
+                          ? "border-green-400/50 bg-green-500/30 text-green-100"
+                          : "border-green-400/30 bg-green-500/10 text-green-200"
+                      }`}
+                    >
+                      {TYPE_LABELS[t]}
+                    </Badge>
+                  ) : null
+                )}
+
+                {selectedTypes.length > 0 && (
+                  <Button
+                    variant="ghost"
+                    className="h-6 px-2 text-gray-300"
+                    onClick={() => setSelectedTypes([])}
                   >
-                    {TYPE_LABELS[t]}
-                  </Badge>
-                ) : null
-              )}
-
-              {selectedTypes.length > 0 && (
-                <Button
-                  variant="ghost"
-                  className="h-6 px-2 text-gray-300"
-                  onClick={() => setSelectedTypes([])}
-                >
-                  Clear
-                </Button>
-              )}
+                    Clear
+                  </Button>
+                )}
+              </div>
             </div>
-          </div>
+          </SearchAnimationStrip>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((item) => {
