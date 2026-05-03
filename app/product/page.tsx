@@ -285,7 +285,7 @@ export default function ProductPage() {
 
           <PageCornerLottie
             side="right"
-            className="top-[236px]"
+            className="top-[192px]"
             src="/animations/space-boy-developer.lottie"
             alt="Space boy developer animation"
           />
