@@ -36,31 +36,26 @@ export function PageCornerLottie({
   return (
     <div
       className={cn(
-        "pointer-events-none absolute top-0 z-10 hidden md:block",
+        "pointer-events-none absolute top-[430px] z-10 hidden md:block",
         side === "left" ? "left-0" : "right-0",
         className
       )}
     >
-      <div
-        className={cn(
-          "flex h-32 w-32 items-center justify-center rounded-[1.5rem] border border-white/10 bg-white/5 p-3 shadow-[0_0_28px_rgba(255,255,255,0.06)] backdrop-blur-md lg:h-36 lg:w-36",
-          boxClassName
-        )}
-        aria-label={alt}
-      >
-        {ready ? (
-          <dotlottie-player
-            src={src}
-            autoplay
-            loop
-            renderer="svg"
-            background="transparent"
-            style={{ width: "100%", height: "100%", display: "block" }}
-          />
-        ) : (
-          <div className="h-full w-full rounded-[1.1rem] bg-white/5" />
-        )}
-      </div>
+      {ready ? (
+        <dotlottie-player
+          src={src}
+          autoplay
+          loop
+          renderer="svg"
+          background="transparent"
+          aria-label={alt}
+          role="img"
+          className={cn("h-36 w-36 lg:h-40 lg:w-40", boxClassName)}
+          style={{ display: "block" }}
+        />
+      ) : (
+        <div className={cn("h-36 w-36 lg:h-40 lg:w-40", boxClassName)} />
+      )}
     </div>
   )
 }

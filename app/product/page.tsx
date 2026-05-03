@@ -285,11 +285,11 @@ export default function ProductPage() {
 
           <PageCornerLottie
             side="right"
-            src="/animations/victory-sign-baby-astronaut.lottie"
-            alt="Victory sign baby astronaut animation"
+            src="/animations/space-boy-developer.lottie"
+            alt="Space boy developer animation"
           />
 
-          <div className="space-y-4">
+          <div className="mb-8 space-y-4">
             <Input
               placeholder="Search by project, hackathon, industry, stack…"
               value={searchTerm}

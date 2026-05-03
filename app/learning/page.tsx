@@ -112,11 +112,11 @@ export default function LearningPage() {
 
           <PageCornerLottie
             side="left"
-            src="/animations/space-boy-developer.lottie"
-            alt="Space boy developer animation"
+            src="/animations/victory-sign-baby-astronaut.lottie"
+            alt="Victory sign baby astronaut animation"
           />
 
-          <div className="space-y-4">
+          <div className="mb-8 space-y-4">
             <div className="relative mx-auto max-w-xl">
               <Input
                 placeholder="Search by code / title / institution / tag…"

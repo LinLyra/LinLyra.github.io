@@ -403,7 +403,7 @@ export default function BusinessPage() {
             alt="Star in hand baby astronaut animation"
           />
 
-          <div className="space-y-4">
+          <div className="mb-8 space-y-4">
             <Input
               placeholder="Search by project, competition, industry, skill…"
               value={searchTerm}

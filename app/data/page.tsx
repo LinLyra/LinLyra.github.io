@@ -353,7 +353,7 @@ export default function DataPage() {
             alt="Astronaut illustration animation"
           />
 
-          <div className="space-y-4">
+          <div className="mb-8 space-y-4">
             <Input
               placeholder="Search by project, competition, industry, method…"
               value={search}
