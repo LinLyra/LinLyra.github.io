@@ -14,7 +14,7 @@ export default function KpmgInnovateDay2025Page() {
 
   const meta = {
     slug: "kpmg-innovate-day-2025",
-    title: "Innovation Day Sprint",
+    title: "Checkwise: A Multi-Agent Platform for Intelligent Audit Collaboration",
     institution: "KPMG China",
     practice: "Product Innovation · AuditX · Digital Insights",
     term: "2024.10",
