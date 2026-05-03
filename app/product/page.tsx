@@ -285,6 +285,7 @@ export default function ProductPage() {
 
           <PageCornerLottie
             side="right"
+            className="right-4"
             src="/animations/space-boy-developer.lottie"
             alt="Space boy developer animation"
           />
@@ -329,17 +330,7 @@ export default function ProductPage() {
               <Link key={p.slug} href={`/product/${p.slug}`} className="group block h-full">
                 <div className="relative h-full">
                   {(() => {
-                    const corner =
-                      p.placement ??
-                      (p.type === "hackathon"
-                        ? "Hackathon"
-                        : p.type === "development"
-                          ? "Experience"
-                          : p.type === "product"
-                            ? "Challenge"
-                            : p.type === "project"
-                              ? "Project"
-                              : undefined);
+                    const corner = p.placement;
 
                     if (!corner) return null;
                     return (

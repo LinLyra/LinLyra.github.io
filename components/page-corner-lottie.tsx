@@ -36,7 +36,7 @@ export function PageCornerLottie({
   return (
     <div
       className={cn(
-        "pointer-events-none absolute top-[430px] z-10 hidden md:block",
+        "pointer-events-none absolute top-[470px] z-10 hidden md:block",
         side === "left" ? "left-0" : "right-0",
         className
       )}
@@ -50,11 +50,15 @@ export function PageCornerLottie({
           background="transparent"
           aria-label={alt}
           role="img"
-          className={cn("h-36 w-36 lg:h-40 lg:w-40", boxClassName)}
-          style={{ display: "block" }}
+          className={cn("h-24 w-24 lg:h-28 lg:w-28", boxClassName)}
+          style={{
+            display: "block",
+            transform: "scale(0.78)",
+            transformOrigin: side === "left" ? "top left" : "top right",
+          }}
         />
       ) : (
-        <div className={cn("h-36 w-36 lg:h-40 lg:w-40", boxClassName)} />
+        <div className={cn("h-24 w-24 lg:h-28 lg:w-28", boxClassName)} />
       )}
     </div>
   )

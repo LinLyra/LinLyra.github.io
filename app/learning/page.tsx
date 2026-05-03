@@ -112,6 +112,7 @@ export default function LearningPage() {
 
           <PageCornerLottie
             side="left"
+            className="left-4"
             src="/animations/victory-sign-baby-astronaut.lottie"
             alt="Victory sign baby astronaut animation"
           />

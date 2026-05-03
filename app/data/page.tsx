@@ -8,10 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PageCornerLottie } from "@/components/page-corner-lottie";
-import {
-  ArrowLeft,
-  Award as AwardIcon,
-} from "lucide-react";
+import { ArrowLeft, Award as AwardIcon, Globe2 } from "lucide-react";
 
 type DataType = "competition" | "course" | "project";
 
@@ -113,6 +110,27 @@ export default function DataPage() {
       status: "Completed",
       type: "competition",
       logo: "/competition/CFAlogo.png",
+    },
+    {
+      slug: "citi-global-market-challenge-2026",
+      projectName: "Cost-Efficient Alpha",
+      subtitle: "Citi Global Market Challenge 2026",
+      date: "2026.04",
+      description:
+        "A multi-asset portfolio strategy balancing alpha generation, transaction costs, and risk management across equities, fixed income, commodities, FX, and cash.",
+      skills: [
+        "Portfolio Strategy",
+        "Long/Short Fund",
+        "Asset Allocation",
+        "Transaction Costs",
+        "Commodities",
+        "Fixed Income",
+        "Risk Analytics",
+        "Scenario Analysis",
+      ],
+      industries: ["Capital Markets", "Portfolio Management", "Investment Strategy"],
+      status: "Completed",
+      type: "competition",
     },
     {
       slug: "youtube-ai-content-strategy",
@@ -349,6 +367,7 @@ export default function DataPage() {
 
           <PageCornerLottie
             side="right"
+            className="right-4"
             src="/animations/astronaut-illustration.lottie"
             alt="Astronaut illustration animation"
           />
@@ -402,21 +421,21 @@ export default function DataPage() {
             {filtered.map((project) => (
               <Link key={project.slug} href={`/data/${project.slug}`} className="group block h-full">
                 <div className="relative h-full">
-                  {(project.award || project.type === "competition") && (
+                  {project.award && (
                     <div className="pointer-events-none absolute -right-2 -top-2 z-20">
                       <div className="flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
                         <AwardIcon className="h-3.5 w-3.5 text-amber-300" />
                         <span className="text-xs font-semibold text-amber-200">
-                          {project.award ?? "Competition"}
+                          {project.award}
                         </span>
                       </div>
                     </div>
                   )}
 
                   <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(59,130,246,0.10)] ring-1 ring-blue-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-blue-400/35 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
-                  <div className={`p-6 pb-2 ${project.award || project.type === "competition" ? "pr-10" : ""}`}>
+                  <div className={`p-6 pb-2 ${project.award ? "pr-10" : ""}`}>
                     <div className="flex items-start gap-3">
-                      {project.type !== "course" && !!project.logo && (
+                      {project.type !== "course" && !!project.logo ? (
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-blue-400/20">
                           <img
                             src={project.logo}
@@ -427,7 +446,11 @@ export default function DataPage() {
                             }}
                           />
                         </div>
-                      )}
+                      ) : project.slug === "citi-global-market-challenge-2026" ? (
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 ring-1 ring-blue-400/20">
+                          <Globe2 className="h-6 w-6 text-blue-200" />
+                        </div>
+                      ) : null}
 
                       <div className="min-w-0 flex-1">
                         <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">

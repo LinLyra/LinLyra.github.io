@@ -28,7 +28,7 @@ export default function AerotropolisSouthConnectorPage() {
     term: "2026.04",
     status: "Completed" as const,
     role: "Strategy & Commercial Analysis",
-    placement: "Case Competition Submission",
+    placement: "Top 6",
     canvaUrl: "https://peridot-eocursor-4db.notion.site/Aerotropolis-South-Connector-3523be3c13158057a5c3ddf8944f9d3a", 
     notes: [] as string[],
     tags: [

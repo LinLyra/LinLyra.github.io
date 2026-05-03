@@ -304,6 +304,7 @@ export default function BusinessPage() {
       subtitle: "PMSoc × KordaMentha Case Competition",
       date: "2026.04",
       type: "strategy",
+      placement: "Top 6",
       description:
         "PPP toll-corridor thesis for Western Sydney—demand, revenue stack, and bankable delivery narrative.",
       skills: ["Infrastructure", "PPP", "Commercial Strategy", "Feasibility"],
@@ -399,6 +400,7 @@ export default function BusinessPage() {
 
           <PageCornerLottie
             side="left"
+            className="left-4"
             src="/animations/star-in-hand-baby-astronaut.lottie"
             alt="Star in hand baby astronaut animation"
           />
