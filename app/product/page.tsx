@@ -44,9 +44,45 @@ function mergeProductCardTags(p: ProductItem, max = 6): string[] {
   return out;
 }
 
+function productMatchesIndustryPill(p: ProductItem, tag: string): boolean {
+  const ind = (p.industries ?? []).map((x) => x.toLowerCase());
+  const t = tag.toLowerCase();
+  if (t === "ai")
+    return ind.some((i) =>
+      ["ai", "software", "developer", "genai", "llm", "machine"].some((k) => i.includes(k))
+    );
+  if (t === "healthtech") return ind.some((i) => i.includes("health"));
+  if (t === "education") return ind.some((i) => i.includes("education"));
+  if (t === "professional services")
+    return ind.some((i) =>
+      ["professional", "audit", "enterprise", "compliance"].some((k) => i.includes(k))
+    );
+  if (t === "social impact")
+    return ind.some((i) =>
+      ["social", "community", "accessibility", "nonprofit", "media", "esg", "sustainability", "fashion"].some(
+        (k) => i.includes(k)
+      )
+    );
+  if (t === "consumer")
+    return ind.some((i) =>
+      ["consumer", "travel", "creator", "local services", "location"].some((k) => i.includes(k))
+    );
+  return false;
+}
+
 export default function ProductPage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTags, setSelectedTags] = useState<ProductType[]>([]);
+  const [selectedIndustryTags, setSelectedIndustryTags] = useState<string[]>([]);
+
+  /** Six industry-style pills (aligned with Data page pattern) */
+  const featuredIndustryTags = [
+    "AI",
+    "HealthTech",
+    "Education",
+    "Professional Services",
+    "Social Impact",
+    "Consumer",
+  ] as const;
 
   const products: ProductItem[] = [
     {
@@ -227,9 +263,6 @@ export default function ProductPage() {
     },
   ];
 
-  const allTypes: ProductType[] = ["product", "project", "hackathon", "development"];
-  const used = (t: ProductType) => products.some((p) => p.type === t);
-
   const q = searchTerm.trim().toLowerCase();
   const filtered = useMemo(() => {
     return products.filter((p) => {
@@ -246,15 +279,12 @@ export default function ProductPage() {
         .toLowerCase();
 
       const hit = q === "" || bag.includes(q);
-      const typeOK = selectedTags.length === 0 || selectedTags.includes(p.type);
-      return hit && typeOK;
+      const industryOK =
+        selectedIndustryTags.length === 0 ||
+        selectedIndustryTags.some((tag) => productMatchesIndustryPill(p, tag));
+      return hit && industryOK;
     });
-  }, [products, q, selectedTags]);
-
-  const toggle = (t: ProductType) =>
-    setSelectedTags((prev) =>
-      prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]
-    );
+  }, [products, q, selectedIndustryTags]);
 
   return (
     <div
@@ -285,42 +315,48 @@ export default function ProductPage() {
 
           <PageCornerLottie
             side="right"
-            className="top-[192px]"
+            className="top-[164px] right-[max(1rem,calc(50%-36rem-4rem))]"
             src="/animations/space-boy-developer.lottie"
             alt="Space boy developer animation"
           />
 
           <div className="mb-8 space-y-4">
             <Input
-              placeholder="Search by project, hackathon, industry, stack…"
+              placeholder="Search by project, competition, industry, stack…"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="mx-auto max-w-xl border-amber-400/30 bg-black/30 text-amber-50 backdrop-blur-md placeholder:text-amber-200/55"
             />
             <div className="flex flex-wrap justify-center gap-2">
-              {allTypes.map((t) =>
-                used(t) ? (
-                  <Badge
-                    key={t}
-                    onClick={() => toggle(t)}
-                    className={`cursor-pointer ${
-                      selectedTags.includes(t)
-                        ? "bg-orange-500/30 text-orange-100 border-amber-400/50"
-                        : "bg-orange-500/10 text-orange-200 border-amber-400/30"
+              {featuredIndustryTags.map((tag) => {
+                const active = selectedIndustryTags.includes(tag);
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() =>
+                      setSelectedIndustryTags((prev) =>
+                        prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
+                      )
+                    }
+                    className={`rounded-full border px-3 py-1 text-xs font-medium backdrop-blur-md transition-all ${
+                      active
+                        ? "border-amber-300/60 bg-orange-500/30 text-amber-50 shadow-[0_0_12px_rgba(245,158,11,0.3)]"
+                        : "border-amber-400/35 bg-black/25 text-amber-200/90 hover:border-amber-400/50 hover:bg-orange-500/10 hover:text-amber-100"
                     }`}
                   >
-                    {t}
-                  </Badge>
-                ) : null
-              )}
-              {selectedTags.length > 0 && (
-                <Button
-                  variant="ghost"
-                  className="h-6 px-2 text-gray-300"
-                  onClick={() => setSelectedTags([])}
+                    {tag}
+                  </button>
+                );
+              })}
+              {selectedIndustryTags.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setSelectedIndustryTags([])}
+                  className="rounded-full border border-gray-400/30 bg-black/20 px-3 py-1 text-xs text-gray-200 hover:bg-black/35"
                 >
                   Clear
-                </Button>
+                </button>
               )}
             </div>
           </div>

@@ -10,6 +10,8 @@ type PageCornerLottieProps = {
   side?: "left" | "right"
   className?: string
   boxClassName?: string
+  /** Rendered player box size in rem (dotlottie inline size). Default 13. */
+  sizeRem?: number
 }
 
 export function PageCornerLottie({
@@ -18,6 +20,7 @@ export function PageCornerLottie({
   side = "left",
   className,
   boxClassName,
+  sizeRem = 13,
 }: PageCornerLottieProps) {
   const [ready, setReady] = useState(false)
 
@@ -55,17 +58,17 @@ export function PageCornerLottie({
           className={cn("h-52 w-52 2xl:h-56 2xl:w-56", boxClassName)}
           style={{
             display: "block",
-            width: "13rem",
-            height: "13rem",
-            maxWidth: "13rem",
-            maxHeight: "13rem",
+            width: `${sizeRem}rem`,
+            height: `${sizeRem}rem`,
+            maxWidth: `${sizeRem}rem`,
+            maxHeight: `${sizeRem}rem`,
             transformOrigin: side === "left" ? "top left" : "top right",
           }}
         />
       ) : (
         <div
           className={cn("h-52 w-52 2xl:h-56 2xl:w-56", boxClassName)}
-          style={{ width: "13rem", height: "13rem" }}
+          style={{ width: `${sizeRem}rem`, height: `${sizeRem}rem` }}
         />
       )}
     </div>

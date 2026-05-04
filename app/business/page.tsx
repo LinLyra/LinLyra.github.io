@@ -400,7 +400,7 @@ export default function BusinessPage() {
 
           <PageCornerLottie
             side="left"
-            className="top-[192px]"
+            className="top-[168px] left-[max(1rem,calc(50%-36rem-4.25rem))]"
             src="/animations/star-in-hand-baby-astronaut.lottie"
             alt="Star in hand baby astronaut animation"
           />
