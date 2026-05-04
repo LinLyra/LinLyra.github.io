@@ -70,7 +70,16 @@ export default function ShipConsole() {
         setStatsError("No stats yet. Make sure you ran the full supabase/analytics.sql (including get_public_stats + GRANT) and refresh.")
       }
     } catch (e) {
-      setStatsError(e instanceof Error ? e.message : "Failed to load stats")
+      const msg = e instanceof Error ? e.message : "Failed to load stats"
+      if (typeof msg === "string" && msg.toLowerCase().includes("failed to fetch")) {
+        setStatsError(
+          "Failed to fetch. This is usually a network/CORS block.\n" +
+            "In Supabase Dashboard → Settings → API → CORS Allowed Origins, add your site origin (e.g. https://<your>.github.io) and save.\n" +
+            "Also confirm NEXT_PUBLIC_SUPABASE_URL is https://<ref>.supabase.co (no quotes/spaces)."
+        )
+      } else {
+        setStatsError(msg)
+      }
     } finally {
       setStatsLoading(false)
     }
