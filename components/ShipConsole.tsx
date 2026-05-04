@@ -57,12 +57,17 @@ export default function ShipConsole() {
     setStatsLoading(true)
     setStatsError(null)
     try {
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      if (!url || !key) {
+        setStats(null)
+        setStatsError("Supabase not configured. Set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY, then rebuild/redeploy.")
+        return
+      }
       const data = await fetchPublicStats()
       setStats(data)
       if (!data) {
-        setStatsError(
-          "No stats yet. Set NEXT_PUBLIC_SUPABASE_* in .env.local and run supabase/analytics.sql in the SQL editor."
-        )
+        setStatsError("No stats yet. Make sure you ran the full supabase/analytics.sql (including get_public_stats + GRANT) and refresh.")
       }
     } catch (e) {
       setStatsError(e instanceof Error ? e.message : "Failed to load stats")
@@ -90,6 +95,12 @@ export default function ShipConsole() {
   const planetLabel = (slug: string | undefined) => {
     if (!slug) return "—"
     return slug.slice(0, 1).toUpperCase() + slug.slice(1)
+  }
+
+  const toHref = (path?: string | null) => {
+    if (!path) return null
+    const p = path.startsWith("/") ? path : `/${path}`
+    return p.endsWith("/") ? p : `${p}/`
   }
 
   return (
@@ -193,35 +204,35 @@ export default function ShipConsole() {
                   <div className="grid grid-cols-2 gap-2">
                     <StatTile
                       icon={<Users className="h-4 w-4 text-sky-200" />}
-                      label="Unique visitors"
+                      label="Visitors"
                       value={stats?.unique_sessions ?? "—"}
-                      hint="Distinct sessions"
                     />
                     <StatTile
                       icon={<Sparkles className="h-4 w-4 text-violet-200" />}
                       label="Page views"
                       value={stats?.total_page_views ?? "—"}
-                      hint="All logged views"
                     />
                     <StatTile
                       icon={<Orbit className="h-4 w-4 text-emerald-200" />}
-                      label="Top planet"
+                      label="Hot planet"
                       value={
                         stats?.top_planet?.slug
                           ? `${planetLabel(stats.top_planet.slug)} · ${stats.top_planet.views}`
                           : "—"
                       }
-                      hint="Business / Data / Product / Learning"
+                      href={toHref(stats?.top_planet?.slug ? `/${stats.top_planet.slug}` : null) ?? undefined}
+                      onNavigate={() => setOpen(false)}
                     />
                     <StatTile
                       icon={<BookOpen className="h-4 w-4 text-amber-200" />}
-                      label="Hot course"
+                      label="Hot learning"
                       value={
                         stats?.top_learning?.path
                           ? `${prettyPathTail(stats.top_learning.path)} · ${stats.top_learning.views}`
                           : "—"
                       }
-                      hint="Learning · top 1"
+                      href={toHref(stats?.top_learning?.path) ?? undefined}
+                      onNavigate={() => setOpen(false)}
                     />
                     <StatTile
                       className="col-span-2"
@@ -232,7 +243,8 @@ export default function ShipConsole() {
                           ? `${prettyPathTail(stats.top_nebula.path)} · ${stats.top_nebula.views}`
                           : "—"
                       }
-                      hint="Opens from activity cards"
+                      href={toHref(stats?.top_nebula?.path) ?? undefined}
+                      onNavigate={() => setOpen(false)}
                     />
                   </div>
                 </div>
@@ -242,19 +254,25 @@ export default function ShipConsole() {
                     <Layers className="h-4 w-4 text-cyan-200/90" />
                     TOP PROJECTS
                   </div>
-                  <p className="mb-2 text-[10px] text-slate-500">Business · Data · Product (top 3 by views)</p>
                   <div className="space-y-2">
                     {(stats?.top_projects?.length ? stats.top_projects : []).map((row, i) => (
-                      <div
+                      <Link
                         key={`${row.path}-${i}`}
-                        className="flex items-center justify-between gap-3 rounded-lg border border-sky-400/12 bg-slate-950/35 px-3 py-2"
+                        href={toHref(row.path) ?? "/"}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "group flex items-center justify-between gap-3 rounded-lg border border-sky-400/12 bg-slate-950/35 px-3 py-2",
+                          "hover:border-sky-400/25 hover:bg-slate-900/40"
+                        )}
                       >
                         <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(row.path)}</span>
-                        <span className="shrink-0 font-mono text-xs text-slate-400">{row.views}</span>
-                      </div>
+                        <span className="shrink-0 font-mono text-xs text-slate-400 group-hover:text-slate-200">
+                          {row.views}
+                        </span>
+                      </Link>
                     ))}
                     {!stats?.top_projects?.length && !statsLoading ? (
-                      <p className="text-xs text-slate-500">No project detail views yet.</p>
+                      <p className="text-xs text-slate-500">—</p>
                     ) : null}
                   </div>
                 </div>
@@ -329,22 +347,19 @@ function StatTile({
   icon,
   label,
   value,
-  hint,
   className,
+  href,
+  onNavigate,
 }: {
   icon: React.ReactNode
   label: string
   value: React.ReactNode
-  hint?: string
   className?: string
+  href?: string
+  onNavigate?: () => void
 }) {
-  return (
-    <div
-      className={cn(
-        "rounded-xl border border-white/[0.07] bg-slate-950/45 p-3 shadow-inner shadow-black/20",
-        className
-      )}
-    >
+  const inner = (
+    <>
       <div className="flex items-center gap-2 text-slate-300/90">
         <span className="grid h-8 w-8 place-items-center rounded-lg bg-white/[0.04] ring-1 ring-white/[0.06]">
           {icon}
@@ -352,7 +367,28 @@ function StatTile({
         <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</span>
       </div>
       <div className="mt-2 break-words text-sm font-semibold leading-snug text-slate-50">{value}</div>
-      {hint ? <p className="mt-1 text-[10px] leading-tight text-slate-500">{hint}</p> : null}
+    </>
+  )
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        onClick={onNavigate}
+        className={cn(
+          "block rounded-xl border border-white/[0.07] bg-slate-950/45 p-3 shadow-inner shadow-black/20 transition",
+          "hover:border-sky-400/25 hover:bg-slate-900/45",
+          className
+        )}
+      >
+        {inner}
+      </Link>
+    )
+  }
+
+  return (
+    <div className={cn("rounded-xl border border-white/[0.07] bg-slate-950/45 p-3 shadow-inner shadow-black/20", className)}>
+      {inner}
     </div>
   )
 }

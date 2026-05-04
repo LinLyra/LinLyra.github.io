@@ -82,10 +82,8 @@ export async function fetchPublicStats(): Promise<PublicStats | null> {
   if (!supabase) return null
   const { data, error } = await supabase.rpc("get_public_stats")
   if (error) {
-    if (process.env.NODE_ENV === "development") {
-      console.warn("[analytics] get_public_stats:", error.message)
-    }
-    return null
+    // Surface the real cause to the UI; this is usually missing SQL (RPC not created) or missing grants.
+    throw new Error(error.message)
   }
   return data as PublicStats
 }
