@@ -11,6 +11,8 @@ export interface Planet3DProps {
   size?: number;
   distort?: number;
   speed?: number;
+  /** Sphere subdivisions (lower = faster on mobile). Default 64. */
+  sphereSegments?: number;
 }
 
 export function Planet3D({
@@ -19,11 +21,14 @@ export function Planet3D({
   size = 1,
   distort = 0.3,
   speed = 0.5,
+  sphereSegments = 64,
 }: Planet3DProps) {
   const meshRef = useRef<Mesh>(null);
 
-
-  const sphereArgs = useMemo<[number, number, number]>(() => [size, 64, 64], [size]);
+  const sphereArgs = useMemo<[number, number, number]>(
+    () => [size, sphereSegments, sphereSegments],
+    [size, sphereSegments],
+  );
 
 
   useFrame((state, delta) => {

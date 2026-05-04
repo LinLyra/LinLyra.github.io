@@ -15,6 +15,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { recordPageView } from "@/lib/site-analytics"
 
 type Kind = "Volunteer" | "Networking" | "Talks" | "Workshop"
 
@@ -638,6 +639,7 @@ export default function NebulaPage() {
                 onClick={() => {
                   setSelected(a)
                   setOpen(true)
+                  void recordPageView(`/nebula/${a.slug}/`)
                 }}
                 aria-label={`Open details: ${a.title}`}
               >

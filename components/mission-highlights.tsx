@@ -77,7 +77,7 @@ export function MissionHighlights() {
       <div className="mb-4 text-center">
         <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">Featured mission</h3>
         <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-slate-500 md:text-sm">
-          Click a card to preview the write-up in-site when a link is configured; closing the window opens the project page.
+          Structured problem-solving across real-world business and data challenges.
         </p>
       </div>
 

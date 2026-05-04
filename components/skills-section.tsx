@@ -365,13 +365,21 @@ function SkillsSection() {
         <ScrollReveal variant="soft" className="mx-auto max-w-6xl">
           <div className="space-y-6">
             <div className="rounded-2xl bg-black/20 px-3 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/[0.05] backdrop-blur-sm md:px-5">
-              <div className="mb-4 text-center">
-                <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">
-                  Exploration Across Industries
-                </h3>
-                <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-500">
-                  A snapshot of projects across domains — from data analysis to product builds.
-                </p>
+              <div className="mb-4 space-y-3 text-center">
+                <div>
+                  <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">
+                    Cross-Industry Experience
+                  </h3>
+                  <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-[0.95rem]">
+                    Applying a consistent problem-solving approach across diverse domains.
+                  </p>
+                </div>
+                <div className="mx-auto max-w-xl border-t border-white/[0.06] pt-3">
+                  <p className="text-sm font-medium text-slate-300">Exploration Across Industries</p>
+                  <p className="mx-auto mt-1 max-w-2xl text-xs leading-relaxed text-slate-500 md:text-sm">
+                    A snapshot of projects across domains — from data analysis to product builds.
+                  </p>
+                </div>
               </div>
 
               <OrbitDualTracks rowForward={orbitRows[0]} rowReverse={orbitRows[1]} />

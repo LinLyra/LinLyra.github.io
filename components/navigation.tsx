@@ -69,11 +69,14 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
   
-          <Link href="/" className="flex items-center space-x-3" aria-label="Go to home">
-            <div className="relative h-8 w-8 overflow-hidden rounded-md ring-1 ring-white/20">
+          <Link href="/" className="flex min-w-0 max-w-[72vw] items-center space-x-2 sm:space-x-3 md:max-w-none" aria-label="Go to home">
+            <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md ring-1 ring-white/20">
               <Image src="/logo.png" alt="Lyra Logo" fill sizes="32px" className="object-cover" priority />
             </div>
-            <span className="text-white text-lg font-bold">Welcome to Lyra&apos;s Universe. LLAP🖖</span>
+            <span className="truncate text-sm font-bold text-white sm:text-base md:text-lg">
+              <span className="sm:hidden">Lyra LLAP🖖</span>
+              <span className="hidden sm:inline">Welcome to Lyra&apos;s Universe. LLAP🖖</span>
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">

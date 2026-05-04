@@ -44,12 +44,12 @@ export function GlowProfileCard({ className, children }: GlowProfileCardProps) {
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className={cn(
-        "group relative max-w-sm overflow-hidden rounded-2xl border border-white/12",
-        "bg-[linear-gradient(145deg,rgba(255,255,255,0.09),rgba(255,255,255,0.02))]",
-        "p-6 text-center shadow-[0_18px_50px_rgba(0,0,0,0.45)] backdrop-blur-[20px]",
-        "transition duration-300 ease-out will-change-transform",
-        "hover:-translate-y-2 hover:scale-[1.02] hover:border-indigo-400/55",
-        "hover:shadow-[0_0_22px_rgba(129,140,248,0.45),0_0_60px_rgba(129,140,248,0.18)]",
+        "group relative max-w-sm overflow-hidden rounded-2xl",
+        "bg-[linear-gradient(155deg,rgba(99,102,241,0.12),rgba(15,15,22,0.92))]",
+        "p-6 text-center shadow-[0_20px_56px_rgba(0,0,0,0.55)] backdrop-blur-[22px]",
+        "ring-1 ring-indigo-400/20 transition duration-300 ease-out will-change-transform",
+        "hover:-translate-y-2 hover:scale-[1.02] hover:ring-fuchsia-400/35",
+        "hover:shadow-[0_0_28px_rgba(167,139,250,0.35),0_0_70px_rgba(56,189,248,0.12)]",
         className
       )}
       style={

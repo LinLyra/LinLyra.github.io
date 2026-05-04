@@ -20,17 +20,15 @@ export function HeroSection() {
           <GlowProfileCard>
             <div className="space-y-4">
              
-              <div className="mx-auto w-32 h-32 rounded-2xl p-[2px] bg-gradient-to-br from-blue-400 to-purple-600">
-                <div className="w-full h-full rounded-[14px] overflow-hidden bg-black/40">
-                  <Image
-                    src="/user.png"
-                    alt="Long (Lyra) LIN"
-                    width={128}
-                    height={128}
-                    className="w-full h-full object-cover"
-                    priority
-                  />
-                </div>
+              <div className="mx-auto w-32 h-32 rounded-2xl overflow-hidden bg-slate-950/60 shadow-[0_0_0_1px_rgba(129,140,248,0.25),0_12px_40px_rgba(79,70,229,0.35)] ring-1 ring-inset ring-white/[0.06]">
+                <Image
+                  src="/user.png"
+                  alt="Long (Lyra) LIN"
+                  width={128}
+                  height={128}
+                  className="h-full w-full object-cover"
+                  priority
+                />
               </div>
 
         

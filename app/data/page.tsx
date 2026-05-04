@@ -367,7 +367,7 @@ export default function DataPage() {
 
           <PageCornerLottie
             side="right"
-            className="top-[176px] right-[max(1rem,calc(50%-36rem-4rem))]"
+            className="top-[160px] right-[max(1rem,calc(50%-36rem-4rem))]"
             src="/animations/astronaut-illustration.lottie"
             alt="Astronaut illustration animation"
             sizeRem={17}

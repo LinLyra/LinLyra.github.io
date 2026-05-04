@@ -6,12 +6,14 @@ import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Planet3D } from "./planet-3d";
 import EnvNight from "@/components/EnvNight";
+import { useLowPowerWebGL } from "@/lib/use-low-power-webgl";
 
 import { BookOpen, Database, Briefcase, Package, Sparkles } from "lucide-react";
 
 export default function Planets3DSection() {
   const [clickedPlanet, setClickedPlanet] = useState<number | null>(null);
   const router = useRouter();
+  const lowPower = useLowPowerWebGL();
 
 
   const planets = [
@@ -42,13 +44,27 @@ export default function Planets3DSection() {
 
 
       <div className="absolute inset-0 top-0">
-        <Canvas camera={{ position: [0, 3, 15], fov: 60 }} gl={{ antialias: true }}>
+        <Canvas
+          camera={{ position: [0, 3, 15], fov: 60 }}
+          dpr={lowPower ? 1 : [1, 1.5]}
+          gl={{
+            antialias: !lowPower,
+            powerPreference: lowPower ? "low-power" : "high-performance",
+          }}
+        >
           <Suspense fallback={null}>
             <ambientLight intensity={0.3} />
             <pointLight position={[10, 10, 10]} intensity={1} />
             <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4F8EF7" />
             <EnvNight background={false} />
-            <Stars radius={200} depth={50} count={2000} factor={4} saturation={0} fade />
+            <Stars
+              radius={200}
+              depth={50}
+              count={lowPower ? 800 : 2000}
+              factor={4}
+              saturation={0}
+              fade
+            />
 
             {planets.map((planet, index) => (
               <group key={planet.id}>
@@ -56,8 +72,9 @@ export default function Planets3DSection() {
                   position={planet.position}
                   color={planet.color}
                   size={clickedPlanet === planet.id ? 1.5 : 1.2}
-                  distort={0.15}
-                  speed={0.2 + index * 0.05}
+                  distort={lowPower ? 0.08 : 0.15}
+                  speed={lowPower ? 0.12 + index * 0.03 : 0.2 + index * 0.05}
+                  sphereSegments={lowPower ? 24 : 48}
                 />
           
                 <mesh
@@ -66,7 +83,7 @@ export default function Planets3DSection() {
                   onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = "pointer"; }}
                   onPointerOut={(e) => { e.stopPropagation(); document.body.style.cursor = "default"; }}
                 >
-                  <sphereGeometry args={[1.8, 32, 32]} />
+                  <sphereGeometry args={[1.8, lowPower ? 16 : 28, lowPower ? 16 : 28]} />
                   <meshBasicMaterial transparent opacity={0} />
                 </mesh>
               </group>
@@ -80,7 +97,7 @@ export default function Planets3DSection() {
               minDistance={8}
               maxDistance={25}
               autoRotate
-              autoRotateSpeed={0.3}
+              autoRotateSpeed={lowPower ? 0.08 : 0.3}
               maxPolarAngle={Math.PI / 1.8}
               minPolarAngle={Math.PI / 3}
             />
