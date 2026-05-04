@@ -375,7 +375,6 @@ function SkillsSection() {
                   </p>
                 </div>
                 <div className="mx-auto max-w-xl border-t border-white/[0.06] pt-3">
-                  <p className="text-sm font-medium text-slate-300">Exploration Across Industries</p>
                 </div>
               </div>
 
