@@ -88,7 +88,7 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
             </div>
           </div>
 
-          {/* 顶部 Meta 卡（无 logo、无 award；标签在这里展示） */}
+          {/* Top meta card */}
           <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
             <div className="absolute right-3 top-3">
               <span

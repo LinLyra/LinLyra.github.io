@@ -12,7 +12,6 @@ import MediaModel from "@/components/media-model";
 export default function BegaEsgValuationPage() {
   const [showNotes, setShowNotes] = useState(false);
 
-  // —— META（绿色主题；1 张图；无外链/无荣誉）——
   const meta = {
     slug: "bega-esg-valuation",
     title: "Bega Group ESG & Valuation",
@@ -73,7 +72,7 @@ that even ESG—when done rigorously—is not a side narrative, but an investabl
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 绿色星云背景（与 Business 星球一致） */}
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#08110d]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.16),transparent_60%),radial-gradient(circle_at_15%_90%,rgba(34,197,94,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(52,211,153,0.12),transparent_55%)]" />

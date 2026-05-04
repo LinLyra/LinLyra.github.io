@@ -64,7 +64,7 @@ export default function AgentLensPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden">
-      {/* 背景 */}
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#0b1020]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.16),transparent_60%),radial-gradient(circle_at_10%_90%,rgba(251,191,36,0.12),transparent_60%),radial-gradient(circle_at_90%_20%,rgba(234,88,12,0.10),transparent_60%)]" />
@@ -74,7 +74,7 @@ export default function AgentLensPage() {
 
       <div className="relative z-10 p-6 pt-16 md:pt-20">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部 */}
+          {/* Top bar */}
           <div className="flex items-center justify-between">
             <Link href="/product">
               <Button className="border-amber-400/30 bg-amber-500/10 text-white hover:bg-amber-500/20">
@@ -166,7 +166,7 @@ export default function AgentLensPage() {
         </div>
       </div>
 
-      {/* 图片弹窗 */}
+      {/* Media modal */}
       {hasImages && (
         <MediaModel
           isOpen={showMedia}

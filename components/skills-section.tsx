@@ -2,12 +2,15 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { Space_Grotesk } from "next/font/google"
 import { useMemo } from "react"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
 import { ScrollReveal } from "@/components/scroll-reveal"
 import { orbitItems } from "@/lib/portfolio-orbit"
 import { MissionHighlights } from "./mission-highlights"
 import { cn } from "@/lib/utils"
+
+const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] })
 
 type Tool = {
   slug: string
@@ -248,7 +251,7 @@ function SkillsSection() {
           : "bg-amber-500/10 text-amber-50/95 ring-1 ring-amber-400/20 hover:bg-amber-500/16"
 
   return (
-    <section id="skills" className="relative z-10 px-4 py-10 md:py-14">
+    <section id="skills" className="relative z-10 snap-start px-4 py-10 md:py-14">
       <div className="mx-auto max-w-6xl">
         <header className="mb-8 text-center">
           <h2 className="text-[1.75rem] font-semibold leading-tight tracking-tight text-slate-50 md:text-[2rem]">
@@ -289,12 +292,12 @@ function SkillsSection() {
                       <p className="mt-2 text-sm leading-relaxed text-slate-400 md:text-[0.95rem]">{c.blurb}</p>
                     </div>
                     <div className="flex flex-1 flex-col p-5 pt-0 md:p-6 md:pt-0">
-                      <div className="flex flex-wrap items-start gap-1.5 md:gap-2">
+                      <div className="flex flex-wrap items-start gap-2 md:gap-2.5">
                         {c.items.map((s) => (
                           <span
                             key={s}
                             className={cn(
-                              "rounded-full px-2 py-0.5 text-[11px] font-medium leading-tight transition md:px-2.5 md:py-1 md:text-[12px]",
+                              "rounded-full px-2.5 py-1 text-[12px] font-semibold leading-tight transition md:px-3 md:py-1.5 md:text-[13px]",
                               chipTone(c.tone)
                             )}
                           >
@@ -310,7 +313,7 @@ function SkillsSection() {
           </div>
 
           <aside className="flex min-h-0 lg:col-span-2">
-            <div className="flex h-full min-h-[28rem] w-full flex-col rounded-3xl bg-[linear-gradient(165deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.4)] ring-1 ring-white/[0.06] backdrop-blur-xl md:min-h-full md:p-6">
+            <div className="flex h-full min-h-[26rem] w-full flex-col rounded-3xl bg-[linear-gradient(165deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_16px_50px_rgba(0,0,0,0.4)] ring-1 ring-white/[0.06] backdrop-blur-xl md:min-h-full md:p-5">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">Toolkit</p>
                 <h3 className="mt-2 text-lg font-semibold text-slate-100 md:text-xl">Tools Behind Every Mission</h3>
@@ -319,9 +322,9 @@ function SkillsSection() {
                 </p>
               </div>
 
-              <div className="mt-5 flex flex-1 flex-col justify-between gap-6">
+              <div className="mt-4 flex flex-1 flex-col justify-between gap-5">
                 {toolGroups.map((g) => (
-                  <div key={g.title} className="space-y-3">
+                  <div key={g.title} className="space-y-2.5">
                     <div>
                       <div
                         className={cn(
@@ -344,7 +347,7 @@ function SkillsSection() {
                         {g.subtitle}
                       </div>
                     </div>
-                    <div className="flex flex-wrap gap-2 md:gap-2.5">
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
                       {g.tools.map((tool) => (
                         <CompactToolTile
                           key={tool.slug}
@@ -367,7 +370,7 @@ function SkillsSection() {
             <div className="rounded-2xl bg-black/20 px-3 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] ring-1 ring-white/[0.05] backdrop-blur-sm md:px-5">
               <div className="mb-4 space-y-3 text-center">
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">
+                  <h3 className={`${display.className} text-xl font-semibold tracking-tight text-slate-100 md:text-2xl`}>
                     Cross-Industry Experience
                   </h3>
                   <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-[0.95rem]">

@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PageCornerLottie } from "@/components/page-corner-lottie";
 import { ArrowLeft, Award as AwardIcon } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 type ProductType = "product" | "project" | "hackathon" | "development";
 
@@ -362,73 +363,80 @@ export default function ProductPage() {
           </div>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <Link key={p.slug} href={`/product/${p.slug}`} className="group block h-full">
-                <div className="relative h-full">
-                  {(() => {
-                    const corner = p.placement;
+            {filtered.map((p, idx) => (
+              <ScrollReveal
+                key={p.slug}
+                variant="soft"
+                delayMs={Math.min(idx, 10) * 70}
+                className="h-full"
+              >
+                <Link href={`/product/${p.slug}`} className="group block h-full">
+                  <div className="relative h-full">
+                    {(() => {
+                      const corner = p.placement;
 
-                    if (!corner) return null;
-                    return (
-                      <div className="pointer-events-none absolute -right-2 -top-2 z-20">
-                        <div className="flex items-center gap-1 rounded-full border border-amber-300/40 bg-yellow-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
-                          <AwardIcon className="h-3.5 w-3.5 text-yellow-300" />
-                          <span className="text-xs font-semibold text-yellow-200">{corner}</span>
-                        </div>
-                      </div>
-                    );
-                  })()}
-                <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(245,158,11,0.10)] ring-1 ring-amber-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
-                  <div className="p-6 pb-2">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex min-w-0 flex-1 items-start gap-3">
-                        {(p.image || p.logo) && (
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-amber-400/20">
-                            <img
-                              src={p.image || p.logo || "/placeholder.svg"}
-                              alt=""
-                              className="h-full w-full object-cover"
-                              onError={(e) => {
-                                const el = e.currentTarget as HTMLImageElement;
-                                if (!el.src.includes("placeholder.svg")) el.src = "/placeholder.svg";
-                              }}
-                            />
+                      if (!corner) return null;
+                      return (
+                        <div className="pointer-events-none absolute -right-2 -top-2 z-20">
+                          <div className="flex items-center gap-1 rounded-full border border-amber-300/40 bg-yellow-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
+                            <AwardIcon className="h-3.5 w-3.5 text-yellow-300" />
+                            <span className="text-xs font-semibold text-yellow-200">{corner}</span>
                           </div>
-                        )}
+                        </div>
+                      );
+                    })()}
+                  <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(245,158,11,0.10)] ring-1 ring-amber-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
+                    <div className="p-6 pb-2">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="flex min-w-0 flex-1 items-start gap-3">
+                          {(p.image || p.logo) && (
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-amber-400/20">
+                              <img
+                                src={p.image || p.logo || "/placeholder.svg"}
+                                alt=""
+                                className="h-full w-full object-cover"
+                                onError={(e) => {
+                                  const el = e.currentTarget as HTMLImageElement;
+                                  if (!el.src.includes("placeholder.svg")) el.src = "/placeholder.svg";
+                                }}
+                              />
+                            </div>
+                          )}
 
-                        <div className="min-w-0 flex-1 pr-2">
-                          <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
-                            {p.projectName}
-                          </h2>
-                          <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
-                            {p.subtitle}
-                          </p>
-                          <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
-                            <span className="truncate">{p.date ?? ""}</span>
+                          <div className="min-w-0 flex-1 pr-2">
+                            <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
+                              {p.projectName}
+                            </h2>
+                            <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
+                              {p.subtitle}
+                            </p>
+                            <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
+                              <span className="truncate">{p.date ?? ""}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="flex flex-1 flex-col p-6 pt-0">
-                    <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
-                      {p.description ?? ""}
-                    </p>
-                    <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
-                      {mergeProductCardTags(p).map((tag) => (
-                        <Badge
-                          key={tag}
-                          className="border-amber-500/30 bg-orange-500/20 text-xs font-normal text-orange-100"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
+                    <div className="flex flex-1 flex-col p-6 pt-0">
+                      <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
+                        {p.description ?? ""}
+                      </p>
+                      <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
+                        {mergeProductCardTags(p).map((tag) => (
+                          <Badge
+                            key={tag}
+                            className="border-amber-500/30 bg-orange-500/20 text-xs font-normal text-orange-100"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
                     </div>
+                  </PremiumGlassCard>
                   </div>
-                </PremiumGlassCard>
-                </div>
-              </Link>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
 

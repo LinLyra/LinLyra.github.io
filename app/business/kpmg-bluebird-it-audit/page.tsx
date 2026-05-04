@@ -21,7 +21,7 @@ export default function KpmgBluebirdItAuditPage() {
     status: "Completed" as const,
     role: "Team Lead",              
     placement: "Semifinalist",      
-    notes: ["/competition/bluebird.png"], // 放到 public 下
+    notes: ["/competition/bluebird.png"],
     tags: [
       "IT Audit",
       "Cybersecurity",

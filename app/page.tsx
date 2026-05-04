@@ -46,7 +46,7 @@ export default function PersonalWebsite() {
     <div className="relative">
       <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
 
-      <div className="relative z-10">
+      <div className="relative z-10 snap-y snap-mandatory scroll-smooth">
         <HeroSection />
         <SkillsSection />
         <Planets3DSection />

@@ -34,7 +34,7 @@ function GeneratedGalaxy({
 }: GalaxyGeneratorProps) {
   const pointsRef = useRef<THREE.Points>(null)
 
-  // 用不同变量名避免和外层重名，并加上 as const 让 TS 推断成定长元组
+  // Use different names to avoid shadowing and keep tuple inference stable.
   const [posArr, colArr] = useMemo((): readonly [Float32Array, Float32Array] => {
     const rand = (s: number) => {
       const x = Math.sin(s) * 10000
@@ -92,7 +92,7 @@ function GeneratedGalaxy({
   return (
     <points ref={pointsRef}>
       <bufferGeometry>
-        {/* ✅ 用 args 传入 (array, itemSize) —— 这是 @react-three/fiber 对 BufferAttribute 的类型要求 */}
+        {/* Pass args as (array, itemSize) for BufferAttribute typing. */}
         <bufferAttribute attach="attributes-position" args={[posArr, 3]} />
         <bufferAttribute attach="attributes-color" args={[colArr, 3]} />
       </bufferGeometry>

@@ -67,7 +67,7 @@ export default function AussieAdventurePage() {
 
       <div className="relative z-10 p-6 pt-16 md:pt-20">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* Top bar (全部黄色按钮) */}
+          {/* Top bar */}
           <div className="flex items-center justify-between">
             <Link href="/product">
               <Button className="border-amber-400/30 bg-amber-500/10 text-gray-100 backdrop-blur-md hover:bg-amber-500/20">

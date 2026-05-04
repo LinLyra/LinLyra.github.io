@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PageCornerLottie } from "@/components/page-corner-lottie";
 import { ArrowLeft, Award as AwardIcon, Globe2 } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 type DataType = "competition" | "course" | "project";
 
@@ -420,73 +421,80 @@ export default function DataPage() {
           </div>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((project) => (
-              <Link key={project.slug} href={`/data/${project.slug}`} className="group block h-full">
-                <div className="relative h-full">
-                  {project.award && (
-                    <div className="pointer-events-none absolute -right-2 -top-2 z-20">
-                      <div className="flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
-                        <AwardIcon className="h-3.5 w-3.5 text-amber-300" />
-                        <span className="text-xs font-semibold text-amber-200">
-                          {project.award}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(59,130,246,0.10)] ring-1 ring-blue-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-blue-400/35 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
-                  <div className={`p-6 pb-2 ${project.award ? "pr-10" : ""}`}>
-                    <div className="flex items-start gap-3">
-                      {project.type !== "course" && !!project.logo ? (
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-blue-400/20">
-                          <img
-                            src={project.logo}
-                            alt=""
-                            className="h-full w-full object-cover"
-                            onError={(e) => {
-                              e.currentTarget.src = "/placeholder.svg";
-                            }}
-                          />
-                        </div>
-                      ) : project.slug === "citi-global-market-challenge-2026" ? (
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 ring-1 ring-blue-400/20">
-                          <Globe2 className="h-6 w-6 text-blue-200" />
-                        </div>
-                      ) : null}
-
-                      <div className="min-w-0 flex-1">
-                        <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
-                          {project.projectName}
-                        </h2>
-                        <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
-                          {project.subtitle}
-                        </p>
-                        <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
-                          <span className="truncate">{project.date}</span>
+            {filtered.map((project, idx) => (
+              <ScrollReveal
+                key={project.slug}
+                variant="soft"
+                delayMs={Math.min(idx, 10) * 70}
+                className="h-full"
+              >
+                <Link href={`/data/${project.slug}`} className="group block h-full">
+                  <div className="relative h-full">
+                    {project.award && (
+                      <div className="pointer-events-none absolute -right-2 -top-2 z-20">
+                        <div className="flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
+                          <AwardIcon className="h-3.5 w-3.5 text-amber-300" />
+                          <span className="text-xs font-semibold text-amber-200">
+                            {project.award}
+                          </span>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    )}
 
-                  <div className="flex flex-1 flex-col p-6 pt-0">
-                    <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
-                      {project.description}
-                    </p>
+                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(59,130,246,0.10)] ring-1 ring-blue-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-blue-400/35 hover:shadow-[0_0_40px_rgba(99,102,241,0.16)]">
+                    <div className={`p-6 pb-2 ${project.award ? "pr-10" : ""}`}>
+                      <div className="flex items-start gap-3">
+                        {project.type !== "course" && !!project.logo ? (
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-blue-400/20">
+                            <img
+                              src={project.logo}
+                              alt=""
+                              className="h-full w-full object-cover"
+                              onError={(e) => {
+                                e.currentTarget.src = "/placeholder.svg";
+                              }}
+                            />
+                          </div>
+                        ) : project.slug === "citi-global-market-challenge-2026" ? (
+                          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 ring-1 ring-blue-400/20">
+                            <Globe2 className="h-6 w-6 text-blue-200" />
+                          </div>
+                        ) : null}
 
-                    <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
-                      {mergeCardKeywords(project.industries, project.skills).map((kw) => (
-                        <Badge
-                          key={kw}
-                          className="text-xs font-normal text-blue-100 border-blue-500/30 bg-blue-500/20"
-                        >
-                          {kw}
-                        </Badge>
-                      ))}
+                        <div className="min-w-0 flex-1">
+                          <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
+                            {project.projectName}
+                          </h2>
+                          <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
+                            {project.subtitle}
+                          </p>
+                          <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
+                            <span className="truncate">{project.date}</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
+
+                    <div className="flex flex-1 flex-col p-6 pt-0">
+                      <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
+                        {project.description}
+                      </p>
+
+                      <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
+                        {mergeCardKeywords(project.industries, project.skills).map((kw) => (
+                          <Badge
+                            key={kw}
+                            className="text-xs font-normal text-blue-100 border-blue-500/30 bg-blue-500/20"
+                          >
+                            {kw}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  </PremiumGlassCard>
                   </div>
-                </PremiumGlassCard>
-                </div>
-              </Link>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
 

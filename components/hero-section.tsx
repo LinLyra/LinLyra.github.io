@@ -1,10 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { Space_Grotesk } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "lucide-react";
 import { GlowProfileCard } from "@/components/glow-profile-card";
 import { ScrollReveal } from "@/components/scroll-reveal";
+
+const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] });
 
 export function HeroSection() {
   const scrollToSkills = () => {
@@ -13,7 +16,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative z-10 px-4">
+    <section id="home" className="min-h-screen snap-start flex items-center justify-center relative z-10 px-4">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Profile Card */}
         <ScrollReveal className="flex justify-center" variant="soft">
@@ -99,7 +102,9 @@ export function HeroSection() {
             Learn to change the World.
           </div>
 
-          <h1 className="cosmic-heading text-balance text-[clamp(2.75rem,5vw,3.5rem)] font-bold leading-[1.12] tracking-tight text-slate-50 md:leading-[1.1]">
+          <h1
+            className={`cosmic-heading ${display.className} text-balance text-[clamp(2.75rem,5vw,3.5rem)] font-bold leading-[1.12] tracking-tight text-slate-50 md:leading-[1.1]`}
+          >
             From Data to <span className="cosmic-gradient">Decisions</span>
             <br />
             to Products.

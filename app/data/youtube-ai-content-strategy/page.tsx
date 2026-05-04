@@ -43,11 +43,8 @@ export default function YouTubeAIContentStrategyPage() {
       "Creator Strategy",
       "A/B-ready Insights",
     ],
-    // 有图就放到 public/data/ 下，比如 /data/youtube_ai_1.png
     notes: [],
-    // 没有链接就保持 undefined；有链接再填
     links: undefined,
-    // links: { github: "https://github.com/xxx", demo: "https://xxx.com" },
   };
 
   const overview = `Goal: help AI content creators and platform recommenders solve “when to post” and “what to post” under high volatility in early performance.

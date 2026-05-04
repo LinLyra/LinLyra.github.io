@@ -146,19 +146,21 @@ export default function ShipConsole() {
 
             <div className="relative border-b border-white/[0.06] p-5 pb-4">
               <SheetHeader className="space-y-1 text-left">
-                <div className="flex items-start justify-between gap-3">
-                  <SheetTitle className="flex items-center gap-2 text-sky-200">
-                    <Radar className="h-5 w-5 shrink-0" />
-                    Mission console
-                  </SheetTitle>
-                  <button
-                    type="button"
-                    onClick={() => void loadStats()}
-                    className="inline-flex items-center gap-1 rounded-lg border border-sky-400/25 bg-slate-950/50 px-2.5 py-1.5 text-[11px] font-medium text-sky-100/90 hover:bg-sky-500/10"
-                  >
-                    <RefreshCw className={cn("h-3.5 w-3.5", statsLoading && "animate-spin")} />
-                    Sync
-                  </button>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <SheetTitle className="flex items-center gap-2 text-sky-200">
+                      <Radar className="h-5 w-5 shrink-0" />
+                      Mission console
+                    </SheetTitle>
+                    <button
+                      type="button"
+                      onClick={() => void loadStats()}
+                      className="inline-flex items-center gap-1 rounded-lg border border-sky-400/25 bg-slate-950/50 px-2.5 py-1.5 text-[11px] font-medium text-sky-100/90 hover:bg-sky-500/10"
+                    >
+                      <RefreshCw className={cn("h-3.5 w-3.5", statsLoading && "animate-spin")} />
+                      Sync
+                    </button>
+                  </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 text-xs text-slate-300/80">
                   <span className="inline-flex items-center gap-1 rounded-md border border-sky-400/20 bg-slate-950/50 px-2 py-1">
@@ -246,7 +248,7 @@ export default function ShipConsole() {
                     <StatTile
                       className="col-span-2"
                       icon={<Sparkles className="h-4 w-4 text-rose-200" />}
-                      label="Top activity (Nebula)"
+                      label="Top activity"
                       value={
                         stats?.top_nebula?.path
                           ? `${prettyPathTail(stats.top_nebula.path)} · ${stats.top_nebula.views}`

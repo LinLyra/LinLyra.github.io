@@ -18,7 +18,7 @@ type Meta = {
   status: "Completed" | "In Progress" | "Planned";
   tags: string[];
   notes: string[];
-  reportPdf?: string; // ✅ 关键：加上这个
+  reportPdf?: string;
 };
 
 export default function WineQualityAnalysisPage() {
@@ -42,13 +42,9 @@ export default function WineQualityAnalysisPage() {
       "Stability / Robustness",
       "Interpretation",
     ],
-    // 没图就改成 []
     notes: ["/data/wine_1.png", "/data/wine_2.png"],
 
-    // ✅ 有 PDF 就放 public/data/Wine_Quality_Analysis.pdf
-    // 没有就先设为 undefined（按钮会自动不显示）
     reportPdf: undefined,
-    // reportPdf: "/data/Wine_Quality_Analysis.pdf",
   };
 
   const overview = `Goal: identify the key physicochemical drivers behind wine quality ratings, and build interpretable models that generalize.

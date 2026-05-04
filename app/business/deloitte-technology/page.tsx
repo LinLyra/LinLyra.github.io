@@ -31,7 +31,6 @@ from cleaning and analysing datasets to communicating insights via simple dashbo
     "Summarised recommendations and next steps in a client-ready update.",
   ];
 
-  // —— Takeaways 改为“多段数组”（更稳，不被裁切） ——
   const takeaways: string[] = [
     `Good technology consulting is translation: turn messy tables into a few business-relevant stories—what changed, why it matters, and what to do next. I practised time-boxed analysis, tidy visuals, and crisp takeaways so the audience can act immediately.`,
     `Another key lesson was the balance between speed and depth. The simulation pushed me to find "just enough analysis"—sanity checks, quick pivots, and a dashboard that highlights the signal without drowning in noise. It showed me how even simple metrics, if framed well, can unlock real client impact.`,
@@ -111,7 +110,7 @@ from cleaning and analysing datasets to communicating insights via simple dashbo
             </ul>
           </section>
 
-          {/* Takeaways（不截断） */}
+          {/* Takeaways */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">Takeaways</h2>
             <div

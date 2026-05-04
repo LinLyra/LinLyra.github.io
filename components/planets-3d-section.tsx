@@ -32,7 +32,7 @@ export default function Planets3DSection() {
   };
 
   return (
-    <section id="planets" className="min-h-screen relative bg-black">
+    <section id="planets" className="min-h-screen snap-start relative bg-black">
  
       <div className="relative z-20 pt-20 pb-8 text-center">
         <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 mx-4 max-w-4xl mx-auto border border-white/10">
@@ -97,7 +97,7 @@ export default function Planets3DSection() {
               minDistance={8}
               maxDistance={25}
               autoRotate
-              autoRotateSpeed={lowPower ? 0.08 : 0.3}
+              autoRotateSpeed={lowPower ? 0.22 : 0.55}
               maxPolarAngle={Math.PI / 1.8}
               minPolarAngle={Math.PI / 3}
             />

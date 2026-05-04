@@ -30,13 +30,9 @@ export default function EducationExperienceModelPage() {
       "Out-of-sample",
       "Policy Insight",
     ],
-    // 没图可以先 []
     notes: ["/data/edu_exp_1.png", "/data/edu_exp_2.png"],
-    // 可选：如果你有 PDF 报告
     reportPdf: "/data/Education_Experience_Report.pdf",
   };
-
-  // ================= OVERVIEW =================
 
   const overview = `This project examines how education and work experience jointly shape individual earnings using a structured model comparison framework.
 
@@ -60,8 +56,6 @@ Key findings:
 Implication:
 Human capital accumulation through education remains the dominant long-run see driver of earnings, while early-career experience primarily affects short-run wage growth.`;
 
-  // ================= WHAT I DID =================
-
   const highlights: string[] = [
     "Constructed a clean earnings panel and engineered core human-capital variables (education years, experience, and interaction terms).",
     "Built a baseline Mincer-style regression and progressively extended specifications with demographic and cognitive controls.",
@@ -71,8 +65,6 @@ Human capital accumulation through education remains the dominant long-run see d
     "Quantified omitted-variable bias by comparing coefficient stability across nested models.",
     "Synthesized results into policy-relevant insights on education access and early-career labour dynamics.",
   ];
-
-  // ================= REFLECTION =================
 
   const reflection = `The most important lesson from this project is that model specification matters as much as model accuracy.
 

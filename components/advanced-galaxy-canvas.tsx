@@ -37,7 +37,7 @@ export default function AdvancedGalaxyCanvas() {
 
     const parent = canvas.parentElement;
     const cssW = Math.max(320, parent ? parent.clientWidth : 600);
-    const cssH = 300; // 你原来的高度
+    const cssH = 300;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     canvas.width = Math.floor(cssW * dpr);
@@ -60,7 +60,7 @@ export default function AdvancedGalaxyCanvas() {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      const outerR = size * (2.5 + intensity); // 随强度放大光晕
+      const outerR = size * (2.5 + intensity);
       const g1 = ctx.createRadialGradient(x, y, 0, x, y, outerR);
       g1.addColorStop(0, color);
       g1.addColorStop(0.3, withAlpha(color, 0.5));
@@ -221,7 +221,6 @@ export default function AdvancedGalaxyCanvas() {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
-            // 高度用 CSS 控制，宽度自适应父容器
             style={{ height: "300px" }}
           />
           <div className="absolute top-2 left-2 text-gray-400 text-xs">

@@ -66,7 +66,6 @@ recommendations feel inevitable rather than aspirational—something a lean non-
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
-          {/* 顶部：左返回 / 右 View More */}
           <div className="flex items-center justify-between">
             <Link href="/business">
               <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">

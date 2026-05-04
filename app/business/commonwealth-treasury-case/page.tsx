@@ -23,13 +23,11 @@ export default function CommonwealthTreasuryCasePage() {
     notes: ["/competition/commonwealth.png"] as string[],
   };
 
-  // —— Overview ——
   const overview = `Public policy & economic analysis case organized by CBA.
 We assessed macro–micro transmission channels for alternative policy packages (stimulus mix, tax levers, sector support),
 and balanced growth, inflation and distributional outcomes. Our final proposal prioritized targeted measures with clear
 monitoring metrics and fiscal guardrails.`;
 
-  // —— What I Did ——
   const highlights: string[] = [
     "Framed objectives and constraints: growth, price stability, employment, fiscal headroom.",
     "Built a lightweight scenario model (elasticities + multipliers) to compare policy options and sector spillovers.",
@@ -146,7 +144,7 @@ trade-offs under tighter headroom. This balance of clarity, humility, and execut
             </ul>
           </section>
 
-          {/* Reflection（合并为一段 + 强制不裁切） */}
+          {/* Reflection */}
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
             <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Reflection

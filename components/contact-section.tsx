@@ -4,6 +4,7 @@
 import type React from "react";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import { Space_Grotesk } from "next/font/google";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -20,11 +21,12 @@ const AdvancedGalaxyCanvas = dynamic(
 
 const FORM_ENDPOINT = "https://formspree.io/f/mjkozkel";
 
+const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] });
+
 export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
-    subject: "",
     message: "",
     _honeypot: "",
   });
@@ -50,14 +52,13 @@ export default function ContactSection() {
         body: JSON.stringify({
           name: formData.name,
           contact: formData.contact,
-          subject: formData.subject,
           message: formData.message,
         }),
       });
 
       if (res.ok) {
         setOk(true);
-        setFormData({ name: "", contact: "", subject: "", message: "", _honeypot: "" });
+        setFormData({ name: "", contact: "", message: "", _honeypot: "" });
       } else {
         const data = await res.json().catch(() => ({}));
         setOk(false);
@@ -79,10 +80,10 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative z-10 min-h-screen px-4 py-20 flex items-center justify-center">
+    <section id="contact" className="relative z-10 snap-start min-h-screen px-4 py-20 flex items-center justify-center">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal className="text-center mb-16" variant="soft">
-          <h2 className="cosmic-heading text-4xl md:text-5xl font-bold text-gray-100 mb-6">
+          <h2 className={`cosmic-heading ${display.className} text-4xl md:text-5xl font-bold text-gray-100 mb-6`}>
             Let’s Connect Across the <span className="cosmic-gradient">Stars</span>
           </h2>
           <p className="text-xl text-gray-200 mb-3">
@@ -102,15 +103,17 @@ export default function ContactSection() {
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
                 <Send className="w-5 h-5" />
-                Send a Message to My Universe
+                Send a Signal to My Universe ✨
               </CardTitle>
-              <p className="text-gray-300 text-sm">
-                Work, research, projects, community ideas — or just a hello. All signals are welcome.
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Have an idea, a question, or just want to connect?
+                <br />
+                Drop a signal — I read every one.
               </p>
             </CardHeader>
 
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 <input
                   type="text"
                   name="_honeypot"
@@ -124,52 +127,42 @@ export default function ContactSection() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="name" className="text-white">Name</Label>
+                    <p className="mt-1 text-xs text-slate-400">How should I call you?</p>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                      className="mt-2 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
                       placeholder="Your name"
                       required
                     />
                   </div>
                   <div>
                     <Label htmlFor="contact" className="text-white">Contact</Label>
+                    <p className="mt-1 text-xs text-slate-400">Email / LinkedIn / WeChat</p>
                     <Input
                       id="contact"
                       name="contact"
                       value={formData.contact}
                       onChange={handleInputChange}
-                      className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                      placeholder="email / WeChat / LinkedIn"
+                      className="mt-2 bg-white/10 border-white/20 text-white placeholder:text-gray-400"
+                      placeholder="Email / LinkedIn / WeChat"
                       required
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="subject" className="text-white">Subject</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400"
-                    placeholder="Topic (work / research / idea / hello)"
-                    required
-                  />
-                </div>
-
-                <div>
                   <Label htmlFor="message" className="text-white">Message</Label>
+                  <p className="mt-1 text-xs text-slate-400">What are you building, exploring, or curious about?</p>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="bg-white/10 border-white/20 text-white placeholder:text-gray-400 min-h-[120px]"
-                    placeholder="Tell me what you’re exploring, building, or curious about — links welcome."
+                    className="mt-2 bg-white/10 border-white/20 text-white placeholder:text-gray-400 min-h-[140px]"
+                    placeholder="Share context, links, or a rough idea — anything is welcome."
                     required
                   />
                 </div>
@@ -177,10 +170,10 @@ export default function ContactSection() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                  className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  {submitting ? "Sending..." : "Send Message"}
+                  {submitting ? "Sending..." : "Send Signal"}
                 </Button>
 
                 {ok === true && (
@@ -195,9 +188,9 @@ export default function ContactSection() {
                 )}
               </form>
 
-              <div className="mt-6 p-4 bg-white/5 rounded-lg border border-white/10">
-                <p className="text-gray-400 text-xs text-center italic">
-                  "Every message is a star launched into our shared sky — it will find its place in my constellation."
+              <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+                <p className="text-center text-xs text-gray-400">
+                  No spam. No auto-replies. Just a real conversation.
                 </p>
               </div>
             </CardContent>

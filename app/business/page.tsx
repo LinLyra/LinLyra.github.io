@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PageCornerLottie } from "@/components/page-corner-lottie";
 import { ArrowLeft, Award } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 type BusinessType =
   | "internship"
@@ -443,74 +444,80 @@ export default function BusinessPage() {
           </div>
 
           <div className="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((item) => {
+            {filtered.map((item, idx) => {
               const visibleBadges = mergeBusinessBadges(item);
 
               return (
-                <Link
+                <ScrollReveal
                   key={item.slug}
-                  href={`/business/${item.slug}`}
-                  className="group block h-full"
+                  variant="soft"
+                  delayMs={Math.min(idx, 10) * 70}
+                  className="h-full"
                 >
-                  <div className="relative h-full">
-                    {item.placement && (
-                      <div className="pointer-events-none absolute -right-2 -top-2 z-20">
-                        <div className="flex items-center gap-1 rounded-full border border-yellow-400/30 bg-yellow-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
-                          <Award className="h-3.5 w-3.5 text-yellow-400" />
-                          <span className="text-xs font-semibold text-yellow-300">
-                            {item.placement}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(34,197,94,0.10)] ring-1 ring-emerald-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-emerald-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
-                      <div className="p-6 pb-2">
-                        <div className="flex items-start gap-3 pr-10">
-                          <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-emerald-400/20">
-                            <img
-                              src={item.logo || item.image || "/placeholder.svg"}
-                              alt=""
-                              className="h-full w-full object-cover"
-                              onError={(e) => {
-                                e.currentTarget.src = "/placeholder.svg";
-                              }}
-                            />
+                  <Link
+                    href={`/business/${item.slug}`}
+                    className="group block h-full"
+                  >
+                    <div className="relative h-full">
+                      {item.placement && (
+                        <div className="pointer-events-none absolute -right-2 -top-2 z-20">
+                          <div className="flex items-center gap-1 rounded-full border border-yellow-400/30 bg-yellow-500/20 px-3 py-1 shadow-lg backdrop-blur-md">
+                            <Award className="h-3.5 w-3.5 text-yellow-400" />
+                            <span className="text-xs font-semibold text-yellow-300">
+                              {item.placement}
+                            </span>
                           </div>
+                        </div>
+                      )}
 
-                          <div className="min-w-0 flex-1">
-                            <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
-                              {item.projectName}
-                            </h2>
-                            <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
-                              {item.subtitle}
-                            </p>
-                            <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
-                              <span className="truncate">{item.date ?? ""}</span>
+                      <PremiumGlassCard className="flex h-full min-h-[260px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(34,197,94,0.10)] ring-1 ring-emerald-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-emerald-400/35 hover:shadow-[0_0_40px_rgba(16,185,129,0.16)]">
+                        <div className="p-6 pb-2">
+                          <div className="flex items-start gap-3 pr-10">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-emerald-400/20">
+                              <img
+                                src={item.logo || item.image || "/placeholder.svg"}
+                                alt=""
+                                className="h-full w-full object-cover"
+                                onError={(e) => {
+                                  e.currentTarget.src = "/placeholder.svg";
+                                }}
+                              />
+                            </div>
+
+                            <div className="min-w-0 flex-1">
+                              <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
+                                {item.projectName}
+                              </h2>
+                              <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
+                                {item.subtitle}
+                              </p>
+                              <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
+                                <span className="truncate">{item.date ?? ""}</span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div className="flex flex-1 flex-col p-6 pt-0">
-                        <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
-                          {item.description}
-                        </p>
+                        <div className="flex flex-1 flex-col p-6 pt-0">
+                          <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
+                            {item.description}
+                          </p>
 
-                        <div className="mt-auto overflow-hidden flex flex-wrap gap-1.5">
-                          {visibleBadges.map((tag) => (
-                            <Badge
-                              key={tag}
-                              className="border-green-500/30 bg-green-500/20 text-xs font-normal text-green-200"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
+                          <div className="mt-auto overflow-hidden flex flex-wrap gap-1.5">
+                            {visibleBadges.map((tag) => (
+                              <Badge
+                                key={tag}
+                                className="border-green-500/30 bg-green-500/20 text-xs font-normal text-green-200"
+                              >
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    </PremiumGlassCard>
-                  </div>
-                </Link>
+                      </PremiumGlassCard>
+                    </div>
+                  </Link>
+                </ScrollReveal>
               );
             })}
           </div>
