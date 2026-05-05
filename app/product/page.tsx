@@ -367,7 +367,7 @@ export default function ProductPage() {
               <ScrollReveal
                 key={p.slug}
                 variant="soft"
-                delayMs={Math.min(idx, 10) * 70}
+                delayMs={Math.min(idx, 12) * 45}
                 className="h-full"
               >
                 <Link href={`/product/${p.slug}`} className="group block h-full">

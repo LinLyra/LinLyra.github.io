@@ -17,39 +17,17 @@ import {
 } from "@/components/ui/dialog"
 import { recordPageView } from "@/lib/site-analytics"
 import { PageCornerLottie } from "@/components/page-corner-lottie"
-
-type Kind = "Volunteer" | "Networking" | "Talks" | "Workshop"
-
-type ActivityItem = {
-  slug: string
-  title: string
-  org: string
-  date: string
-  summary: string
-  cover: string
-  location?: string
-  kinds: Kind[]   
-}
+import { ScrollReveal } from "@/components/scroll-reveal"
+import { nebulaActivities, type NebulaActivityItem, type NebulaKind } from "@/lib/nebula-activities"
 
 export default function NebulaPage() {
   const [q, setQ] = useState("")
-  const [selectedKinds, setSelectedKinds] = useState<Kind[]>([])
+  const [selectedKinds, setSelectedKinds] = useState<NebulaKind[]>([])
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState<ActivityItem | null>(null)
+  const [selected, setSelected] = useState<NebulaActivityItem | null>(null)
 
-  const activities: ActivityItem[] = [
-   
-    {
-      slug: "morgan-stanley-unit-industry-insight-evening-2026",
-      title: "UNIT Industry Insight Evening",
-      org: "Morgan Stanley",
-      date: "2026.04",
-      summary:
-        "Office session hosted by Morgan Stanley’s UNIT program, focused on how teams think about industry structure, competitive dynamics, and client problems. Took away a clearer picture of day-to-day analyst work, plus concrete recruiting advice and CV/behavioral signals that matter.",
-      cover: "/activities/morgan.png",
-      location: "Morgan Stanley Office, Sydney",
-      kinds: ["Talks", "Networking"],
-    },
+  const activities: NebulaActivityItem[] = nebulaActivities
+  /*
     
     {
       slug: "postgresql-sydney-meetup-april-2026",
@@ -528,19 +506,8 @@ export default function NebulaPage() {
       location: "Town Hall",
       kinds: ["Volunteer"],
     },
-    {
-      slug: "usu",
-      title: "USU Volunteer",
-      org: "University of Sydney Union (USU)",
-      date: "2025.04 - Present",
-      summary: "Contributed to student life by supporting campus events, and engaging with diverse student communities.",
-      cover: "/activities/usu.png",
-      location: "USYD Campus",
-      kinds: ["Volunteer"],
-    },
-  ]
-
-  const chips: Kind[] = useMemo(() => ["Volunteer", "Networking", "Talks", "Workshop"], [])
+  */
+  const chips: NebulaKind[] = useMemo(() => ["Volunteer", "Networking", "Talks", "Workshop"], [])
 
   const filtered = activities.filter((a) => {
 
@@ -557,7 +524,7 @@ export default function NebulaPage() {
     return textOk && kindOk
   })
 
-  const toggleKind = (k: Kind) =>
+  const toggleKind = (k: NebulaKind) =>
     setSelectedKinds((prev) =>
       prev.includes(k) ? prev.filter((x) => x !== k) : [...prev, k]
     )
@@ -575,11 +542,11 @@ export default function NebulaPage() {
       <Navigation activeSection="nebula" onSectionChange={() => {}} />
 
       <PageCornerLottie
-        side="right"
-        className="top-[118px] right-[max(1rem,calc(50%-36rem-4rem))]"
+        side="left"
+        className="top-[118px] left-[max(1rem,calc(50%-36rem-4rem))]"
         src="/animations/catch-fish.lottie"
         alt="Fishing animation"
-        sizeRem={13}
+        sizeRem={15}
       />
 
       <div className="relative z-10 pt-20 p-6">
@@ -640,57 +607,60 @@ export default function NebulaPage() {
 
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filtered.map((a) => (
-              <button
-                key={a.slug}
-                type="button"
-                className="text-left"
-                onClick={() => {
-                  setSelected(a)
-                  setOpen(true)
-                  void recordPageView(`/nebula/${a.slug}/`)
-                }}
-                aria-label={`Open details: ${a.title}`}
-              >
-                <PremiumGlassCard
-                  tiltMaxDeg={5}
-                  className="bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
-                  title={a.title}
+            {filtered.map((a, idx) => (
+              <ScrollReveal key={a.slug} variant="soft" delayMs={Math.min(idx, 10) * 45} className="h-full">
+                <button
+                  type="button"
+                  className="h-full text-left"
+                  onClick={() => {
+                    setSelected(a)
+                    setOpen(true)
+                    void recordPageView(`/nebula/${a.slug}/`)
+                  }}
+                  aria-label={`Open details: ${a.title}`}
                 >
-                  <div className="relative h-32 w-full">
-                    <img
-                      src={a.cover || "/placeholder.svg"}
-                      alt={a.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                  </div>
+                  <PremiumGlassCard
+                    tiltMaxDeg={5}
+                    className="flex h-full min-h-[320px] flex-col bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
+                    title={a.title}
+                  >
+                    <div className="relative h-32 w-full">
+                      <img
+                        src={a.cover || "/placeholder.svg"}
+                        alt={a.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                    </div>
 
-                  <div className="p-6 pb-2">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-gray-400 text-xs">{a.org}</span>
-                      <span className="text-gray-400 text-xs">{a.date}</span>
-                    </div>
-                    <div className="text-gray-100 text-sm font-semibold mb-1 line-clamp-2" title={a.title}>
-                      {a.title}
-                    </div>
-                    {a.location && (
-                      <div className="flex items-center gap-1 text-xs text-gray-400">
-                        <MapPin className="w-3 h-3" />
-                        {a.location}
+                    <div className="p-6 pb-2">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-gray-300 text-xs">{a.org}</span>
+                        <span className="text-gray-300 text-xs">{a.date}</span>
                       </div>
-                    )}
-                  </div>
+                      <div className="text-gray-100 text-sm font-semibold mb-1 line-clamp-2" title={a.title}>
+                        {a.title}
+                      </div>
+                      {a.location && (
+                        <div className="flex items-center gap-1 text-xs text-gray-300/80">
+                          <MapPin className="w-3 h-3" />
+                          {a.location}
+                        </div>
+                      )}
+                    </div>
 
-                  <div className="p-6 pt-0">
-                    {a.summary && (
-                      <p className="min-h-[2.75rem] text-gray-200 text-xs leading-5 line-clamp-2">
-                        {a.summary}
-                      </p>
-                    )}
-                  </div>
-                </PremiumGlassCard>
-              </button>
+                    <div className="mt-auto p-6 pt-0">
+                      {a.summary ? (
+                        <p className="min-h-[2.75rem] text-gray-100/90 text-xs leading-5 line-clamp-2">
+                          {a.summary}
+                        </p>
+                      ) : (
+                        <div className="min-h-[2.75rem]" />
+                      )}
+                    </div>
+                  </PremiumGlassCard>
+                </button>
+              </ScrollReveal>
             ))}
           </div>
 

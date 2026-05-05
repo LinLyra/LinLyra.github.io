@@ -1,17 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { Space_Grotesk } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin } from "lucide-react";
 import { GlowProfileCard } from "@/components/glow-profile-card";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
-const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] });
-
 export function HeroSection() {
-  const scrollToSkills = () => {
-    const el = document.getElementById("skills");
+  const scrollToPlanets = () => {
+    const el = document.getElementById("planets");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -98,12 +95,12 @@ export function HeroSection() {
 
         {/* Main Content */}
         <ScrollReveal className="text-center md:text-left space-y-6" variant="up" delayMs={80}>
-          <div className="font-serif text-lg italic tracking-wide text-slate-400 md:text-xl -rotate-[0.35deg]">
+          <div className="font-serif text-lg italic tracking-wide text-slate-100/90 md:text-xl -rotate-[0.35deg]">
             Learn to change the World.
           </div>
 
           <h1
-            className={`cosmic-heading ${display.className} text-balance text-[clamp(2.75rem,5vw,3.5rem)] font-bold leading-[1.12] tracking-tight text-slate-50 md:leading-[1.1]`}
+            className="cosmic-heading text-balance text-[clamp(2.75rem,5vw,3.5rem)] font-bold leading-[1.12] tracking-tight text-white md:leading-[1.1]"
           >
             From Data to <span className="cosmic-gradient">Decisions</span>
             <br />
@@ -114,17 +111,17 @@ export function HeroSection() {
             <p className="text-base font-medium text-slate-200 md:text-lg">
               I don’t just analyze — I build.
             </p>
-            <p className="text-sm leading-relaxed text-slate-400 md:text-base md:leading-relaxed">
+            <p className="text-sm leading-relaxed text-slate-200/90 md:text-base md:leading-relaxed">
               Starting from data, I uncover what’s really happening in complex systems, then translate that into strategy, product design, and working prototypes.
             </p>
-            <p className="text-sm leading-relaxed text-slate-500 md:text-base md:leading-relaxed">
+            <p className="text-sm leading-relaxed text-slate-200/70 md:text-base md:leading-relaxed">
               What sets me apart is range: I move fast across industries, collaborate across functions, and turn ambiguous problems into shipped solutions.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Button
-              onClick={scrollToSkills}
+              onClick={scrollToPlanets}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-gray-100 px-8 py-3 rounded-full text-lg font-medium"
             >
               Explore Universe

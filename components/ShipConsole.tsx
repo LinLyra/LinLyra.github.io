@@ -25,6 +25,7 @@ import {
 } from "lucide-react"
 
 import { fetchPublicStats, type PublicStats } from "@/lib/site-analytics"
+import { titleForPath } from "@/lib/route-titles"
 
 export default function ShipConsole() {
   const pathname = usePathname()
@@ -228,7 +229,7 @@ export default function ShipConsole() {
                       label="Hot planet"
                       value={
                         stats?.top_planet?.slug
-                          ? `${planetLabel(stats.top_planet.slug)} · ${stats.top_planet.views}`
+                          ? `${planetLabel(stats.top_planet.slug)}`
                           : "—"
                       }
                       href={toHref(stats?.top_planet?.slug ? `/${stats.top_planet.slug}` : null) ?? undefined}
@@ -239,7 +240,7 @@ export default function ShipConsole() {
                       label="Hot learning"
                       value={
                         stats?.top_learning?.path
-                          ? `${prettyPathTail(stats.top_learning.path)} · ${stats.top_learning.views}`
+                          ? `${prettyPathTail(stats.top_learning.path)}`
                           : "—"
                       }
                       href={toHref(stats?.top_learning?.path) ?? undefined}
@@ -248,10 +249,10 @@ export default function ShipConsole() {
                     <StatTile
                       className="col-span-2"
                       icon={<Sparkles className="h-4 w-4 text-rose-200" />}
-                      label="Top activity"
+                      label="Hot activity"
                       value={
                         stats?.top_nebula?.path
-                          ? `${prettyPathTail(stats.top_nebula.path)} · ${stats.top_nebula.views}`
+                          ? `${prettyPathTail(stats.top_nebula.path)}`
                           : "—"
                       }
                       href={toHref(stats?.top_nebula?.path) ?? undefined}
@@ -263,7 +264,7 @@ export default function ShipConsole() {
                 <div>
                   <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-slate-200/70">
                     <Layers className="h-4 w-4 text-cyan-200/90" />
-                    TOP PROJECTS
+                    HOT PROJECTS
                   </div>
                   <div className="space-y-2">
                     {(stats?.top_projects?.length ? stats.top_projects : []).map((row, i) => (
@@ -277,9 +278,6 @@ export default function ShipConsole() {
                         )}
                       >
                         <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(row.path)}</span>
-                        <span className="shrink-0 font-mono text-xs text-slate-400 group-hover:text-slate-200">
-                          {row.views}
-                        </span>
                       </Link>
                     ))}
                     {!stats?.top_projects?.length && !statsLoading ? (
@@ -426,6 +424,8 @@ function Layers(props: React.SVGProps<SVGSVGElement>) {
 }
 
 function prettyPathTail(path: string) {
+  const fromIndex = titleForPath(path)
+  if (fromIndex) return fromIndex
   const cleaned = (path || "").replace(/\/+$/, "")
   const parts = cleaned.split("/").filter(Boolean)
   const last = parts[parts.length - 1] ?? path

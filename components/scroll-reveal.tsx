@@ -45,7 +45,7 @@ export function ScrollReveal({
           obs.disconnect()
         }
       },
-      { threshold: 0.12, rootMargin: "60px 0px -10% 0px" }
+      { threshold: 0.08, rootMargin: "120px 0px -12% 0px" }
     )
     obs.observe(el)
     return () => obs.disconnect()

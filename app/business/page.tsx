@@ -451,7 +451,7 @@ export default function BusinessPage() {
                 <ScrollReveal
                   key={item.slug}
                   variant="soft"
-                  delayMs={Math.min(idx, 10) * 70}
+                  delayMs={Math.min(idx, 12) * 45}
                   className="h-full"
                 >
                   <Link

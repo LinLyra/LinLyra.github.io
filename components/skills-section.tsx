@@ -254,13 +254,13 @@ function SkillsSection() {
     <section id="skills" className="relative z-10 snap-start px-4 py-10 md:py-14">
       <div className="mx-auto max-w-6xl">
         <header className="mb-8 text-center">
-          <h2 className="text-[1.75rem] font-semibold leading-tight tracking-tight text-slate-50 md:text-[2rem]">
+          <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             Capabilities
           </h2>
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-base">
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-200/85 md:text-base">
             A multidisciplinary toolkit — bridging data, strategy, and technology.
           </p>
-          <p className="mt-2 text-xs font-medium tracking-wide text-slate-500 md:text-sm">
+          <p className="mt-3 text-base font-semibold tracking-wide text-slate-100 md:text-lg">
             Data → Business → Product → Tech
           </p>
         </header>
