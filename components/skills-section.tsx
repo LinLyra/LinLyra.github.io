@@ -140,6 +140,7 @@ function CompactToolTile({
   accent: ToolGroupAccent
 }) {
   const needsDarkPlate = slug === "figma" || slug === "notion" || slug === "axure"
+  const needsBig = slug === "supabase"
   const ring =
     accent === "sky"
       ? "hover:border-sky-400/45 hover:shadow-[0_0_18px_rgba(56,189,248,0.22)]"
@@ -166,7 +167,10 @@ function CompactToolTile({
             alt=""
             width={96}
             height={96}
-            className="h-10 w-10 object-contain md:h-11 md:w-11"
+            className={cn(
+              "object-contain",
+              needsBig ? "h-12 w-12 md:h-[3.25rem] md:w-[3.25rem]" : "h-10 w-10 md:h-11 md:w-11"
+            )}
             style={{
               filter:
                 "saturate(1.06) contrast(1.08) brightness(1.1) drop-shadow(0 0 10px rgba(148,163,184,0.12))",

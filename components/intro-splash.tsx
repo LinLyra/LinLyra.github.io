@@ -18,6 +18,7 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const lowPower = useLowPowerWebGL()
   const [show, setShow] = useState(false)
   const [shattering, setShattering] = useState(false)
+  const [revealing, setRevealing] = useState(false)
   const [progress, setProgress] = useState(0)
   const vRef = useRef<HTMLVideoElement | null>(null)
 
@@ -74,18 +75,23 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const beginExit = () => {
     if (shattering) return
     setShattering(true)
+    // Delay the "rebirth" so it is visible after the overlay fades.
+    window.setTimeout(() => setRevealing(true), 700)
     try {
       sessionStorage.setItem("introPlayed", "1")
     } catch {}
     window.setTimeout(() => {
       setShow(false)
       setShattering(false)
-    }, 900)
+    }, 1350)
+    window.setTimeout(() => {
+      setRevealing(false)
+    }, 3200)
   }
 
   return (
     <>
-      {children}
+      <div className={cn(revealing && "intro-reveal")}>{children}</div>
       {show ? (
         <div
           className={cn(

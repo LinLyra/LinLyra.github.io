@@ -7,9 +7,12 @@ import { useRouter } from "next/navigation"
 import { X } from "lucide-react"
 
 import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"
+import { citiGmc2026SlidePaths } from "@/lib/citi-gmc-2026-slides"
 import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slides"
+import { flourishKpmg2026SlidePaths } from "@/lib/flourish-kpmg-2026-slides"
 import { getFeaturedEmbedUrl } from "@/lib/featured-embed-urls"
 import { pathologyHeSlidePaths } from "@/lib/pathology-he-slides"
+import { ubsFinance2026SlidePaths } from "@/lib/ubs-finance-2026-slides"
 import {
   Dialog,
   DialogContent,
@@ -35,6 +38,13 @@ const MISSIONS: Mission[] = [
     accent: "blue",
   },
   {
+    title: "Cost-Efficient Alpha",
+    subtitle: "Citi Global Market Challenge 2026",
+    href: "/data/citi-global-market-challenge-2026",
+    images: [...citiGmc2026SlidePaths()],
+    accent: "blue",
+  },
+  {
     title: "H&E Tumour vs Immune Cells",
     subtitle: "Pathology · Medical Imaging",
     href: "/data/pathology-image-classification",
@@ -49,24 +59,17 @@ const MISSIONS: Mission[] = [
     accent: "green",
   },
   {
-    title: "Aussie Adventure",
-    subtitle: "Hackathon · Travel / Consumer App",
-    href: "/product/aussie-adventure",
-    images: ["/competition/canvalogo.png", "/competition/advxlogo.jpg", "/competition/yolo1.png"],
-    accent: "amber",
-  },
-  {
     title: "Long BeOne, Short Akeso",
     subtitle: "UBS Finance Challenge 2026 · Equity Research",
     href: "/business/ubs-finance-challenge-2026",
-    images: ["/competition/ubslogo.png", "/competition/microsoftlogo.png", "/competition/rblogo.png"],
+    images: [...ubsFinance2026SlidePaths()],
     accent: "green",
   },
   {
-    title: "Technology Risk & ESG Consulting",
-    subtitle: "Industry Internship · Banking / Risk / ESG",
-    href: "/business/mercer-business-analyst",
-    images: ["/experience/mercer.png", "/competition/commonwealth.png", "/competition/rblogo.png"],
+    title: "Flourish — KPMG Case Competition",
+    subtitle: "KPMG 2026",
+    href: "/business/flourish-kpmg-case-competition-2026",
+    images: [...flourishKpmg2026SlidePaths()],
     accent: "green",
   },
 ]

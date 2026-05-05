@@ -13,6 +13,87 @@
 }
 
 @layer components {
+  .intro-reveal {
+    animation: intro-rebirth 1900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transform-origin: 50% 40%;
+    filter: blur(10px) saturate(1.05) contrast(1.06);
+    opacity: 0.0;
+    will-change: transform, opacity, filter, clip-path;
+    clip-path: polygon(
+      2% 8%,
+      14% 2%,
+      28% 10%,
+      40% 3%,
+      52% 12%,
+      66% 4%,
+      80% 10%,
+      96% 6%,
+      98% 28%,
+      88% 36%,
+      97% 52%,
+      84% 64%,
+      98% 76%,
+      90% 92%,
+      70% 84%,
+      54% 96%,
+      42% 86%,
+      30% 97%,
+      18% 86%,
+      6% 94%,
+      2% 72%,
+      12% 62%,
+      3% 48%,
+      16% 36%,
+      2% 24%
+    );
+  }
+
+  @keyframes intro-rebirth {
+    0% {
+      opacity: 0;
+      transform: scale(1.02);
+      filter: blur(12px) brightness(0.72) saturate(1.08) contrast(1.08);
+      clip-path: polygon(
+        8% 18%,
+        18% 10%,
+        30% 22%,
+        42% 12%,
+        54% 26%,
+        68% 14%,
+        82% 22%,
+        92% 16%,
+        94% 30%,
+        86% 40%,
+        94% 54%,
+        82% 66%,
+        94% 78%,
+        84% 90%,
+        70% 82%,
+        56% 92%,
+        44% 82%,
+        32% 92%,
+        20% 82%,
+        10% 88%,
+        6% 70%,
+        14% 60%,
+        6% 46%,
+        16% 36%,
+        8% 26%
+      );
+    }
+    55% {
+      opacity: 1;
+      transform: scale(1.002);
+      filter: blur(2.2px) brightness(0.92) saturate(1.05) contrast(1.06);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px) brightness(1) saturate(1) contrast(1);
+      clip-path: inset(0 round 0px);
+    }
+  }
+
   .intro-splash {
     position: fixed;
     inset: 0;
@@ -126,16 +207,16 @@
   }
 
   .intro-splash--shatter {
-    animation: intro-shake 520ms cubic-bezier(0.22, 0.9, 0.2, 1) both;
+    animation: intro-shake 760ms cubic-bezier(0.22, 0.9, 0.2, 1) both;
   }
 
   .intro-splash--shatter .intro-splash__video {
-    animation: intro-fade 820ms ease both;
+    animation: intro-fade 1200ms ease both;
   }
 
   .intro-splash--shatter .intro-splash__glass {
     opacity: 1;
-    animation: intro-glass 820ms cubic-bezier(0.22, 0.9, 0.2, 1) both;
+    animation: intro-glass 1200ms cubic-bezier(0.22, 0.9, 0.2, 1) both;
   }
 
   @keyframes intro-shake {
@@ -238,11 +319,11 @@
     --reveal-delay: 0ms;
     opacity: 0;
     transform: translate3d(0, 14px, 0);
-    filter: blur(1.2px);
+    filter: blur(0.5px);
     transition:
-      opacity 420ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay),
-      transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay),
-      filter 420ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay);
+      opacity 340ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay),
+      transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay),
+      filter 340ms cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay);
     will-change: opacity, transform, filter;
   }
 
@@ -256,7 +337,7 @@
 
   .reveal--soft {
     transform: translate3d(0, 10px, 0) scale(0.992);
-    filter: blur(1px);
+    filter: blur(0.35px);
   }
 
   .reveal--shown {
