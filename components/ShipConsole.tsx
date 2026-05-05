@@ -24,7 +24,7 @@ import {
   Users,
 } from "lucide-react"
 
-import { fetchPublicStats, type PublicStats } from "@/lib/site-analytics"
+import { fetchPublicStats, getLastAnalyticsError, recordPageView, type PublicStats } from "@/lib/site-analytics"
 import { titleForPath } from "@/lib/route-titles"
 
 export default function ShipConsole() {
@@ -35,6 +35,8 @@ export default function ShipConsole() {
   const [stats, setStats] = useState<PublicStats | null>(null)
   const [statsLoading, setStatsLoading] = useState(false)
   const [statsError, setStatsError] = useState<string | null>(null)
+  const [insertStatus, setInsertStatus] = useState<"idle" | "ok" | "err">("idle")
+  const [insertMsg, setInsertMsg] = useState<string | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => setTime((t) => t + 1), 1000)
@@ -45,7 +47,7 @@ export default function ShipConsole() {
     try {
       const stored = JSON.parse(localStorage.getItem("nav-history") || "[]")
       const prev = Array.isArray(stored) ? stored : []
-      const updated = [pathname, ...prev.filter((p: string) => p !== pathname)].slice(0, 8)
+      const updated = [pathname, ...prev.filter((p: string) => p !== pathname)].slice(0, 5)
       localStorage.setItem("nav-history", JSON.stringify(updated))
       setHistory(updated)
     } catch {
@@ -153,6 +155,12 @@ export default function ShipConsole() {
                       <Radar className="h-5 w-5 shrink-0" />
                       Mission console
                     </SheetTitle>
+                    <span className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-sky-400/20 bg-slate-950/50 px-2.5 py-1.5 text-[11px] font-medium text-slate-200/80">
+                      <Sparkles className="h-3.5 w-3.5 text-violet-200/90" />
+                      Page views
+                      <span className="text-slate-400/80">·</span>
+                      <span className="text-slate-50/90">{stats?.total_page_views ?? "—"}</span>
+                    </span>
                     <button
                       type="button"
                       onClick={() => void loadStats()}
@@ -160,6 +168,40 @@ export default function ShipConsole() {
                     >
                       <RefreshCw className={cn("h-3.5 w-3.5", statsLoading && "animate-spin")} />
                       Sync
+                    </button>
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        setInsertStatus("idle")
+                        setInsertMsg(null)
+                        try {
+                          await recordPageView(pathname.endsWith("/") ? pathname : `${pathname}/`, { force: true })
+                          const lastErr = getLastAnalyticsError()
+                          if (lastErr) {
+                            setInsertStatus("err")
+                            setInsertMsg(lastErr)
+                          } else {
+                            setInsertStatus("ok")
+                            setInsertMsg("Recorded")
+                            void loadStats()
+                          }
+                        } catch (e) {
+                          setInsertStatus("err")
+                          setInsertMsg(e instanceof Error ? e.message : "Insert failed")
+                        }
+                      }}
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1.5 text-[11px] font-medium",
+                        insertStatus === "ok"
+                          ? "border-emerald-400/25 bg-emerald-500/10 text-emerald-100/90"
+                          : insertStatus === "err"
+                            ? "border-rose-400/25 bg-rose-500/10 text-rose-100/90"
+                            : "border-sky-400/20 bg-slate-950/40 text-slate-200/80 hover:bg-sky-500/10"
+                      )}
+                      title="Force record a page view now"
+                    >
+                      <Satellite className="h-3.5 w-3.5 text-sky-200/80" />
+                      Page view
                     </button>
                   </div>
                 </div>
@@ -204,85 +246,90 @@ export default function ShipConsole() {
             <ScrollArea className="min-h-0 flex-1">
               <div className="space-y-4 p-5">
                 <div>
-                  <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-slate-200/70">
-                    <BarChart3 className="h-4 w-4 text-emerald-300/90" />
-                    SITE PULSE
+                  <div className="mb-2 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-slate-200/70">
+                      <BarChart3 className="h-4 w-4 text-emerald-300/90" />
+                      SITE PULSE
+                    </div>
+                    <span className="inline-flex sm:hidden items-center gap-1 rounded-lg border border-sky-400/20 bg-slate-950/50 px-2.5 py-1.5 text-[11px] font-medium text-slate-200/80">
+                      <Sparkles className="h-3.5 w-3.5 text-violet-200/90" />
+                      Page views
+                      <span className="text-slate-400/80">·</span>
+                      <span className="text-slate-50/90">{stats?.total_page_views ?? "—"}</span>
+                    </span>
                   </div>
                   {statsError ? (
                     <p className="rounded-lg border border-amber-400/25 bg-amber-500/10 px-3 py-2 text-xs leading-relaxed text-amber-100/90">
                       {statsError}
                     </p>
                   ) : null}
-                  <div className="grid grid-cols-2 gap-2">
-                    <StatTile
-                      icon={<Users className="h-4 w-4 text-sky-200" />}
-                      label="Visitors"
-                      value={stats?.unique_sessions ?? "—"}
-                    />
-                    <StatTile
-                      icon={<Sparkles className="h-4 w-4 text-violet-200" />}
-                      label="Page views"
-                      value={stats?.total_page_views ?? "—"}
-                    />
-                    <StatTile
-                      icon={<Orbit className="h-4 w-4 text-emerald-200" />}
-                      label="Hot planet"
-                      value={
-                        stats?.top_planet?.slug
-                          ? `${planetLabel(stats.top_planet.slug)}`
-                          : "—"
-                      }
-                      href={toHref(stats?.top_planet?.slug ? `/${stats.top_planet.slug}` : null) ?? undefined}
-                      onNavigate={() => setOpen(false)}
-                    />
-                    <StatTile
-                      icon={<BookOpen className="h-4 w-4 text-amber-200" />}
-                      label="Hot learning"
-                      value={
-                        stats?.top_learning?.path
-                          ? `${prettyPathTail(stats.top_learning.path)}`
-                          : "—"
-                      }
-                      href={toHref(stats?.top_learning?.path) ?? undefined}
-                      onNavigate={() => setOpen(false)}
-                    />
-                    <StatTile
-                      className="col-span-2"
-                      icon={<Sparkles className="h-4 w-4 text-rose-200" />}
-                      label="Hot activity"
-                      value={
-                        stats?.top_nebula?.path
-                          ? `${prettyPathTail(stats.top_nebula.path)}`
-                          : "—"
-                      }
-                      href={toHref(stats?.top_nebula?.path) ?? undefined}
-                      onNavigate={() => setOpen(false)}
-                    />
-                  </div>
-                </div>
+                  {insertMsg ? (
+                    <p
+                      className={cn(
+                        "mt-2 rounded-lg border px-3 py-2 text-xs leading-relaxed",
+                        insertStatus === "ok"
+                          ? "border-emerald-400/20 bg-emerald-500/10 text-emerald-100/90"
+                          : "border-rose-400/20 bg-rose-500/10 text-rose-100/90"
+                      )}
+                    >
+                      {insertMsg}
+                    </p>
+                  ) : null}
 
-                <div>
-                  <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-slate-200/70">
-                    <Layers className="h-4 w-4 text-cyan-200/90" />
-                    HOT PROJECTS
-                  </div>
-                  <div className="space-y-2">
-                    {(stats?.top_projects?.length ? stats.top_projects : []).map((row, i) => (
-                      <Link
-                        key={`${row.path}-${i}`}
-                        href={toHref(row.path) ?? "/"}
-                        onClick={() => setOpen(false)}
-                        className={cn(
-                          "group flex items-center justify-between gap-3 rounded-lg border border-sky-400/12 bg-slate-950/35 px-3 py-2",
-                          "hover:border-sky-400/25 hover:bg-slate-900/40"
-                        )}
-                      >
-                        <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(row.path)}</span>
-                      </Link>
-                    ))}
-                    {!stats?.top_projects?.length && !statsLoading ? (
-                      <p className="text-xs text-slate-500">—</p>
-                    ) : null}
+                  <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]">
+                    <div className="grid grid-cols-2 gap-2">
+                      <StatTile
+                        icon={<Users className="h-4 w-4 text-sky-200" />}
+                        label="Visitors"
+                        value={stats?.unique_sessions ?? "—"}
+                      />
+                      <StatTile
+                        icon={<Orbit className="h-4 w-4 text-emerald-200" />}
+                        label="Hot planet"
+                        value={stats?.top_planet?.slug ? `${planetLabel(stats.top_planet.slug)}` : "—"}
+                        href={toHref(stats?.top_planet?.slug ? `/${stats.top_planet.slug}` : null) ?? undefined}
+                        onNavigate={() => setOpen(false)}
+                      />
+                      <StatTile
+                        icon={<BookOpen className="h-4 w-4 text-amber-200" />}
+                        label="Hot learning"
+                        value={stats?.top_learning?.path ? `${prettyPathTail(stats.top_learning.path)}` : "—"}
+                        href={toHref(stats?.top_learning?.path) ?? undefined}
+                        onNavigate={() => setOpen(false)}
+                      />
+                      <StatTile
+                        icon={<Sparkles className="h-4 w-4 text-rose-200" />}
+                        label="Hot activity"
+                        value={stats?.top_nebula?.path ? `${prettyPathTail(stats.top_nebula.path)}` : "—"}
+                        href={toHref(stats?.top_nebula?.path) ?? undefined}
+                        onNavigate={() => setOpen(false)}
+                      />
+                    </div>
+
+                    <div className="min-h-full">
+                      <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-slate-200/70">
+                        <Layers className="h-4 w-4 text-cyan-200/90" />
+                        HOT PROJECTS
+                      </div>
+                      <div className="space-y-2">
+                        {(stats?.top_projects?.length ? stats.top_projects : []).map((row, i) => (
+                          <Link
+                            key={`${row.path}-${i}`}
+                            href={toHref(row.path) ?? "/"}
+                            onClick={() => setOpen(false)}
+                            className={cn(
+                              "group flex items-center justify-between gap-3 rounded-lg border border-sky-400/12 bg-slate-950/35 px-3 py-2",
+                              "hover:border-sky-400/25 hover:bg-slate-900/40"
+                            )}
+                          >
+                            <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(row.path)}</span>
+                          </Link>
+                        ))}
+                        {!stats?.top_projects?.length && !statsLoading ? (
+                          <p className="text-xs text-slate-500">—</p>
+                        ) : null}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -304,7 +351,7 @@ export default function ShipConsole() {
                     </button>
                   </div>
                   <div className="mt-2 space-y-2">
-                    {history.map((p) => (
+                    {history.slice(0, 5).map((p) => (
                       <Link
                         key={p}
                         href={p}

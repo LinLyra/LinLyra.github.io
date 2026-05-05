@@ -1,17 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Award, Trophy, Video, Github } from "lucide-react";
-import MediaModel from "@/components/media-model";
+import { ArrowLeft, Calendar, Award, Trophy, Github, ExternalLink } from "lucide-react";
 
 export default function Datathon2025SupplyChainPage() {
-  const [showMedia, setShowMedia] = useState(false);
-
   const meta = {
     slug: "datathon-2025-supply-chain",
     title: "Supply Chain Optimization (24h)",
@@ -22,7 +18,10 @@ export default function Datathon2025SupplyChainPage() {
     practice: "EDA · Forecasting · Prescriptive Optimisation · Visualisation",
     tags: ["Supply Chain", "Optimisation", "MIP", "Gurobi", "KMeans", "Geospatial", "Time Series"],
     images: ["/data/dataslide.png", "/data/datacet.png"] as string[],
-    links: { github: "https://github.com/LinLyra/2025-Datathon" },
+    links: {
+      github: "https://github.com/LinLyra/2025-Datathon",
+      more: "https://github.com/LinLyra/2025-Datathon",
+    },
   };
 
   const overview =
@@ -55,7 +54,7 @@ export default function Datathon2025SupplyChainPage() {
       ? "bg-amber-500/20 text-amber-100 border-amber-400/40"
       : "bg-blue-600/25 text-blue-100 border-blue-400/40";
 
-  const hasMedia = Array.isArray(meta.images) && meta.images.length > 0;
+  const moreHref = meta.links.more || meta.links.github;
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -87,14 +86,14 @@ export default function Datathon2025SupplyChainPage() {
                   </Button>
                 </Link>
               )}
-              {hasMedia && (
-                <Button
-                  onClick={() => setShowMedia(true)}
-                  className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
-                >
-                  View more
-                </Button>
-              )}
+              {moreHref ? (
+                <Link href={moreHref} target="_blank" rel="noreferrer">
+                  <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    View more
+                  </Button>
+                </Link>
+              ) : null}
             </div>
           </div>
 
@@ -173,15 +172,6 @@ export default function Datathon2025SupplyChainPage() {
           </section>
         </div>
       </div>
-
-      {hasMedia && (
-        <MediaModel
-          isOpen={showMedia}
-          onClose={() => setShowMedia(false)}
-          title={meta.title}
-          media={{ images: meta.images }} 
-        />
-      )}
     </div>
   );
 }

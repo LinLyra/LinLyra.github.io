@@ -55,20 +55,6 @@ export default function PersonalWebsite() {
           <ContactSection />
         </div>
       </IntroSplash>
-
-      <div
-        className="pointer-events-none fixed right-2 top-1/2 z-40 hidden -translate-y-1/2 transform flex-col space-y-2 md:right-6 md:flex"
-        aria-hidden
-      >
-        {["home", "skills", "planets", "contact"].map((section) => (
-          <div
-            key={section}
-            className={`h-6 w-1.5 rounded-full transition-all duration-300 md:h-8 md:w-2 ${
-              activeSection === section ? "bg-blue-400" : "bg-white/30"
-            }`}
-          />
-        ))}
-      </div>
     </div>
   );
 }

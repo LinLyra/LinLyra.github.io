@@ -21,7 +21,9 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const [progress, setProgress] = useState(0)
   const vRef = useRef<HTMLVideoElement | null>(null)
 
-  const enabled = useMemo(() => !lowPower && !shouldSkipIntro(), [lowPower])
+  // Show intro on mobile/iPad too; only skip for reduced-motion users.
+  // (We keep lowPower around for future tuning, but don't auto-disable the intro.)
+  const enabled = useMemo(() => !shouldSkipIntro(), [])
 
   useEffect(() => {
     if (!enabled) return

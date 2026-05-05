@@ -39,18 +39,41 @@ function getSessionId(): string {
 }
 
 /** Record a page or virtual path (e.g. /nebula/slug/). Dedupes rapid repeats within 30s per path. */
-export async function recordPageView(path: string): Promise<void> {
+function setLastAnalyticsError(message: string | null) {
+  if (typeof window === "undefined") return
+  try {
+    if (!message) localStorage.removeItem("analytics:last_error")
+    else localStorage.setItem("analytics:last_error", message.slice(0, 220))
+  } catch {}
+}
+
+export function getLastAnalyticsError(): string | null {
+  if (typeof window === "undefined") return null
+  try {
+    return localStorage.getItem("analytics:last_error")
+  } catch {
+    return null
+  }
+}
+
+/** Record a page or virtual path (e.g. /nebula/slug/). Dedupes rapid repeats within 30s per path unless forced. */
+export async function recordPageView(path: string, opts?: { force?: boolean }): Promise<void> {
   if (typeof window === "undefined") return
   const supabase = getBrowserSupabase()
-  if (!supabase) return
+  if (!supabase) {
+    setLastAnalyticsError("Supabase env missing in browser build.")
+    return
+  }
 
   const normalized = path.startsWith("/") ? path : `/${path}`
   const { planet_slug, project_id, first_segment } = parseAnalyticsPath(normalized)
 
-  const k = `pv:${normalized}`
-  const last = Number(localStorage.getItem(k) || 0)
-  if (Date.now() - last < 30_000) return
-  localStorage.setItem(k, String(Date.now()))
+  if (!opts?.force) {
+    const k = `pv:${normalized}`
+    const last = Number(localStorage.getItem(k) || 0)
+    if (Date.now() - last < 30_000) return
+    localStorage.setItem(k, String(Date.now()))
+  }
 
   const row: PageViewInsert = {
     path: normalized,
@@ -63,9 +86,15 @@ export async function recordPageView(path: string): Promise<void> {
   }
 
   const { error } = await supabase.from("page_views").insert(row)
-  if (error && process.env.NODE_ENV === "development") {
-    console.warn("[analytics] page_views insert:", error.message)
+  if (error) {
+    setLastAnalyticsError(error.message || "Insert failed")
+    if (process.env.NODE_ENV === "development") {
+      console.warn("[analytics] page_views insert:", error.message)
+    }
+    return
   }
+
+  setLastAnalyticsError(null)
 }
 
 export type PublicStats = {
