@@ -13,86 +13,143 @@
 }
 
 @layer components {
-  .intro-reveal {
-    animation: intro-rebirth 1900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    transform-origin: 50% 40%;
-    filter: blur(10px) saturate(1.05) contrast(1.06);
-    opacity: 0.0;
-    will-change: transform, opacity, filter, clip-path;
-    clip-path: polygon(
-      2% 8%,
-      14% 2%,
-      28% 10%,
-      40% 3%,
-      52% 12%,
-      66% 4%,
-      80% 10%,
-      96% 6%,
-      98% 28%,
-      88% 36%,
-      97% 52%,
-      84% 64%,
-      98% 76%,
-      90% 92%,
-      70% 84%,
-      54% 96%,
-      42% 86%,
-      30% 97%,
-      18% 86%,
-      6% 94%,
-      2% 72%,
-      12% 62%,
-      3% 48%,
-      16% 36%,
-      2% 24%
-    );
+  .intro-revealTarget {
+    opacity: 1;
   }
 
-  @keyframes intro-rebirth {
+  .intro-revealTarget--on {
+    animation: intro-content-rebirth 1550ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    transform-origin: 50% 35%;
+    will-change: transform, opacity, filter;
+  }
+
+  @keyframes intro-content-rebirth {
     0% {
       opacity: 0;
-      transform: scale(1.02);
-      filter: blur(12px) brightness(0.72) saturate(1.08) contrast(1.08);
-      clip-path: polygon(
-        8% 18%,
-        18% 10%,
-        30% 22%,
-        42% 12%,
-        54% 26%,
-        68% 14%,
-        82% 22%,
-        92% 16%,
-        94% 30%,
-        86% 40%,
-        94% 54%,
-        82% 66%,
-        94% 78%,
-        84% 90%,
-        70% 82%,
-        56% 92%,
-        44% 82%,
-        32% 92%,
-        20% 82%,
-        10% 88%,
-        6% 70%,
-        14% 60%,
-        6% 46%,
-        16% 36%,
-        8% 26%
-      );
+      transform: scale(1.012);
+      filter: blur(14px) brightness(0.6) saturate(1.1) contrast(1.08);
     }
-    55% {
+    60% {
       opacity: 1;
       transform: scale(1.002);
-      filter: blur(2.2px) brightness(0.92) saturate(1.05) contrast(1.06);
+      filter: blur(2.4px) brightness(0.92) saturate(1.05) contrast(1.06);
     }
     100% {
       opacity: 1;
       transform: scale(1);
       filter: blur(0px) brightness(1) saturate(1) contrast(1);
-      clip-path: inset(0 round 0px);
     }
   }
+
+  .intro-rebirth {
+    position: fixed;
+    inset: 0;
+    z-index: 79; /* below intro-splash (80), above page */
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.85);
+    animation: intro-rebirth-bg 1550ms ease both;
+  }
+
+  @keyframes intro-rebirth-bg {
+    0% { opacity: 1; }
+    55% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .intro-rebirth__scan {
+    position: absolute;
+    inset: -20%;
+    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.22), rgba(99,102,241,0.18), transparent);
+    filter: blur(2px);
+    opacity: 0.0;
+    transform: translateX(-20%);
+    animation: intro-rebirth-scan 1550ms ease both;
+    mix-blend-mode: screen;
+  }
+
+  @keyframes intro-rebirth-scan {
+    0% { opacity: 0; transform: translateX(-28%); }
+    18% { opacity: 0.85; }
+    75% { opacity: 0.55; transform: translateX(28%); }
+    100% { opacity: 0; transform: translateX(40%); }
+  }
+
+  .intro-rebirth__shard {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    box-shadow:
+      0 0 0 1px rgba(99, 102, 241, 0.10) inset,
+      0 0 20px rgba(56, 189, 248, 0.16),
+      0 0 46px rgba(99, 102, 241, 0.12);
+    mix-blend-mode: normal;
+    opacity: 1;
+    filter: blur(0.3px);
+    animation: intro-shards-assemble 1550ms cubic-bezier(0.2, 0.85, 0.2, 1) both;
+    will-change: transform, opacity, clip-path;
+  }
+
+  @keyframes intro-shards-assemble {
+    0% { opacity: 1; transform: translate3d(0,0,0) scale(1.03); }
+    55% { opacity: 1; }
+    100% { opacity: 0; transform: translate3d(0,0,0) scale(1); }
+  }
+
+  /* 8 shards with different clip-path + starting transforms */
+  .intro-rebirth__shard--1 {
+    clip-path: polygon(0 0, 34% 0, 22% 24%, 0 18%);
+    transform: translate3d(-28vw, -12vh, 0) rotate(-18deg) scale(1.05);
+  }
+  .intro-rebirth__shard--2 {
+    clip-path: polygon(34% 0, 68% 0, 60% 22%, 28% 26%);
+    transform: translate3d(0vw, -18vh, 0) rotate(14deg) scale(1.08);
+  }
+  .intro-rebirth__shard--3 {
+    clip-path: polygon(68% 0, 100% 0, 100% 22%, 72% 18%);
+    transform: translate3d(26vw, -10vh, 0) rotate(22deg) scale(1.06);
+  }
+  .intro-rebirth__shard--4 {
+    clip-path: polygon(0 18%, 22% 24%, 18% 55%, 0 62%);
+    transform: translate3d(-34vw, 8vh, 0) rotate(10deg) scale(1.07);
+  }
+  .intro-rebirth__shard--5 {
+    clip-path: polygon(22% 24%, 60% 22%, 58% 58%, 18% 55%);
+    transform: translate3d(-6vw, 14vh, 0) rotate(-8deg) scale(1.04);
+  }
+  .intro-rebirth__shard--6 {
+    clip-path: polygon(60% 22%, 100% 22%, 100% 60%, 58% 58%);
+    transform: translate3d(30vw, 6vh, 0) rotate(6deg) scale(1.06);
+  }
+  .intro-rebirth__shard--7 {
+    clip-path: polygon(0 62%, 18% 55%, 26% 100%, 0 100%);
+    transform: translate3d(-18vw, 22vh, 0) rotate(-14deg) scale(1.07);
+  }
+  .intro-rebirth__shard--8 {
+    clip-path: polygon(18% 55%, 100% 60%, 100% 100%, 26% 100%);
+    transform: translate3d(14vw, 18vh, 0) rotate(12deg) scale(1.05);
+  }
+
+  /* When overlay runs, bring shards into place before fading */
+  .intro-rebirth .intro-rebirth__shard--1,
+  .intro-rebirth .intro-rebirth__shard--2,
+  .intro-rebirth .intro-rebirth__shard--3,
+  .intro-rebirth .intro-rebirth__shard--4,
+  .intro-rebirth .intro-rebirth__shard--5,
+  .intro-rebirth .intro-rebirth__shard--6,
+  .intro-rebirth .intro-rebirth__shard--7,
+  .intro-rebirth .intro-rebirth__shard--8 {
+    animation-name: intro-shards-assemble-in;
+  }
+
+  @keyframes intro-shards-assemble-in {
+    0% { opacity: 1; }
+    48% { transform: translate3d(0,0,0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); opacity: 0; }
+  }
+
+  /* legacy .intro-reveal animation replaced by intro-revealTarget + intro-rebirth overlay */
+  .intro-reveal { }
 
   .intro-splash {
     position: fixed;

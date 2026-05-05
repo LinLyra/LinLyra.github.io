@@ -75,23 +75,37 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const beginExit = () => {
     if (shattering) return
     setShattering(true)
-    // Delay the "rebirth" so it is visible after the overlay fades.
-    window.setTimeout(() => setRevealing(true), 700)
     try {
       sessionStorage.setItem("introPlayed", "1")
     } catch {}
     window.setTimeout(() => {
       setShow(false)
       setShattering(false)
-    }, 1350)
+      setRevealing(true)
+    }, 1250)
     window.setTimeout(() => {
       setRevealing(false)
-    }, 3200)
+    }, 3600)
   }
 
   return (
     <>
-      <div className={cn(revealing && "intro-reveal")}>{children}</div>
+      <div className={cn("intro-revealTarget", revealing && "intro-revealTarget--on")}>
+        {children}
+      </div>
+      {revealing ? (
+        <div className="intro-rebirth" aria-hidden>
+          <span className="intro-rebirth__scan" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--1" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--2" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--3" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--4" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--5" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--6" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--7" />
+          <span className="intro-rebirth__shard intro-rebirth__shard--8" />
+        </div>
+      ) : null}
       {show ? (
         <div
           className={cn(
