@@ -16,6 +16,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { recordPageView } from "@/lib/site-analytics"
+import { PageCornerLottie } from "@/components/page-corner-lottie"
 
 type Kind = "Volunteer" | "Networking" | "Talks" | "Workshop"
 
@@ -572,6 +573,14 @@ export default function NebulaPage() {
       }
     >
       <Navigation activeSection="nebula" onSectionChange={() => {}} />
+
+      <PageCornerLottie
+        side="right"
+        className="top-[118px] right-[max(1rem,calc(50%-36rem-4rem))]"
+        src="/animations/catch-fish.lottie"
+        alt="Fishing animation"
+        sizeRem={13}
+      />
 
       <div className="relative z-10 pt-20 p-6">
         <div className="max-w-6xl mx-auto">
