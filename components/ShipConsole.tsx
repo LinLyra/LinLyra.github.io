@@ -284,24 +284,15 @@ export default function ShipConsole() {
                         value={stats?.unique_sessions ?? "—"}
                       />
                       <StatTile
+                        icon={<Sparkles className="h-4 w-4 text-violet-200" />}
+                        label="Page views"
+                        value={stats?.total_page_views ?? "—"}
+                      />
+                      <StatTile
                         icon={<Orbit className="h-4 w-4 text-emerald-200" />}
                         label="Hot planet"
                         value={stats?.top_planet?.slug ? `${planetLabel(stats.top_planet.slug)}` : "—"}
                         href={toHref(stats?.top_planet?.slug ? `/${stats.top_planet.slug}` : null) ?? undefined}
-                        onNavigate={() => setOpen(false)}
-                      />
-                      <StatTile
-                        icon={<BookOpen className="h-4 w-4 text-amber-200" />}
-                        label="Hot learning"
-                        value={stats?.top_learning?.path ? `${prettyPathTail(stats.top_learning.path)}` : "—"}
-                        href={toHref(stats?.top_learning?.path) ?? undefined}
-                        onNavigate={() => setOpen(false)}
-                      />
-                      <StatTile
-                        icon={<Sparkles className="h-4 w-4 text-rose-200" />}
-                        label="Hot activity"
-                        value={stats?.top_nebula?.path ? `${prettyPathTail(stats.top_nebula.path)}` : "—"}
-                        href={toHref(stats?.top_nebula?.path) ?? undefined}
                         onNavigate={() => setOpen(false)}
                       />
                     </div>
