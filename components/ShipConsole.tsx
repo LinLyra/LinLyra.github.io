@@ -35,13 +35,20 @@ export default function ShipConsole() {
   const [stats, setStats] = useState<PublicStats | null>(null)
   const [statsLoading, setStatsLoading] = useState(false)
   const [statsError, setStatsError] = useState<string | null>(null)
-  const [insertStatus, setInsertStatus] = useState<"idle" | "ok" | "err">("idle")
-  const [insertMsg, setInsertMsg] = useState<string | null>(null)
 
   useEffect(() => {
     const timer = setInterval(() => setTime((t) => t + 1), 1000)
     return () => clearInterval(timer)
   }, [])
+
+  // Record a page view on navigation (deduped in site-analytics).
+  useEffect(() => {
+    const p = pathname.endsWith("/") ? pathname : `${pathname}/`
+    void recordPageView(p).then(() => {
+      if (open) void loadStats()
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   useEffect(() => {
     try {
@@ -115,6 +122,13 @@ export default function ShipConsole() {
     return p.endsWith("/") ? p : `${p}/`
   }
 
+  const hotProjectsFallback = useMemo(() => {
+    return history
+      .map((p) => (p.endsWith("/") ? p : `${p}/`))
+      .filter((p) => p !== "/" && p !== "/#/") // defensive
+      .slice(0, 3)
+  }, [history])
+
   return (
     <>
       <div className="fixed bottom-5 right-5 z-[60]">
@@ -153,14 +167,8 @@ export default function ShipConsole() {
                   <div className="flex items-center gap-2">
                     <SheetTitle className="flex items-center gap-2 text-sky-200">
                       <Radar className="h-5 w-5 shrink-0" />
-                      Mission console
+                      Ship console
                     </SheetTitle>
-                    <span className="hidden sm:inline-flex items-center gap-1 rounded-lg border border-sky-400/20 bg-slate-950/50 px-2.5 py-1.5 text-[11px] font-medium text-slate-200/80">
-                      <Sparkles className="h-3.5 w-3.5 text-violet-200/90" />
-                      Page views
-                      <span className="text-slate-400/80">·</span>
-                      <span className="text-slate-50/90">{stats?.total_page_views ?? "—"}</span>
-                    </span>
                     <button
                       type="button"
                       onClick={() => void loadStats()}
@@ -168,40 +176,6 @@ export default function ShipConsole() {
                     >
                       <RefreshCw className={cn("h-3.5 w-3.5", statsLoading && "animate-spin")} />
                       Sync
-                    </button>
-                    <button
-                      type="button"
-                      onClick={async () => {
-                        setInsertStatus("idle")
-                        setInsertMsg(null)
-                        try {
-                          await recordPageView(pathname.endsWith("/") ? pathname : `${pathname}/`, { force: true })
-                          const lastErr = getLastAnalyticsError()
-                          if (lastErr) {
-                            setInsertStatus("err")
-                            setInsertMsg(lastErr)
-                          } else {
-                            setInsertStatus("ok")
-                            setInsertMsg("Recorded")
-                            void loadStats()
-                          }
-                        } catch (e) {
-                          setInsertStatus("err")
-                          setInsertMsg(e instanceof Error ? e.message : "Insert failed")
-                        }
-                      }}
-                      className={cn(
-                        "inline-flex items-center gap-1 rounded-lg border px-2.5 py-1.5 text-[11px] font-medium",
-                        insertStatus === "ok"
-                          ? "border-emerald-400/25 bg-emerald-500/10 text-emerald-100/90"
-                          : insertStatus === "err"
-                            ? "border-rose-400/25 bg-rose-500/10 text-rose-100/90"
-                            : "border-sky-400/20 bg-slate-950/40 text-slate-200/80 hover:bg-sky-500/10"
-                      )}
-                      title="Force record a page view now"
-                    >
-                      <Satellite className="h-3.5 w-3.5 text-sky-200/80" />
-                      Page view
                     </button>
                   </div>
                 </div>
@@ -251,28 +225,10 @@ export default function ShipConsole() {
                       <BarChart3 className="h-4 w-4 text-emerald-300/90" />
                       SITE PULSE
                     </div>
-                    <span className="inline-flex sm:hidden items-center gap-1 rounded-lg border border-sky-400/20 bg-slate-950/50 px-2.5 py-1.5 text-[11px] font-medium text-slate-200/80">
-                      <Sparkles className="h-3.5 w-3.5 text-violet-200/90" />
-                      Page views
-                      <span className="text-slate-400/80">·</span>
-                      <span className="text-slate-50/90">{stats?.total_page_views ?? "—"}</span>
-                    </span>
                   </div>
                   {statsError ? (
                     <p className="rounded-lg border border-amber-400/25 bg-amber-500/10 px-3 py-2 text-xs leading-relaxed text-amber-100/90">
                       {statsError}
-                    </p>
-                  ) : null}
-                  {insertMsg ? (
-                    <p
-                      className={cn(
-                        "mt-2 rounded-lg border px-3 py-2 text-xs leading-relaxed",
-                        insertStatus === "ok"
-                          ? "border-emerald-400/20 bg-emerald-500/10 text-emerald-100/90"
-                          : "border-rose-400/20 bg-rose-500/10 text-rose-100/90"
-                      )}
-                    >
-                      {insertMsg}
                     </p>
                   ) : null}
 
@@ -303,22 +259,19 @@ export default function ShipConsole() {
                         HOT PROJECTS
                       </div>
                       <div className="space-y-2">
-                        {(stats?.top_projects?.length ? stats.top_projects : []).map((row, i) => (
+                        {(stats?.top_projects?.length ? stats.top_projects.map((r) => r.path) : hotProjectsFallback).map((path, i) => (
                           <Link
-                            key={`${row.path}-${i}`}
-                            href={toHref(row.path) ?? "/"}
+                            key={`${path}-${i}`}
+                            href={toHref(path) ?? "/"}
                             onClick={() => setOpen(false)}
                             className={cn(
                               "group flex items-center justify-between gap-3 rounded-lg border border-sky-400/12 bg-slate-950/35 px-3 py-2",
                               "hover:border-sky-400/25 hover:bg-slate-900/40"
                             )}
                           >
-                            <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(row.path)}</span>
+                            <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(path)}</span>
                           </Link>
                         ))}
-                        {!stats?.top_projects?.length && !statsLoading ? (
-                          <p className="text-xs text-slate-500">—</p>
-                        ) : null}
                       </div>
                     </div>
                   </div>

@@ -4,9 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { X } from "lucide-react"
+import { ArrowUpRight, ChevronRight, X } from "lucide-react"
+import { Space_Grotesk } from "next/font/google"
 
 import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"
+import { bainInstantRetailSlidePaths } from "@/lib/bain-instant-retail-slides"
 import { citiGmc2026SlidePaths } from "@/lib/citi-gmc-2026-slides"
 import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slides"
 import { flourishKpmg2026SlidePaths } from "@/lib/flourish-kpmg-2026-slides"
@@ -20,6 +22,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+
+const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] })
 
 type Mission = {
   title: string
@@ -43,6 +47,13 @@ const MISSIONS: Mission[] = [
     href: "/data/citi-global-market-challenge-2026",
     images: [...citiGmc2026SlidePaths()],
     accent: "blue",
+  },
+  {
+    title: "Instant Retail Profitability Strategy",
+    subtitle: "Bain & Company Case Competition 2026",
+    href: "/business/bain-instant-retail-profitability-strategy",
+    images: [...bainInstantRetailSlidePaths()],
+    accent: "green",
   },
   {
     title: "H&E Tumour vs Immune Cells",
@@ -78,20 +89,29 @@ export function MissionHighlights() {
   return (
     <div className="pt-4">
       <div className="mb-4 text-center">
-        <h3 className="text-xl font-semibold tracking-tight text-slate-100 md:text-2xl">Featured mission</h3>
-        <p className="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-slate-500 md:text-sm">
+        <h3 className={`${display.className} text-xl font-semibold tracking-tight text-slate-100 md:text-2xl`}>
+          Featured mission
+        </h3>
+        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-[0.95rem]">
           Structured problem-solving across real-world business and data challenges.
         </p>
+        <div className="mt-2 flex items-center justify-center gap-2 text-[11px] font-medium tracking-[0.18em] text-slate-400/80">
+          <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1">SCROLL</span>
+          <ChevronRight className="h-3.5 w-3.5 animate-[mission-hint_1.3s_ease-in-out_infinite]" />
+        </div>
       </div>
 
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-8 bg-gradient-to-r from-black/80 to-transparent md:w-12" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-8 bg-gradient-to-l from-black/80 to-transparent md:w-12" />
+        <div className="pointer-events-none absolute right-2 top-1/2 z-[2] -translate-y-1/2 rounded-full border border-white/10 bg-black/35 p-2 text-slate-200/80 backdrop-blur-md md:right-3">
+          <ChevronRight className="h-4 w-4 animate-[mission-hint_1.3s_ease-in-out_infinite]" />
+        </div>
 
         <div
           className={cn(
             "missions-scroll relative z-0 flex gap-2.5 overflow-x-auto pb-2 pt-1",
-            "snap-x snap-mandatory scroll-px-3 md:gap-3 md:scroll-px-1"
+            "snap-x snap-mandatory scroll-px-4 px-3 md:gap-3 md:scroll-px-6 md:px-4"
           )}
         >
           {MISSIONS.map((m) => (
@@ -99,6 +119,23 @@ export function MissionHighlights() {
           ))}
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes mission-hint {
+          0% {
+            transform: translateX(0);
+            opacity: 0.55;
+          }
+          55% {
+            transform: translateX(6px);
+            opacity: 0.95;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 0.55;
+          }
+        }
+      `}</style>
     </div>
   )
 }
@@ -141,9 +178,14 @@ function MissionCard({ mission }: { mission: Mission }) {
           alt={mission.title}
           fill
           sizes="200px"
-          className="object-cover transition duration-500 ease-out"
+          className="object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
           priority={false}
         />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-75" />
+        <div className="absolute right-2 top-2 inline-flex items-center gap-1 rounded-full border border-white/10 bg-black/35 px-2 py-1 text-[10px] font-semibold tracking-[0.16em] text-slate-100/90 backdrop-blur-md">
+          <ArrowUpRight className="h-3 w-3" />
+          OPEN
+        </div>
       </div>
 
       <div className="relative p-2.5">
@@ -177,7 +219,7 @@ function MissionCard({ mission }: { mission: Mission }) {
 
   const cardClass = cn(
     "group relative flex min-w-[min(10.5rem,62vw)] max-w-[11.5rem] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white/[0.035] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition",
-    "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+    "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] active:translate-y-0"
   )
 
   if (embedUrl) {
@@ -226,6 +268,9 @@ function MissionCard({ mission }: { mission: Mission }) {
     </Link>
   )
 }
+
+// Subtle "scroll →" hint animation
+// (Global keyframes live in this component file via Tailwind's arbitrary animation.)
 
 function accentBg(a: Mission["accent"]) {
   switch (a) {
