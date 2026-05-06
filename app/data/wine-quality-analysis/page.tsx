@@ -40,7 +40,7 @@ export default function WineQualityAnalysisPage() {
       "Stability / Robustness",
       "Interpretation",
     ],
-    notes: ["/data/wine_1.png", "/data/wine_2.png"],
+    notes: ["/data/wine1.png"],
 
     reportPdf: undefined,
   };

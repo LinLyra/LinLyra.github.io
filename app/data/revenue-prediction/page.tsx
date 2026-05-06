@@ -35,7 +35,7 @@ export default function QBUSRevenuePredictionPage() {
       "EDA",
     ],
     notes: [
-      "/data/prediction.png",
+      "/data/QSR.png",
     ],
   };
 

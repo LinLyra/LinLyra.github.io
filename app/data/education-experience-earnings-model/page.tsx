@@ -29,31 +29,14 @@ export default function EducationExperienceModelPage() {
       "Out-of-sample",
       "Policy Insight",
     ],
-    notes: ["/data/edu_exp_1.png", "/data/edu_exp_2.png"],
-    reportPdf: "/data/Education_Experience_Report.pdf",
+    notes: ["/data/educ.png", ],
   };
 
-  const overview = `This project examines how education and work experience jointly shape individual earnings using a structured model comparison framework.
-
-Objective:
-• Quantify the relative importance of schooling vs. experience.
-• Evaluate model specification sensitivity.
-• Improve predictive performance while maintaining interpretability.
-
-Methodology:
-• Built multiple regression specifications with progressively richer controls.
-• Compared linear, extended, and nonlinear models.
-• Performed out-of-sample forecasting to evaluate real predictive power.
-• Assessed omitted-variable bias and model stability.
-
-Key findings:
-• Education emerges as the strongest and most stable predictor of earnings.
-• Experience increases wages but shows clear diminishing marginal returns.
-• Extended models reduce omitted-variable bias and improve explanatory power.
-• The full nonlinear specification delivers the best out-of-sample forecasts.
-
-Implication:
-Human capital accumulation through education remains the dominant long-run see driver of earnings, while early-career experience primarily affects short-run wage growth.`;
+  const overview = `This project was developed for the 2024 Asia and Pacific Mathematical Contest in Modeling (APMCM), focusing on the sustainable development of China’s and the global pet industry. The project combined time-series forecasting, regression analysis, machine learning, and policy scenario modeling to analyze the rapid growth of the pet economy and evaluate future market opportunities under changing international trade conditions.
+The study explored four interconnected problems: domestic pet-industry development in China, global pet food demand forecasting, China’s pet food production and export trends, and the impact of foreign tariff policies on China’s pet food industry. By integrating domestic and international market dynamics, the project aimed to provide data-driven recommendations for sustainable industry growth and strategic decision-making.
+Different modeling approaches were selected according to the characteristics of the data and market behavior. Linear regression was used to model the steady growth of China’s cat population, while Random Forest regression captured the more complex and nonlinear trends in dog ownership. ARIMA time-series forecasting was applied to predict global pet food demand, and scenario analysis was conducted to evaluate the effects of tariff increases on exports and domestic market substitution.
+The results suggested that China’s cat population would continue growing rapidly due to urbanization and changing lifestyles, while the dog population would stabilize because of cultural and regional factors. Global pet food demand was forecasted to maintain strong growth over the next three years, driven by premiumization and increasing pet ownership in both developed and emerging markets.
+The project also highlighted the risks associated with rising international tariffs on China’s pet food exports. However, the analysis showed that the expanding domestic market could partially offset export losses, especially through premium products, local branding, and market diversification strategies. Overall, the project demonstrated how mathematical modeling and economic analysis can support strategic planning in a rapidly evolving consumer industry.`;
 
   const highlights: string[] = [
     "Constructed a clean earnings panel and engineered core human-capital variables (education years, experience, and interaction terms).",
@@ -65,22 +48,12 @@ Human capital accumulation through education remains the dominant long-run see d
     "Synthesized results into policy-relevant insights on education access and early-career labour dynamics.",
   ];
 
-  const reflection = `The most important lesson from this project is that model specification matters as much as model accuracy.
-
-Early linear models appeared adequate in-sample, but coefficient stability checks revealed sensitivity to omitted variables. By expanding the specification and testing nonlinear forms, the analysis became both more interpretable and more predictive.
-
-Two practices proved especially valuable:
-(1) evaluating models with out-of-sample forecasts rather than relying purely on R², and  
-(2) explicitly testing diminishing returns to experience.
-
-If I were to extend this work, I would:
-• introduce panel or pseudo-panel structure,
-• explore causal identification strategies,
-• incorporate occupation and industry heterogeneity,
-• and build an interactive earnings simulator for policy scenarios.
-
-This project strengthened my ability to connect econometric rigor with real labour-market interpretation — moving beyond “fit a regression” toward structured model reasoning.`;
-
+  const reflection = `This project strengthened my understanding of how mathematical modeling can be applied to real-world economic and industry problems. One of the most important lessons I learned was that different datasets require different modeling approaches. Stable and predictable trends, such as cat-population growth, are often well explained by simpler interpretable models like linear regression, 
+  while more volatile and nonlinear patterns require flexible machine-learning methods such as Random Forest.I also gained practical experience in time-series forecasting and scenario analysis. Building ARIMA models for global pet food demand helped me better understand trend decomposition, forecasting assumptions, and the importance of validating future projections against economic behavior and industry context.
+  Another major takeaway from this project was the importance of integrating multiple models into a coherent analytical framework. Rather than treating each question independently, the project connected domestic industry trends, global demand, export forecasting, and tariff-policy impacts into one larger economic system. This significantly improved my ability to think strategically and structurally about modeling problems.
+  The tariff-policy simulation section also taught me that predictive models alone are often insufficient for decision-making. Policy uncertainty, consumer behavior, and market adaptation mechanisms must also be considered when evaluating long-term sustainability. Combining quantitative forecasting with scenario analysis and strategic recommendations created a more realistic and decision-oriented solution.From a technical perspective, 
+  I improved my skills in Python-based data analysis, machine learning implementation, visualization design, and economic interpretation. I also learned how to present complex quantitative findings in a concise and business-oriented format suitable for competitions and strategic reports.If I continued this project, I would incorporate larger international datasets, apply advanced forecasting methods such as Prophet or LSTM neural networks, 
+  include dynamic trade-policy modeling, and explore consumer sentiment analysis to better capture changing pet-consumption behavior in global markets.`;
   const hasNotes = meta.notes.length > 0;
 
   return (
@@ -108,14 +81,6 @@ This project strengthened my ability to connect econometric rigor with real labo
                 </Button>
               )}
 
-              {!!meta.reportPdf && (
-                <Link href={meta.reportPdf} target="_blank">
-                  <Button className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/15">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Report PDF
-                  </Button>
-                </Link>
-              )}
             </div>
           </div>
 

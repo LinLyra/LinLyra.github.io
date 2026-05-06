@@ -25,7 +25,7 @@ export default function YouTubeAIContentStrategyPage() {
 
   const meta: Meta = {
     slug: "youtube-ai-content-strategy",
-    title: "Youtube Ai Content Strategy",
+    title: "Youtube AI Content Strategy",
     institution: "Personal Project",
     practice:
       "Content Analytics · Clustering · Causal-style Estimation · Posting Strategy",
@@ -48,17 +48,14 @@ export default function YouTubeAIContentStrategyPage() {
   };
 
   const overview = `Goal: help AI content creators and platform recommenders solve “when to post” and “what to post” under high volatility in early performance.
-
 Data & scope:
 • Collected 3,143 videos from 80+ AI/tech channels (Jan–Sep 2025) via Python + SQL.
 • Built an early-performance panel using T+48h views and engagement signals to reduce long-tail drift.
 • Grouped channels by scale (e.g., head vs long-tail) using 90-day rolling views.
 • Clustered videos into time-slot segments (e.g., morning / afternoon / evening) with KMeans and calendar features.
-
 Method:
 • Estimated posting-time effects using OLS with channel fixed characteristics and interaction terms.
 • Tested heterogeneity with “time-slot × channel-scale” interaction to validate asymmetric lift across creator tiers.
-
 Key findings:
 • Short-form 5–10 min content performs best when pushed earlier in the day.
 • Mid-size channels benefit most from “afternoon → morning” shift (≈ +16.5% on play volume).
@@ -79,12 +76,10 @@ Key findings:
 (1) focusing on early-window metrics (T+48h) to reduce long-run algorithm drift,
 (2) adding interaction terms for channel scale to model heterogeneity,
 (3) sanity-checking clusters against interpretable time bins.
-
 If iterating further, I’d introduce:
 • causal identification improvements (e.g., diff-in-diff around schedule changes, instrument candidates),
 • topic embeddings for content type control,
 • a lightweight dashboard that recommends optimal upload slots in real time.
-
 This project strengthened my ability to turn noisy platform data into practical decision rules — the output is not just a report, but an executable growth strategy.`;
 
   const hasNotes = meta.notes.length > 0;
