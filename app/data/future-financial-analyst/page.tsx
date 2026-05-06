@@ -15,8 +15,8 @@ export default function GrowthValueFrameworkPage() {
   const meta = {
     slug: "future-financial-analyst-competition",
     title: "Growth-Based Repricing Framework",
-    institution: "CFA Institute",
-    practice: "Financial Research · Valuation, Innovation, and Real Economy",
+    institution: "CFA Future Financial Analyst Competition",
+    practice: "Financial Research · Valuation · Real Economy",
     term: "2026.03",
     honor: "Top 60" as const,
     tags: [
@@ -29,15 +29,13 @@ export default function GrowthValueFrameworkPage() {
       "China vs US",
       "Policy",
     ],
-    notes: ["/competition/CFA1.png"],
+    notes: ["/competition/CFA1.png","/competition/CFA2.png"],
   };
 
   const overview = `This project develops a Growth Value Identification Model (GVIM) to explain how financial systems should identify and price emerging productive forces.
-
 Instead of relying only on backward-looking financial indicators, the framework combines financial fundamentals, growth potential, and strategic positioning. Using a panel dataset of leading U.S. and Chinese technology firms, the project explores how markets price innovation, scalability, and the ability to convert technological input into real economic growth.`;
 
   const highlight = `The core highlight of this project is the attempt to reframe valuation from a purely financial problem into a growth-based pricing problem.
-
 The framework argues that firms should not be evaluated only by current earnings or asset size. Their future value also depends on whether they can turn innovation into scalable products, user growth, data assets, and stronger positions within industrial ecosystems.`;
 
   const whatIDid: string[] = [

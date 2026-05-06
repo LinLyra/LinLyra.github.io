@@ -25,25 +25,21 @@ export default function CitiGlobalMarketChallengePage() {
     practice:
       "Multi-Asset Portfolio Strategy · Long/Short Allocation · Transaction Cost Optimisation · Risk Management",
     term: "2026.04",
-    role: "Portfolio Strategy, Data Analysis & Investment Pitch",
-    moreUrl: "https://your-data-planet-link.com",
+    role: "Team Lead",
+    moreUrl: "https://peridot-eocursor-4db.notion.site/Long-BeOne-Short-Akeso-3573be3c131580dd9796c78ec8881923",
     tags: [
       "Portfolio Strategy",
       "Long/Short Fund",
       "Asset Allocation",
       "Transaction Costs",
       "Commodities",
-      "Fixed Income",
       "Risk Analytics",
       "Scenario Analysis",
-      "Citi GMC",
     ],
   };
 
   const overview = `A multi-asset portfolio strategy created for the Citi Global Market Challenge 2026.
-
 The project proposes a transaction-optimised long/short portfolio benchmarked against Fund X. The strategy allocates capital across equities, fixed income, commodities, FX, and cash, with the objective of outperforming Fund X over a three-month horizon.
-
 The core thesis is “Cost-Efficient Alpha”: alpha is generated not only through asset selection, but through disciplined capital allocation after transaction costs. The final portfolio returned 19.95% versus Fund X’s 9.74%, generating approximately +10.2% active alpha, with a Sharpe ratio of 2.82.`;
 
   const keyInsights = [
@@ -90,9 +86,7 @@ The core thesis is “Cost-Efficient Alpha”: alpha is generated not only throu
   ];
 
   const reflection = `This project strengthened my ability to combine investment strategy, quantitative analysis, and institutional-style presentation.
-
 The most important learning was that a strong portfolio pitch is not only about identifying high-return assets. It also requires understanding transaction costs, turnover, risk concentration, and whether an active bet is justified by both data and macro conviction.
-
 Through this case, I learned how to translate raw time series data into a clear investment recommendation: long commodities, reduce equity beta, short fixed income, and use FX as a tactical hedge. I also improved my ability to build a professional investment deck that explains not only what the portfolio does, but why the strategy should outperform after costs.`;
 
   return (

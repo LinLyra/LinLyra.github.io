@@ -95,21 +95,7 @@ export default function BusinessPage() {
       keywords: ["coze", "knowledge base", "chatbot", "low-code ai"],
       tags: ["AI Product", "Social Impact"],
     },
-    {
-      slug: "kpmg-bluebird-it-audit",
-      projectName: "POS / Payments IT Audit Case",
-      subtitle: "KPMG Bluebird IT Audit Challenge",
-      date: "2025.08",
-      type: "competition",
-      logo: "/competition/kpmglogo.png",
-      placement: "Semifinalist",
-      description:
-        "IT audit case on retail POS/payment stacks—risk framing, controls, and testable evidence under time pressure.",
-      skills: ["IT Audit", "Risk Analysis", "Process Mapping"],
-      industries: ["Retail Tech", "Payments", "IT Audit"],
-      keywords: ["pos", "payments", "kpmg bluebird"],
-      tags: ["IT Audit", "Cybersecurity"],
-    },
+    
     {
       slug: "net-zero-challenge-gys",
       projectName: "Smart Green Homestay",
@@ -124,6 +110,21 @@ export default function BusinessPage() {
       industries: ["Sustainability", "Climate", "Tourism"],
       keywords: ["net-zero", "unesco", "homestay"],
       tags: ["Climate", "Innovation"],
+    },
+    {
+      slug: "aerotropolis-south-connector-2026",
+      projectName: "Aerotropolis South Connector",
+      subtitle: "PMSoc × KordaMentha Case Competition",
+      date: "2026.04",
+      type: "strategy",
+      logo: "/competition/kordamentha.png",
+      placement: "Top 6",
+      description:
+        "PPP toll-corridor thesis for Western Sydney—demand, revenue stack, and bankable delivery narrative.",
+      skills: ["Infrastructure", "PPP", "Commercial Strategy", "Feasibility"],
+      industries: ["Infrastructure", "Transport", "Public Sector"],
+      keywords: ["western sydney", "ppp", "toll road"],
+      tags: ["Infrastructure", "Finance"],
     },
     {
       slug: "mersen-campus-brand-activation",
@@ -146,14 +147,44 @@ export default function BusinessPage() {
       subtitle: "YuanQi Forest Universe Challenge",
       date: "2026.01",
       type: "marketing",
-      logo: "/competition/Yuanqilogo.png",
-      placement: "Finalist",
+      logo: "/competition/YuanQilogo.png",
+      placement: "Top 50",
       description:
         "Youth beverage concept weaving coding culture, micro-challenges, and light refreshment into one shareable ritual.",
       skills: ["Product Design", "Innovation", "Go-to-Market"],
       industries: ["Beverage", "Consumer Goods", "Brand Innovation"],
       keywords: ["genki forest", "youth marketing"],
       tags: ["Product", "Brand"],
+    },
+    {
+      slug: "kpmg-bluebird-it-audit",
+      projectName: "POS / Payments IT Audit Case",
+      subtitle: "KPMG Bluebird IT Audit Challenge",
+      date: "2025.08",
+      type: "competition",
+      logo: "/competition/kpmglogo.png",
+      placement: "Finalist",
+      description:
+        "IT audit case on retail POS/payment stacks—risk framing, controls, and testable evidence under time pressure.",
+      skills: ["IT Audit", "Risk Analysis", "Process Mapping"],
+      industries: ["Retail Tech", "Payments", "IT Audit"],
+      keywords: ["pos", "payments", "kpmg bluebird"],
+      tags: ["IT Audit", "Cybersecurity"],
+    },
+    {
+      slug: "ey-esg-innovation-2025",
+      projectName: "AI × ESG Luxury Supply Chain",
+      subtitle: "EY ESG University Innovation Challenge",
+      date: "2025.04",
+      type: "sustainability",
+      logo: "/competition/eylogo.png",
+      placement: "Semifinalist",
+      description:
+        "Traceability + Scope-3 data architecture for luxury supply chains with disclosure-ready KPIs and governance.",
+      skills: ["ESG", "Supply Chain", "Sustainability Strategy"],
+      industries: ["Luxury", "Supply Chain", "ESG"],
+      keywords: ["dpp", "scope 3", "csrd"],
+      tags: ["ESG", "Luxury"],
     },
     {
       slug: "instant-retail-profitability-strategy-2026",
@@ -197,6 +228,7 @@ export default function BusinessPage() {
       keywords: ["talent retention", "act government", "graduate migration", "career strategy", "public policy", "kpmg case"],
       tags: ["Strategy", "Government", "Consulting"],
     },
+    
     {
       slug: "roland-berger-campus-2025",
       projectName: "Humanoid Robot GTM",
@@ -253,21 +285,7 @@ export default function BusinessPage() {
       keywords: ["saiep", "nonprofit", "consulting"],
       tags: ["Strategy", "Growth"],
     },
-    {
-      slug: "ey-esg-innovation-2025",
-      projectName: "AI × ESG Luxury Supply Chain",
-      subtitle: "EY ESG University Innovation Challenge",
-      date: "2025.04",
-      type: "sustainability",
-      logo: "/competition/eylogo.png",
-      placement: "Semifinalist",
-      description:
-        "Traceability + Scope-3 data architecture for luxury supply chains with disclosure-ready KPIs and governance.",
-      skills: ["ESG", "Supply Chain", "Sustainability Strategy"],
-      industries: ["Luxury", "Supply Chain", "ESG"],
-      keywords: ["dpp", "scope 3", "csrd"],
-      tags: ["ESG", "Luxury"],
-    },
+    
     {
       slug: "kpmg-esg-case-competition",
       projectName: "Automotive Supply Chain ESG",
@@ -304,7 +322,7 @@ export default function BusinessPage() {
       type: "consulting",
       logo: "/experience/deloittelogo.png",
       description:
-        "Short virtual sprint from messy tables to KPIs, visuals, and a client-ready takeaway.",
+        "Virtual sprint from messy tables to KPIs, visuals, and a client-ready takeaway.",
       skills: ["Data Analysis", "Tableau", "Excel", "Python"],
       industries: ["Consulting", "Technology", "Transformation"],
       keywords: ["forage", "deloitte"],
@@ -324,20 +342,7 @@ export default function BusinessPage() {
       keywords: ["accenture", "forage", "mece"],
       tags: ["Strategy", "Consulting"],
     },
-    {
-      slug: "aerotropolis-south-connector-2026",
-      projectName: "Aerotropolis South Connector",
-      subtitle: "PMSoc × KordaMentha Case Competition",
-      date: "2026.04",
-      type: "strategy",
-      placement: "Top 6",
-      description:
-        "PPP toll-corridor thesis for Western Sydney—demand, revenue stack, and bankable delivery narrative.",
-      skills: ["Infrastructure", "PPP", "Commercial Strategy", "Feasibility"],
-      industries: ["Infrastructure", "Transport", "Public Sector"],
-      keywords: ["western sydney", "ppp", "toll road"],
-      tags: ["Infrastructure", "Finance"],
-    },
+    
     {
       slug: "commonwealth-treasury-case",
       projectName: "Policy Package Evaluation",
