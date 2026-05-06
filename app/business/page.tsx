@@ -21,13 +21,10 @@ type BusinessType =
 
 type BusinessItem = {
   slug: string;
-  /** Card line 1 — your project / deliverable name */
   projectName: string;
-  /** Card line 2 — competition name, employer, or program host (no extra org line under date) */
   subtitle: string;
   date?: string;
   type: BusinessType;
-  /** One-sentence blurb on the card */
   description: string;
   tags?: string[];
   skills?: string[];
@@ -159,6 +156,20 @@ export default function BusinessPage() {
       tags: ["Product", "Brand"],
     },
     {
+      slug: "instant-retail-profitability-strategy-2026",
+      projectName: "Instant Retail Profitability Strategy",
+      subtitle: "Bain & Company Case Competition 2026",
+      date: "2026.04",
+      type: "competition",
+      logo: "/competition/bainlogo.png", 
+      description:
+        "Strategy consulting case proposing a profitability turnaround for China’s instant retail platform in Tier 3–4 cities, using unit economics modeling, city portfolio optimization, and a 3-year execution roadmap.",
+      skills: ["Strategy Consulting", "Unit Economics", "Market Strategy", "Growth Strategy", "City Portfolio Analysis", "Financial Modeling"],
+      industries: ["Retail", "E-commerce", "Platform Economy"],
+      keywords: ["instant retail", "china retail", "unit economics", "city strategy", "growth vs profitability", "bain case"],
+      tags: ["Strategy", "Consulting", "Retail"],
+    },
+    {
       slug: "ubs-finance-challenge-2026",
       projectName: "Long BeOne, Short Akeso",
       subtitle: "UBS Finance Challenge 2026",
@@ -171,6 +182,20 @@ export default function BusinessPage() {
       industries: ["Healthcare", "Biotech", "Capital Markets"],
       keywords: ["beone", "akeso", "china biotech", "long short", "finbert"],
       tags: ["Equity Research", "Healthcare", "AI Analysis"],
+    },
+    {
+      slug: "flourish-kpmg-case-competition-2026",
+      projectName: "FLOURISH",
+      subtitle: "ANUCBS × KPMG Case Competition 2026",
+      date: "2026.05",
+      type: "competition",
+      logo: "/competition/kpmglogo.png",
+      description:
+        "A government strategy case proposing a 6-week talent retention program for the ACT, addressing graduate outflow through opportunity visibility, employer engagement, and city identity. Designed an end-to-end solution including platform aggregation, career accelerator programs, and community-based retention mechanisms.",
+      skills: ["Strategy Consulting", "Public Sector Advisory", "Talent Retention Strategy", "Campaign Design", "Problem Diagnosis", "Go-to-Market Planning"],
+      industries: ["Government", "Education", "Workforce & Talent"],
+      keywords: ["talent retention", "act government", "graduate migration", "career strategy", "public policy", "kpmg case"],
+      tags: ["Strategy", "Government", "Consulting"],
     },
     {
       slug: "roland-berger-campus-2025",

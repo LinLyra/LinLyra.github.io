@@ -20,7 +20,7 @@ export default function Datathon2025SupplyChainPage() {
     images: ["/data/dataslide.png", "/data/datacet.png"] as string[],
     links: {
       github: "https://github.com/LinLyra/2025-Datathon",
-      more: "https://github.com/LinLyra/2025-Datathon",
+      more: "https://peridot-eocursor-4db.notion.site/Supply-Chain-Optimization-3573be3c131580898896c1415579fa3e",
     },
   };
 
@@ -35,9 +35,10 @@ export default function Datathon2025SupplyChainPage() {
   ];
 
   const whatIDid: string[] = [
-    "Owned analytics & modelling end-to-end: baseline diagnostics, segmentation, KPIs, hub–corridor design, and MIP formulation/solve.",
-    "Built decision artefacts: policy comparison tables, corridor flow maps, three routing schedules, and an exec-ready storyline.",
-    "Coordinated with time-series teammate to align ARIMA/ETS+reconciliation attempts with network KPIs and final exhibits.",
+    "Framed the case as an optimisation problem rather than a pure forecasting task. I broke the business question down into cost, delivery reliability, carbon impact, capacity limits, and route feasibility, then translated these factors into model inputs and constraints.",
+    "Led the optimisation model design and calculation. I defined the objective function, built the corridor-level coefficients, set up the MIP structure in Gurobi, and tested different weight and constraint settings to compare realistic operating policies.",
+    "Connected the model output back to business decisions. Instead of only reporting the lowest-cost route, I helped turn the results into three decision options — Cost-first, On-time-first, and Low-carbon-first — so managers could understand the trade-offs behind each policy.",
+    "Prepared the final decision materials, including policy comparison tables, corridor flow maps, routing schedules, and the storyline explaining why the recommended network was practical under time, cost, and sustainability targets.",
   ];
 
   const reflectionPoints: string[] = [
@@ -175,5 +176,3 @@ export default function Datathon2025SupplyChainPage() {
     </div>
   );
 }
-
-

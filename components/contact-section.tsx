@@ -189,7 +189,7 @@ export default function ContactSection() {
 
               <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
                 <p className="text-center text-xs text-gray-400">
-                Every message is a star launched into our shared sky — it will find its place in my constellation.
+                "Every message is a star launched into our shared sky — it will find its place in my constellation."
                 </p>
               </div>
             </CardContent>
