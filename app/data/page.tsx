@@ -71,18 +71,6 @@ export default function DataPage() {
       award: "First Place",
       logo: "/competition/sudatalogo.jpg",
     },
-    {
-      slug: "meituan-subsidy-efficiency",
-      projectName: "Subsidy Incrementality (PSM)",
-      subtitle: "Meituan Business Analytics Challenge",
-      date: "2026.04",
-      description:
-        "Causal inference on subsidy batches to estimate true incremental GMV and reallocate budget to higher-ROI segments.",
-      skills: ["Causal Inference", "PSM", "ROI", "Segmentation", "Business Analytics"],
-      industries: ["E-commerce", "Local Services", "Finance"],
-      type: "competition",
-      logo: "/competition/meituanlogo.png",
-    },
     
     {
       slug: "future-financial-analyst",
@@ -109,9 +97,22 @@ export default function DataPage() {
       type: "course",
     },
     {
+      slug: "meituan-subsidy-efficiency",
+      projectName: "Subsidy Efficiency Evaluation and Budget Reallocation for Local Life Marketing",
+      subtitle: "Meituan Business Analytics Challenge",
+      date: "2026.04",
+      description:
+        "Causal inference on subsidy batches to estimate true incremental GMV and reallocate budget to higher-ROI segments.",
+      skills: ["Causal Inference", "PSM", "ROI", "Segmentation", "Business Analytics"],
+      industries: ["E-commerce", "Local Services", "Finance"],
+      type: "competition",
+      logo: "/competition/meituanlogo.png",
+    },
+    
+    {
       slug: "citi-global-market-challenge-2026",
       projectName: "Cost-Efficient Alpha",
-      subtitle: "Citi Global Market Challenge 2026",
+      subtitle: "Citi Global Market Challenge",
       date: "2026.04",
       description:
         "A multi-asset portfolio strategy balancing alpha generation, transaction costs, and risk management across equities, fixed income, commodities, FX, and cash.",
@@ -121,16 +122,17 @@ export default function DataPage() {
       logo: "/competition/citilogo.png",
     },
     {
-      slug: "youtube-ai-content-strategy",
-      projectName: "Posting Window Lift Model",
-      subtitle: "Creator growth analytics",
-      date: "2025.10",
+      slug: "short-drama-text-analysis",
+      projectName: "Human–AI Dialogue Mining",
+      subtitle: "Short drama training corpus",
+      date: "2025.09",
       description:
-        "Clustered thousands of AI-creator uploads to find better time-slot × scale combinations and quantify view lift.",
-      skills: ["Python", "SQL", "KMeans", "OLS", "Causal Thinking"],
-      industries: ["Entertainment", "Creator Economy", "Marketing"],
+        "JSON→tabular pipeline with dialogue metrics for rhythm, diversity, and engagement in role-play training data.",
+      skills: ["Python", "NLP", "JSON", "Feature Engineering", "Text Mining"],
+      industries: ["Beauty", "Consumer Services", "AI Training"],
       type: "project",
     },
+   
     {
       slug: "disaster-risk-insurance",
       projectName: "Disaster Risk & Insurance Levers",
@@ -156,14 +158,14 @@ export default function DataPage() {
       award: "Excellence Award",
     },
     {
-      slug: "short-drama-text-analysis",
-      projectName: "Human–AI Dialogue Mining",
-      subtitle: "Short drama training corpus",
-      date: "2025.09",
+      slug: "youtube-ai-content-strategy",
+      projectName: "Youtube AI Content Strategy",
+      subtitle: "Creator growth analytics",
+      date: "2025.10",
       description:
-        "JSON→tabular pipeline with dialogue metrics for rhythm, diversity, and engagement in role-play training data.",
-      skills: ["Python", "NLP", "JSON", "Feature Engineering", "Text Mining"],
-      industries: ["Beauty", "Consumer Services", "AI Training"],
+        "Clustered thousands of AI-creator uploads to find better time-slot × scale combinations and quantify view lift.",
+      skills: ["Python", "SQL", "KMeans", "OLS", "Causal Thinking"],
+      industries: ["Entertainment", "Creator Economy", "Marketing"],
       type: "project",
     },
     {
@@ -258,25 +260,25 @@ export default function DataPage() {
    
     {
       slug: "apmcm-2024",
-      projectName: "APMCM Modeling Solution",
+      projectName: "Pet Industry Forecasting and Trade Policy Scenario Modeling",
       subtitle: "Asia-Pacific Mathematical Contest in Modeling",
       date: "2024.11",
       description:
         "My APMCM paper: optimization-first model, parameter sensitivity, and a tight writeup for our problem track.",
-      skills: ["Mathematical Modeling", "Optimization", "Sensitivity Analysis", "LaTeX"],
-      industries: ["Research", "Applied Math"],
+      skills: ["Modeling", "Time Series", "Regression", "Random Forest", "ARIMA", "Scenario Analysis", "Policy Analysis"],
+      industries: ["Pet Industry"],
       type: "competition",
       logo: "/competition/apmcmlogo.png",
     },
     {
       slug: "mcm-icm-2025",
-      projectName: "MCM/ICM Modeling Solution",
-      subtitle: "COMAP Mathematical Contest in Modeling",
+      projectName: "Global Cybersecurity Risk & Policy Intelligence Modeling",
+      subtitle: "2025 MCM/ICM Mathematical Contest in Modeling",
       date: "2025.02",
       description:
         "Our MCM/ICM entry: clear assumptions, statistical core models, and evidence-backed answers for the chosen problem.",
-      skills: ["Mathematical Modeling", "Statistics", "Simulation", "Technical Writing"],
-      industries: ["Research", "Applied Math"],
+      skills: ["Data Analytics", "Time Series",  "NLP"],
+      industries: ["Cybersecurity","Policy Analysis"],
       type: "competition",
       logo: "/competition/COMAPlogo.svg",
     },
@@ -439,7 +441,7 @@ export default function DataPage() {
                           <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
                             {project.projectName}
                           </h2>
-                          <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
+                          <p className="mt-1 line-clamp-2 min-h-[2.5rem] text-sm font-medium text-gray-400">
                             {project.subtitle}
                           </p>
                           <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
@@ -450,7 +452,7 @@ export default function DataPage() {
                     </div>
 
                     <div className="flex flex-1 flex-col p-6 pt-0">
-                      <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
+                      <p className="mb-3 line-clamp-3 min-h-[3.9rem] text-sm leading-relaxed text-gray-200">
                         {project.description}
                       </p>
 

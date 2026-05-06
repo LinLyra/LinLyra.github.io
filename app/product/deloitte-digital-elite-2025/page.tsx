@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink, Github, Trophy } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function DeloitteDigitalElitePage() {
@@ -18,9 +18,10 @@ export default function DeloitteDigitalElitePage() {
     institution: "Deloitte China",
     practice: "AI + Audit · Product Innovation",
     term: "2025.05",
-    status: "Completed" as const,
     placement: "National Runner-up",
-    notes: ["/competition/pin1.png"],
+    github: "https://github.com/LinLyra/pinsight",
+    moreUrl: "",
+    notes: ["/competition/pin1.png"] as string[],
     tags: [
       "AI Audit",
       "Product Architecture",
@@ -84,51 +85,97 @@ Being the sole technical contributor also strengthened my ability to translate d
 
   return (
     <div className="relative min-h-screen overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[#0a0e1a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.16),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(251,146,60,0.14),transparent_55%),radial-gradient(circle_at_90%_22%,rgba(99,102,241,0.12),transparent_55%)]" />
+      </div>
+
       <Navigation activeSection="product" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
+          <div className="flex items-center justify-between gap-3">
+            <Link href="/product">
+              <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-gray-100 hover:bg-orange-500/30">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Product
+              </Button>
+            </Link>
 
-          {/* Back */}
-          <Link href="/product">
-            <Button>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Product
-            </Button>
-          </Link>
+            <div className="flex items-center gap-2">
+              {meta.github ? (
+                <Link href={meta.github} target="_blank" rel="noreferrer">
+                  <Button className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/15">
+                    <Github className="mr-2 h-4 w-4" />
+                    GitHub
+                  </Button>
+                </Link>
+              ) : null}
 
-          {/* Header */}
-          <Card className="p-6">
-            <h1 className="text-2xl font-semibold text-white">
-              {meta.title}
-            </h1>
+              {meta.moreUrl ? (
+                <Link href={meta.moreUrl} target="_blank" rel="noreferrer">
+                  <Button className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30">
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    View more
+                  </Button>
+                </Link>
+              ) : hasNotes ? (
+                <Button
+                  onClick={() => setShowNotes(true)}
+                  className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
+                >
+                  View more
+                </Button>
+              ) : null}
+            </div>
+          </div>
 
-            <div className="flex gap-3 text-gray-300 mt-2">
-              <span>{meta.institution}</span>
-              <span>•</span>
-              <span className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {meta.term}
-              </span>
+          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+            <div className="absolute right-3 top-3">
+              {meta.placement ? (
+                <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100 backdrop-blur-sm">
+                  <Trophy className="mr-1 h-3.5 w-3.5" />
+                  {meta.placement}
+                </span>
+              ) : null}
             </div>
 
-            <div className="mt-3 flex flex-wrap gap-2">
-              {meta.tags.map((t) => (
-                <Badge key={t}>{t}</Badge>
-              ))}
+            <div className="p-5 md:p-6">
+              <h1 className="text-xl md:text-2xl font-semibold text-white mb-1 pr-28">
+                {meta.title}
+              </h1>
+
+              <div className="mb-3 inline-flex flex-wrap items-center gap-2 text-sm text-gray-300">
+                <span>{meta.institution}</span>
+                <span>•</span>
+                <span className="inline-flex items-center gap-1">
+                  <Calendar className="h-4 w-4" /> {meta.term}
+                </span>
+              </div>
+
+              <div className="mb-2 flex flex-wrap gap-2">
+                {meta.tags.map((t) => (
+                  <Badge key={t} className="border-amber-500/30 bg-orange-500/20 text-xs font-normal text-orange-100">
+                    {t}
+                  </Badge>
+                ))}
+              </div>
+
+              <p className="text-gray-200">{meta.practice}</p>
             </div>
+            <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
           {/* Overview */}
-          <section>
-            <h2 className="text-xl text-amber-400 mb-2">Project Overview</h2>
-            <p className="text-gray-200 whitespace-pre-line">{overview}</p>
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">Project Overview</h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
           {/* Key Innovations 🔥 */}
-          <section>
-            <h2 className="text-xl text-amber-400 mb-2">Key Innovations</h2>
-            <ul className="list-disc pl-5 text-gray-200 space-y-2">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">Key Innovations</h2>
+            <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {keyHighlights.map((k, i) => (
                 <li key={i}>{k}</li>
               ))}
@@ -136,11 +183,11 @@ Being the sole technical contributor also strengthened my ability to translate d
           </section>
 
           {/* Workflow 🔥 */}
-          <section>
-            <h2 className="text-xl text-amber-400 mb-2">System Workflow</h2>
-            <div className="flex flex-wrap gap-3 text-gray-200">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">System Workflow</h2>
+            <div className="flex flex-wrap gap-2 text-gray-200">
               {workflow.map((step, i) => (
-                <span key={i} className="px-3 py-1 border rounded-full">
+                <span key={i} className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-sm">
                   {step}
                 </span>
               ))}
@@ -148,9 +195,9 @@ Being the sole technical contributor also strengthened my ability to translate d
           </section>
 
           {/* What I Did */}
-          <section>
-            <h2 className="text-xl text-amber-400 mb-2">What I Did</h2>
-            <ul className="list-disc pl-5 text-gray-200 space-y-2">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">What I Did</h2>
+            <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((w, i) => (
                 <li key={i}>{w}</li>
               ))}
@@ -158,11 +205,9 @@ Being the sole technical contributor also strengthened my ability to translate d
           </section>
 
           {/* Reflection */}
-          <section>
-            <h2 className="text-xl text-amber-400 mb-2">Reflection</h2>
-            <p className="text-gray-200 whitespace-pre-line">
-              {reflection}
-            </p>
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">Reflection</h2>
+            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
           </section>
 
         </div>

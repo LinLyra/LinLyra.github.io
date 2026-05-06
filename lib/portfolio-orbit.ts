@@ -28,18 +28,18 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Nonprofit","Education","Senior Care","AI Applications"],
   },
   {
-    slug: "kpmg-bluebird-it-audit",
-    title: "POS / Payments IT Audit Case",
-    section: "business" as OrbitSection,
-    href: "/business/kpmg-bluebird-it-audit",
-    industries: ["Retail Tech","Payments","IT Audit"],
-  },
-  {
     slug: "net-zero-challenge-gys",
     title: "Smart Green Homestay",
     section: "business" as OrbitSection,
     href: "/business/net-zero-challenge-gys",
     industries: ["Sustainability","Climate","Tourism"],
+  },
+  {
+    slug: "aerotropolis-south-connector-2026",
+    title: "Aerotropolis South Connector",
+    section: "business" as OrbitSection,
+    href: "/business/aerotropolis-south-connector-2026",
+    industries: ["Infrastructure","Transport","Public Sector"],
   },
   {
     slug: "mersen-campus-brand-activation",
@@ -54,6 +54,20 @@ export const orbitItems: OrbitItem[] = [
     section: "business" as OrbitSection,
     href: "/business/YuanQi-forest-universe-2026",
     industries: ["Beverage","Consumer Goods","Brand Innovation"],
+  },
+  {
+    slug: "kpmg-bluebird-it-audit",
+    title: "POS / Payments IT Audit Case",
+    section: "business" as OrbitSection,
+    href: "/business/kpmg-bluebird-it-audit",
+    industries: ["Retail Tech","Payments","IT Audit"],
+  },
+  {
+    slug: "ey-esg-innovation-2025",
+    title: "AI × ESG Luxury Supply Chain",
+    section: "business" as OrbitSection,
+    href: "/business/ey-esg-innovation-2025",
+    industries: ["Luxury","Supply Chain","ESG"],
   },
   {
     slug: "instant-retail-profitability-strategy-2026",
@@ -105,13 +119,6 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Nonprofit","Sports","Community"],
   },
   {
-    slug: "ey-esg-innovation-2025",
-    title: "AI × ESG Luxury Supply Chain",
-    section: "business" as OrbitSection,
-    href: "/business/ey-esg-innovation-2025",
-    industries: ["Luxury","Supply Chain","ESG"],
-  },
-  {
     slug: "kpmg-esg-case-competition",
     title: "Automotive Supply Chain ESG",
     section: "business" as OrbitSection,
@@ -140,13 +147,6 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Consulting","Strategy","Business Services"],
   },
   {
-    slug: "aerotropolis-south-connector-2026",
-    title: "Aerotropolis South Connector",
-    section: "business" as OrbitSection,
-    href: "/business/aerotropolis-south-connector-2026",
-    industries: ["Infrastructure","Transport","Public Sector"],
-  },
-  {
     slug: "commonwealth-treasury-case",
     title: "Policy Package Evaluation",
     section: "business" as OrbitSection,
@@ -159,13 +159,6 @@ export const orbitItems: OrbitItem[] = [
     section: "data" as OrbitSection,
     href: "/data/datathon-2025-supply-chain",
     industries: ["Supply Chain","Operations","E-commerce"],
-  },
-  {
-    slug: "meituan-subsidy-efficiency",
-    title: "Subsidy Incrementality (PSM)",
-    section: "data" as OrbitSection,
-    href: "/data/meituan-subsidy-efficiency",
-    industries: ["E-commerce","Local Services","Finance"],
   },
   {
     slug: "future-financial-analyst",
@@ -182,6 +175,13 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Healthcare","Medical Imaging","Machine Learning"],
   },
   {
+    slug: "meituan-subsidy-efficiency",
+    title: "Subsidy Efficiency Evaluation and Budget Reallocation for Local Life Marketing",
+    section: "data" as OrbitSection,
+    href: "/data/meituan-subsidy-efficiency",
+    industries: ["E-commerce","Local Services","Finance"],
+  },
+  {
     slug: "citi-global-market-challenge-2026",
     title: "Cost-Efficient Alpha",
     section: "data" as OrbitSection,
@@ -189,11 +189,11 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Capital Markets","Portfolio Management","Investment Strategy"],
   },
   {
-    slug: "youtube-ai-content-strategy",
-    title: "Posting Window Lift Model",
+    slug: "short-drama-text-analysis",
+    title: "Human–AI Dialogue Mining",
     section: "data" as OrbitSection,
-    href: "/data/youtube-ai-content-strategy",
-    industries: ["Entertainment","Creator Economy","Marketing"],
+    href: "/data/short-drama-text-analysis",
+    industries: ["Beauty","Consumer Services","AI Training"],
   },
   {
     slug: "disaster-risk-insurance",
@@ -210,11 +210,11 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Education","Higher Ed"],
   },
   {
-    slug: "short-drama-text-analysis",
-    title: "Human–AI Dialogue Mining",
+    slug: "youtube-ai-content-strategy",
+    title: "Youtube AI Content Strategy",
     section: "data" as OrbitSection,
-    href: "/data/short-drama-text-analysis",
-    industries: ["Beauty","Consumer Services","AI Training"],
+    href: "/data/youtube-ai-content-strategy",
+    industries: ["Entertainment","Creator Economy","Marketing"],
   },
   {
     slug: "ai-wave-nvda-forecast",
@@ -274,17 +274,17 @@ export const orbitItems: OrbitItem[] = [
   },
   {
     slug: "apmcm-2024",
-    title: "APMCM Modeling Solution",
+    title: "Pet Industry Forecasting and Trade Policy Scenario Modeling",
     section: "data" as OrbitSection,
     href: "/data/apmcm-2024",
-    industries: ["Research","Applied Math"],
+    industries: ["Pet Industry"],
   },
   {
     slug: "mcm-icm-2025",
-    title: "MCM/ICM Modeling Solution",
+    title: "Global Cybersecurity Risk & Policy Intelligence Modeling",
     section: "data" as OrbitSection,
     href: "/data/mcm-icm-2025",
-    industries: ["Research","Applied Math"],
+    industries: ["Cybersecurity","Policy Analysis"],
   },
   {
     slug: "abc-ai-development",

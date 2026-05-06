@@ -407,7 +407,7 @@ export default function ProductPage() {
                             <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
                               {p.projectName}
                             </h2>
-                            <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
+                            <p className="mt-1 line-clamp-2 min-h-[2.5rem] text-sm font-medium text-gray-400">
                               {p.subtitle}
                             </p>
                             <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
@@ -419,7 +419,7 @@ export default function ProductPage() {
                     </div>
 
                     <div className="flex flex-1 flex-col p-6 pt-0">
-                      <p className="mb-3 line-clamp-2 text-sm leading-relaxed text-gray-200">
+                      <p className="mb-3 line-clamp-3 min-h-[3.9rem] text-sm leading-relaxed text-gray-200">
                         {p.description ?? ""}
                       </p>
                       <div className="mt-auto overflow-hidden flex flex-wrap gap-1">
