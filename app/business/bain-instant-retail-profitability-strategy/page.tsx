@@ -28,7 +28,6 @@ export default function InstantRetailProfitabilityStrategyPage() {
     institution: "Bain & Company Case Competition 2026",
     practice: "Strategy Consulting · Retail Strategy · Unit Economics",
     term: "2026",
-    status: "Completed" as const,
     role: "Strategy Lead · Unit Economics & City Portfolio Design",
     placement: "Case Project",
     canvaUrl: "https://your-project-link-here.com",
@@ -92,11 +91,6 @@ I also learned how to translate complex unit economics into clear executive reco
 
   const hasNotes = meta.notes.length > 0;
 
-  const statusBadge =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -114,8 +108,8 @@ I also learned how to translate complex unit economics into clear executive reco
             <div className="flex items-center gap-2">
               <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30">
-                  View Project
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  View more
                 </Button>
               </a>
 
@@ -124,7 +118,7 @@ I also learned how to translate complex unit economics into clear executive reco
                   onClick={() => setShowNotes(true)}
                   className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
@@ -132,12 +126,6 @@ I also learned how to translate complex unit economics into clear executive reco
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}
-              >
-                {meta.status}
-              </span>
-
               {meta.placement && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏆 {meta.placement}

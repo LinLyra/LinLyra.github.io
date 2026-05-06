@@ -19,7 +19,6 @@ export default function QBUSRevenuePredictionPage() {
     practice:
       "Predictive Analytics · Regression · EDA · Feature Engineering · Model Selection",
     term: "2026 S1",
-    status: "Completed" as const,
     award: "",
     tags: [
       "Revenue Prediction",
@@ -64,10 +63,6 @@ The strongest insight was that a carefully engineered linear model can perform c
 The project also showed the importance of honest model interpretation. The final model fitted the central revenue range reasonably well but underpredicted unusually high-revenue days. In a real QSR setting, this limitation matters because those peak days are exactly when staffing shortages and stock-outs are most costly. If iterating further, I would test interaction effects, lagged revenue features, and alternative transformations to better capture high-demand events while keeping the model interpretable.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -102,11 +97,6 @@ The project also showed the importance of honest model interpretation. The final
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏆 {meta.award}

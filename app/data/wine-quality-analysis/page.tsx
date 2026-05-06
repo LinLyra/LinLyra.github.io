@@ -15,7 +15,6 @@ type Meta = {
   institution: string;
   practice: string;
   term: string;
-  status: "Completed" | "In Progress" | "Planned";
   tags: string[];
   notes: string[];
   reportPdf?: string;
@@ -31,7 +30,6 @@ export default function WineQualityAnalysisPage() {
     practice:
       "Statistical Modeling · Model Selection · Robustness & Stability Checks",
     term: "2025 S2",
-    status: "Completed",
     tags: [
       "R",
       "Multiple Regression",
@@ -89,10 +87,6 @@ If iterating further, I’d:
 • build a small interactive report (filters + coefficient explorer) for better storytelling.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -132,14 +126,6 @@ If iterating further, I’d:
 
           {/* Meta card */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

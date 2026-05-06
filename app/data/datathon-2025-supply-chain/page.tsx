@@ -10,7 +10,7 @@ import { ArrowLeft, Calendar, Award, Trophy, Github, ExternalLink } from "lucide
 export default function Datathon2025SupplyChainPage() {
   const meta = {
     slug: "datathon-2025-supply-chain",
-    title: "Supply Chain Optimization (24h)",
+    title: "Supply Chain Optimization(24h Datathon)",
     institution: "University of Sydney · Data Science & Business Analytics Society",
     role: "Principal Modeller",
     term: "2025.10",

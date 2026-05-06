@@ -19,7 +19,6 @@ export default function AIStockForecastPage() {
     practice:
       "Applied Data Science · Financial Time Series (ABS stakeholder scenario)",
     term: "2025 S1",
-    status: "Completed" as const,
     tags: [
       "Time Series",
       "ARIMA",
@@ -56,10 +55,6 @@ Producing NVIDIA’s forecast charts reinforced that communicating uncertainty b
 Most importantly, I learned to translate NVIDIA’s time-series signals into a market story that resonates with non-technical stakeholders.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -90,13 +85,6 @@ Most importantly, I learned to translate NVIDIA’s time-series signals into a m
 
           {/* Top meta card */}
           <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="mb-1 text-xl font-semibold text-white md:text-2xl">
                 {meta.title}

@@ -18,7 +18,6 @@ export default function DisasterInsurancePage() {
     institution: "Course Project · University of Sydney",
     practice: "Risk Finance · Protection Gap Analytics · EDA & Hypothesis Test",
     term: "2024 S2",
-    status: "Completed" as const,
     award: "Project Excellence Award",
     tags: [
       "Protection Gap",
@@ -63,10 +62,6 @@ speed of payout, and fiscal impact. Keeping the message policy-relevant—where 
 impact—was key, and it’s also why this project earned recognition.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -103,11 +98,6 @@ impact—was key, and it’s also why this project earned recognition.`;
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏆 {meta.award}

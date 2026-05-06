@@ -25,7 +25,6 @@ export default function CitiGlobalMarketChallengePage() {
     practice:
       "Multi-Asset Portfolio Strategy · Long/Short Allocation · Transaction Cost Optimisation · Risk Management",
     term: "2026.04",
-    status: "Completed" as const,
     role: "Portfolio Strategy, Data Analysis & Investment Pitch",
     moreUrl: "https://your-data-planet-link.com",
     tags: [
@@ -96,11 +95,6 @@ The most important learning was that a strong portfolio pitch is not only about 
 
 Through this case, I learned how to translate raw time series data into a clear investment recommendation: long commodities, reduce equity beta, short fixed income, and use FX as a tactical hedge. I also improved my ability to build a professional investment deck that explains not only what the portfolio does, but why the strategy should outperform after costs.`;
 
-  const statusBadge =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-sky-600/25 text-sky-100 border-sky-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="data" onSectionChange={() => {}} />
@@ -117,21 +111,13 @@ Through this case, I learned how to translate raw time series data into a clear 
 
             <a href={meta.moreUrl} target="_blank" rel="noopener noreferrer">
               <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
-                View Project Website
-                <ExternalLink className="ml-2 h-4 w-4" />
+                <ExternalLink className="mr-2 h-4 w-4" />
+                View more
               </Button>
             </a>
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

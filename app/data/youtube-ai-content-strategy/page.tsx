@@ -15,7 +15,6 @@ type Meta = {
   institution: string;
   practice: string;
   term: string;
-  status: "Completed" | "In Progress" | "Planned";
   tags: string[];
   notes: string[];
   links?: { github?: string; demo?: string };
@@ -26,12 +25,11 @@ export default function YouTubeAIContentStrategyPage() {
 
   const meta: Meta = {
     slug: "youtube-ai-content-strategy",
-    title: "Posting Window Lift Model",
+    title: "Youtube Ai Content Strategy",
     institution: "Personal Project",
     practice:
       "Content Analytics · Clustering · Causal-style Estimation · Posting Strategy",
     term: "2025.10",
-    status: "Completed",
     tags: [
       "Python",
       "SQL",
@@ -44,7 +42,9 @@ export default function YouTubeAIContentStrategyPage() {
       "A/B-ready Insights",
     ],
     notes: [],
-    links: undefined,
+    links: {
+      github: "https://github.com/LinLyra/youtube-ai-content-strategy",
+    },
   };
 
   const overview = `Goal: help AI content creators and platform recommenders solve “when to post” and “what to post” under high volatility in early performance.
@@ -59,14 +59,11 @@ Method:
 • Estimated posting-time effects using OLS with channel fixed characteristics and interaction terms.
 • Tested heterogeneity with “time-slot × channel-scale” interaction to validate asymmetric lift across creator tiers.
 
-Key findings (actionable):
+Key findings:
 • Short-form 5–10 min content performs best when pushed earlier in the day.
 • Mid-size channels benefit most from “afternoon → morning” shift (≈ +16.5% on play volume).
 • Long-tail channels see additional gains during late night posting windows (≈ +2%).
-• Reallocating ~30% of afternoon uploads to morning/night suggests ~10% overall view uplift.
-
-Output:
-A deployable strategy playbook for creators + scheduling recommendation rules for platforms.`;
+• Reallocating ~30% of afternoon uploads to morning/night suggests ~10% overall view uplift.`;
 
   const highlights: string[] = [
     "Designed a reproducible pipeline to crawl channel/video metadata and early engagement (T+48h) using Python + SQL (rate-limit safe, incremental updates).",
@@ -91,10 +88,6 @@ If iterating further, I’d introduce:
 This project strengthened my ability to turn noisy platform data into practical decision rules — the output is not just a report, but an executable growth strategy.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -112,15 +105,6 @@ This project strengthened my ability to turn noisy platform data into practical 
             </Link>
 
             <div className="flex items-center gap-2">
-              {hasNotes && (
-                <Button
-                  onClick={() => setShowNotes(true)}
-                  className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
-                >
-                  View More
-                </Button>
-              )}
-
               {!!meta.links?.github && (
                 <Link href={meta.links.github} target="_blank">
                   <Button className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/15">
@@ -128,6 +112,15 @@ This project strengthened my ability to turn noisy platform data into practical 
                     GitHub
                   </Button>
                 </Link>
+              )}
+
+              {hasNotes && (
+                <Button
+                  onClick={() => setShowNotes(true)}
+                  className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
+                >
+                  View more
+                </Button>
               )}
 
               {!!meta.links?.demo && (
@@ -143,14 +136,6 @@ This project strengthened my ability to turn noisy platform data into practical 
 
           {/* Meta card */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

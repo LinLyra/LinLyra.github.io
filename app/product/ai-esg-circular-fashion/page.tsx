@@ -17,7 +17,6 @@ export default function GreenSyncESGPage() {
     institution: "Personal Project · Kaggle Notebook",
     practice: "GenAI · Vision + Document Understanding · JSON Scoring",
     term: "2025.04",
-    status: "Completed" as const,
     tags: ["GenAI", "Vision", "Document Understanding", "JSON Output", "ESG"],
     kaggleUrl: "https://www.kaggle.com/code/lynnlong0330/greensync",
   };
@@ -36,11 +35,6 @@ It demonstrates: (E) image understanding for material/impact cues, (S) policy/do
 
   const reflection = `Multimodal ESG scoring works only with strong guardrails. The key was agreeing on a strict JSON schema, writing assertive prompts, and validating every output.
 Future iterations: enlarge labeled sets, add confidence scores, human-in-the-loop review, and task-specific fine-tuning or adapters to improve robustness.`;
-
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
-      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -66,7 +60,8 @@ Future iterations: enlarge labeled sets, add confidence scores, human-in-the-loo
             <div className="flex items-center gap-2">
               <a href={meta.kaggleUrl} target="_blank" rel="noreferrer">
                 <Button className="bg-white/10 border border-amber-400/40 text-amber-100 hover:bg-white/20">
-                  View Notebook
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  View more
                 </Button>
               </a>
               
@@ -75,11 +70,6 @@ Future iterations: enlarge labeled sets, add confidence scores, human-in-the-loo
 
           {/* meta card */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

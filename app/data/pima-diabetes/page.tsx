@@ -18,7 +18,6 @@ export default function Comp3308ClassifiersPage() {
     institution: "Course Project · University of Sydney",
     practice: "Machine Learning · Model Comparison (Weka vs Python)",
     term: "2025 S1",
-    status: "Completed" as const,
     tags: [
       "k-NN",
       "Naive Bayes",
@@ -72,10 +71,6 @@ If I iterate, I’ll (1) add precision/recall/F1 and calibration error, (2) test
 performance and interpretability for real deployments.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -104,11 +99,6 @@ performance and interpretability for real deployments.`;
 
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

@@ -5,7 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
 
 export default function PathologyImageClassificationPage() {
   const meta = {
@@ -15,21 +15,10 @@ export default function PathologyImageClassificationPage() {
     practice:
       "Applied Machine Learning · Computer Vision · Pathology Image Classification",
     term: "2026 S1",
-    status: "Completed" as const,
-    canvaUrl: "PASTE_YOUR_CANVA_LINK_HERE",
-    tags: [
-      "Computer Vision",
-      "Medical Imaging",
-      "KNN",
-      "HOG",
-      "Random Forest",
-      "SVM",
-      "CNN",
-      "ResNet50",
-      "Python",
-      "R",
-      "Explainable AI",
-    ],
+    github: "https://github.com/LinLyra/pathology-image-classification",
+    canvaUrl: "https://peridot-eocursor-4db.notion.site/H-E-Cell-Classification-A-Domain-Informed-Machine-Learning-Approach-3523be3c13158057a5c3ddf8944f9d3a",
+    tags: ["Machine Learning", "Computer Vision", "Medical Imaging", "KNN", "HOG", "Random Forest", "SVM", "CNN", "ResNet50", "Python", "R", "Explainable AI"],
+
   };
 
   const overview = `\
@@ -52,18 +41,9 @@ The final recommended model was Colour Histogram + SVM, which achieved the stron
   ];
 
   const reflection = `\
-This project helped me understand that stronger models are not always more complex models.
-The most important insight was that H&E staining already encodes biological information through colour: haematoxylin stains nuclei purple-blue and eosin stains cytoplasm pink.
-
-By translating this domain knowledge into HSV colour histogram features, the SVM outperformed both CNN and ResNet50.
+This project helped me understand that stronger models are not always more complex models. The most important insight was that H&E staining already encodes biological information through colour: haematoxylin stains nuclei purple-blue and eosin stains cytoplasm pinkBy translating this domain knowledge into HSV colour histogram features, the SVM outperformed both CNN and ResNet50.
 This taught me that in small medical imaging datasets, interpretable and biologically motivated feature engineering can sometimes outperform end-to-end deep learning.
-
 The project also strengthened my ability to communicate model trade-offs to a non-technical client, especially around sensitivity, false negatives, interpretability, and deployment risk.`;
-
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -79,23 +59,25 @@ The project also strengthened my ability to communicate model trade-offs to a no
               </Button>
             </Link>
 
-            <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
-              <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
-                <ExternalLink className="mr-2 h-4 w-4" />
-                View More
-              </Button>
-            </a>
+            <div className="flex items-center gap-2">
+              {meta.github ? (
+                <Link href={meta.github} target="_blank" rel="noreferrer">
+                  <Button className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/15">
+                    <Github className="mr-2 h-4 w-4" />
+                    GitHub
+                  </Button>
+                </Link>
+              ) : null}
+              <Link href={meta.canvaUrl} target="_blank" rel="noreferrer">
+                <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  View more
+                </Button>
+              </Link>
+            </div>
           </div>
 
           <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="mb-1 text-xl font-semibold text-white md:text-2xl">
                 {meta.title}

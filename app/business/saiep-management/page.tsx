@@ -18,7 +18,6 @@ export default function SAIEPManagementConsultingPage() {
     institution: "Study Australian Industry Experience Program",
     practice: "Strategy consulting · Market research · Growth modelling",
     term: "2025.07",
-    status: "Completed" as const,
     tags: ["Strategy", "Market Research", "Competitive Analysis", "Business Model Design"],
     notes: ["/experience/saiep1.png", "/experience/saiep2.png"],
   };
@@ -50,10 +49,6 @@ own altitude. Pairing a lightweight KPI tree with an operating cadence (owners, 
 recommendations feel inevitable rather than aspirational—something a lean non-profit could actually run next week.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-emerald-600/25 text-emerald-100 border-emerald-400/40"
-      : "bg-green-600/25 text-green-100 border-green-400/40";
 
   return (
     <div className="relative min-h-screen overflow-visible">
@@ -79,17 +74,12 @@ recommendations feel inevitable rather than aspirational—something a lean non-
                 onClick={() => setShowNotes(true)}
                 className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">{meta.title}</h1>
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">

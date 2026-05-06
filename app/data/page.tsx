@@ -21,7 +21,6 @@ type DataItem = {
   description: string;
   skills: string[];
   industries: string[];
-  status: "Completed" | "In Progress" | "Planned";
   type: DataType;
   award?: string;
   logo?: string;
@@ -49,7 +48,6 @@ export default function DataPage() {
   const [search, setSearch] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  /** Pills above search: keep it small and industry-first */
   const featuredTags = [
     "Finance",
     "E-commerce",
@@ -62,14 +60,13 @@ export default function DataPage() {
   const items: DataItem[] = [
     {
       slug: "datathon-2025-supply-chain",
-      projectName: "Supply Chain Optimization (24h)",
-      subtitle: "SUDATA × SUBAA Datathon",
+      projectName: "Supply Chain Optimization",
+      subtitle: "SUDATA × SUBAA Datathon(24h)",
       date: "2025.10",
       description:
         "24-hour optimization sprint on a supply-chain case blending MIP, clustering, and time-series signals.",
       skills: ["Supply Chain", "Optimisation", "Gurobi MIP", "KMeans", "Time Series"],
       industries: ["Supply Chain", "Operations", "E-commerce"],
-      status: "Completed",
       type: "competition",
       award: "First Place",
       logo: "/competition/sudatalogo.jpg",
@@ -83,9 +80,22 @@ export default function DataPage() {
         "Causal inference on subsidy batches to estimate true incremental GMV and reallocate budget to higher-ROI segments.",
       skills: ["Causal Inference", "PSM", "ROI", "Segmentation", "Business Analytics"],
       industries: ["E-commerce", "Local Services", "Finance"],
-      status: "Completed",
       type: "competition",
       logo: "/competition/meituanlogo.png",
+    },
+    
+    {
+      slug: "future-financial-analyst",
+      projectName: "Growth-Based Repricing Framework",
+      subtitle: "CFA Institute Research Challenge",
+      date: "2026.03",
+      description:
+        "Empirical valuation lens linking innovation-heavy productive forces to market repricing with panel-style evidence.",
+      skills: ["Finance", "Valuation", "Panel Data", "Empirical Research"],
+      industries: ["Finance", "Asset Management", "Public Policy"],
+      type: "competition",
+      award: "Top 60",
+      logo: "/competition/CFAlogo.png",
     },
     {
       slug: "pathology-image-classification",
@@ -96,21 +106,7 @@ export default function DataPage() {
         "CV pipeline from HOG/KNN baselines toward CNN/ResNet-style models with explainability hooks.",
       skills: ["Computer Vision", "CNN", "ResNet", "HOG", "KNN", "SVM", "Python"],
       industries: ["Healthcare", "Medical Imaging", "Machine Learning"],
-      status: "Completed",
       type: "course",
-    },
-    {
-      slug: "future-financial-analyst",
-      projectName: "Growth-Based Repricing Framework",
-      subtitle: "CFA Institute Research Challenge",
-      date: "2026.03",
-      description:
-        "Empirical valuation lens linking innovation-heavy productive forces to market repricing with panel-style evidence.",
-      skills: ["Finance", "Valuation", "Panel Data", "Empirical Research"],
-      industries: ["Finance", "Asset Management", "Public Policy"],
-      status: "Completed",
-      type: "competition",
-      logo: "/competition/CFAlogo.png",
     },
     {
       slug: "citi-global-market-challenge-2026",
@@ -119,19 +115,10 @@ export default function DataPage() {
       date: "2026.04",
       description:
         "A multi-asset portfolio strategy balancing alpha generation, transaction costs, and risk management across equities, fixed income, commodities, FX, and cash.",
-      skills: [
-        "Portfolio Strategy",
-        "Long/Short Fund",
-        "Asset Allocation",
-        "Transaction Costs",
-        "Commodities",
-        "Fixed Income",
-        "Risk Analytics",
-        "Scenario Analysis",
-      ],
+      skills: ["Portfolio Strategy", "Long/Short Fund", "Asset Allocation", "Transaction Costs", "Commodities", "Fixed Income", "Risk Analytics", "Scenario Analysis"],
       industries: ["Capital Markets", "Portfolio Management", "Investment Strategy"],
-      status: "Completed",
       type: "competition",
+      logo: "/competition/citilogo.png",
     },
     {
       slug: "youtube-ai-content-strategy",
@@ -142,56 +129,7 @@ export default function DataPage() {
         "Clustered thousands of AI-creator uploads to find better time-slot × scale combinations and quantify view lift.",
       skills: ["Python", "SQL", "KMeans", "OLS", "Causal Thinking"],
       industries: ["Entertainment", "Creator Economy", "Marketing"],
-      status: "Completed",
       type: "project",
-    },
-    {
-      slug: "short-drama-text-analysis",
-      projectName: "Human–AI Dialogue Mining",
-      subtitle: "Short drama training corpus",
-      date: "2025.09",
-      description:
-        "JSON→tabular pipeline with dialogue metrics for rhythm, diversity, and engagement in role-play training data.",
-      skills: ["Python", "NLP", "JSON", "Feature Engineering", "Text Mining"],
-      industries: ["Beauty", "Consumer Services", "AI Training"],
-      status: "Completed",
-      type: "project",
-    },
-    {
-      slug: "ai-wave-nvda-forecast",
-      projectName: "NVDA Cycle Forecast",
-      subtitle: "Course · Time series",
-      date: "2025.07",
-      description:
-        "Univariate and multivariate forecasting experiments to relate AI-cycle narratives to NVDA price dynamics.",
-      skills: ["Python", "Time Series", "ARIMA", "Feature Signals"],
-      industries: ["Finance", "Semiconductors"],
-      status: "Completed",
-      type: "course",
-    },
-    {
-      slug: "education-experience-earnings-model",
-      projectName: "Education vs Experience on Earnings",
-      subtitle: "Course · Econometrics",
-      date: "2025 S2",
-      description:
-        "Compared regression and nonlinear forecast specs to test robustness and omitted-variable bias on earnings drivers.",
-      skills: ["Regression", "Forecasting", "Econometrics", "Model Evaluation"],
-      industries: ["Labor Economics", "Education", "Public Policy"],
-      status: "Completed",
-      type: "course",
-    },
-    {
-      slug: "wine-quality-analysis",
-      projectName: "Wine Quality Drivers",
-      subtitle: "Course · Statistical modeling",
-      date: "2025 S2",
-      description:
-        "Red vs white Vino Verde modeling with selection, stability checks, and interpretable drivers of perceived quality.",
-      skills: ["R", "Regression", "Model Selection", "Bootstrap", "VIP"],
-      industries: ["Food & Beverage", "Agri-food"],
-      status: "Completed",
-      type: "course",
     },
     {
       slug: "disaster-risk-insurance",
@@ -202,7 +140,6 @@ export default function DataPage() {
         "Hazard exposure scoring with socio-economic layers and parametric insurance recommendations.",
       skills: ["Risk Modeling", "R", "Visualization", "Policy Analysis"],
       industries: ["Insurance", "Public Policy", "Climate Risk"],
-      status: "Completed",
       type: "course",
       award: "Excellence Award",
     },
@@ -215,10 +152,54 @@ export default function DataPage() {
         "Cleaned Likert survey data on study habits and expectations with clear reporting-ready visuals.",
       skills: ["Survey", "Cleaning", "R", "Reporting"],
       industries: ["Education", "Higher Ed"],
-      status: "Completed",
       type: "course",
       award: "Excellence Award",
     },
+    {
+      slug: "short-drama-text-analysis",
+      projectName: "Human–AI Dialogue Mining",
+      subtitle: "Short drama training corpus",
+      date: "2025.09",
+      description:
+        "JSON→tabular pipeline with dialogue metrics for rhythm, diversity, and engagement in role-play training data.",
+      skills: ["Python", "NLP", "JSON", "Feature Engineering", "Text Mining"],
+      industries: ["Beauty", "Consumer Services", "AI Training"],
+      type: "project",
+    },
+    {
+      slug: "ai-wave-nvda-forecast",
+      projectName: "NVDA Cycle Forecast",
+      subtitle: "Course · Time series",
+      date: "2025.07",
+      description:
+        "Univariate and multivariate forecasting experiments to relate AI-cycle narratives to NVDA price dynamics.",
+      skills: ["Python", "Time Series", "ARIMA", "Feature Signals"],
+      industries: ["Finance", "Semiconductors"],
+      type: "course",
+    },
+    {
+      slug: "education-experience-earnings-model",
+      projectName: "Education vs Experience on Earnings",
+      subtitle: "Course · Econometrics",
+      date: "2025 S2",
+      description:
+        "Compared regression and nonlinear forecast specs to test robustness and omitted-variable bias on earnings drivers.",
+      skills: ["Regression", "Forecasting", "Econometrics", "Model Evaluation"],
+      industries: ["Labor Economics", "Education", "Public Policy"],
+      type: "course",
+    },
+    {
+      slug: "wine-quality-analysis",
+      projectName: "Wine Quality Drivers",
+      subtitle: "Course · Statistical modeling",
+      date: "2025 S2",
+      description:
+        "Red vs white Vino Verde modeling with selection, stability checks, and interpretable drivers of perceived quality.",
+      skills: ["R", "Regression", "Model Selection", "Bootstrap", "VIP"],
+      industries: ["Food & Beverage", "Agri-food"],
+      type: "course",
+    },
+    
     {
       slug: "employer-income-correlation-au",
       projectName: "Employer Types vs Income (AU)",
@@ -228,7 +209,6 @@ export default function DataPage() {
         "Explored regional employer–income patterns with tree ensembles, KNN, NB, and regression baselines.",
       skills: ["EDA", "Gradient Boosting", "Random Forest", "KNN", "Naive Bayes", "Regression"],
       industries: ["Labor Economics", "Public Policy"],
-      status: "Completed",
       type: "course",
     },
     {
@@ -240,7 +220,6 @@ export default function DataPage() {
         "Composite accessibility index with normalization, weighting, and defensible ranking across SA2 units.",
       skills: ["PostgreSQL", "Index Scoring", "Database", "Machine Learning"],
       industries: ["Urban Analytics", "Public Policy"],
-      status: "Completed",
       type: "course",
     },
     {
@@ -252,7 +231,6 @@ export default function DataPage() {
         "Accuracy vs runtime trade-offs across classical learners with stratified CV on medical vs sensor data.",
       skills: ["k-NN", "Naive Bayes", "SVM", "Random Forest", "Weka", "Python"],
       industries: ["Healthcare", "Machine Learning"],
-      status: "Completed",
       type: "course",
     },
     {
@@ -264,7 +242,6 @@ export default function DataPage() {
         "Large-scale comment mining to trace sentiment shifts, persuasion routes, and herding in a major pop-culture event.",
       skills: ["Python", "YouTube API", "Gemini API", "ELM Theory", "Sentiment Analysis"],
       industries: ["Entertainment", "Social Media", "Marketing"],
-      status: "Completed",
       type: "project",
     },
     {
@@ -276,7 +253,6 @@ export default function DataPage() {
         "Predictive modeling for quick-service daily sales with elastic net, ridge/lasso, KNN, and rigorous CV.",
       skills: ["Regression", "Elastic Net", "Feature Engineering", "Python", "scikit-learn"],
       industries: ["Retail", "Hospitality", "Finance"],
-      status: "Completed",
       type: "course",
     },
    
@@ -289,7 +265,6 @@ export default function DataPage() {
         "My APMCM paper: optimization-first model, parameter sensitivity, and a tight writeup for our problem track.",
       skills: ["Mathematical Modeling", "Optimization", "Sensitivity Analysis", "LaTeX"],
       industries: ["Research", "Applied Math"],
-      status: "Completed",
       type: "competition",
       logo: "/competition/apmcmlogo.png",
     },
@@ -302,7 +277,6 @@ export default function DataPage() {
         "Our MCM/ICM entry: clear assumptions, statistical core models, and evidence-backed answers for the chosen problem.",
       skills: ["Mathematical Modeling", "Statistics", "Simulation", "Technical Writing"],
       industries: ["Research", "Applied Math"],
-      status: "Completed",
       type: "competition",
       logo: "/competition/COMAPlogo.svg",
     },

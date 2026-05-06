@@ -18,7 +18,6 @@ export default function Data1x01StudyBehavioursPage() {
     institution: "Course Project · University of Sydney",
     practice: "Exploratory Data Analysis · Survey Analytics (DATA1X01)",
     term: "2024 S2",
-    status: "Completed" as const,
     award: "Project Excellence Award",
     tags: [
       "Survey EDA",
@@ -80,10 +79,6 @@ Framing the gap between mark goals and planned hours as a concrete opportunity f
 The project’s recognition, I think, came from this combination of rigor, restraint, and relevance—an approach I’ll carry into future data projects.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -115,9 +110,6 @@ The project’s recognition, I think, came from this combination of rigor, restr
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏆 {meta.award}

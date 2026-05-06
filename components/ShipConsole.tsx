@@ -122,13 +122,6 @@ export default function ShipConsole() {
     return p.endsWith("/") ? p : `${p}/`
   }
 
-  const hotProjectsFallback = useMemo(() => {
-    return history
-      .map((p) => (p.endsWith("/") ? p : `${p}/`))
-      .filter((p) => p !== "/" && p !== "/#/") // defensive
-      .slice(0, 3)
-  }, [history])
-
   return (
     <>
       <div className="fixed bottom-5 right-5 z-[60]">
@@ -232,8 +225,7 @@ export default function ShipConsole() {
                     </p>
                   ) : null}
 
-                  <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)]">
-                    <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                       <StatTile
                         icon={<Users className="h-4 w-4 text-sky-200" />}
                         label="Visitors"
@@ -250,30 +242,8 @@ export default function ShipConsole() {
                         value={stats?.top_planet?.slug ? `${planetLabel(stats.top_planet.slug)}` : "—"}
                         href={toHref(stats?.top_planet?.slug ? `/${stats.top_planet.slug}` : null) ?? undefined}
                         onNavigate={() => setOpen(false)}
+                        className="col-span-2"
                       />
-                    </div>
-
-                    <div className="min-h-full">
-                      <div className="mb-2 flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] text-slate-200/70">
-                        <Layers className="h-4 w-4 text-cyan-200/90" />
-                        HOT PROJECTS
-                      </div>
-                      <div className="space-y-2">
-                        {(stats?.top_projects?.length ? stats.top_projects.map((r) => r.path) : hotProjectsFallback).map((path, i) => (
-                          <Link
-                            key={`${path}-${i}`}
-                            href={toHref(path) ?? "/"}
-                            onClick={() => setOpen(false)}
-                            className={cn(
-                              "group flex items-center justify-between gap-3 rounded-lg border border-sky-400/12 bg-slate-950/35 px-3 py-2",
-                              "hover:border-sky-400/25 hover:bg-slate-900/40"
-                            )}
-                          >
-                            <span className="min-w-0 truncate text-sm text-sky-50/95">{prettyPathTail(path)}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
                   </div>
                 </div>
 

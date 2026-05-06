@@ -26,7 +26,6 @@ export default function AerotropolisSouthConnectorPage() {
     institution: "PMSoc × KordaMentha Case Competition 2026",
     practice: "PPP Infrastructure · Toll Road Strategy · Commercial Advisory",
     term: "2026.04",
-    status: "Completed" as const,
     role: "Strategy & Commercial Analysis",
     placement: "Top 6",
     canvaUrl: "https://peridot-eocursor-4db.notion.site/Aerotropolis-South-Connector-3523be3c13158057a5c3ddf8944f9d3a", 
@@ -86,11 +85,6 @@ Through this case, I learned how to frame an infrastructure corridor as a bankab
 
   const hasNotes = meta.notes.length > 0;
 
-  const statusBadge =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -108,8 +102,8 @@ Through this case, I learned how to frame an infrastructure corridor as a bankab
             <div className="flex items-center gap-2">
               <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30">
-                  View Canva Project
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  View more
                 </Button>
               </a>
 
@@ -118,7 +112,7 @@ Through this case, I learned how to frame an infrastructure corridor as a bankab
                   onClick={() => setShowNotes(true)}
                   className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
@@ -126,12 +120,6 @@ Through this case, I learned how to frame an infrastructure corridor as a bankab
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}
-              >
-                {meta.status}
-              </span>
-
               {meta.placement && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏆 {meta.placement}

@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, Trophy } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function GrowthValueFrameworkPage() {
@@ -16,10 +16,9 @@ export default function GrowthValueFrameworkPage() {
     slug: "future-financial-analyst-competition",
     title: "Growth-Based Repricing Framework",
     institution: "CFA Institute",
-    practice:
-      "Financial Research · Valuation, Innovation, and Real Economy",
+    practice: "Financial Research · Valuation, Innovation, and Real Economy",
     term: "2026.03",
-    status: "Completed" as const,
+    honor: "Top 60" as const,
     tags: [
       "Finance",
       "Valuation",
@@ -30,69 +29,33 @@ export default function GrowthValueFrameworkPage() {
       "China vs US",
       "Policy",
     ],
-    notes: [
-      "/competition/CFA1.png",
-    ],
+    notes: ["/competition/CFA1.png"],
   };
 
-  const overview = `This project develops a Growth Value Identification Model (GVIM) to explain how financial systems should identify and price emerging productive forces. 
-Instead of relying on backward-looking financial indicators alone, the framework integrates financial value, growth potential, and strategic positioning.
+  const overview = `This project develops a Growth Value Identification Model (GVIM) to explain how financial systems should identify and price emerging productive forces.
 
-Using a panel dataset of leading U.S. and Chinese technology firms, the project shows that financial markets do not simply reward innovation or growth in isolation. 
-Rather, they assign the strongest premium to firms that successfully convert innovation into scalable growth. 
-The study further extends this finding into a three-layer mechanism of value identification, risk layering, and value co-creation, connecting financial pricing logic with real economic transformation.`;
+Instead of relying only on backward-looking financial indicators, the framework combines financial fundamentals, growth potential, and strategic positioning. Using a panel dataset of leading U.S. and Chinese technology firms, the project explores how markets price innovation, scalability, and the ability to convert technological input into real economic growth.`;
 
-  const researchQuestion = `How should financial systems evolve to identify, price, and support emerging productive forces in the real economy? 
-The project argues that the key challenge is no longer capital allocation alone, but the ability of finance to recognize future productive capacity before it becomes visible in conventional balance sheets.`;
+  const highlight = `The core highlight of this project is the attempt to reframe valuation from a purely financial problem into a growth-based pricing problem.
 
-  const framework = `The core contribution of the project is the Growth Value Identification Model (GVIM):
+The framework argues that firms should not be evaluated only by current earnings or asset size. Their future value also depends on whether they can turn innovation into scalable products, user growth, data assets, and stronger positions within industrial ecosystems.`;
 
-V = αF + βG + γS
-
-where F denotes financial fundamentals, G captures growth-based value, and S measures strategic positioning within industrial ecosystems.
-
-The growth dimension is further decomposed into technological capability, user expansion, data assets, and product iteration speed. 
-To operationalize the framework, the empirical model maps growth factors into observable variables such as R&D expenditure, revenue growth, and the interaction between innovation and growth. 
-This enables a direct test of whether financial markets correctly price emerging productive forces.`;
-
-  const dataEmpirical = `The empirical section is based on an unbalanced panel dataset covering 15 leading technology and innovation-driven firms from the United States and China over 2016–2023.
-
-The key variables include:
-- MarketCap as the valuation proxy
-- R&D expenditure as innovation input
-- Revenue growth as scalability proxy
-- R&D × Growth as the interaction term representing innovation-growth synergy
-
-The baseline regression results show that:
-- R&D positively affects firm valuation
-- Revenue growth also positively affects firm valuation
-- The interaction between R&D and growth has the strongest explanatory power
-
-This suggests that financial markets assign a premium not to innovation or growth alone, but to firms capable of translating innovation into scalable growth. 
-Cross-country regressions further show that U.S. markets exhibit stronger sensitivity to this synergy, while Chinese markets display a hybrid pricing logic influenced by both market growth signals and policy-driven strategic factors.`;
-
-  const caseStudies = [
-    "New Energy Industry: Tesla vs CATL — Tesla reflects a market-driven valuation mechanism, while CATL demonstrates a hybrid model where strategic positioning and industrial policy materially affect financial pricing.",
-    "AI Industry: Nvidia vs iFlytek — Nvidia shows strong alignment between innovation, growth, and valuation, while iFlytek reveals the difficulty of fully pricing innovation in systems where commercialization and market-based signals remain weaker.",
+  const whatIDid: string[] = [
+    "Designed the main research question and framework, focusing on how finance can better identify and price future productive capacity before it fully appears in traditional financial statements.",
+    "Built the GVIM logic by separating firm value into financial fundamentals, growth-based value, and strategic positioning, then connected these dimensions with measurable indicators.",
+    "Led the empirical analysis using panel data from leading Chinese and U.S. technology firms, including variables such as market capitalization, R&D expenditure, revenue growth, and the R&D × Growth interaction term.",
+    "Developed the business interpretation of the results, especially the idea that markets reward firms not simply for innovation itself, but for their ability to convert innovation into scalable growth.",
+    "Translated the findings into practical implications for financial institutions, valuation systems, policy support, and capital allocation toward emerging industries.",
   ];
 
-  const policy = `The findings imply that financial systems must move from collateral-based, backward-looking assessment toward forward-looking value identification.
-
-Three policy implications stand out:
-1. Build growth-based evaluation systems that incorporate innovation and scalability indicators.
-2. Develop a multi-layer capital structure that matches risk across government funds, venture capital, and banks.
-3. Strengthen value co-creation, so that finance acts not only as a capital provider but also as a strategic partner in industrial upgrading.
-
-In the Chinese context, this also means improving the market valuation of intangible assets and better aligning policy support with market-based capital allocation mechanisms.`;
-
-  const takeaway = `This project ultimately argues that finance should no longer be understood merely as a mechanism for pricing the present.
-Its future function is to identify, price, and accelerate the productive forces of the future.`;
+  const reflectionPoints: string[] = [
+    "This project helped me understand that valuation is not only about measuring the present, but also about identifying future growth capacity.",
+    "The most important insight was that innovation and growth should not be viewed separately. A firm becomes more valuable when it can connect technological capability with scalable market expansion.",
+    "The comparison between Chinese and U.S. firms also showed that valuation systems are shaped by different market structures, policy environments, and investor expectations.",
+    "If I continue this research, I would further improve the variable design, expand the sample size, and test the framework across more industries.",
+  ];
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -123,10 +86,9 @@ Its future function is to identify, price, and accelerate the productive forces 
           {/* Top Meta Card */}
           <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
             <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
+              <span className="inline-flex h-6 items-center rounded-full px-2.5 text-xs border backdrop-blur-sm bg-amber-500/20 text-amber-100 border-amber-400/40">
+                <Trophy className="mr-1 h-3.5 w-3.5" />
+                {meta.honor}
               </span>
             </div>
 
@@ -170,83 +132,23 @@ Its future function is to identify, price, and accelerate the productive forces 
             </p>
           </section>
 
-          {/* Research Question */}
+          {/* Highlight */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
-              Research Question
+              Highlight
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
-              {researchQuestion}
+              {highlight}
             </p>
           </section>
 
-          {/* Core Framework */}
+          {/* What I Did */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
-              Core Framework: GVIM
+              What I Did
             </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
-              {framework}
-            </p>
-
-            <div className="mt-5 rounded-xl border border-blue-500/20 bg-blue-500/10 p-4">
-              <div className="text-sm uppercase tracking-wide text-blue-300 mb-2">
-                Key Insight
-              </div>
-              <p className="text-white text-base leading-relaxed">
-                The framework shifts valuation logic from backward-looking financial metrics
-                toward a growth-based pricing system that captures innovation, scalability,
-                and strategic embeddedness.
-              </p>
-            </div>
-          </section>
-
-          {/* Data & Empirical Evidence */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
-              Data & Empirical Evidence
-            </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
-              {dataEmpirical}
-            </p>
-
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <div className="text-sm uppercase tracking-wide text-blue-300 mb-2">
-                  Sample
-                </div>
-                <p className="text-gray-200 leading-relaxed">
-                  15 firms, U.S. + China, 2016–2023 panel data
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <div className="text-sm uppercase tracking-wide text-blue-300 mb-2">
-                  Core Result
-                </div>
-                <p className="text-gray-200 leading-relaxed">
-                  R&D × Growth has the strongest explanatory power in firm valuation
-                </p>
-              </div>
-
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <div className="text-sm uppercase tracking-wide text-blue-300 mb-2">
-                  Interpretation
-                </div>
-                <p className="text-gray-200 leading-relaxed">
-                  Markets reward firms that convert innovation into scalable growth
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* Case Studies */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
-              Case Studies
-            </h2>
-            <ul className="list-disc space-y-4 pl-5 text-gray-200">
-              {caseStudies.map((line, i) => (
+            <ul className="list-disc space-y-3 pl-5 text-gray-200">
+              {whatIDid.map((line, i) => (
                 <li key={i} className="leading-relaxed">
                   {line}
                 </li>
@@ -254,24 +156,18 @@ Its future function is to identify, price, and accelerate the productive forces 
             </ul>
           </section>
 
-          {/* Policy Implications */}
+          {/* Reflection */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
-              Policy Implications
+              Reflection
             </h2>
-            <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
-              {policy}
-            </p>
-          </section>
-
-          {/* Final Takeaway */}
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
-              Key Takeaway
-            </h2>
-            <p className="whitespace-pre-line text-lg leading-relaxed text-white font-medium">
-              {takeaway}
-            </p>
+            <ul className="list-disc space-y-3 pl-5 text-gray-200">
+              {reflectionPoints.map((pt, i) => (
+                <li key={i} className="leading-relaxed">
+                  {pt}
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
       </div>

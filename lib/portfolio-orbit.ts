@@ -56,11 +56,25 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Beverage","Consumer Goods","Brand Innovation"],
   },
   {
+    slug: "instant-retail-profitability-strategy-2026",
+    title: "Instant Retail Profitability Strategy",
+    section: "business" as OrbitSection,
+    href: "/business/instant-retail-profitability-strategy-2026",
+    industries: ["Retail","E-commerce","Platform Economy"],
+  },
+  {
     slug: "ubs-finance-challenge-2026",
     title: "Long BeOne, Short Akeso",
     section: "business" as OrbitSection,
     href: "/business/ubs-finance-challenge-2026",
     industries: ["Healthcare","Biotech","Capital Markets"],
+  },
+  {
+    slug: "flourish-kpmg-case-competition-2026",
+    title: "FLOURISH",
+    section: "business" as OrbitSection,
+    href: "/business/flourish-kpmg-case-competition-2026",
+    industries: ["Government","Education","Workforce & Talent"],
   },
   {
     slug: "roland-berger-campus-2025",
@@ -141,7 +155,7 @@ export const orbitItems: OrbitItem[] = [
   },
   {
     slug: "datathon-2025-supply-chain",
-    title: "Supply Chain Optimization (24h)",
+    title: "Supply Chain Optimization",
     section: "data" as OrbitSection,
     href: "/data/datathon-2025-supply-chain",
     industries: ["Supply Chain","Operations","E-commerce"],
@@ -154,18 +168,18 @@ export const orbitItems: OrbitItem[] = [
     industries: ["E-commerce","Local Services","Finance"],
   },
   {
-    slug: "pathology-image-classification",
-    title: "H&E Tumour vs Immune Cells",
-    section: "data" as OrbitSection,
-    href: "/data/pathology-image-classification",
-    industries: ["Healthcare","Medical Imaging","Machine Learning"],
-  },
-  {
     slug: "future-financial-analyst",
     title: "Growth-Based Repricing Framework",
     section: "data" as OrbitSection,
     href: "/data/future-financial-analyst",
     industries: ["Finance","Asset Management","Public Policy"],
+  },
+  {
+    slug: "pathology-image-classification",
+    title: "H&E Tumour vs Immune Cells",
+    section: "data" as OrbitSection,
+    href: "/data/pathology-image-classification",
+    industries: ["Healthcare","Medical Imaging","Machine Learning"],
   },
   {
     slug: "citi-global-market-challenge-2026",
@@ -180,6 +194,20 @@ export const orbitItems: OrbitItem[] = [
     section: "data" as OrbitSection,
     href: "/data/youtube-ai-content-strategy",
     industries: ["Entertainment","Creator Economy","Marketing"],
+  },
+  {
+    slug: "disaster-risk-insurance",
+    title: "Disaster Risk & Insurance Levers",
+    section: "data" as OrbitSection,
+    href: "/data/disaster-risk-insurance",
+    industries: ["Insurance","Public Policy","Climate Risk"],
+  },
+  {
+    slug: "data1x01-study",
+    title: "DATA1X01 Learning Survey",
+    section: "data" as OrbitSection,
+    href: "/data/data1x01-study",
+    industries: ["Education","Higher Ed"],
   },
   {
     slug: "short-drama-text-analysis",
@@ -208,20 +236,6 @@ export const orbitItems: OrbitItem[] = [
     section: "data" as OrbitSection,
     href: "/data/wine-quality-analysis",
     industries: ["Food & Beverage","Agri-food"],
-  },
-  {
-    slug: "disaster-risk-insurance",
-    title: "Disaster Risk & Insurance Levers",
-    section: "data" as OrbitSection,
-    href: "/data/disaster-risk-insurance",
-    industries: ["Insurance","Public Policy","Climate Risk"],
-  },
-  {
-    slug: "data1x01-study",
-    title: "DATA1X01 Learning Survey",
-    section: "data" as OrbitSection,
-    href: "/data/data1x01-study",
-    industries: ["Education","Higher Ed"],
   },
   {
     slug: "employer-income-correlation-au",

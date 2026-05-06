@@ -18,7 +18,6 @@ export default function LorealBrandstorm2025Page() {
     institution: "L'Oréal",
     practice: "Marketing · Product Innovation · Pitch",
     term: "2025.04",
-    status: "Completed" as const,
     tags: ["Marketing", "Product", "Pitch"],
     notes: ["/competition/loreal.png"],
   };
@@ -42,50 +41,38 @@ and crafted a pitch narrative covering insight → concept → channel plan → 
   ];
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-yellow-600/25 text-yellow-100 border-yellow-400/40"
-      : "bg-amber-600/25 text-amber-100 border-amber-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
 
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#120d08]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(249,115,22,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(245,158,11,0.16),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(251,191,36,0.12),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[#07130f]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(20,184,166,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(34,197,94,0.12),transparent_55%)]" />
       </div>
 
-      <Navigation activeSection="product" onSectionChange={() => {}} />
+      <Navigation activeSection="business" onSectionChange={() => {}} />
 
       <div className="relative z-10 pt-16 md:pt-20 p-6">
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
-            <Link href="/product">
-              <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-orange-100 hover:bg-orange-500/30">
+            <Link href="/business">
+              <Button className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md border-emerald-400/30 text-gray-100 hover:bg-emerald-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Product
+                Back to Business
               </Button>
             </Link>
 
             {hasNotes && (
               <Button
                 onClick={() => setShowNotes(true)}
-                className="bg-orange-500/20 border border-amber-400/40 text-orange-100 hover:bg-orange-500/30"
+                className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
@@ -103,7 +90,7 @@ and crafted a pitch narrative covering insight → concept → channel plan → 
                 {meta.tags.map((t) => (
                   <Badge
                     key={t}
-                    className="bg-orange-500/20 text-orange-100 border-orange-500/30"
+                    className="bg-emerald-500/14 text-emerald-100 border-emerald-400/25"
                   >
                     {t}
                   </Badge>
@@ -113,11 +100,11 @@ and crafted a pitch narrative covering insight → concept → channel plan → 
               <p className="text-gray-200">{meta.practice}</p>
             </div>
 
-            <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
+            <div className="h-1 w-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-500/20" />
           </Card>
 
-          <section className="rounded-xl border border-yellow-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
-            <h2 className="mb-3 text-xl font-semibold text-yellow-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-300 md:text-2xl">
               Project Overview
             </h2>
             <p className="whitespace-pre-wrap break-words text-base leading-relaxed text-gray-200">
@@ -126,8 +113,8 @@ and crafted a pitch narrative covering insight → concept → channel plan → 
           </section>
 
 
-          <section className="rounded-xl border border-yellow-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
-            <h2 className="mb-3 text-xl font-semibold text-yellow-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-300 md:text-2xl">
               What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -140,8 +127,8 @@ and crafted a pitch narrative covering insight → concept → channel plan → 
           </section>
 
 
-          <section className="rounded-xl border border-yellow-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
-            <h2 className="mb-3 text-xl font-semibold text-yellow-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6 overflow-visible">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-300 md:text-2xl">
               Reflection
             </h2>
             <div className="space-y-4 text-base leading-relaxed text-gray-200 whitespace-pre-wrap break-words">

@@ -14,9 +14,8 @@ const meta = {
   industries: ["Beauty", "Consumer Services", "AI Training"],
   practice: "Python · JSON Processing · NLP · Text Mining · Dialogue Metrics",
   term: "2025.09",
-  status: "Completed" as const,
   tags: ["NLP", "Text Mining", "Dialogue Analysis", "Feature Engineering"],
-  github: "",
+  github: "https://github.com/LinLyra/short-drama-text-analysis",
 };
 
 const overview = `Processed internal human–AI role-play dialogues (JSON → CSV) and built conversation-level metrics
@@ -38,11 +37,6 @@ const reflection = `Key takeaway: conversational data is unstructured by nature,
 is the real foundation for any dialogue analytics or evaluation.`;
 
 export default function ShortDramaTextAnalysisPage() {
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
-
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -66,21 +60,13 @@ export default function ShortDramaTextAnalysisPage() {
               <Link href={meta.github} target="_blank">
                 <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
                   <Github className="mr-2 h-4 w-4" />
-                  GitHub Repo
+                  GitHub
                 </Button>
               </Link>
             )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1 pr-28">
                 {meta.title}

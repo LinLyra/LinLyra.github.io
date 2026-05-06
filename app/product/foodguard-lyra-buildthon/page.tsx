@@ -18,7 +18,6 @@ export default function FoodGuardBuildthonPage() {
     institution: "Lyra Buildthon",
     practice: "AI Product · Computer Vision · HealthTech · Nutrition Tracking",
     term: "2025.11",
-    status: "Completed" as const,
     role: "Team Project",
     github: "https://github.com/your-username/foodguard",
     notes: [
@@ -63,16 +62,11 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
 
   const hasNotes = meta.notes.length > 0;
 
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-emerald-600/25 text-emerald-100 border-emerald-400/40"
-      : "bg-lime-600/25 text-lime-100 border-lime-400/40";
-
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[#07130f]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(132,204,22,0.16),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(34,197,94,0.14),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(20,184,166,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(34,197,94,0.12),transparent_55%)]" />
       </div>
 
       <Navigation activeSection="product" onSectionChange={() => {}} />
@@ -81,7 +75,7 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/product">
-              <Button className="bg-gradient-to-r from-emerald-500/20 to-lime-500/20 backdrop-blur-md border-emerald-400/30 text-gray-100 hover:bg-emerald-500/30">
+              <Button className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md border-emerald-400/30 text-gray-100 hover:bg-emerald-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Product
               </Button>
@@ -92,7 +86,7 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
                 <Link href={meta.github} target="_blank">
                   <Button className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30">
                     <Github className="mr-2 h-4 w-4" />
-                    GitHub Repo
+                    GitHub
                   </Button>
                 </Link>
               )}
@@ -102,21 +96,13 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
                   onClick={() => setShowNotes(true)}
                   className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
@@ -145,7 +131,7 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
               <p className="text-gray-200">{meta.practice}</p>
             </div>
 
-            <div className="h-1 w-full bg-gradient-to-r from-emerald-500/20 via-lime-500/20 to-emerald-500/20" />
+            <div className="h-1 w-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-500/20" />
           </Card>
 
           <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">

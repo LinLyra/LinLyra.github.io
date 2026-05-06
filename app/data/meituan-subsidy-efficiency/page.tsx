@@ -18,22 +18,14 @@ export default function MeituanSubsidyEfficiencyPage() {
     institution: "Meituan Business Analytics Challenge",
     practice: "Causal Inference · PSM · ATT · Incremental ROI · User Segmentation · Budget Reallocation",
     term: "2026.04",
-    status: "Completed" as const,
-    role: "Team Lead",
+    role: "Individual",
     tags: ["Causal Inference", "PSM", "ATT", "Incremental ROI", "Subsidy Strategy", "Business Analytics"],
-    notes: ["/data/meituan-subsidy.png"] as string[],
+    notes: ["/data/meituan1.png"] as string[],
   };
 
   const overview = `Subsidies are widely used as growth levers in local services, but traditional metrics such as redemption rate and apparent ROI often overestimate their true impact.
 
 In this project, I built a causal inference framework using Propensity Score Matching (PSM) to estimate how much subsidized GMV was truly incremental, identify high-response user segments, and translate the findings into a budget reallocation strategy.`;
-
-  const keyFindings: string[] = [
-    "Incremental ROI reached approximately 4.55 under the 7-day same-BU evaluation window.",
-    "Only around 26.4% of subsidized GMV was estimated to be truly incremental.",
-    "Approximately 73.6% of subsidized transactions appeared to cover natural demand or low-efficiency targeting.",
-    "Mid-activity users and lower-tier city users showed stronger marginal response to subsidies.",
-  ];
 
   const methods: string[] = [
     "Applied Propensity Score Matching to construct comparable treatment and control groups from users receiving the same subsidy batch.",
@@ -58,11 +50,6 @@ The analysis showed that the real problem was not whether subsidies worked, but 
 This project strengthened my ability to connect causal inference with business strategy: using data not only to measure outcomes, but also to guide resource allocation decisions.`;
 
   const hasNotes = (meta.notes?.length ?? 0) > 0;
-
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-emerald-600/25 text-emerald-100 border-emerald-400/40"
-      : "bg-blue-600/25 text-blue-100 border-blue-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -96,14 +83,8 @@ This project strengthened my ability to connect causal inference with business s
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
-              <h1 className="text-xl md:text-2xl font-semibold text-white mb-1 pr-28">
+              <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
               </h1>
 
@@ -121,7 +102,7 @@ This project strengthened my ability to connect causal inference with business s
 
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
-                  <Badge key={t} className="bg-blue-500/20 text-blue-100 border-blue-500/30">
+                  <Badge key={t} className="bg-emerald-500/14 text-emerald-100 border-emerald-400/25">
                     {t}
                   </Badge>
                 ))}
@@ -133,24 +114,13 @@ This project strengthened my ability to connect causal inference with business s
             <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-emerald-500/30 to-amber-500/30" />
           </Card>
 
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Project Overview</h2>
+          <section className="rounded-xl border border-white/10 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-slate-100 md:text-2xl">Project Overview</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-300 md:text-2xl">Key Findings</h2>
-            <ul className="list-disc space-y-3 pl-5 text-gray-200">
-              {keyFindings.map((line, i) => (
-                <li key={i} className="leading-relaxed">
-                  {line}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">Methods</h2>
+          <section className="rounded-xl border border-white/10 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-slate-100 md:text-2xl">Methods</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {methods.map((line, i) => (
                 <li key={i} className="leading-relaxed">
@@ -160,8 +130,8 @@ This project strengthened my ability to connect causal inference with business s
             </ul>
           </section>
 
-          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">What I Did</h2>
+          <section className="rounded-xl border border-white/10 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-slate-100 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIDid.map((line, i) => (
                 <li key={i} className="leading-relaxed">
@@ -171,8 +141,8 @@ This project strengthened my ability to connect causal inference with business s
             </ul>
           </section>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-300 md:text-2xl">Reflection</h2>
+          <section className="rounded-xl border border-white/10 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-slate-100 md:text-2xl">Reflection</h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{reflection}</p>
           </section>
         </div>

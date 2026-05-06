@@ -17,7 +17,6 @@ export default function AccentureStrategyVirtualPage() {
     institution: "Accenture (Forage)",
     practice: "Scoping · Prioritisation · Analysis · Client Communication",
     term: "2024.12",
-    status: "Completed" as const,
     notes: ["/experience/acc.png"],
   };
 
@@ -44,10 +43,6 @@ If I repeated this, I’d add:
 2) a short 2-week experiment plan to validate the riskiest assumption cheaply before scaling.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-emerald-600/25 text-emerald-100 border-emerald-400/40"
-      : "bg-lime-600/25 text-lime-100 border-lime-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -73,17 +68,12 @@ If I repeated this, I’d add:
                 onClick={() => setShowNotes(true)}
                 className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">{meta.title}</h1>
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">

@@ -18,7 +18,6 @@ export default function Data2901SydneyResourcesPage() {
     institution: "Group Project · University of Sydney",
     practice: "Spatial Analytics · PostgreSQL/PostGIS · Composite Scoring",
     term: "2025 S1",
-    status: "Completed" as const,
     tags: [
       "PostgreSQL",
       "PostGIS",
@@ -64,10 +63,6 @@ Model validation reminded us that a single composite index rarely “explains”
 If iterating, I’d expand indicators, add time dynamics for “access volatility,” and publish a policy brief pairing low-scoring SA2s with actionable levers.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -99,13 +94,6 @@ If iterating, I’d expand indicators, add time dynamics for “access volatilit
 
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">{meta.title}</h1>
               <div className="mb-3 inline-flex items-center gap-2 text-sm text-gray-300">

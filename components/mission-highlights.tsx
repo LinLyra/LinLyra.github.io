@@ -4,11 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { ArrowUpRight, ChevronRight, X } from "lucide-react"
+import { ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Space_Grotesk } from "next/font/google"
 
 import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"
-import { bainInstantRetailSlidePaths } from "@/lib/bain-instant-retail-slides"
+import { bainInstantRetailSlidePaths } from "../lib/bain-instant-retail-slides"
 import { citiGmc2026SlidePaths } from "@/lib/citi-gmc-2026-slides"
 import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slides"
 import { flourishKpmg2026SlidePaths } from "@/lib/flourish-kpmg-2026-slides"
@@ -35,7 +35,7 @@ type Mission = {
 
 const MISSIONS: Mission[] = [
   {
-    title: "Supply Chain Optimization (SUDATA × SUBAA Datathon)",
+    title: "Supply Chain Optimization",
     subtitle: "First Place · Supply Chain / Operations",
     href: "/data/datathon-2025-supply-chain",
     images: [...datathonSupplyChainSlidePaths()],
@@ -43,14 +43,14 @@ const MISSIONS: Mission[] = [
   },
   {
     title: "Cost-Efficient Alpha",
-    subtitle: "Citi Global Market Challenge 2026",
+    subtitle: "Healthcare · Biotech",
     href: "/data/citi-global-market-challenge-2026",
     images: [...citiGmc2026SlidePaths()],
     accent: "blue",
   },
   {
     title: "Instant Retail Profitability Strategy",
-    subtitle: "Bain & Company Case Competition 2026",
+    subtitle: "Retail · Platform Economy",
     href: "/business/bain-instant-retail-profitability-strategy",
     images: [...bainInstantRetailSlidePaths()],
     accent: "green",
@@ -64,21 +64,21 @@ const MISSIONS: Mission[] = [
   },
   {
     title: "Aerotropolis South Connector",
-    subtitle: "Case Competition · Infrastructure / Transport",
+    subtitle: "Top6 · Project Management · Infrastructure / Transport",
     href: "/business/aerotropolis-south-connector-2026",
     images: [...aerotropolisSlidePaths()],
     accent: "green",
   },
   {
     title: "Long BeOne, Short Akeso",
-    subtitle: "UBS Finance Challenge 2026 · Equity Research",
+    subtitle: "Retail · Platform Economy",
     href: "/business/ubs-finance-challenge-2026",
     images: [...ubsFinance2026SlidePaths()],
     accent: "green",
   },
   {
     title: "Flourish — KPMG Case Competition",
-    subtitle: "KPMG 2026",
+    subtitle: "Education · Workforce & Talent",
     href: "/business/flourish-kpmg-case-competition-2026",
     images: [...flourishKpmg2026SlidePaths()],
     accent: "green",
@@ -86,6 +86,33 @@ const MISSIONS: Mission[] = [
 ]
 
 export function MissionHighlights() {
+  const scrollerRef = React.useRef<HTMLDivElement | null>(null)
+  const [canLeft, setCanLeft] = React.useState(false)
+  const [canRight, setCanRight] = React.useState(true)
+
+  const syncArrows = React.useCallback(() => {
+    const el = scrollerRef.current
+    if (!el) return
+    const maxLeft = el.scrollWidth - el.clientWidth
+    setCanLeft(el.scrollLeft > 6)
+    setCanRight(el.scrollLeft < maxLeft - 6)
+  }, [])
+
+  React.useEffect(() => {
+    syncArrows()
+    const onResize = () => syncArrows()
+    window.addEventListener("resize", onResize)
+    return () => window.removeEventListener("resize", onResize)
+  }, [syncArrows])
+
+  const scrollByCards = (dir: -1 | 1) => {
+    const el = scrollerRef.current
+    if (!el) return
+    const amount = Math.max(260, Math.round(el.clientWidth * 0.75)) * dir
+    el.scrollBy({ left: amount, behavior: "smooth" })
+    window.setTimeout(() => syncArrows(), 220)
+  }
+
   return (
     <div className="pt-4">
       <div className="mb-4 text-center">
@@ -95,20 +122,35 @@ export function MissionHighlights() {
         <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-400 md:text-[0.95rem]">
           Structured problem-solving across real-world business and data challenges.
         </p>
-        <div className="mt-2 flex items-center justify-center gap-2 text-[11px] font-medium tracking-[0.18em] text-slate-400/80">
-          <span className="rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1">SCROLL</span>
-          <ChevronRight className="h-3.5 w-3.5 animate-[mission-hint_1.3s_ease-in-out_infinite]" />
-        </div>
       </div>
 
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-8 bg-gradient-to-r from-black/80 to-transparent md:w-12" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-8 bg-gradient-to-l from-black/80 to-transparent md:w-12" />
-        <div className="pointer-events-none absolute right-2 top-1/2 z-[2] -translate-y-1/2 rounded-full border border-white/10 bg-black/35 p-2 text-slate-200/80 backdrop-blur-md md:right-3">
-          <ChevronRight className="h-4 w-4 animate-[mission-hint_1.3s_ease-in-out_infinite]" />
-        </div>
+        {canLeft ? (
+          <button
+            type="button"
+            onClick={() => scrollByCards(-1)}
+            className="absolute left-2 top-1/2 z-[3] -translate-y-1/2 rounded-full border border-white/10 bg-black/35 p-2 text-slate-200/85 backdrop-blur-md transition hover:bg-black/45 md:left-3"
+            aria-label="Scroll missions left"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+        ) : null}
+        {canRight ? (
+          <button
+            type="button"
+            onClick={() => scrollByCards(1)}
+            className="absolute right-2 top-1/2 z-[3] -translate-y-1/2 rounded-full border border-white/10 bg-black/35 p-2 text-slate-200/85 backdrop-blur-md transition hover:bg-black/45 md:right-3"
+            aria-label="Scroll missions right"
+          >
+            <ChevronRight className="h-4 w-4 animate-[mission-hint_1.3s_ease-in-out_infinite]" />
+          </button>
+        ) : null}
 
         <div
+          ref={scrollerRef}
+          onScroll={syncArrows}
           className={cn(
             "missions-scroll relative z-0 flex gap-2.5 overflow-x-auto pb-2 pt-1",
             "snap-x snap-mandatory scroll-px-4 px-3 md:gap-3 md:scroll-px-6 md:px-4"

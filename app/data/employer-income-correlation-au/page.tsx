@@ -18,7 +18,6 @@ export default function Data1002Project3Page() {
     institution: "Course Project · University of Sydney",
     practice: "Predictive Modeling · EDA · Model Comparison (Python / scikit-learn)",
     term: "2024 S2",
-    status: "Completed" as const,
     notes: ["/data/data1002.png",
            "/data/data10021.png"],
 
@@ -63,10 +62,6 @@ tighten the plotting pipeline so every chart is reproducible from raw inputs. Th
 but a model that remains legible and robust when assumptions inevitably drift.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-blue-600/25 text-blue-100 border-blue-400/40"
-      : "bg-cyan-600/25 text-cyan-100 border-cyan-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -99,11 +94,6 @@ but a model that remains legible and robust when assumptions inevitably drift.`;
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
