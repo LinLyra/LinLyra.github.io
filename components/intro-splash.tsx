@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { useLowPowerWebGL } from "@/lib/use-low-power-webgl"
 
 type IntroSplashProps = {
   children: React.ReactNode
@@ -15,7 +14,6 @@ function shouldSkipIntro(): boolean {
 }
 
 export function IntroSplash({ children }: IntroSplashProps) {
-  const lowPower = useLowPowerWebGL()
   const [show, setShow] = useState(false)
   const [shattering, setShattering] = useState(false)
   const [revealing, setRevealing] = useState(false)
@@ -23,7 +21,6 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const vRef = useRef<HTMLVideoElement | null>(null)
 
   // Show intro on mobile/iPad too; only skip for reduced-motion users.
-  // (We keep lowPower around for future tuning, but don't auto-disable the intro.)
   const enabled = useMemo(() => !shouldSkipIntro(), [])
 
   useEffect(() => {
@@ -85,7 +82,7 @@ export function IntroSplash({ children }: IntroSplashProps) {
     }, 1250)
     window.setTimeout(() => {
       setRevealing(false)
-    }, 3600)
+    }, 1900)
   }
 
   return (
@@ -93,19 +90,6 @@ export function IntroSplash({ children }: IntroSplashProps) {
       <div className={cn("intro-revealTarget", revealing && "intro-revealTarget--on")}>
         {children}
       </div>
-      {revealing ? (
-        <div className="intro-rebirth" aria-hidden>
-          <span className="intro-rebirth__scan" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--1" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--2" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--3" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--4" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--5" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--6" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--7" />
-          <span className="intro-rebirth__shard intro-rebirth__shard--8" />
-        </div>
-      ) : null}
       {show ? (
         <div
           className={cn(
