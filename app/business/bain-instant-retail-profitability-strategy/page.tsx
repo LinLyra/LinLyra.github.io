@@ -25,12 +25,12 @@ export default function InstantRetailProfitabilityStrategyPage() {
   const meta = {
     slug: "bain-instant-retail-profitability-strategy",
     title: "Instant Retail Profitability Strategy",
-    institution: "Bain & Company Case Competition 2026",
+    institution: "Bain Case Competition 2026",
     practice: "Strategy Consulting · Retail Strategy · Unit Economics",
     term: "2026",
-    role: "Strategy Lead · Unit Economics & City Portfolio Design",
+    role: "Team Leader",
     placement: "Case Project",
-    canvaUrl: "https://your-project-link-here.com",
+    canvaUrl: "http://peridot-eocursor-4db.notion.site/Instant-Retail-Profitability-Strategy-3583be3c1315806880dfff1aea218ef7",
     notes: [] as string[],
     tags: [
       "Strategy Consulting",

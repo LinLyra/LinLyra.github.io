@@ -187,9 +187,9 @@ export default function BusinessPage() {
       tags: ["ESG", "Luxury"],
     },
     {
-      slug: "instant-retail-profitability-strategy-2026",
+      slug: "bain-instant-retail-profitability-strategy",
       projectName: "Instant Retail Profitability Strategy",
-      subtitle: "Bain & Company Case Competition 2026",
+      subtitle: "Bain Case Competition 2026",
       date: "2026.04",
       type: "competition",
       logo: "/competition/bainlogo.png", 

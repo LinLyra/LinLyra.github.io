@@ -21,7 +21,7 @@ export default function MengniuYouyiCCodeEnergyPage() {
     role: "Solo",
     status: "Completed" as const,
     award: "",
-    notes: ["/competition/mengniu-youyic.png"],
+    notes: ["/competition/mengniu1.png"],
     tags: ["Product Strategy", "Interactive Marketing", "Youth Culture"],
   };
 

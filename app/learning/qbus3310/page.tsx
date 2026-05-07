@@ -57,7 +57,7 @@ export default function QBUS3310Page() {
 
   const hasNotes = meta.notes.length > 0
   const badge =
-    meta.status === "Planned"
+    meta.status === "In Progress"
       ? "bg-purple-600/25 text-purple-100 border-purple-400/40"
       : "bg-fuchsia-600/25 text-fuchsia-100 border-fuchsia-400/40"
 

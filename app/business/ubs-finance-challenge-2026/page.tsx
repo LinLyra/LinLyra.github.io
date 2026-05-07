@@ -29,7 +29,7 @@ export default function UBSFinanceChallengePage() {
     term: "2026.05",
     status: "Completed" as const,
     role: "Investment Thesis, Valuation & AI Analysis",
-    pdfUrl: "",
+    canvaUrl: "https://peridot-eocursor-4db.notion.site/Long-BeOne-Short-Akeso-3573be3c131580dd9796c78ec8881923",
     notes: [] as string[],
     tags: [
       "Equity Research",
@@ -108,10 +108,10 @@ Through this case, I improved my ability to translate biotech-specific factors â
             </Link>
 
             <div className="flex items-center gap-2">
-              <a href={meta.pdfUrl} target="_blank" rel="noopener noreferrer">
+              <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30">
-                  View Project PDF
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  View More        
                 </Button>
               </a>
 

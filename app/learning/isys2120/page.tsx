@@ -46,7 +46,7 @@ export default function ISYS2120Page() {
 
   const hasNotes = meta.notes.length > 0
   const badge =
-    meta.status === "In Progress"
+    meta.status === "Completed"
       ? "bg-purple-600/25 text-purple-100 border-purple-400/40"
       : "bg-fuchsia-600/25 text-fuchsia-100 border-fuchsia-400/40"
 
