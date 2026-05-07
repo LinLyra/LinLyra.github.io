@@ -56,6 +56,12 @@
     object-fit: cover;
     /* Minimal blur — sharpness comes from the source file; grain masks compression */
     filter: blur(0.2px) brightness(0.82) contrast(1.12) saturate(1.06);
+    opacity: 1;
+    transition: opacity 320ms ease;
+  }
+
+  .intro-splash__video--hidden {
+    opacity: 0;
   }
 
   .intro-splash__fallback {

@@ -20,6 +20,7 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const [progress, setProgress] = useState(0)
   const [videoReady, setVideoReady] = useState(false)
   const vRef = useRef<HTMLVideoElement | null>(null)
+  const progressTimersRef = useRef<number[]>([])
 
   // Show intro on mobile/iPad too; only skip for reduced-motion users.
   const enabled = useMemo(() => !shouldSkipIntro(), [])
@@ -39,6 +40,8 @@ export function IntroSplash({ children }: IntroSplashProps) {
     const v = vRef.current
     setVideoReady(false)
     setProgress(0)
+    progressTimersRef.current.forEach((t) => window.clearTimeout(t))
+    progressTimersRef.current = []
     const hardTimeout = window.setTimeout(() => beginExit(), 4200)
 
     const onEnded = () => beginExit()
@@ -46,19 +49,10 @@ export function IntroSplash({ children }: IntroSplashProps) {
     v?.addEventListener("ended", onEnded)
     v?.addEventListener("loadeddata", onLoaded)
 
-    // Fake progress milestones across ~4s
-    const milestones: Array<[number, number]> = [
-      [0, 0],
-      [280, 12],
-      [720, 27],
-      [1180, 43],
-      [1980, 68],
-      [2920, 91],
-      [3600, 100],
-    ]
-    const timers = milestones.map(([ms, val]) =>
-      window.setTimeout(() => setProgress(val), ms),
-    )
+    // Aggressive load to get first frame earlier.
+    try {
+      v?.load()
+    } catch {}
 
     // Try to autoplay (muted + playsInline). If blocked, skip quickly.
     v?.play().catch(() => {
@@ -69,10 +63,37 @@ export function IntroSplash({ children }: IntroSplashProps) {
       window.clearTimeout(hardTimeout)
       v?.removeEventListener("ended", onEnded)
       v?.removeEventListener("loadeddata", onLoaded)
-      timers.forEach((t) => window.clearTimeout(t))
+      progressTimersRef.current.forEach((t) => window.clearTimeout(t))
+      progressTimersRef.current = []
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show])
+
+  useEffect(() => {
+    if (!show) return
+    if (!videoReady) return
+    if (typeof window === "undefined") return
+
+    // Start fake progress only after first frame is available.
+    const milestones: Array<[number, number]> = [
+      [0, 0],
+      [260, 12],
+      [690, 27],
+      [1120, 43],
+      [1900, 68],
+      [2820, 91],
+      [3500, 100],
+    ]
+    progressTimersRef.current.forEach((t) => window.clearTimeout(t))
+    progressTimersRef.current = milestones.map(([ms, val]) =>
+      window.setTimeout(() => setProgress(val), ms),
+    )
+
+    return () => {
+      progressTimersRef.current.forEach((t) => window.clearTimeout(t))
+      progressTimersRef.current = []
+    }
+  }, [show, videoReady])
 
   const beginExit = () => {
     if (shattering) return
@@ -105,12 +126,11 @@ export function IntroSplash({ children }: IntroSplashProps) {
         >
           <video
             ref={vRef}
-            className="intro-splash__video"
+            className={cn("intro-splash__video", !videoReady && "intro-splash__video--hidden")}
             autoPlay
             muted
             playsInline
-            preload="metadata"
-            poster="/intro/poster.jpg"
+            preload="auto"
           >
             <source src="/intro/intro.webm" type="video/webm" />
             <source src="/intro/intro.mp4" type="video/mp4" />
