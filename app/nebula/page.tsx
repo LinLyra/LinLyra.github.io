@@ -593,7 +593,7 @@ export default function NebulaPage() {
           <div className="mb-6 space-y-4">
             <div className="relative max-w-xl mx-auto">
               <Input
-                placeholder="Search by title / organization / place / keyword…"
+                placeholder="Search by title,organization,place,keyword…"
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 className="w-full bg-black/30 backdrop-blur-md border-red-400/30 text-gray-100 placeholder:text-gray-400 pr-10"

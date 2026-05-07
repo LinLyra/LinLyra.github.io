@@ -15,7 +15,7 @@ export default function PathologyImageClassificationPage() {
     practice:
       "Applied Machine Learning · Computer Vision · Pathology Image Classification",
     term: "2026 S1",
-    github: "https://github.com/LinLyra/pathology-image-classification",
+    github: "",
     canvaUrl: "https://peridot-eocursor-4db.notion.site/H-E-Cell-Classification-A-Domain-Informed-Machine-Learning-Approach-3523be3c13158057a5c3ddf8944f9d3a",
     tags: ["Machine Learning", "Computer Vision", "Medical Imaging", "KNN", "HOG", "Random Forest", "SVM", "CNN", "ResNet50", "Python", "R", "Explainable AI"],
 

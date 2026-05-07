@@ -28,7 +28,7 @@ export default function AerotropolisSouthConnectorPage() {
     term: "2026.04",
     role: "Team Leader",
     placement: "Top 6",
-    canvaUrl: "https://peridot-eocursor-4db.notion.site/Aerotropolis-South-Connector-3523be3c13158057a5c3ddf8944f9d3a", 
+    canvaUrl: "https://peridot-eocursor-4db.notion.site/Aerotropolis-South-Connector-3563be3c131580e3b5bae6ceee893bcf", 
     notes: [] as string[],
     tags: [
       "Infrastructure Advisory",
