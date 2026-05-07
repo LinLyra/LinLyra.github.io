@@ -19,7 +19,6 @@ export default function MersenCampusChallengePage() {
     practice: "Employer Branding · Campaign Strategy · Industrial Branding",
     term: "2026.04",
     role: "Solo",
-    status: "Completed" as const,
     award: "Top 10",
     notes: ["/competition/mersen1.png"],
     tags: ["Employer Branding", "Campaign Strategy", "Industrial Brand"],
@@ -51,11 +50,6 @@ Overall, this experience sharpened my ability to work across business insight, u
 
   const hasNotes = meta.notes.length > 0;
 
-  const statusPill =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -76,7 +70,7 @@ Overall, this experience sharpened my ability to work across business insight, u
                   onClick={() => setShowNotes(true)}
                   className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
@@ -84,12 +78,6 @@ Overall, this experience sharpened my ability to work across business insight, u
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusPill}`}
-              >
-                {meta.status}
-              </span>
-
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏅 {meta.award}

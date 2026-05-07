@@ -18,7 +18,6 @@ export default function CcfTechForGood2025Page() {
     institution: "CCF · Tech for Good",
     practice: "Hackathon · Accessible Films · Product Design",
     term: "2025.05",
-    status: "Completed" as const,
     award: "Top 9",
     tags: ["Accessible Films", "Product Design", "Social Impact"],
     notes: [
@@ -45,10 +44,6 @@ forced disciplined engineering and better UX decisions. The key lessons for me:
 3) a small, end-to-end demo with editing hooks is more valuable than a perfect model benchmark.`;
 
   const hasNotes = meta.notes.length > 0;
-  const statusClass =
-    meta.status === "Completed"
-      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
-      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -74,16 +69,13 @@ forced disciplined engineering and better UX decisions. The key lessons for me:
                 onClick={() => setShowNotes(true)}
                 className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex items-center gap-2">
-              <span className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border ${statusClass}`}>
-                {meta.status}
-              </span>
               {meta.award && (
                 <span className="inline-flex h-6 items-center rounded-full px-2.5 text-xs border border-yellow-300/40 bg-yellow-500/20 text-yellow-100">
                   🏅 {meta.award}

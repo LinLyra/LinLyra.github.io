@@ -15,7 +15,6 @@ export default function MercerBusinessAnalystPage() {
     practice:
       "Talent Strategy · Capability Modeling · People Analytics · Organizational Decision Support",
     term: "2025.12 — 2026.03",
-    status: "Completed" as const,
     tags: [
       "Talent Assessment",
       "Competency Modeling",
@@ -66,11 +65,6 @@ export default function MercerBusinessAnalystPage() {
 
 • Early signals of potential are often behavioral: learning speed, adaptability, and problem-solving approach provide stronger signals than static credentials.`;
 
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-emerald-600/25 text-emerald-100 border-emerald-400/40"
-      : "bg-green-600/25 text-green-100 border-green-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -89,13 +83,6 @@ export default function MercerBusinessAnalystPage() {
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

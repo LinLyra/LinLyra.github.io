@@ -19,7 +19,6 @@ export default function NetZeroGYSPage() {
     practice: "Climate Action · Youth Innovation · Low-carbon Product Proposal",
     term: "2024.09",
     role: "Team Leader",
-    status: "Completed" as const,
     award: "Global Bronze",
     notes: ["/competition/zero.png", "/competition/zero1.png"],
     tags: ["Global Bronze Award", "Climate Action", "Youth Leadership", "Innovation"],
@@ -49,10 +48,6 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
   ];
 
   const hasNotes = meta.notes.length > 0;
-  const statusPill =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
 
   return (
     <div className="relative min-h-screen overflow-visible">
@@ -73,7 +68,7 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
                 onClick={() => setShowNotes(true)}
                 className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
@@ -81,10 +76,6 @@ The aim is an immersive, eco-friendly stay that balances tourism income with mea
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-visible">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusPill}`}>
-                {meta.status}
-              </span>
-
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   <Award className="mr-1 h-3.5 w-3.5" />

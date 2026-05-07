@@ -19,7 +19,6 @@ export default function EyEsgInnovationPage() {
     practice: "ESG Strategy · AI + Luxury · Supply Chain",
     term: "2025.04",
     role: "Team Lead",
-    status: "Completed" as const,
     award: "Semifinalist",
     notes: ["/competition/lvmh.png"],
     tags: ["ESG", "AI + Luxury", "Luxury Supply Chain"],
@@ -71,10 +70,6 @@ Overall, this experience sharpened my ability to lead through ambiguity, structu
   ];
 
   const hasNotes = meta.notes.length > 0;
-  const statusPill =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
 
   return (
     <div className="relative min-h-screen">
@@ -104,11 +99,6 @@ Overall, this experience sharpened my ability to lead through ambiguity, structu
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusPill}`}
-              >
-                {meta.status}
-              </span>
               {meta.award && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏅 {meta.award}

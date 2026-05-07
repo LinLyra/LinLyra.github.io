@@ -15,7 +15,6 @@ export default function ProductConsultingInternPage() {
     practice:
       "AI Product Consulting · User Research · Workflow Design · Knowledge Systems · Rollout & Training",
     term: "2025.03 — 2025.08",
-    status: "Completed" as const,
     tags: [
       "Product Discovery",
       "User Research",
@@ -51,11 +50,6 @@ export default function ProductConsultingInternPage() {
 • The hardest part is not building the bot, but making it understandable, trustworthy, and usable for different groups in real-world contexts.
 • Through training and co-building (“vibe coding”), I also observed how individuals differ in learning speed, abstraction ability, and execution, which deepened my interest in capability-based evaluation beyond resumes.`;
 
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -73,13 +67,6 @@ export default function ProductConsultingInternPage() {
           </div>
 
           <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex h-6 items-center rounded-full border px-2.5 text-xs backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="mb-1 text-xl font-semibold text-white md:text-2xl">
                 {meta.title}

@@ -30,7 +30,6 @@ export default function FlourishKPMGCasePage() {
     practice:
       "Talent Retention Strategy · Government Advisory · Campaign Strategy · Youth Population Challenge",
     term: "2026.05",
-    status: "Completed" as const,
     role: "Strategy, Problem Diagnosis & Campaign Design",
     placement: "",
     canvaUrl: "https://peridot-eocursor-4db.notion.site/FLOURISH-3573be3c131580dbada6f766ad5551ff?pvs=73",
@@ -199,11 +198,6 @@ Through FLOURISH, I practised building a consulting-style narrative from problem
 
   const hasNotes = meta.notes.length > 0;
 
-  const statusBadge =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -222,7 +216,7 @@ Through FLOURISH, I practised building a consulting-style narrative from problem
               <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30">
                  <ExternalLink className="mr-2 h-4 w-4" />
-                  View More
+                  View more
                 </Button>
               </a>
 
@@ -231,7 +225,7 @@ Through FLOURISH, I practised building a consulting-style narrative from problem
                   onClick={() => setShowNotes(true)}
                   className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
@@ -239,12 +233,6 @@ Through FLOURISH, I practised building a consulting-style narrative from problem
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}
-              >
-                {meta.status}
-              </span>
-
               {meta.placement && (
                 <span className="inline-flex items-center h-6 rounded-full px-2.5 text-xs border border-amber-300/40 bg-amber-500/20 text-amber-100">
                   🏆 {meta.placement}

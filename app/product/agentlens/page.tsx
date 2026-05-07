@@ -18,8 +18,7 @@ export default function AgentLensPage() {
     institution: "Meituan · Nocode",
     practice: "AI Evaluation · Hallucination Detection · Next.js + OpenRouter",
     term: "2026.03",
-    status: "Completed" as const,
-    role: "Full Stack Developer",
+    role: "Individual",
     tags: [
       "AI Evaluation",
       "LLM",
@@ -27,12 +26,7 @@ export default function AgentLensPage() {
       "AI Agents",
       "Diagnostics",
     ],
-    images: [
-      "/competition/agent1.png",
-      "/competition/agent2.png",
-      "/competition/agent3.png",
-      "/competition/agent4.png",
-    ] as string[],
+    images: [] as string[],
     links: {
       github: "" 
     },
@@ -56,11 +50,6 @@ export default function AgentLensPage() {
     "Building AgentLens revealed that evaluating AI is fundamentally harder than generating responses. Simple scoring is not sufficient — developers need structured insights into why AI fails.\n\nOne key insight is that hallucination detection is essential for trust but difficult to define. By combining task context and response analysis, the system achieves more reliable detection than naive approaches.\n\nAnother learning is that usability matters: concise explanations and visual dashboards significantly improve how users interpret evaluation results.\n\nIn the future, AgentLens can evolve into a full AI quality monitoring system with continuous evaluation, feedback loops, and production integration.";
 
   const hasImages = meta.images.length > 0;
-
-  const statusClass =
-    meta.status === "Completed"
-      ? "bg-emerald-500/20 text-emerald-100 border-emerald-400/30"
-      : "bg-orange-500/20 text-orange-100 border-orange-400/30";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -145,7 +134,7 @@ export default function AgentLensPage() {
           {/* What I Did */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-6 backdrop-blur-md">
             <h2 className="text-xl font-semibold text-amber-300 mb-3">
-              What I Built
+              What I Did
             </h2>
             <ul className="list-disc pl-5 text-gray-200 space-y-2">
               {whatIDid.map((item, i) => (

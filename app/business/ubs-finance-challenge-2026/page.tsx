@@ -27,7 +27,6 @@ export default function UBSFinanceChallengePage() {
     practice:
       "Equity Research Â· Long/Short Pair Trade Â· Healthcare Sector Â· AI-Assisted Investment Analysis",
     term: "2026.05",
-    status: "Completed" as const,
     role: "Investment Thesis, Valuation & AI Analysis",
     canvaUrl: "https://peridot-eocursor-4db.notion.site/Long-BeOne-Short-Akeso-3573be3c131580dd9796c78ec8881923",
     notes: [] as string[],
@@ -88,11 +87,6 @@ Through this case, I improved my ability to translate biotech-specific factors â
 
   const hasNotes = meta.notes.length > 0;
 
-  const statusBadge =
-    meta.status === "Completed"
-      ? "bg-green-600/25 text-green-100 border-green-400/40"
-      : "bg-emerald-600/25 text-emerald-100 border-emerald-400/40";
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="business" onSectionChange={() => {}} />
@@ -111,7 +105,7 @@ Through this case, I improved my ability to translate biotech-specific factors â
               <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30">
                   <ExternalLink className="mr-2 h-4 w-4" />
-                  View More        
+                  View more        
                 </Button>
               </a>
 
@@ -120,7 +114,7 @@ Through this case, I improved my ability to translate biotech-specific factors â
                   onClick={() => setShowNotes(true)}
                   className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
@@ -128,12 +122,6 @@ Through this case, I improved my ability to translate biotech-specific factors â
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3 flex gap-2">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${statusBadge}`}
-              >
-                {meta.status}
-              </span>
-
             </div>
 
             <div className="p-5 md:p-6">

@@ -18,7 +18,6 @@ export default function KpmgInnovateDay2025Page() {
     institution: "KPMG China",
     practice: "Product Innovation · AuditX · Digital Insights",
     term: "2024.10",
-    status: "Completed" as const,
     tags: ["Product", "AuditX", "Business Plan"],
     notes: [
       "/competition/check.png",
@@ -46,10 +45,6 @@ If iterating, I'd run a tighter pilot plan with success metrics (turnaround time
 private deployment to reduce data-security friction.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
-      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -77,7 +72,7 @@ private deployment to reduce data-security friction.`;
                 onClick={() => setShowNotes(true)}
                 className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
               >
-                View More
+                View more
            
               </Button>
             )}
@@ -85,11 +80,6 @@ private deployment to reduce data-security friction.`;
 
           {/* meta card */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

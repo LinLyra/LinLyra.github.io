@@ -19,7 +19,6 @@ export default function RolandBergerCampus2025Page() {
     practice: "Strategy Case · Humanoid Robotics Go-to-Market",
     term: "2025.06",
     role: "Team Lead",
-    status: "Completed" as const,
     tags: ["Strategy", "Market Analysis", "Humanoid Robot", "Go-to-Market", "Unit Economics"],
     notes: ["/competition/rb.png"] as string[],
   };
@@ -52,10 +51,6 @@ The credible path I see is ‘humanoid as a platform’ with curated task librar
 The lesson for me as a strategy candidate: sanity-check hype with unit economics; pick beachheads where environmental control and measurable ROI exist; and design the partnership fabric early so scaling is not an afterthought.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-emerald-600/25 text-emerald-100 border-emerald-400/40"
-      : "bg-lime-600/25 text-lime-100 border-lime-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -82,17 +77,12 @@ The lesson for me as a strategy candidate: sanity-check hype with unit economics
                 onClick={() => setShowNotes(true)}
                 className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
