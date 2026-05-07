@@ -2,8 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import ShipConsole from "@/components/ShipConsole";
-import { DeferredVisualEffects } from "@/components/deferred-visual-effects";
+import ShipConsoleLazy from "@/components/ship-console-lazy";
 
 export const metadata: Metadata = {
   title: {
@@ -28,9 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
-        <DeferredVisualEffects />
         {children}
-        <ShipConsole />
+        <ShipConsoleLazy />
       </body>
     </html>
   );
