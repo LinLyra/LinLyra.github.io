@@ -19,7 +19,7 @@ export default function ISYS2120Page() {
     institution: "University of Sydney",
     term: "2025 S2",
     logo: "/learning/usydlogo.png",
-    status: "In Progress" as const,
+    status: "Completed" as const,
     tagline:
       "Intro to conceptual, logical, and physical database design with emphasis on integrity constraints and normalization; querying and updating data with SQL; application use of a relational DBMS; transaction management; plus an overview of data warehousing and OLAP.",
     tags: ["DBMS","RelationalModel","SQL","Normalization","Transactions","Security","OLAP"],

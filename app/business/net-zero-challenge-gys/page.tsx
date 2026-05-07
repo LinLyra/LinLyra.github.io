@@ -18,7 +18,7 @@ export default function NetZeroGYSPage() {
     institution: "UNESCO East Asia & GAUC @ Tsinghua",
     practice: "Climate Action · Youth Innovation · Low-carbon Product Proposal",
     term: "2024.09",
-    role: "Team Lead",
+    role: "Team Leader",
     status: "Completed" as const,
     award: "Global Bronze",
     notes: ["/competition/zero.png", "/competition/zero1.png"],

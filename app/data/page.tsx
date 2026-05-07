@@ -159,7 +159,7 @@ export default function DataPage() {
     },
     {
       slug: "youtube-ai-content-strategy",
-      projectName: "Youtube AI Content Strategy",
+      projectName: "YouTube Shorts Posting Time Impact Analysis",
       subtitle: "Creator growth analytics",
       date: "2025.10",
       description:

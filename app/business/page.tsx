@@ -117,7 +117,7 @@ export default function BusinessPage() {
       subtitle: "PMSoc × KordaMentha Case Competition",
       date: "2026.04",
       type: "strategy",
-      logo: "/competition/kordamentha.png",
+      logo: "/competition/Kordamentha.png",
       placement: "Top 6",
       description:
         "PPP toll-corridor thesis for Western Sydney—demand, revenue stack, and bankable delivery narrative.",

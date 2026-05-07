@@ -71,7 +71,7 @@ This project combined machine learning with persuasion theory to reveal dynamics
               <Link href={meta.github} target="_blank">
                 <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
                   <Github className="mr-2 h-4 w-4" />
-                  GitHub Repo
+                  GitHub 
                 </Button>
               </Link>
             )}

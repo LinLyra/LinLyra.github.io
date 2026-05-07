@@ -25,7 +25,7 @@ export default function YouTubeAIContentStrategyPage() {
 
   const meta: Meta = {
     slug: "youtube-ai-content-strategy",
-    title: "Youtube AI Content Strategy",
+    title: "YouTube Shorts Posting Time Impact Analysis",
     institution: "Personal Project",
     practice:
       "Content Analytics · Clustering · Causal-style Estimation · Posting Strategy",
@@ -43,7 +43,7 @@ export default function YouTubeAIContentStrategyPage() {
     ],
     notes: [],
     links: {
-      github: "https://github.com/LinLyra/youtube-ai-content-strategy",
+      github: "https://github.com/LinLyra/YouTube-Posting-Time-Impact",
     },
   };
 

@@ -19,7 +19,7 @@ export default function COMP5328Page() {
     institution: "University of Sydney",
     term: "2025 S2",
     logo: "/learning/usydlogo.png",
-    status: "In Progress" as const,
+    status: "Completed" as const,
     tagline:
       "Explores core machine learning algorithms and theory, focusing on model design, evaluation, improvement, and adaptation, with hands-on implementation using Python libraries.",
     tags: ["MachineLearning", "ModelEvaluation", "Python","DeepLearning"],

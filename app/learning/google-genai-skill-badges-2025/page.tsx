@@ -192,9 +192,6 @@
                  </div>
                ))}
              </div>
-             <p className="mt-3 text-xs text-gray-400">
-               Tip: if you prefer, we can add the public credential links later (kept optional to avoid an overly link-heavy page).
-             </p>
            </section>
  
            <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">

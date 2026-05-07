@@ -19,7 +19,7 @@ export default function COMP5338Page() {
     institution: "University of Sydney",
     term: "2025 S2",
     logo: "/learning/usydlogo.png",
-    status: "In Progress" as const,
+    status: "Completed" as const,
     tagline:
       "Covers advanced SQL and modern post-relational data models (NoSQL, graph, spatial, temporal, time-series), focusing on CRUD operations, indexing, query tuning, and distributed storage systems.",
     tags: ["NoSQL", "DistributedSystems", "DatabasePerformance"],

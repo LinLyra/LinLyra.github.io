@@ -19,7 +19,7 @@ export default function COMP5318Page() {
     institution: "University of Sydney",
     term: "2025 S2",
     logo: "/learning/usydlogo.png",
-    status: "In Progress" as const,
+    status: "Completed" as const,
     tagline:
       "Introduces machine learning and data mining techniques for classification, regression, clustering, and pattern discovery, with hands-on implementation and evaluation using Python libraries.",
     tags: ["MachineLearning", "DataMining", "Python","DeepLearning"],

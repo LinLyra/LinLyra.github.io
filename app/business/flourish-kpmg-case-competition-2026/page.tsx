@@ -32,8 +32,8 @@ export default function FlourishKPMGCasePage() {
     term: "2026.05",
     status: "Completed" as const,
     role: "Strategy, Problem Diagnosis & Campaign Design",
-    placement: "Top 6 Finalist",
-    canvaUrl: "PASTE_YOUR_WEBPAGE_OR_CANVA_LINK_HERE",
+    placement: "",
+    canvaUrl: "https://peridot-eocursor-4db.notion.site/FLOURISH-3573be3c131580dbada6f766ad5551ff?pvs=73",
     notes: [] as string[],
     tags: [
       "Government Advisory",
@@ -221,8 +221,8 @@ Through FLOURISH, I practised building a consulting-style narrative from problem
             <div className="flex items-center gap-2">
               <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
                 <Button className="bg-green-500/20 border border-green-400/40 text-green-100 hover:bg-green-500/30">
-                  View Project
-                  <ExternalLink className="ml-2 h-4 w-4" />
+                 <ExternalLink className="mr-2 h-4 w-4" />
+                  View More
                 </Button>
               </a>
 

@@ -21,7 +21,7 @@ export default function GenkiForestCodeEnergyPage() {
     role: "Solo",
     status: "Completed" as const,
     award: "Finalist",
-    notes: ["/competition/Yuanqi.png"],
+    notes: ["/competition/yuanqi1.png"],
     tags: ["Brand Strategy", "Product Innovation", "Youth Marketing"],
   };
 

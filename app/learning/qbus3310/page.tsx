@@ -19,7 +19,7 @@ export default function QBUS3310Page() {
     institution: "University of Sydney",
     term: "2026 S1",
     logo: "/learning/usydlogo.png",
-    status: "Planned" as const,
+    status: "In Progress" as const,
     tagline:
       "Develops optimisation, decision analysis, stochastic modelling, and management science techniques for practical managerial decision-making.",
     tags: ["Optimisation", "Management Science", "Decision Analysis"],

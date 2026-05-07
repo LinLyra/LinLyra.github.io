@@ -18,7 +18,7 @@ export default function OracleDataScienceProfessionalPage() {
     title: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional",
     institution: "Oracle",
     term: "2025 10",
-    logo: "/learning/oraclelogo.png",
+    logo: "/learning/orcalelogo.png",
     status: "Completed" as const,
     tagline:
       "Professional certification covering Oracle Cloud Infrastructure data science workflows, model development, deployment, MLOps, and cloud-based machine learning practices.",
@@ -29,7 +29,7 @@ export default function OracleDataScienceProfessionalPage() {
       "MLOps",
       "Model Deployment",
     ],
-    notes: ["/learning/oracle-certificate.png"],
+    notes: ["/learning/orcalecet.png"],
   }
 
   const outcomes = [

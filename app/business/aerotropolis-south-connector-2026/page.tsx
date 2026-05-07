@@ -26,7 +26,7 @@ export default function AerotropolisSouthConnectorPage() {
     institution: "PMSoc × KordaMentha Case Competition 2026",
     practice: "PPP Infrastructure · Toll Road Strategy · Commercial Advisory",
     term: "2026.04",
-    role: "Strategy & Commercial Analysis",
+    role: "Team Leader",
     placement: "Top 6",
     canvaUrl: "https://peridot-eocursor-4db.notion.site/Aerotropolis-South-Connector-3523be3c13158057a5c3ddf8944f9d3a", 
     notes: [] as string[],
