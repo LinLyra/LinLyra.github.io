@@ -18,6 +18,7 @@ export function IntroSplash({ children }: IntroSplashProps) {
   const [shattering, setShattering] = useState(false)
   const [revealing, setRevealing] = useState(false)
   const [progress, setProgress] = useState(0)
+  const [videoReady, setVideoReady] = useState(false)
   const vRef = useRef<HTMLVideoElement | null>(null)
 
   // Show intro on mobile/iPad too; only skip for reduced-motion users.
@@ -36,11 +37,14 @@ export function IntroSplash({ children }: IntroSplashProps) {
     if (typeof window === "undefined") return
 
     const v = vRef.current
+    setVideoReady(false)
     setProgress(0)
     const hardTimeout = window.setTimeout(() => beginExit(), 4200)
 
     const onEnded = () => beginExit()
+    const onLoaded = () => setVideoReady(true)
     v?.addEventListener("ended", onEnded)
+    v?.addEventListener("loadeddata", onLoaded)
 
     // Fake progress milestones across ~4s
     const milestones: Array<[number, number]> = [
@@ -64,6 +68,7 @@ export function IntroSplash({ children }: IntroSplashProps) {
     return () => {
       window.clearTimeout(hardTimeout)
       v?.removeEventListener("ended", onEnded)
+      v?.removeEventListener("loadeddata", onLoaded)
       timers.forEach((t) => window.clearTimeout(t))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -104,11 +109,13 @@ export function IntroSplash({ children }: IntroSplashProps) {
             autoPlay
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
+            poster="/intro/poster.jpg"
           >
             <source src="/intro/intro.webm" type="video/webm" />
             <source src="/intro/intro.mp4" type="video/mp4" />
           </video>
+          {!videoReady ? <div className="intro-splash__fallback" aria-hidden /> : null}
           <div className="intro-splash__hud" aria-hidden>
             <div className="intro-splash__bar">
               <span className="intro-splash__barFill" style={{ width: `${progress}%` }} />

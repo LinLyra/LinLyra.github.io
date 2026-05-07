@@ -18,14 +18,10 @@ export default function AussieAdventurePage() {
     institution: "Travel · AI · Fashion",
     practice: "Vision color palette · Outfit recommendation · Next.js prototype",
     term: "2025.09",
-    status: "Completed" as const,
     role: "Team Lead",
     tags: ["Travel", "Recommender", "Color Palette", "Weather API"],
     images: [
       "/competition/aussie1.png",
-      "/competition/aussie2.png",
-      "/competition/aussie3.png",
-      "/competition/aussie4.png",
     ] as string[],
     links: {
       github: "https://github.com/LinLyra/Aussie-Adventure-Stylist",
@@ -49,11 +45,6 @@ export default function AussieAdventurePage() {
     "Turning photos into palettes is delightful, but guardrails matter. Simple, readable tags beat deep hierarchies when the goal is fast inspiration. One crisp line of “why this works” consistently outperformed long paragraphs in user feedback, and small editor affordances (swap a color, toggle layers) made the system feel collaborative rather than prescriptive. If I extend this, I would: (1) plug in e-commerce APIs for instant “shop the look”, (2) learn from accept/reject signals to tune palette prominence and tone, and (3) add a packing-list view that rolls daily outfits into a compact, weather-aware set of items.";
 
   const hasImages = meta.images.length > 0;
-
-  const statusClass =
-    meta.status === "Completed"
-      ? "bg-amber-500/20 text-amber-100 border-amber-400/30"
-      : "bg-orange-500/20 text-orange-100 border-orange-400/30";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -90,7 +81,7 @@ export default function AussieAdventurePage() {
                   onClick={() => setShowMedia(true)}
                   className="border-amber-400/30 bg-amber-500/10 text-gray-100 hover:bg-amber-500/20"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
@@ -98,12 +89,6 @@ export default function AussieAdventurePage() {
 
           {/* Header card */}
           <Card className="relative overflow-hidden border-amber-400/25 bg-white/10 backdrop-blur-md">
-            <div className="absolute right-3 top-3 flex items-center gap-2">
-              <span className={`inline-flex h-6 items-center rounded-full px-2.5 text-xs border ${statusClass}`}>
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="mb-1 text-xl font-semibold text-white md:text-2xl">
                 {meta.title}

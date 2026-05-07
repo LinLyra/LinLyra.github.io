@@ -26,7 +26,7 @@ export default function CitiGlobalMarketChallengePage() {
       "Multi-Asset Portfolio Strategy · Long/Short Allocation · Transaction Cost Optimisation · Risk Management",
     term: "2026.04",
     role: "Team Lead",
-    moreUrl: "https://peridot-eocursor-4db.notion.site/Long-BeOne-Short-Akeso-3573be3c131580dd9796c78ec8881923",
+    moreUrl: "https://peridot-eocursor-4db.notion.site/Cost-Efficient-Alpha-3573be3c13158043aafbcdb6d54ab442?pvs=73",
     tags: [
       "Portfolio Strategy",
       "Long/Short Fund",

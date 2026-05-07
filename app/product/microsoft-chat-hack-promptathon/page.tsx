@@ -18,7 +18,6 @@ export default function MicrosoftPromptathonPage() {
     institution: "Microsoft",
     practice: "GenAI Prompt Engineering · Product Prototyping",
     term: "2025.03",
-    status: "Completed" as const,
     tags: ["GenAI", "Prompting", "Product Prototype"],
     notes: ["/competition/microsoft.png"],
   };
@@ -50,10 +49,6 @@ between prompting and product. The goal isn't a perfect prompt—it’s a prompt
 and trustworthy in a real user journey.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-orange-600/25 text-orange-100 border-amber-400/40"
-      : "bg-amber-600/25 text-amber-100 border-amber-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -81,18 +76,13 @@ and trustworthy in a real user journey.`;
                 onClick={() => setShowNotes(true)}
                 className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
               >
-                View More
+                View more
               </Button>
             )}
           </div>
 
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

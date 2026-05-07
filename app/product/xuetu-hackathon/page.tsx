@@ -6,7 +6,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, ExternalLink } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink, Github } from "lucide-react";
 import MediaModel from "@/components/media-model";
 
 export default function XueTuHackathonPage() {
@@ -18,14 +18,11 @@ export default function XueTuHackathonPage() {
     institution: "Global Hackathon Tour",
     practice: "Product Design · Matching Platform · Trust System",
     term: "2026.01",
-    status: "Completed" as const,
     role: "Co-founder",
-    repoUrl: "https://github.com/your-username/xuetu",
+    github: "https://github.com/LinLyra/xuetu-hackathon",
     notes: [
-      "/competition/xuetu.png",
-      "/competition/xuetu-1.png",
-      "/competition/xuetu-2.png",
-      "/competition/xuetu-3.png",
+      "/competition/xuetu1.png",
+      "/competition/xuetu2.png",
     ],
     tags: ["AI Hackathon", "Education", "Marketplace", "Trust System"],
   };
@@ -64,11 +61,6 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
 
   const hasNotes = meta.notes.length > 0;
 
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
-      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
-
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
@@ -89,35 +81,27 @@ Overall, this hackathon helped me practice full-cycle product thinking: from pro
             </Link>
 
             <div className="flex items-center gap-2">
-              {meta.repoUrl && (
-                <Link href={meta.repoUrl} target="_blank">
-                  <Button className="bg-amber-500/20 border border-amber-400/40 text-amber-100 hover:bg-amber-500/30">
-                    <ExternalLink className="mr-2 h-4 w-4" />
+              {meta.github ? (
+                <Link href={meta.github} target="_blank" rel="noreferrer">
+                  <Button className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/20">
+                    <Github className="mr-2 h-4 w-4" />
                     GitHub
                   </Button>
                 </Link>
-              )}
+              ) : null}
 
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
                   className="bg-amber-500/20 border border-amber-400/40 text-amber-100 hover:bg-amber-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
             </div>
           </div>
 
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span
-                className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}
-              >
-                {meta.status}
-              </span>
-            </div>
-
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}

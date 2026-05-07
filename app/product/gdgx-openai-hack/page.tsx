@@ -18,7 +18,6 @@ export default function GDGOpenAIHackNodeAustraliaPage() {
     institution: "GDG • OpenAI (co-hosted with MIT Sloan AI Club)",
     practice: "Full-stack · Social App · Tokenized Growth (GXP / Circles / Missions / Scout)",
     term: "2025.08",
-    status: "Completed" as const,
     notes: [
       "/competition/gdg.png",
       "/competition/gdg1.png",
@@ -56,10 +55,6 @@ and drafted anti-gaming limits (caps, daily GXP budget). This upgrade made the p
 early users (builders, scouts) and clarified a path from vibe hacking to a defensible product thesis.`;
 
   const hasNotes = meta.notes.length > 0;
-  const badgeClass =
-    meta.status === "Completed"
-      ? "bg-amber-600/25 text-amber-100 border-amber-400/40"
-      : "bg-orange-600/25 text-orange-100 border-orange-400/40";
 
   return (
     <div className="relative min-h-screen overflow-hidden">
@@ -88,7 +83,7 @@ early users (builders, scouts) and clarified a path from vibe hacking to a defen
                   onClick={() => setShowNotes(true)}
                   className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
                 >
-                  View More
+                  View more
                 </Button>
               )}
 
@@ -99,12 +94,11 @@ early users (builders, scouts) and clarified a path from vibe hacking to a defen
                 rel="noopener noreferrer"
               >
                 <Button
-                  className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/20"
+                  className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
                   aria-label="Open GitHub Repository"
                 >
                   <Github className="mr-2 h-4 w-4" />
                   GitHub
-                  <ExternalLink className="ml-1 h-3 w-3 opacity-80" />
                 </Button>
               </a>
             </div>
@@ -112,11 +106,6 @@ early users (builders, scouts) and clarified a path from vibe hacking to a defen
 
           {/* meta card */}
           <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
-            <div className="absolute right-3 top-3">
-              <span className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badgeClass}`}>
-                {meta.status}
-              </span>
-            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
@@ -146,9 +135,9 @@ early users (builders, scouts) and clarified a path from vibe hacking to a defen
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">{overview}</p>
           </section>
 
-          {/* What I Built */}
+          {/* What I Did */}
           <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">What I Built</h2>
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">What I Did</h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIBuilt.map((line, i) => (
                 <li key={i} className="leading-relaxed">

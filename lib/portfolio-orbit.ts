@@ -70,10 +70,10 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Luxury","Supply Chain","ESG"],
   },
   {
-    slug: "instant-retail-profitability-strategy-2026",
+    slug: "bain-instant-retail-profitability-strategy",
     title: "Instant Retail Profitability Strategy",
     section: "business" as OrbitSection,
-    href: "/business/instant-retail-profitability-strategy-2026",
+    href: "/business/bain-instant-retail-profitability-strategy",
     industries: ["Retail","E-commerce","Platform Economy"],
   },
   {
@@ -211,7 +211,7 @@ export const orbitItems: OrbitItem[] = [
   },
   {
     slug: "youtube-ai-content-strategy",
-    title: "Youtube AI Content Strategy",
+    title: "YouTube Shorts Posting Time Impact Analysis",
     section: "data" as OrbitSection,
     href: "/data/youtube-ai-content-strategy",
     industries: ["Entertainment","Creator Economy","Marketing"],
@@ -294,11 +294,25 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Nonprofit","AI Applications"],
   },
   {
-    slug: "agentlens",
-    title: "AgentLens — AI Agent Evaluation Platform",
+    slug: "deloitte-digital-elite-2025",
+    title: "PinSight: AI-Driven Audit Execution Platform",
     section: "product" as OrbitSection,
-    href: "/product/agentlens",
-    industries: ["AI","Developer Tools","Software"],
+    href: "/product/deloitte-digital-elite-2025",
+    industries: ["Audit","Professional Services","Enterprise Software","Financial Compliance","AI Automation"],
+  },
+  {
+    slug: "ccf-tech-for-good-2025",
+    title: "Accessible Media Interpretation Platform",
+    section: "product" as OrbitSection,
+    href: "/product/ccf-tech-for-good-2025",
+    industries: ["Social Impact","Media","Accessibility"],
+  },
+  {
+    slug: "xuetu-amap",
+    title: "XueTu × Amap",
+    section: "product" as OrbitSection,
+    href: "/product/xuetu-amap",
+    industries: ["Education","Location Services"],
   },
   {
     slug: "foodguard-lyra-buildthon",
@@ -308,25 +322,11 @@ export const orbitItems: OrbitItem[] = [
     industries: ["HealthTech","Consumer App"],
   },
   {
-    slug: "deloitte-digital-elite-2025",
-    title: "PinSight: AI-Driven Audit Execution Platform",
-    section: "product" as OrbitSection,
-    href: "/product/deloitte-digital-elite-2025",
-    industries: ["Audit","Professional Services","Enterprise Software","Financial Compliance","AI Automation"],
-  },
-  {
     slug: "gdgx-openai-hack",
     title: "YOLO·AU",
     section: "product" as OrbitSection,
     href: "/product/gdgx-openai-hack",
     industries: ["Social","Community","Creator Economy"],
-  },
-  {
-    slug: "ccf-tech-for-good-2025",
-    title: "Accessible Media Interpretation Platform",
-    section: "product" as OrbitSection,
-    href: "/product/ccf-tech-for-good-2025",
-    industries: ["Social Impact","Media","Accessibility"],
   },
   {
     slug: "adventurex-2025",
@@ -369,12 +369,5 @@ export const orbitItems: OrbitItem[] = [
     section: "product" as OrbitSection,
     href: "/product/xuetu-hackathon",
     industries: ["Education","Local Services"],
-  },
-  {
-    slug: "xuetu-amap",
-    title: "XueTu × Amap",
-    section: "product" as OrbitSection,
-    href: "/product/xuetu-amap",
-    industries: ["Education","Location Services"],
   },
 ]

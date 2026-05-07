@@ -19,7 +19,7 @@ export default function FoodGuardBuildthonPage() {
     practice: "AI Product · Computer Vision · HealthTech · Nutrition Tracking",
     term: "2025.11",
     role: "Team Project",
-    github: "https://github.com/your-username/foodguard",
+    github: "https://github.com/LinLyra/foodguard",
     notes: [
       "/competition/foodguard.png",
     ],
@@ -65,8 +65,8 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
   return (
     <div className="relative min-h-screen overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#07130f]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(16,185,129,0.18),transparent_60%),radial-gradient(circle_at_12%_90%,rgba(20,184,166,0.14),transparent_55%),radial-gradient(circle_at_90%_25%,rgba(34,197,94,0.12),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[#120c07]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.18),transparent_60%),radial-gradient(circle_at_12%_85%,rgba(251,191,36,0.14),transparent_55%),radial-gradient(circle_at_90%_20%,rgba(234,88,12,0.12),transparent_55%)]" />
       </div>
 
       <Navigation activeSection="product" onSectionChange={() => {}} />
@@ -75,7 +75,7 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/product">
-              <Button className="bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md border-emerald-400/30 text-gray-100 hover:bg-emerald-500/30">
+              <Button className="bg-gradient-to-r from-orange-500/20 to-amber-500/20 backdrop-blur-md border-amber-400/30 text-gray-100 hover:bg-orange-500/30">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Product
               </Button>
@@ -84,7 +84,7 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
             <div className="flex items-center gap-2">
               {meta.github && (
                 <Link href={meta.github} target="_blank">
-                  <Button className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30">
+                  <Button className="bg-white/10 border border-white/20 text-gray-100 hover:bg-white/20">
                     <Github className="mr-2 h-4 w-4" />
                     GitHub
                   </Button>
@@ -94,7 +94,7 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
-                  className="bg-emerald-500/20 border border-emerald-400/40 text-emerald-100 hover:bg-emerald-500/30"
+                  className="bg-orange-500/20 border border-amber-400/40 text-amber-100 hover:bg-orange-500/30"
                 >
                   View more
                 </Button>
@@ -131,11 +131,11 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
               <p className="text-gray-200">{meta.practice}</p>
             </div>
 
-            <div className="h-1 w-full bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-emerald-500/20" />
+            <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Project Overview
             </h2>
             <p className="text-base leading-relaxed text-gray-200">
@@ -143,9 +143,9 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
             </p>
           </section>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
-              What I Built
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
+              What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
               {whatIBuilt.map((line, i) => (
@@ -156,8 +156,8 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
             </ul>
           </section>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               System Logic & Product Flow
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -169,8 +169,8 @@ Overall, FoodGuard strengthened my ability to connect computer vision, user beha
             </ul>
           </section>
 
-          <section className="rounded-xl border border-emerald-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Reflection
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">

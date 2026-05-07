@@ -105,32 +105,20 @@ export default function ProductPage() {
       industries: ["Nonprofit", "AI Applications"],
       tags: ["GenAI", "APIs", "Community"],
     },
-    {
-      slug: "agentlens",
-      projectName: "AgentLens — AI Agent Evaluation Platform",
-      subtitle: "Meituan NoCode Challenge",
-      date: "2026.03",
-      type: "project",
-      logo: "/competition/microsoftlogo.png",
-      description:
-        "LLM agent evaluation console with multi-dimension scoring, hallucination flags, and diagnostic reports.",
-      tags: ["AI Evaluation", "Hallucination Detection", "Next.js", "LLM"],
-      skills: ["OpenRouter", "Dashboard UX", "JSON Pipelines"],
-      industries: ["AI", "Developer Tools", "Software"],
-    },
-    {
-      slug: "foodguard-lyra-buildthon",
-      projectName: "FoodGuard — AI Nutrition & Allergen Assistant",
-      subtitle: "Lyra Buildthon",
-      date: "2025.11",
-      type: "project",
-      logo: "/competition/foodguard.png",
-      description:
-        "Nutrition and allergen assistant that turns meal photos into fast, actionable eating guidance.",
-      tags: ["HealthTech", "Computer Vision", "AI Product", "Nutrition"],
-      skills: ["Product Design", "UX Writing"],
-      industries: ["HealthTech", "Consumer App"],
-    },
+    // {
+    //   slug: "agentlens",
+    //   projectName: "AgentLens — AI Agent Evaluation Platform",
+    //   subtitle: "Meituan NoCode Challenge",
+    //   date: "2026.03",
+    //   type: "project",
+    //   logo: "/competition/microsoftlogo.png",
+    //   description:
+    //     "LLM agent evaluation console with multi-dimension scoring, hallucination flags, and diagnostic reports.",
+    //   tags: ["AI Evaluation", "Hallucination Detection", "Next.js", "LLM"],
+    //   skills: ["OpenRouter", "Dashboard UX", "JSON Pipelines"],
+    //   industries: ["AI", "Developer Tools", "Software"],
+    // },
+    
     {
       slug: "deloitte-digital-elite-2025",
       projectName: "PinSight: AI-Driven Audit Execution Platform",
@@ -146,19 +134,6 @@ export default function ProductPage() {
       industries: ["Audit","Professional Services","Enterprise Software", "Financial Compliance","AI Automation",],
     },
     {
-      slug: "gdgx-openai-hack",
-      projectName: "YOLO·AU",
-      subtitle: "GDG × OpenAI Hack Node Australia",
-      date: "2025.08",
-      type: "hackathon",
-      logo: "/competition/gdglogo.png",
-      description:
-        "Full-stack social growth app with reputation, circles, missions, and a lightweight scout console.",
-      tags: ["Full-stack", "Next.js", "Social", "PostgreSQL"],
-      skills: ["Auth", "Realtime"],
-      industries: ["Social", "Community", "Creator Economy"],
-    },
-    {
       slug: "ccf-tech-for-good-2025",
       projectName: "Accessible Media Interpretation Platform",
       subtitle: "CCF Tech for Good Hackathon",
@@ -172,6 +147,46 @@ export default function ProductPage() {
       skills: ["Research", "Wireframes"],
       industries: ["Social Impact", "Media", "Accessibility"],
     },
+    {
+      slug: "xuetu-amap",
+      projectName: "XueTu × Amap",
+      subtitle: "Amap Intelligent Developer Conference",
+      date: "2026.01",
+      type: "product",
+      logo: "/competition/gaodelogo.png",
+      description:
+        "Map-first tutoring flows: nearby demand, routing, and proof-of-arrival to reduce offline friction.",
+      tags: ["Amap API", "Location", "Education", "Check-in"],
+      skills: ["Geocoding", "Routing"],
+      industries: ["Education", "Location Services"],
+    },
+    {
+      slug: "foodguard-lyra-buildthon",
+      projectName: "FoodGuard — AI Nutrition & Allergen Assistant",
+      subtitle: "Lyra Buildthon",
+      date: "2025.11",
+      type: "project",
+      logo: "/competition/Lyralogo.png",
+      description:
+        "Nutrition and allergen assistant that turns meal photos into fast, actionable eating guidance.",
+      tags: ["HealthTech", "Computer Vision", "AI Product", "Nutrition"],
+      skills: ["Product Design", "UX Writing"],
+      industries: ["HealthTech", "Consumer App"],
+    },
+    {
+      slug: "gdgx-openai-hack",
+      projectName: "YOLO·AU",
+      subtitle: "GDG × OpenAI Hack Node Australia",
+      date: "2025.08",
+      type: "hackathon",
+      logo: "/competition/gdglogo.png",
+      description:
+        "Full-stack social growth app with reputation, circles, missions, and a lightweight scout console.",
+      tags: ["Full-stack", "Next.js", "Social", "PostgreSQL"],
+      skills: ["Auth", "Realtime"],
+      industries: ["Social", "Community", "Creator Economy"],
+    },
+    
     {
       slug: "adventurex-2025",
       projectName: "YOLO Growth Stock Platform",
@@ -249,19 +264,7 @@ export default function ProductPage() {
       skills: ["Matching", "Payments Flow"],
       industries: ["Education", "Local Services"],
     },
-    {
-      slug: "xuetu-amap",
-      projectName: "XueTu × Amap",
-      subtitle: "Amap Intelligent Developer Conference",
-      date: "2026.01",
-      type: "product",
-      logo: "/competition/gaodelogo.png",
-      description:
-        "Map-first tutoring flows: nearby demand, routing, and proof-of-arrival to reduce offline friction.",
-      tags: ["Amap API", "Location", "Education", "Check-in"],
-      skills: ["Geocoding", "Routing"],
-      industries: ["Education", "Location Services"],
-    },
+    
   ];
 
   const q = searchTerm.trim().toLowerCase();
