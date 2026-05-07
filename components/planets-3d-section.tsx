@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Planet3D } from "./planet-3d";
 import EnvNight from "@/components/EnvNight";
@@ -14,6 +14,22 @@ export default function Planets3DSection() {
   const [clickedPlanet, setClickedPlanet] = useState<number | null>(null);
   const router = useRouter();
   const lowPower = useLowPowerWebGL();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const vis = entries.some((e) => e.isIntersecting);
+        if (vis) setInView(true);
+      },
+      { root: null, rootMargin: "280px 0px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
 
   const planets = [
@@ -32,7 +48,7 @@ export default function Planets3DSection() {
   };
 
   return (
-    <section id="planets" className="min-h-screen snap-start relative bg-black">
+    <section ref={sectionRef as any} id="planets" className="min-h-screen snap-start relative bg-black">
  
       <div className="relative z-20 pt-20 pb-8 text-center">
         <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 mx-4 max-w-4xl mx-auto border border-white/10">
@@ -44,65 +60,75 @@ export default function Planets3DSection() {
 
 
       <div className="absolute inset-0 top-0">
-        <Canvas
-          camera={{ position: [0, 3, 15], fov: 60 }}
-          dpr={lowPower ? 1 : [1, 1.5]}
-          gl={{
-            antialias: !lowPower,
-            powerPreference: lowPower ? "low-power" : "high-performance",
-          }}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.3} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4F8EF7" />
-            <EnvNight background={false} />
-            <Stars
-              radius={200}
-              depth={50}
-              count={lowPower ? 800 : 2000}
-              factor={4}
-              saturation={0}
-              fade
-            />
+        {inView ? (
+          <Canvas
+            camera={{ position: [0, 3, 15], fov: 60 }}
+            dpr={lowPower ? 1 : [1, 1.5]}
+            gl={{
+              antialias: !lowPower,
+              powerPreference: lowPower ? "low-power" : "high-performance",
+            }}
+          >
+            <Suspense fallback={null}>
+              <ambientLight intensity={0.3} />
+              <pointLight position={[10, 10, 10]} intensity={1} />
+              <pointLight position={[-10, -10, -10]} intensity={0.5} color="#4F8EF7" />
+              <EnvNight background={false} />
+              <Stars
+                radius={200}
+                depth={50}
+                count={lowPower ? 800 : 2000}
+                factor={4}
+                saturation={0}
+                fade
+              />
 
-            {planets.map((planet, index) => (
-              <group key={planet.id}>
-                <Planet3D
-                  position={planet.position}
-                  color={planet.color}
-                  size={clickedPlanet === planet.id ? 1.5 : 1.2}
-                  distort={lowPower ? 0.08 : 0.15}
-                  speed={lowPower ? 0.12 + index * 0.03 : 0.2 + index * 0.05}
-                  sphereSegments={lowPower ? 24 : 48}
-                />
-          
-                <mesh
-                  position={planet.position}
-                  onClick={() => handlePlanetClick(planet.id, planet.route)}
-                  onPointerOver={(e) => { e.stopPropagation(); document.body.style.cursor = "pointer"; }}
-                  onPointerOut={(e) => { e.stopPropagation(); document.body.style.cursor = "default"; }}
-                >
-                  <sphereGeometry args={[1.8, lowPower ? 16 : 28, lowPower ? 16 : 28]} />
-                  <meshBasicMaterial transparent opacity={0} />
-                </mesh>
-              </group>
-            ))}
+              {planets.map((planet, index) => (
+                <group key={planet.id}>
+                  <Planet3D
+                    position={planet.position}
+                    color={planet.color}
+                    size={clickedPlanet === planet.id ? 1.5 : 1.2}
+                    distort={lowPower ? 0.08 : 0.15}
+                    speed={lowPower ? 0.12 + index * 0.03 : 0.2 + index * 0.05}
+                    sphereSegments={lowPower ? 24 : 48}
+                  />
 
-            <OrbitControls
-              // Allow page scrolling through this section: wheel zoom will "trap" scroll.
-              enablePan={false}
-              enableZoom={false}
-              enableRotate
-              minDistance={8}
-              maxDistance={25}
-              autoRotate
-              autoRotateSpeed={lowPower ? 0.22 : 0.55}
-              maxPolarAngle={Math.PI / 1.8}
-              minPolarAngle={Math.PI / 3}
-            />
-          </Suspense>
-        </Canvas>
+                  <mesh
+                    position={planet.position}
+                    onClick={() => handlePlanetClick(planet.id, planet.route)}
+                    onPointerOver={(e) => {
+                      e.stopPropagation();
+                      document.body.style.cursor = "pointer";
+                    }}
+                    onPointerOut={(e) => {
+                      e.stopPropagation();
+                      document.body.style.cursor = "default";
+                    }}
+                  >
+                    <sphereGeometry args={[1.8, lowPower ? 16 : 28, lowPower ? 16 : 28]} />
+                    <meshBasicMaterial transparent opacity={0} />
+                  </mesh>
+                </group>
+              ))}
+
+              <OrbitControls
+                // Allow page scrolling through this section: wheel zoom will "trap" scroll.
+                enablePan={false}
+                enableZoom={false}
+                enableRotate
+                minDistance={8}
+                maxDistance={25}
+                autoRotate
+                autoRotateSpeed={lowPower ? 0.22 : 0.55}
+                maxPolarAngle={Math.PI / 1.8}
+                minPolarAngle={Math.PI / 3}
+              />
+            </Suspense>
+          </Canvas>
+        ) : (
+          <div className="absolute inset-0 bg-black" />
+        )}
       </div>
 
 

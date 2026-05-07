@@ -16,13 +16,16 @@ const CursorTrail = dynamic(
 function shouldSkipHeavy(): boolean {
   if (typeof window === "undefined") return true
   const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches
+  // Only show always-on effects on desktop-like pointers.
+  const fine = window.matchMedia?.("(pointer: fine)")?.matches
+  const hover = window.matchMedia?.("(hover: hover)")?.matches
   // Save-Data users and slow connections should avoid always-on WebGL.
   const conn = (navigator as any).connection as
     | { saveData?: boolean; effectiveType?: string }
     | undefined
   const saveData = !!conn?.saveData
   const slow = conn?.effectiveType === "2g" || conn?.effectiveType === "slow-2g"
-  return !!reduced || saveData || slow
+  return !!reduced || !fine || !hover || saveData || slow
 }
 
 export function DeferredVisualEffects() {
