@@ -27,7 +27,15 @@ import {
 import { fetchPublicStats, getLastAnalyticsError, recordPageView, type PublicStats } from "@/lib/site-analytics"
 import { titleForPath } from "@/lib/route-titles"
 
-export default function ShipConsole() {
+export default function ShipConsole({
+  autoOpen = false,
+  hideTrigger = false,
+  onOpenChange,
+}: {
+  autoOpen?: boolean
+  hideTrigger?: boolean
+  onOpenChange?: (open: boolean) => void
+}) {
   const pathname = usePathname()
   const [time, setTime] = useState(0)
   const [history, setHistory] = useState<string[]>([])
@@ -35,6 +43,15 @@ export default function ShipConsole() {
   const [stats, setStats] = useState<PublicStats | null>(null)
   const [statsLoading, setStatsLoading] = useState(false)
   const [statsError, setStatsError] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!autoOpen) return
+    setOpen(true)
+  }, [autoOpen])
+
+  useEffect(() => {
+    onOpenChange?.(open)
+  }, [open, onOpenChange])
 
   useEffect(() => {
     const timer = setInterval(() => setTime((t) => t + 1), 1000)
@@ -126,22 +143,24 @@ export default function ShipConsole() {
     <>
       <div className="fixed bottom-5 right-5 z-[60]">
         <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button
-              type="button"
-              variant="secondary"
-              className="group relative h-11 rounded-2xl border border-sky-400/30 bg-slate-950/70 px-4 text-sky-100 shadow-[0_0_22px_rgba(56,189,248,0.22)] backdrop-blur hover:bg-slate-950/80 hover:shadow-[0_0_26px_rgba(56,189,248,0.32)]"
-              aria-label="Open ship console"
-            >
-              <span className="pointer-events-none absolute -inset-2 rounded-2xl bg-gradient-to-r from-sky-500/12 via-indigo-500/10 to-transparent blur-xl opacity-0 transition-opacity group-hover:opacity-100" />
-              <span className="flex items-center gap-2">
-                <span className="grid h-7 w-7 place-items-center rounded-xl bg-sky-500/15 ring-1 ring-sky-300/20">
-                  <Satellite className="h-4 w-4 text-sky-200" />
+          {hideTrigger ? null : (
+            <SheetTrigger asChild>
+              <Button
+                type="button"
+                variant="secondary"
+                className="group relative h-11 rounded-2xl border border-sky-400/30 bg-slate-950/70 px-4 text-sky-100 shadow-[0_0_22px_rgba(56,189,248,0.22)] backdrop-blur hover:bg-slate-950/80 hover:shadow-[0_0_26px_rgba(56,189,248,0.32)]"
+                aria-label="Open ship console"
+              >
+                <span className="pointer-events-none absolute -inset-2 rounded-2xl bg-gradient-to-r from-sky-500/12 via-indigo-500/10 to-transparent blur-xl opacity-0 transition-opacity group-hover:opacity-100" />
+                <span className="flex items-center gap-2">
+                  <span className="grid h-7 w-7 place-items-center rounded-xl bg-sky-500/15 ring-1 ring-sky-300/20">
+                    <Satellite className="h-4 w-4 text-sky-200" />
+                  </span>
+                  <span className="text-xs font-semibold tracking-[0.22em] text-sky-200/90">CONSOLE</span>
                 </span>
-                <span className="text-xs font-semibold tracking-[0.22em] text-sky-200/90">CONSOLE</span>
-              </span>
-            </Button>
-          </SheetTrigger>
+              </Button>
+            </SheetTrigger>
+          )}
 
           <SheetContent
             side="right"

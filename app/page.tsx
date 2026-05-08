@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { SkillsSection } from "@/components/skills-section";
-import { IntroSplash } from "@/components/intro-splash";
 
 
 const Planets3DSection = dynamic(
@@ -47,14 +46,12 @@ export default function PersonalWebsite() {
     <div className="relative">
       <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
 
-      <IntroSplash>
-        <div className="relative z-10 snap-y snap-mandatory scroll-smooth">
-          <HeroSection />
-          <SkillsSection />
-          <Planets3DSection />
-          <ContactSection />
-        </div>
-      </IntroSplash>
+      <div className="relative z-10 snap-y snap-mandatory scroll-smooth">
+        <HeroSection />
+        <SkillsSection />
+        <Planets3DSection />
+        <ContactSection />
+      </div>
     </div>
   );
 }
