@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import { DeferredVisualEffects } from "@/components/deferred-visual-effects";
 import ShipConsoleLazy from "@/components/ship-console-lazy";
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <DeferredVisualEffects />
           {children}
         </ThemeProvider>
         <ShipConsoleLazy />
