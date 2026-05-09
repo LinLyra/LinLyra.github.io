@@ -14,6 +14,7 @@ import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slide
 import { flourishKpmg2026SlidePaths } from "@/lib/flourish-kpmg-2026-slides"
 import { getFeaturedEmbedUrl } from "@/lib/featured-embed-urls"
 import { pathologyHeSlidePaths } from "@/lib/pathology-he-slides"
+import { temuHkEntry2026SlidePaths } from "@/lib/temu-hk-entry-2026-slides"
 import { ubsFinance2026SlidePaths } from "@/lib/ubs-finance-2026-slides"
 import {
   Dialog,
@@ -81,6 +82,13 @@ const MISSIONS: Mission[] = [
     subtitle: "Education · Workforce & Talent",
     href: "/business/flourish-kpmg-case-competition-2026",
     images: [...flourishKpmg2026SlidePaths()],
+    accent: "green",
+  },
+  {
+    title: "Temu Hong Kong Market Entry Strategy",
+    subtitle: "Competition · Strategy · Cross-Border Commerce",
+    href: "/business/temu-hk-entry-strategy-2026",
+    images: [...temuHkEntry2026SlidePaths()],
     accent: "green",
   },
 ]
