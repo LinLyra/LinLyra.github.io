@@ -69,10 +69,11 @@ export function DeferredVisualEffects() {
         // ignore
       }
     }, 200)
+    // No IntroSplash in tree → introPlayed may never flip; cap wait so WebGL still loads.
     const hard = window.setTimeout(() => {
       window.clearInterval(t)
       start()
-    }, 6000)
+    }, 2000)
 
     return () => {
       window.clearInterval(t)
