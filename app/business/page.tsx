@@ -228,7 +228,20 @@ export default function BusinessPage() {
       keywords: ["talent retention", "act government", "graduate migration", "career strategy", "public policy", "kpmg case"],
       tags: ["Strategy", "Government", "Consulting"],
     },
-    
+    {
+      slug: "temu-hk-entry-strategy-2026",
+      projectName: "Temu Hong Kong Market Entry Strategy",
+      subtitle: "Oliver Wyman × B1 Case Competition 2026",
+      date: "2026.05",
+      type: "competition",
+      logo: "/competition/Oliverwymanlogo.png",
+      description:
+        "A 5-year market entry strategy for Temu in Hong Kong, focused on leveraging demand-signal supply chains, micro-warehouse logistics, and trust infrastructure to capture the structural gap between fast-but-expensive local platforms and cheap-but-slow cross-border competitors.",
+      skills: ["Strategy Consulting", "Market Entry Strategy", "Competitive Strategy", "Supply Chain Strategy", "Unit Economics", "Financial Modeling", "Growth Strategy", "Scenario Analysis"],
+      industries: ["E-commerce", "Retail", "Cross-Border Commerce", "Logistics", "Consumer Platforms"],
+      keywords: ["temu", "hong kong e-commerce", "market entry", "cross-border retail", "unit economics", "micro warehouse", "supply chain", "consumer trust", "growth strategy", "oliver wyman case"],
+      tags: ["Strategy", "Consulting", "E-commerce", "Retail"],
+    },
     {
       slug: "roland-berger-campus-2025",
       projectName: "Humanoid Robot GTM",

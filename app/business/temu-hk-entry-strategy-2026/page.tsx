@@ -31,7 +31,7 @@ export default function TemuHKEntryStrategyPage() {
     term: "2026.05",
     role: "Team Leader",
     placement: "",
-    canvaUrl: "#",
+    canvaUrl: "https://peridot-eocursor-4db.notion.site/Temu-Hong-Kong-Market-Entry-Strategy-35b3be3c13158003901be1cade8a72f5?pvs=73",
     notes: [] as string[],
     tags: [
       "Market Entry",
