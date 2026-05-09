@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { SkillsSection } from "@/components/skills-section";
+import { DeferredVisualEffects } from "@/components/deferred-visual-effects";
 
 
 const Planets3DSection = dynamic(
@@ -44,6 +45,7 @@ export default function PersonalWebsite() {
 
   return (
     <div className="relative">
+      <DeferredVisualEffects />
       <Navigation activeSection={activeSection} onSectionChange={setActiveSection} />
 
       <div className="relative z-10 snap-y snap-mandatory scroll-smooth">
