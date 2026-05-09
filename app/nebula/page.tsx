@@ -36,6 +36,7 @@ export default function NebulaPage() {
   const [selectedKinds, setSelectedKinds] = useState<NebulaKind[]>([])
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<NebulaActivityItem | null>(null)
+  const [visibleCount, setVisibleCount] = useState(16)
 
   const activities: NebulaActivityItem[] = [
     {
@@ -549,6 +550,15 @@ export default function NebulaPage() {
     return textOk && kindOk
   })
 
+  const shown = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount])
+
+  // When filters change, reset the visible window so the page feels snappy.
+  // (Also reduces the number of images the browser fetches.)
+  useMemo(() => {
+    setVisibleCount(16)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, selectedKinds.join("|")])
+
   const toggleKind = (k: NebulaKind) =>
     setSelectedKinds((prev) =>
       prev.includes(k) ? prev.filter((x) => x !== k) : [...prev, k]
@@ -632,7 +642,7 @@ export default function NebulaPage() {
 
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {filtered.map((a, idx) => (
+            {shown.map((a, idx) => (
               <ScrollReveal key={a.slug} variant="soft" delayMs={Math.min(idx, 10) * 45} className="h-full">
                 <button
                   type="button"
@@ -652,6 +662,8 @@ export default function NebulaPage() {
                       <img
                         src={a.cover || "/placeholder.svg"}
                         alt={a.title}
+                        loading={idx < 4 ? "eager" : "lazy"}
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
@@ -687,6 +699,19 @@ export default function NebulaPage() {
               </ScrollReveal>
             ))}
           </div>
+
+          {filtered.length > shown.length ? (
+            <div className="mt-8 flex justify-center">
+              <Button
+                type="button"
+                variant="outline"
+                className="border-red-400/25 bg-transparent text-slate-100 hover:bg-white/5"
+                onClick={() => setVisibleCount((n) => Math.min(filtered.length, n + 16))}
+              >
+                Load more
+              </Button>
+            </div>
+          ) : null}
 
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="border-red-400/20 bg-slate-950/85 text-slate-100 backdrop-blur-xl shadow-[0_0_60px_rgba(248,113,113,0.14)]">

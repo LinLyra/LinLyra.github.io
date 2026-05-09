@@ -34,51 +34,10 @@ export function DeferredVisualEffects() {
   React.useEffect(() => {
     if (shouldSkipHeavy()) return
 
-    // If intro is playing, wait until it has been marked played.
-    const introPlayed = (() => {
-      try {
-        return sessionStorage.getItem("introPlayed") === "1"
-      } catch {
-        return false
-      }
-    })()
-
-    const start = () => setEnable(true)
-
-    if (introPlayed) {
-      // Defer to idle so we don't compete with first paint.
-      const ric = (window as any).requestIdleCallback as
-        | ((cb: () => void, opts?: { timeout: number }) => number)
-        | undefined
-      if (ric) {
-        const id = ric(start, { timeout: 1200 })
-        return () => (window as any).cancelIdleCallback?.(id)
-      }
-      const t = window.setTimeout(start, 400)
-      return () => window.clearTimeout(t)
-    }
-
-    // Poll briefly for intro end (it sets sessionStorage).
-    const t = window.setInterval(() => {
-      try {
-        if (sessionStorage.getItem("introPlayed") === "1") {
-          window.clearInterval(t)
-          start()
-        }
-      } catch {
-        // ignore
-      }
-    }, 200)
-    // No IntroSplash in tree → introPlayed may never flip; cap wait so WebGL still loads.
-    const hard = window.setTimeout(() => {
-      window.clearInterval(t)
-      start()
-    }, 2000)
-
-    return () => {
-      window.clearInterval(t)
-      window.clearTimeout(hard)
-    }
+    // Mount right after first paint so the galaxy feels "synchronous",
+    // but still doesn't block initial render.
+    const id = window.requestAnimationFrame(() => setEnable(true))
+    return () => window.cancelAnimationFrame(id)
   }, [])
 
   if (!enable) return null
