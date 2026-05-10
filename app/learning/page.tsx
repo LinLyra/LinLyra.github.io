@@ -48,7 +48,7 @@ export default function LearningPage() {
       institution: "Oracle",
       date: "2025.10",
       type: "online-course",
-      logo: "/learning/oraclelogo.png",
+      logo: "/learning/orcalelogo.png",
       tags: ["Oracle Cloud", "Data Science", "Machine Learning", "MLOps", "Deployment", "Monitoring", "Model Registry"],
       status: "completed",
     },

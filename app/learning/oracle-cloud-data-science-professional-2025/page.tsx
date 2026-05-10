@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
 import { Card } from "@/components/ui/card"
@@ -18,7 +17,6 @@ export default function OracleDataScienceProfessionalPage() {
     title: "Oracle Cloud Infrastructure 2025 Certified Data Science Professional",
     institution: "Oracle",
     term: "2025 10",
-    logo: "/learning/orcalelogo.png",
     status: "Completed" as const,
     tagline:
       "Professional certification covering Oracle Cloud Infrastructure data science workflows, model development, deployment, MLOps, and cloud-based machine learning practices.",
@@ -86,7 +84,7 @@ Overall, completing this certification improved my confidence in cloud data scie
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/learning">
-              <Button className="border border-white/20 text-purple-200 hover:bg-white/10">
+              <Button className="border border-white/20 bg-transparent text-purple-200 shadow-none hover:bg-white/10">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Learning
               </Button>
@@ -116,7 +114,7 @@ Overall, completing this certification improved my confidence in cloud data scie
             </div>
           </header>
 
-          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+          <Card className="relative bg-black/35 backdrop-blur-md border-white/20 overflow-hidden">
             <div className="absolute right-3 top-3">
               <span
                 className={`inline-flex items-center h-6 rounded-full px-2.5 text-xs border backdrop-blur-sm ${badge}`}
@@ -125,19 +123,8 @@ Overall, completing this certification improved my confidence in cloud data scie
               </span>
             </div>
 
-            <div className="p-5 md:p-6 flex items-start gap-4">
-              <div className="relative flex-shrink-0 h-12 w-12 rounded-xl bg-black/30 border border-white/10 overflow-hidden">
-                <Image
-                  src={meta.logo}
-                  alt="logo"
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
-
-              <div className="flex-1 min-w-0">
+            <div className="p-5 md:p-6">
+              <div className="min-w-0">
                 <div className="flex flex-wrap gap-2 mb-3">
                   {meta.tags.map((t) => (
                     <Badge
@@ -156,7 +143,7 @@ Overall, completing this certification improved my confidence in cloud data scie
             <div className="h-1 w-full bg-gradient-to-r from-fuchsia-500/20 via-purple-500/20 to-fuchsia-500/20" />
           </Card>
 
-          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+          <section className="rounded-xl border border-white/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
             <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-4">
               Learning Outcomes
             </h2>
@@ -170,7 +157,7 @@ Overall, completing this certification improved my confidence in cloud data scie
             </ul>
           </section>
 
-          <section className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 md:p-6">
+          <section className="rounded-xl border border-white/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
             <h2 className="text-xl md:text-2xl font-semibold text-fuchsia-400 mb-3">
               Takeaways
             </h2>

@@ -253,14 +253,14 @@ export default function AdvancedGalaxyCanvas() {
         <div className="flex gap-3 justify-center">
           <Button
             onClick={clearCanvas}
-            className="bg-gradient-to-r from-red-500/20 to-pink-500/20 backdrop-blur-md border-red-400/30 text-gray-100 hover:bg-red-500/30 transition-all duration-300"
+            className="border border-rose-400/40 bg-transparent text-rose-100 shadow-none hover:bg-rose-500/10 transition-all duration-300"
           >
             <RotateCcw className="mr-2 h-4 w-4" />
             Clear Canvas
           </Button>
           <Button
             onClick={downloadGalaxy}
-            className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30 transition-all duration-300"
+            className="border border-emerald-400/40 bg-transparent text-emerald-100 shadow-none hover:bg-emerald-500/10 transition-all duration-300"
           >
             <Download className="mr-2 h-4 w-4" />
             Save Galaxy

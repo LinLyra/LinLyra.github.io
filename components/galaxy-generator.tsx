@@ -212,14 +212,14 @@ export function GalaxyGenerator() {
         <div className="flex gap-3 justify-center">
           <Button
             onClick={generateNew}
-            className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30 transition-all duration-300"
+            className="border border-cyan-400/40 bg-transparent text-cyan-100 shadow-none hover:bg-cyan-500/10 transition-all duration-300"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
             Generate New
           </Button>
           <Button
             onClick={saveGalaxy}
-            className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30 transition-all duration-300"
+            className="border border-emerald-400/40 bg-transparent text-emerald-100 shadow-none hover:bg-emerald-500/10 transition-all duration-300"
           >
             <Download className="w-4 h-4 mr-2" />
             Save Galaxy

@@ -169,7 +169,7 @@ export default function ContactSection() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="w-full rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
+                  className="w-full rounded-xl border border-sky-400/40 bg-transparent text-sky-100 shadow-none hover:bg-sky-500/10 disabled:opacity-50"
                 >
                   <Send className="w-4 h-4 mr-2" />
                   {submitting ? "Sending..." : "Send Signal"}
