@@ -588,7 +588,7 @@ export default function NebulaPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <Link href="/">
-              <Button className="mb-4 bg-gradient-to-r from-red-500/20 to-rose-500/20 backdrop-blur-md border-red-400/30 text-gray-100 hover:bg-red-500/30">
+              <Button className="border mb-4 border-red-400/30 text-rose-200 hover:bg-white/10">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Universe
               </Button>

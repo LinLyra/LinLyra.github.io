@@ -79,7 +79,7 @@ that even ESG—when done rigorously—is not a side narrative, but an investabl
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/business">
-              <Button className="bg-gradient-to-r from-emerald-500/20 to-green-500/20 backdrop-blur-md border-emerald-400/30 text-emerald-100 hover:bg-emerald-500/30">
+              <Button className="border border-emerald-400/30 text-emerald-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Business
               </Button>

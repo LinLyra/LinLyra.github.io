@@ -331,7 +331,7 @@ export default function DataPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 text-center">
             <Link href="/">
-              <Button className="mb-4 border-blue-400/30 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 text-gray-100 backdrop-blur-md hover:bg-blue-500/30">
+              <Button className="border mb-4 border-blue-400/30 text-sky-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Universe
               </Button>

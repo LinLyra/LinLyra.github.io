@@ -206,7 +206,7 @@ Through FLOURISH, I practised building a consulting-style narrative from problem
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/business">
-              <Button className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md border-green-400/30 text-gray-100 hover:bg-green-500/30">
+              <Button className="border border-green-400/30 text-green-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Business
               </Button>

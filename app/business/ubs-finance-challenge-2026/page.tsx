@@ -95,7 +95,7 @@ Through this case, I improved my ability to translate biotech-specific factors â
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/business">
-              <Button className="border border-emerald-400/35 bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-gray-100 backdrop-blur-md hover:bg-emerald-500/30">
+              <Button className="border border-emerald-400/35 text-emerald-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Business
               </Button>

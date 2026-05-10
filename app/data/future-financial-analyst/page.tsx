@@ -63,7 +63,7 @@ The framework argues that firms should not be evaluated only by current earnings
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/data">
-              <Button className="bg-gradient-to-r from-blue-500/20 to-indigo-500/20 backdrop-blur-md border-blue-400/30 text-gray-100 hover:bg-blue-500/30">
+              <Button className="border border-blue-400/30 text-sky-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Data
               </Button>

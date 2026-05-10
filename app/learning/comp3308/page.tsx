@@ -62,7 +62,7 @@ export default function COMP3308Page() {
         <div className="max-w-5xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/learning">
-              <Button className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20">
+              <Button className="border border-white/20 text-purple-200 hover:bg-white/10">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Learning
               </Button>

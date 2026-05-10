@@ -400,7 +400,7 @@ export default function LearningPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <Link href="/">
-              <Button className="mb-4 bg-gradient-to-r from-purple-500/20 to-fuchsia-500/20 backdrop-blur-md border-purple-400/30 text-white hover:bg-purple-500/30">
+              <Button className="border mb-4 border-purple-400/30 text-purple-200 hover:bg-white/10">
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back to Universe
               </Button>

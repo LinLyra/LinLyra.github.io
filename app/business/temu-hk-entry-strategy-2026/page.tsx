@@ -147,7 +147,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/business">
-              <Button className="bg-gradient-to-r from-orange-500/20 to-red-500/20 backdrop-blur-md border-orange-400/30 text-gray-100 hover:bg-orange-500/30">
+              <Button className="border border-orange-400/30 text-amber-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Business
               </Button>

@@ -431,7 +431,7 @@ export default function BusinessPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 text-center">
             <Link href="/">
-              <Button className="mb-4 border-green-400/30 bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-gray-100 backdrop-blur-md hover:bg-green-500/30">
+              <Button className="border mb-4 border-green-400/30 text-green-200 hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Universe
               </Button>
