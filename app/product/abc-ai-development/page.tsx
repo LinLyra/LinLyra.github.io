@@ -5,7 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Award, Calendar } from "lucide-react";
 
 export default function AIProductResearcherPage() {
   const meta = {
@@ -67,7 +67,7 @@ export default function AIProductResearcherPage() {
         <div className="mx-auto max-w-5xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/product">
-              <Button className="border border-amber-400/30 text-amber-200 hover:bg-white/10">
+              <Button className="border border-amber-400/30 bg-transparent text-amber-200 shadow-none hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Product
               </Button>
@@ -75,7 +75,13 @@ export default function AIProductResearcherPage() {
             <div />
           </div>
 
-          <Card className="relative bg-white/10 backdrop-blur-md border-white/20 overflow-hidden">
+          <Card className="relative overflow-hidden border-white/20 bg-black/35 backdrop-blur-md">
+            <div className="absolute right-3 top-3">
+              <span className="inline-flex items-center gap-1 rounded-full border border-amber-300/40 bg-amber-500/20 px-2.5 py-1 text-xs font-semibold text-amber-100 backdrop-blur-sm">
+                <Award className="h-3.5 w-3.5 text-amber-300" />
+                Intern
+              </span>
+            </div>
             <div className="p-5 md:p-6">
               <h1 className="text-xl md:text-2xl font-semibold text-white mb-1">
                 {meta.title}
@@ -102,7 +108,7 @@ export default function AIProductResearcherPage() {
             <div className="h-1 w-full bg-gradient-to-r from-orange-500/20 via-amber-500/20 to-orange-500/20" />
           </Card>
 
-          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+          <section className="rounded-xl border border-amber-400/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               What I Worked On
             </h2>
@@ -111,7 +117,7 @@ export default function AIProductResearcherPage() {
             </div>
           </section>
 
-          <section className="rounded-xl border border-amber-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+          <section className="rounded-xl border border-amber-400/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
             <h2 className="mb-3 text-xl font-semibold text-amber-400 md:text-2xl">
               Key Takeaways
             </h2>

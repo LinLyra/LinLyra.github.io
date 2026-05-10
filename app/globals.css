@@ -558,34 +558,51 @@
     background: transparent;
   }
 
-  /* "Back to …" nav: transparent fill; keep text/border from each page's Tailwind classes. */
+  /* "Back to …" nav: transparent fill; keep text/border from each page's Tailwind classes.
+     Next.js `trailingSlash: true` often renders `/learning/` not `/learning` — include both. */
   a[href="/"] > button,
   a[href="/business"] > button,
+  a[href="/business/"] > button,
   a[href="/product"] > button,
+  a[href="/product/"] > button,
   a[href="/data"] > button,
+  a[href="/data/"] > button,
   a[href="/learning"] > button,
-  a[href="/nebula"] > button {
+  a[href="/learning/"] > button,
+  a[href="/nebula"] > button,
+  a[href="/nebula/"] > button {
     background: transparent !important;
+    background-color: transparent !important;
     background-image: none !important;
     box-shadow: none !important;
   }
 
   a[href="/"] > button:hover,
   a[href="/business"] > button:hover,
+  a[href="/business/"] > button:hover,
   a[href="/product"] > button:hover,
+  a[href="/product/"] > button:hover,
   a[href="/data"] > button:hover,
+  a[href="/data/"] > button:hover,
   a[href="/learning"] > button:hover,
-  a[href="/nebula"] > button:hover {
+  a[href="/learning/"] > button:hover,
+  a[href="/nebula"] > button:hover,
+  a[href="/nebula/"] > button:hover {
     background-color: color-mix(in srgb, currentColor 14%, transparent) !important;
   }
 
   @supports not (background-color: color-mix(in srgb, white 50%, black)) {
     a[href="/"] > button:hover,
     a[href="/business"] > button:hover,
+    a[href="/business/"] > button:hover,
     a[href="/product"] > button:hover,
+    a[href="/product/"] > button:hover,
     a[href="/data"] > button:hover,
+    a[href="/data/"] > button:hover,
     a[href="/learning"] > button:hover,
-    a[href="/nebula"] > button:hover {
+    a[href="/learning/"] > button:hover,
+    a[href="/nebula"] > button:hover,
+    a[href="/nebula/"] > button:hover {
       background-color: rgba(255, 255, 255, 0.08) !important;
     }
   }

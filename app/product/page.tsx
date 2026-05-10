@@ -92,6 +92,7 @@ export default function ProductPage() {
       subtitle: "A Better Community",
       date: "2025.3 — Present",
       type: "development",
+      placement: "Intern",
       logo: "/experience/abclogo.png",
       description:
         "End-to-end GenAI delivery for community clients—from discovery and data prep to prompts, APIs, and rollout.",

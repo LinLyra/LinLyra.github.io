@@ -141,7 +141,7 @@ export default function ShipConsole({
 
   return (
     <>
-      <div className="fixed bottom-5 right-5 z-[60]">
+      <div className="fixed bottom-5 right-5 z-[90]">
         <Sheet open={open} onOpenChange={setOpen}>
           {hideTrigger ? null : (
             <SheetTrigger asChild>
