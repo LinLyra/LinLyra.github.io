@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -44,6 +44,7 @@ export default function NebulaPage() {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState<NebulaActivityItem | null>(null)
   const [visibleCount, setVisibleCount] = useState(16)
+  const sentinelRef = useRef<HTMLDivElement | null>(null)
 
   const activities: NebulaActivityItem[] = [
     {
@@ -579,10 +580,31 @@ export default function NebulaPage() {
 
   // When filters change, reset the visible window so the page feels snappy.
   // (Also reduces the number of images the browser fetches.)
-  useMemo(() => {
+  useEffect(() => {
     setVisibleCount(16)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [q, selectedKinds.join("|")])
+
+  useEffect(() => {
+    const el = sentinelRef.current
+    if (!el) return
+    if (filtered.length <= shown.length) return
+
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches
+    if (reduced) return
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const e = entries[0]
+        if (e?.isIntersecting) {
+          setVisibleCount((n) => Math.min(filtered.length, n + 16))
+        }
+      },
+      { threshold: 0.01, rootMargin: "480px 0px 720px 0px" }
+    )
+
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [filtered.length, shown.length])
 
   const toggleKind = (k: NebulaKind) =>
     setSelectedKinds((prev) =>
@@ -666,12 +688,12 @@ export default function NebulaPage() {
           </div>
 
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid items-start gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
             {shown.map((a, idx) => (
-              <ScrollReveal key={a.slug} variant="soft" delayMs={Math.min(idx, 10) * 45} className="h-full">
+              <ScrollReveal key={a.slug} variant="soft" delayMs={Math.min(idx, 10) * 45} className="min-h-0 w-full">
                 <button
                   type="button"
-                  className="h-full text-left"
+                  className="w-full text-left"
                   onClick={() => {
                     setSelected(a)
                     setOpen(true)
@@ -680,10 +702,10 @@ export default function NebulaPage() {
                 >
                   <PremiumGlassCard
                     tiltMaxDeg={5}
-                    className="flex h-full min-h-[320px] flex-col bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
+                    className="flex w-full flex-col bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
                     title={a.title}
                   >
-                    <div className="relative h-32 w-full">
+                    <div className="relative h-32 w-full shrink-0">
                       <img
                         src={a.cover || "/placeholder.svg"}
                         alt={a.title}
@@ -702,30 +724,26 @@ export default function NebulaPage() {
                       ) : null}
                     </div>
 
-                    <div className="p-6 pb-2">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-gray-300 text-xs">{a.org}</span>
-                        <span className="text-gray-300 text-xs">{a.date}</span>
+                    <div className="flex shrink-0 flex-col px-4 pb-4 pt-3">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="truncate text-xs text-gray-300">{a.org}</span>
+                        <span className="shrink-0 text-xs text-gray-300">{a.date}</span>
                       </div>
-                      <div className="text-gray-100 text-sm font-semibold mb-1 line-clamp-2" title={a.title}>
-                        {a.title}
-                      </div>
-                      {a.location && (
-                        <div className="flex items-center gap-1 text-xs text-gray-300/80">
-                          <MapPin className="w-3 h-3" />
-                          {a.location}
+                      <div className="mt-2 space-y-1.5">
+                        <div
+                          className="h-[2.5rem] text-sm font-semibold leading-snug text-gray-100 line-clamp-2"
+                          title={a.title}
+                        >
+                          {a.title}
                         </div>
-                      )}
-                    </div>
-
-                    <div className="mt-auto p-6 pt-0">
-                      {a.summary ? (
-                        <p className="min-h-[2.75rem] text-gray-100/90 text-xs leading-5 line-clamp-2">
-                          {a.summary}
+                        <div className="flex h-[2.25rem] items-start gap-1 text-xs leading-snug text-gray-300/80 line-clamp-2">
+                          <MapPin className="mt-0.5 h-3 w-3 shrink-0" />
+                          <span className="min-w-0">{a.location ?? "\u00a0"}</span>
+                        </div>
+                        <p className="h-[2.5rem] text-xs leading-5 text-gray-100/90 line-clamp-2">
+                          {a.summary ?? ""}
                         </p>
-                      ) : (
-                        <div className="min-h-[2.75rem]" />
-                      )}
+                      </div>
                     </div>
                   </PremiumGlassCard>
                 </button>
@@ -733,18 +751,14 @@ export default function NebulaPage() {
             ))}
           </div>
 
-          {filtered.length > shown.length ? (
-            <div className="mt-8 flex justify-center">
-              <Button
-                type="button"
-                variant="outline"
-                className="border-red-400/25 bg-transparent text-slate-100 hover:bg-white/5"
-                onClick={() => setVisibleCount((n) => Math.min(filtered.length, n + 16))}
-              >
-                Load more
-              </Button>
-            </div>
-          ) : null}
+          <div className="mt-6 flex justify-center">
+            {filtered.length > shown.length ? (
+              <div className="text-xs text-slate-400">Scroll to load more…</div>
+            ) : (
+              <div className="text-xs text-slate-500">You’ve reached the end.</div>
+            )}
+          </div>
+          <div ref={sentinelRef} className="h-8 w-full" aria-hidden="true" />
 
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="border-red-400/20 bg-slate-950/85 text-slate-100 backdrop-blur-xl shadow-[0_0_60px_rgba(248,113,113,0.14)]">

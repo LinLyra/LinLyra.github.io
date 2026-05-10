@@ -19,7 +19,7 @@ export default function GenkiForestCodeEnergyPage() {
     practice: "Brand Innovation · Product Strategy · Youth Marketing",
     term: "2025.12",
     role: "Solo",
-    award: "Finalist",
+    award: "Top 50",
     notes: ["/competition/yuanqi1.png"],
     tags: ["Brand Strategy", "Product Innovation", "Youth Marketing"],
   };

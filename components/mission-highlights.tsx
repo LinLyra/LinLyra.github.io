@@ -12,16 +12,9 @@ import { bainInstantRetailSlidePaths } from "../lib/bain-instant-retail-slides"
 import { citiGmc2026SlidePaths } from "@/lib/citi-gmc-2026-slides"
 import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slides"
 import { flourishKpmg2026SlidePaths } from "@/lib/flourish-kpmg-2026-slides"
-import { getFeaturedEmbedUrl } from "@/lib/featured-embed-urls"
 import { pathologyHeSlidePaths } from "@/lib/pathology-he-slides"
 import { temuHkEntry2026SlidePaths } from "@/lib/temu-hk-entry-2026-slides"
 import { ubsFinance2026SlidePaths } from "@/lib/ubs-finance-2026-slides"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
 
 const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"] })
@@ -191,12 +184,8 @@ export function MissionHighlights() {
 }
 
 function MissionCard({ mission }: { mission: Mission }) {
-  const router = useRouter()
   const [idx, setIdx] = React.useState(0)
-  const [embedOpen, setEmbedOpen] = React.useState(false)
   const n = mission.images.length
-
-  const embedUrl = getFeaturedEmbedUrl(mission.href)
 
   React.useEffect(() => {
     if (n <= 1) return
@@ -209,14 +198,6 @@ function MissionCard({ mission }: { mission: Mission }) {
   }, [n])
 
   const src = mission.images[idx] ?? mission.images[0] ?? "/placeholder.svg"
-
-  const onDialogChange = React.useCallback(
-    (open: boolean) => {
-      setEmbedOpen(open)
-      if (!open) router.push(mission.href)
-    },
-    [mission.href, router]
-  )
 
   const cardInner = (
     <>
@@ -271,46 +252,6 @@ function MissionCard({ mission }: { mission: Mission }) {
     "group relative flex min-w-[min(10.5rem,62vw)] max-w-[11.5rem] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white/[0.035] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition",
     "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] active:translate-y-0"
   )
-
-  if (embedUrl) {
-    return (
-      <>
-        <button type="button" onClick={() => setEmbedOpen(true)} className={cn(cardClass, "cursor-pointer text-left")}>
-          {cardInner}
-        </button>
-
-        <Dialog open={embedOpen} onOpenChange={onDialogChange}>
-          <DialogContent className="max-h-[90vh] max-w-[min(96vw,920px)] gap-0 overflow-hidden border-0 bg-[#0b0b12] p-0 shadow-[0_24px_80px_rgba(0,0,0,0.65)] ring-1 ring-white/10">
-            <DialogHeader className="flex flex-row items-center justify-between gap-3 border-b border-white/[0.07] px-4 py-3">
-              <DialogTitle className="truncate pr-8 text-left text-sm font-semibold text-slate-100">
-                {mission.title}
-              </DialogTitle>
-              <button
-                type="button"
-                className="rounded-full bg-white/[0.06] p-2 text-slate-300 ring-1 ring-white/10 transition hover:bg-white/10 hover:text-white"
-                aria-label="Close and open project page"
-                onClick={() => onDialogChange(false)}
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </DialogHeader>
-            <div className="relative min-h-[min(78vh,720px)] w-full bg-black/40">
-              <iframe
-                title={mission.title}
-                src={embedUrl}
-                className="h-[min(78vh,720px)] w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-              <p className="border-t border-white/10 px-4 py-2 text-[11px] text-slate-500">
-                If the embed is blank, Notion may block iframes — use the project page &quot;View more&quot; link instead.
-              </p>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </>
-    )
-  }
 
   return (
     <Link href={mission.href} className={cardClass}>

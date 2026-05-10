@@ -29,7 +29,7 @@ export default function InstantRetailProfitabilityStrategyPage() {
     practice: "Strategy Consulting · Retail Strategy · Unit Economics",
     term: "2026",
     role: "Team Leader",
-    placement: "Case Project",
+    placement: "",
     canvaUrl: "http://peridot-eocursor-4db.notion.site/Instant-Retail-Profitability-Strategy-3583be3c1315806880dfff1aea218ef7",
     notes: [] as string[],
     tags: [
