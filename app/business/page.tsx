@@ -133,7 +133,7 @@ export default function BusinessPage() {
       date: "2026.04",
       type: "marketing",
       logo: "/competition/mersenlogo.jpg",
-      placement: "Top 10",
+      placement: "Third Place",
       description:
         "Employer-brand campaign turning invisible industrial value into a memorable campus narrative and activations.",
       skills: ["Brand Activation", "Campaign Planning", "Event Design"],

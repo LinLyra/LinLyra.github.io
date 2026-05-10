@@ -19,7 +19,7 @@ export default function MersenCampusChallengePage() {
     practice: "Employer Branding · Campaign Strategy · Industrial Branding",
     term: "2026.04",
     role: "Solo",
-    award: "Top 10",
+    award: "Third Place",
     notes: ["/competition/mersen1.png"],
     tags: ["Employer Branding", "Campaign Strategy", "Industrial Brand"],
   };

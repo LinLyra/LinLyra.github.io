@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { ArrowLeft, MapPin, X } from "lucide-react"
+import { ArrowLeft, Award, MapPin, X } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { PremiumGlassCard } from "@/components/premium-glass-card"
@@ -18,17 +18,24 @@ import {
 import { PageCornerLottie } from "@/components/page-corner-lottie"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
-type NebulaKind = "Volunteer" | "Networking" | "Talks" | "Workshop"
+type NebulaKind = "Volunteer" | "Networking" | "Talks" | "Workshop" | "Organizing"
 
 type NebulaActivityItem = {
   slug: string
   title: string
   org: string
   date: string
+  /** Short teaser on the card */
   summary: string
   cover: string
   location?: string
   kinds: NebulaKind[]
+  /** Longer copy in the detail dialog (defaults to summary) */
+  detailSummary?: string
+  /** Extra photos shown in the dialog (cover is always the card hero) */
+  gallery?: string[]
+  /** Top-right pill on the card (e.g. Co-founder) */
+  roleBadge?: string
 }
 
 export default function NebulaPage() {
@@ -39,6 +46,21 @@ export default function NebulaPage() {
   const [visibleCount, setVisibleCount] = useState(16)
 
   const activities: NebulaActivityItem[] = [
+    {
+      slug: "launchpad-s1-shanghai-2026",
+      title: "Launchpad S1",
+      org: "Launchpad",
+      date: "2026.01",
+      roleBadge: "Co-founder",
+      summary:
+        "Co-founded and helped lead a global GTM-focused innovation event in Shanghai (3 days, 2 nights)—bridging hackathon projects and early startups to real users through rapid testing, content, launch strategy, and community exposure.",
+      detailSummary:
+        "As one of the organizers of Launchpad S1, I helped build and lead a global go-to-market focused innovation event designed to bridge the gap between hackathon projects, early-stage startups, and real-world users. The event brought together founders, builders, marketers, and creators to help promising products move beyond prototypes and enter the market through rapid user testing, content creation, launch strategy design, and community exposure. I was involved in shaping the overall event experience, coordinating cross-functional collaboration, and creating an environment where innovative products could gain real traction, feedback, and visibility within just a few days.",
+      cover: "/competition/launchpad.png",
+      gallery: ["/competition/Launchpad1.png", "/competition/launchpad2.png", "/competition/launchpad3.png"],
+      location: "Shanghai · 3-day / 2-night program",
+      kinds: ["Organizing", "Networking"],
+    },
     {
       slug: "morgan-stanley-unit-industry-insight-evening-2026",
       title: "UNIT Industry Insight Evening",
@@ -533,7 +555,10 @@ export default function NebulaPage() {
   ]
   
 
-  const chips: NebulaKind[] = useMemo(() => ["Volunteer", "Networking", "Talks", "Workshop"], [])
+  const chips: NebulaKind[] = useMemo(
+    () => ["Organizing", "Volunteer", "Networking", "Talks", "Workshop"],
+    []
+  )
 
   const filtered = activities.filter((a) => {
 
@@ -667,6 +692,14 @@ export default function NebulaPage() {
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                      {a.roleBadge ? (
+                        <div className="pointer-events-none absolute right-2 top-2 z-10">
+                          <span className="inline-flex items-center gap-1 rounded-full border border-amber-300/40 bg-yellow-500/20 px-2 py-0.5 text-[10px] font-semibold text-amber-100 shadow-lg backdrop-blur-md">
+                            <Award className="h-3 w-3 text-amber-300" />
+                            {a.roleBadge}
+                          </span>
+                        </div>
+                      ) : null}
                     </div>
 
                     <div className="p-6 pb-2">
@@ -724,8 +757,23 @@ export default function NebulaPage() {
                 </DialogDescription>
               </DialogHeader>
 
-              {selected?.summary ? (
-                <p className="text-sm leading-6 text-slate-200/90">{selected.summary}</p>
+              {selected?.summary || selected?.detailSummary ? (
+                <p className="text-sm leading-6 text-slate-200/90">
+                  {selected.detailSummary ?? selected.summary}
+                </p>
+              ) : null}
+
+              {selected?.gallery?.length ? (
+                <div className="grid grid-cols-1 gap-3 pt-4 sm:grid-cols-3">
+                  {selected.gallery.map((src) => (
+                    <div
+                      key={src}
+                      className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10 bg-black/40"
+                    >
+                      <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                    </div>
+                  ))}
+                </div>
               ) : null}
 
               {selected?.kinds?.length ? (

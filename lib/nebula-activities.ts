@@ -1,6 +1,6 @@
 "use client"
 
-export type NebulaKind = "Volunteer" | "Networking" | "Talks" | "Workshop"
+export type NebulaKind = "Volunteer" | "Networking" | "Talks" | "Workshop" | "Organizing"
 
 export type NebulaActivityItem = {
   slug: string
@@ -11,10 +11,28 @@ export type NebulaActivityItem = {
   cover: string
   location?: string
   kinds: NebulaKind[]
+  detailSummary?: string
+  gallery?: string[]
+  roleBadge?: string
 }
 
 // Source of truth for the Nebula cards (used by both the page and the CONSOLE labels).
 export const nebulaActivities: NebulaActivityItem[] = [
+  {
+    slug: "launchpad-s1-shanghai-2026",
+    title: "Launchpad S1",
+    org: "Launchpad",
+    date: "2026.01",
+    roleBadge: "Co-founder",
+    summary:
+      "Co-founded and helped lead a global GTM-focused innovation event in Shanghai (3 days, 2 nights)—bridging hackathon projects and early startups to real users through rapid testing, content, launch strategy, and community exposure.",
+    detailSummary:
+      "As one of the organizers of Launchpad S1, I helped build and lead a global go-to-market focused innovation event designed to bridge the gap between hackathon projects, early-stage startups, and real-world users. The event brought together founders, builders, marketers, and creators to help promising products move beyond prototypes and enter the market through rapid user testing, content creation, launch strategy design, and community exposure. I was involved in shaping the overall event experience, coordinating cross-functional collaboration, and creating an environment where innovative products could gain real traction, feedback, and visibility within just a few days.",
+    cover: "/competition/launchpad.png",
+    gallery: ["/competition/Launchpad1.png", "/competition/launchpad2.png", "/competition/launchpad3.png"],
+    location: "Shanghai · 3-day / 2-night program",
+    kinds: ["Organizing", "Networking"],
+  },
   {
     slug: "morgan-stanley-unit-industry-insight-evening-2026",
     title: "UNIT Industry Insight Evening",
