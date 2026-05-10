@@ -147,7 +147,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
         <div className="mx-auto max-w-6xl space-y-6">
           <div className="flex items-center justify-between">
             <Link href="/business">
-              <Button className="border border-orange-400/30 text-amber-200 hover:bg-white/10">
+              <Button className="border border-green-400/30 bg-transparent text-green-200 shadow-none hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Business
               </Button>
@@ -156,7 +156,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             <div className="flex items-center gap-2">
               {meta.canvaUrl && meta.canvaUrl !== "#" && (
                 <a href={meta.canvaUrl} target="_blank" rel="noopener noreferrer">
-                  <Button className="bg-orange-500/20 border border-orange-400/40 text-orange-100 hover:bg-orange-500/30">
+                  <Button className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30">
                     <ExternalLink className="mr-2 h-4 w-4" />
                     View more
                   </Button>
@@ -166,7 +166,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
               {hasNotes && (
                 <Button
                   onClick={() => setShowNotes(true)}
-                  className="bg-orange-500/20 border border-orange-400/40 text-orange-100 hover:bg-orange-500/30"
+                  className="border border-emerald-400/40 bg-emerald-500/20 text-emerald-100 hover:bg-emerald-500/30"
                 >
                   View notes
                 </Button>
@@ -174,8 +174,8 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             </div>
           </div>
 
-          <Card className="relative overflow-hidden border-white/20 bg-white/10 backdrop-blur-md">
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-red-500/10" />
+          <Card className="relative overflow-hidden border-white/20 bg-black/35 backdrop-blur-md">
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-green-600/10" />
 
             <div className="relative p-5 md:p-7">
               <div className="mb-4 flex flex-wrap items-center gap-2">
@@ -184,7 +184,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
                     🏆 {meta.placement}
                   </span>
                 )}
-                <span className="inline-flex items-center rounded-full border border-orange-300/40 bg-orange-500/20 px-2.5 py-1 text-xs text-orange-100">
+                <span className="inline-flex items-center rounded-full border border-emerald-300/40 bg-emerald-500/20 px-2.5 py-1 text-xs text-emerald-100">
                   Case Competition
                 </span>
               </div>
@@ -201,7 +201,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
                 </span>
 
                 {meta.role && (
-                  <span className="ml-2 inline-flex items-center rounded-full border border-orange-400/30 bg-orange-500/10 px-2 py-0.5 text-[11px] text-orange-200">
+                  <span className="ml-2 inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2 py-0.5 text-[11px] text-emerald-200">
                     {meta.role}
                   </span>
                 )}
@@ -211,7 +211,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
                 {meta.tags.map((t) => (
                   <Badge
                     key={t}
-                    className="border-orange-500/30 bg-orange-500/20 text-orange-100"
+                    className="border-emerald-500/30 bg-emerald-500/20 text-emerald-100"
                   >
                     {t}
                   </Badge>
@@ -221,17 +221,17 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
               <p className="max-w-4xl text-gray-200">{meta.practice}</p>
             </div>
 
-            <div className="relative h-1 w-full bg-gradient-to-r from-orange-500/30 via-red-500/30 to-orange-500/30" />
+            <div className="relative h-1 w-full bg-gradient-to-r from-emerald-500/30 via-green-500/30 to-emerald-500/30" />
           </Card>
 
           <section className="grid gap-4 md:grid-cols-4">
             {metrics.map((item) => (
               <Card
                 key={item.label}
-                className="border-white/10 bg-white/10 p-4 backdrop-blur-md"
+                className="border-white/10 bg-black/30 p-4 backdrop-blur-md"
               >
                 <p className="text-sm text-gray-400">{item.label}</p>
-                <p className="mt-1 text-2xl font-semibold text-orange-300">
+                <p className="mt-1 text-2xl font-semibold text-emerald-300">
                   {item.value}
                 </p>
                 <p className="mt-1 text-xs text-gray-400">{item.note}</p>
@@ -239,8 +239,8 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             ))}
           </section>
 
-          <section className="rounded-xl border border-orange-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-orange-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Project Overview
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">
@@ -248,8 +248,8 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             </p>
           </section>
 
-          <section className="rounded-xl border border-orange-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-4 text-xl font-semibold text-orange-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-4 text-xl font-semibold text-emerald-400 md:text-2xl">
               Key Strategic Insights
             </h2>
 
@@ -262,7 +262,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
                     key={item.title}
                     className="rounded-xl border border-white/10 bg-white/5 p-4"
                   >
-                    <Icon className="mb-3 h-6 w-6 text-orange-300" />
+                    <Icon className="mb-3 h-6 w-6 text-emerald-300" />
                     <h3 className="mb-2 text-lg font-semibold text-white">
                       {item.title}
                     </h3>
@@ -275,8 +275,8 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             </div>
           </section>
 
-          <section className="rounded-xl border border-orange-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-4 text-xl font-semibold text-orange-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-4 text-xl font-semibold text-emerald-400 md:text-2xl">
               Strategy Architecture
             </h2>
 
@@ -289,7 +289,7 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
                   <h3 className="text-lg font-semibold text-white">
                     {pillar.title}
                   </h3>
-                  <p className="mb-3 text-sm text-orange-200">
+                  <p className="mb-3 text-sm text-emerald-200">
                     {pillar.subtitle}
                   </p>
                   <ul className="space-y-2 text-sm text-gray-300">
@@ -304,8 +304,8 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             </div>
           </section>
 
-          <section className="rounded-xl border border-orange-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-orange-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               What I Did
             </h2>
             <ul className="list-disc space-y-3 pl-5 text-gray-200">
@@ -317,8 +317,8 @@ The final recommendation positions Temu’s Hong Kong entry not as a subsidy-led
             </ul>
           </section>
 
-          <section className="rounded-xl border border-orange-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-orange-400 md:text-2xl">
+          <section className="rounded-xl border border-emerald-400/25 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-emerald-400 md:text-2xl">
               Reflection
             </h2>
             <p className="whitespace-pre-line text-base leading-relaxed text-gray-200">

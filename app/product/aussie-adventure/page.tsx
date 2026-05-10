@@ -50,8 +50,8 @@ export default function AussieAdventurePage() {
     <div className="relative min-h-screen overflow-hidden">
       {/* bg */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[#07111F]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(37,99,235,0.28),transparent_58%),radial-gradient(circle_at_12%_88%,rgba(14,165,233,0.18),transparent_55%),radial-gradient(circle_at_88%_22%,rgba(59,130,246,0.16),transparent_55%)]" />
+        <div className="absolute inset-0 bg-[#141008]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(245,158,11,0.22),transparent_58%),radial-gradient(circle_at_12%_88%,rgba(251,191,36,0.14),transparent_55%),radial-gradient(circle_at_88%_22%,rgba(234,88,12,0.12),transparent_55%)]" />
       </div>
 
       <Navigation activeSection="product" onSectionChange={() => {}} />
@@ -61,7 +61,7 @@ export default function AussieAdventurePage() {
           {/* Top bar */}
           <div className="flex items-center justify-between">
             <Link href="/product">
-              <Button className="border border-blue-400/30 text-sky-200 hover:bg-white/10">
+              <Button className="border border-amber-400/35 bg-transparent text-amber-200 shadow-none hover:bg-white/10">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Product
               </Button>
@@ -70,7 +70,7 @@ export default function AussieAdventurePage() {
             <div className="flex items-center gap-2">
               {meta.links.github && (
                 <Link href={meta.links.github} target="_blank" rel="noreferrer">
-                  <Button className="bg-blue-500/20 border border-blue-300/40 text-blue-100 hover:bg-blue-500/30">
+                  <Button className="border border-amber-400/40 bg-amber-500/20 text-amber-100 hover:bg-amber-500/30">
                     <Github className="mr-2 h-4 w-4" />
                     GitHub
                   </Button>
@@ -79,7 +79,7 @@ export default function AussieAdventurePage() {
               {hasImages && (
                 <Button
                   onClick={() => setShowMedia(true)}
-                  className="bg-blue-500/20 border border-blue-300/40 text-blue-100 hover:bg-blue-500/30"
+                  className="border border-amber-400/40 bg-amber-500/20 text-amber-100 hover:bg-amber-500/30"
                 >
                   View more
                 </Button>
@@ -88,13 +88,13 @@ export default function AussieAdventurePage() {
           </div>
 
           {/* Header card */}
-          <Card className="relative overflow-hidden border-blue-200/20 bg-white/10 backdrop-blur-md">
+          <Card className="relative overflow-hidden border-amber-400/25 bg-black/35 backdrop-blur-md">
             <div className="p-5 md:p-6">
               <h1 className="mb-1 text-xl font-semibold text-white md:text-2xl">
                 {meta.title}
               </h1>
 
-              <div className="mb-3 inline-flex flex-wrap items-center gap-2 text-sm text-blue-100/80">
+              <div className="mb-3 inline-flex flex-wrap items-center gap-2 text-sm text-amber-100/85">
                 <span>{meta.institution}</span>
                 <span>•</span>
                 <span className="inline-flex items-center gap-1">
@@ -106,31 +106,31 @@ export default function AussieAdventurePage() {
 
               <div className="mb-2 flex flex-wrap gap-2">
                 {meta.tags.map((t) => (
-                  <Badge key={t} className="bg-blue-500/15 text-blue-100 border-blue-300/25">
+                  <Badge key={t} className="border-amber-400/30 bg-amber-500/15 text-amber-100">
                     {t}
                   </Badge>
                 ))}
               </div>
 
-              <p className="text-blue-50/90">{meta.practice}</p>
+              <p className="text-amber-50/90">{meta.practice}</p>
             </div>
-            <div className="h-1 w-full bg-gradient-to-r from-blue-500/30 via-sky-400/40 to-indigo-500/30" />
+            <div className="h-1 w-full bg-gradient-to-r from-amber-500/35 via-yellow-400/30 to-orange-500/35" />
           </Card>
 
           {/* Overview */}
-          <section className="rounded-xl border border-blue-200/15 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-50 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-300 md:text-2xl">
               Project Overview
             </h2>
-            <p className="text-base leading-relaxed text-blue-50/85">{overview}</p>
+            <p className="text-base leading-relaxed text-amber-50/90">{overview}</p>
           </section>
 
           {/* What I Did */}
-          <section className="rounded-xl border border-blue-200/15 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-50 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-300 md:text-2xl">
               What I Did
             </h2>
-            <ul className="list-disc space-y-3 pl-5 text-blue-50/85">
+            <ul className="list-disc space-y-3 pl-5 text-amber-50/90">
               {whatIDid.map((line, i) => (
                 <li key={i} className="leading-relaxed">
                   {line}
@@ -140,11 +140,11 @@ export default function AussieAdventurePage() {
           </section>
 
           {/* Reflection */}
-          <section className="rounded-xl border border-blue-200/15 bg-white/10 p-5 backdrop-blur-md md:p-6">
-            <h2 className="mb-3 text-xl font-semibold text-blue-50 md:text-2xl">
+          <section className="rounded-xl border border-amber-400/20 bg-black/35 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-amber-300 md:text-2xl">
               Reflection
             </h2>
-            <p className="text-base leading-relaxed text-blue-50/85">{reflection}</p>
+            <p className="text-base leading-relaxed text-amber-50/90">{reflection}</p>
           </section>
         </div>
       </div>
