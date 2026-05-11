@@ -214,7 +214,7 @@ export default function LearningPage() {
     },
     {
       slug: "sjtu-ma4704",
-      title: "MA4704 / STAT3023: Stochastic Process",
+      title: "MA4704 / STAT3021: Stochastic Process",
       institution: "Shanghai Jiao Tong University (Summer)",
       date: "2025.7",
       type: "degree",
