@@ -71,7 +71,7 @@ export default function NebulaPage() {
         "Collaborative session between Swiss market supervision and Westpac on how regulation, compliance technology, and regional banking innovation intersect in practice.",
       detailSummary:
         "Joined an invite-only session at Westpac’s Sydney office bringing together FINMA perspectives and Westpac’s regional banking context. The discussion centered on supervisory expectations, how compliance and risk tooling is evolving alongside digital channels, and what “good” looks like when translating global regulatory principles into day-to-day product and control design. I left with a sharper mental model for how regulators and large banks align on transparency, resilience, and customer trust—and how those themes show up in roadmaps, third-party risk, and cross-border operations.",
-      cover: "/placeholder.svg",
+      cover: "/activities/westpac.png",
       location: "Westpac Office, Sydney",
       kinds: ["Talks", "Networking"],
     },
