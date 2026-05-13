@@ -8,7 +8,8 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react"
 import { Space_Grotesk } from "next/font/google"
 
 import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"
-import { bainInstantRetailSlidePaths } from "../lib/bain-instant-retail-slides"
+import { bainInstantRetailSlidePaths } from "@/lib/bain-instant-retail-slides"
+import { cfaGrowthResearchChallengeSlidePaths } from "@/lib/cfa-growth-research-challenge-slides"
 import { citiGmc2026SlidePaths } from "@/lib/citi-gmc-2026-slides"
 import { datathonSupplyChainSlidePaths } from "@/lib/datathon-supply-chain-slides"
 import { flourishKpmg2026SlidePaths } from "@/lib/flourish-kpmg-2026-slides"
@@ -33,6 +34,13 @@ const MISSIONS: Mission[] = [
     subtitle: "First Place · Supply Chain / Operations",
     href: "/data/datathon-2025-supply-chain",
     images: [...datathonSupplyChainSlidePaths()],
+    accent: "blue",
+  },
+  {
+    title: "Growth-Based Repricing Framework",
+    subtitle: "CFA Institute Research Challenge · Top 60",
+    href: "/data/future-financial-analyst",
+    images: [...cfaGrowthResearchChallengeSlidePaths()],
     accent: "blue",
   },
   {

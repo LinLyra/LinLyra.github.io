@@ -63,6 +63,19 @@ export default function NebulaPage() {
       kinds: ["Organizing", "Networking"],
     },
     {
+      slug: "finma-westpac-collaboration-session-2025",
+      title: "FINMA & Westpac Event",
+      org: "FINMA × Westpac",
+      date: "2025.02",
+      summary:
+        "Collaborative session between Swiss market supervision and Westpac on how regulation, compliance technology, and regional banking innovation intersect in practice.",
+      detailSummary:
+        "Joined an invite-only session at Westpac’s Sydney office bringing together FINMA perspectives and Westpac’s regional banking context. The discussion centered on supervisory expectations, how compliance and risk tooling is evolving alongside digital channels, and what “good” looks like when translating global regulatory principles into day-to-day product and control design. I left with a sharper mental model for how regulators and large banks align on transparency, resilience, and customer trust—and how those themes show up in roadmaps, third-party risk, and cross-border operations.",
+      cover: "/placeholder.svg",
+      location: "Westpac Office, Sydney",
+      kinds: ["Talks", "Networking"],
+    },
+    {
       slug: "morgan-stanley-unit-industry-insight-evening-2026",
       title: "UNIT Industry Insight Evening",
       org: "Morgan Stanley",

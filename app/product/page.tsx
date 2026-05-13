@@ -366,16 +366,16 @@ export default function ProductPage() {
             </div>
           </div>
 
-          <div className="grid auto-rows-fr items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3">
             {filtered.map((p, idx) => (
               <ScrollReveal
                 key={p.slug}
                 variant="soft"
-                delayMs={Math.min(idx, 12) * 45}
-                className="h-full"
+                delayMs={Math.min(idx % 6, 5) * 22}
+                className="min-h-0 w-full"
               >
-                <Link href={`/product/${p.slug}`} className="group block h-full">
-                  <div className="relative h-full">
+                <Link href={`/product/${p.slug}`} className="group block w-full">
+                  <div className="relative w-full">
                     {(() => {
                       const corner = p.placement;
 
@@ -389,16 +389,16 @@ export default function ProductPage() {
                         </div>
                       );
                     })()}
-                  <PremiumGlassCard className="flex h-full min-h-[360px] flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(245,158,11,0.10)] ring-1 ring-amber-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
-                    <div className="shrink-0 p-6 pb-2">
+                  <PremiumGlassCard className="flex w-full flex-col overflow-hidden bg-black/25 shadow-[0_0_26px_rgba(245,158,11,0.10)] ring-1 ring-amber-400/20 backdrop-blur-xl hover:bg-black/30 hover:ring-amber-400/35 hover:shadow-[0_0_40px_rgba(251,146,60,0.16)]">
+                    <div className="shrink-0 p-5 pb-2">
                       <div className="flex items-start justify-between gap-3">
                         <div className="flex min-w-0 flex-1 items-start gap-3">
                           {(p.image || p.logo) && (
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 ring-1 ring-amber-400/20">
+                            <div className="flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/5 p-1 ring-1 ring-amber-400/20">
                               <img
                                 src={p.image || p.logo || "/placeholder.svg"}
                                 alt=""
-                                className="h-full w-full object-cover"
+                                className="max-h-full max-w-full object-contain"
                                 onError={(e) => {
                                   const el = e.currentTarget as HTMLImageElement;
                                   if (!el.src.includes("placeholder.svg")) el.src = "/placeholder.svg";
@@ -411,10 +411,10 @@ export default function ProductPage() {
                             <h2 className="text-base font-semibold leading-snug text-gray-100 whitespace-normal break-words">
                               {p.projectName}
                             </h2>
-                            <p className="mt-1 line-clamp-2 h-[2.5rem] text-sm font-medium text-gray-400">
+                            <p className="mt-1 line-clamp-2 text-sm font-medium text-gray-400">
                               {p.subtitle}
                             </p>
-                            <div className="mt-2 flex h-5 items-center gap-2 text-xs text-gray-400">
+                            <div className="mt-2 flex min-h-[1.25rem] items-center gap-2 text-xs text-gray-400">
                               <span className="truncate">{p.date ?? ""}</span>
                             </div>
                           </div>
@@ -422,23 +422,20 @@ export default function ProductPage() {
                       </div>
                     </div>
 
-                    <div className="flex min-h-0 flex-1 flex-col px-6 pb-6 pt-0">
-                      <p className="line-clamp-3 h-[4.5rem] shrink-0 text-sm leading-relaxed text-gray-200">
+                    <div className="flex flex-col px-5 pb-5 pt-0">
+                      <p className="line-clamp-3 text-sm leading-relaxed text-gray-200">
                         {p.description ?? ""}
                       </p>
-                      <div className="mt-2 h-[3.75rem] shrink-0 overflow-hidden">
-                        <div className="flex flex-wrap gap-1">
-                          {mergeProductCardTags(p).map((tag) => (
-                            <Badge
-                              key={tag}
-                              className="border-amber-500/30 bg-orange-500/20 text-xs font-normal text-orange-100"
-                            >
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
+                      <div className="mt-3 flex flex-wrap gap-1">
+                        {mergeProductCardTags(p).map((tag) => (
+                          <Badge
+                            key={tag}
+                            className="border-amber-500/30 bg-orange-500/20 text-xs font-normal text-orange-100"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
                       </div>
-                      <div className="min-h-0 flex-1" aria-hidden="true" />
                     </div>
                   </PremiumGlassCard>
                   </div>

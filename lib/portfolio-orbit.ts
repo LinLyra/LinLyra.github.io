@@ -91,6 +91,13 @@ export const orbitItems: OrbitItem[] = [
     industries: ["Government","Education","Workforce & Talent"],
   },
   {
+    slug: "temu-hk-entry-strategy-2026",
+    title: "Temu Hong Kong Market Entry Strategy",
+    section: "business" as OrbitSection,
+    href: "/business/temu-hk-entry-strategy-2026",
+    industries: ["E-commerce","Retail","Cross-Border Commerce","Logistics","Consumer Platforms"],
+  },
+  {
     slug: "roland-berger-campus-2025",
     title: "Humanoid Robot GTM",
     section: "business" as OrbitSection,
