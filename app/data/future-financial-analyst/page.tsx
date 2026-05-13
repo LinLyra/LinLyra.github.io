@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Trophy } from "lucide-react";
-import MediaModel from "@/components/media-model";
 
 export default function GrowthValueFrameworkPage() {
-  const [showNotes, setShowNotes] = useState(false);
+  const writeupUrl =
+    "https://peridot-eocursor-4db.notion.site/Repricing-the-Future-Growth-Value-Identification-Model-GVIM-35d3be3c131580588a77f04126a99f1b";
 
   const meta = {
     slug: "future-financial-analyst-competition",
@@ -29,7 +28,6 @@ export default function GrowthValueFrameworkPage() {
       "China vs US",
       "Policy",
     ],
-    notes: ["/competition/CFA1.png","/competition/CFA2.png"],
   };
 
   const overview = `This project develops a Growth Value Identification Model (GVIM) to explain how financial systems should identify and price emerging productive forces.
@@ -53,8 +51,6 @@ The framework argues that firms should not be evaluated only by current earnings
     "If I continue this research, I would further improve the variable design, expand the sample size, and test the framework across more industries.",
   ];
 
-  const hasNotes = meta.notes.length > 0;
-
   return (
     <div className="relative min-h-screen">
       <Navigation activeSection="data" onSectionChange={() => {}} />
@@ -68,17 +64,6 @@ The framework argues that firms should not be evaluated only by current earnings
                 Back to Data
               </Button>
             </Link>
-
-            <div className="flex items-center gap-2">
-              {hasNotes && (
-                <Button
-                  onClick={() => setShowNotes(true)}
-                  className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30"
-                >
-                  View More
-                </Button>
-              )}
-            </div>
           </div>
 
           {/* Top Meta Card */}
@@ -119,6 +104,36 @@ The framework argues that firms should not be evaluated only by current earnings
 
             <div className="h-1 w-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-blue-500/20" />
           </Card>
+
+          {/* External write-up */}
+          <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
+            <h2 className="mb-3 text-xl font-semibold text-blue-400 md:text-2xl">
+              Full Write-up
+            </h2>
+            <p className="text-base leading-relaxed text-gray-200">
+              The full write-up lives on Notion. Open it here:
+            </p>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href={writeupUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex"
+              >
+                <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
+                  Open Notion
+                </Button>
+              </a>
+              <a
+                href={writeupUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-sky-200/90 underline underline-offset-4 hover:text-sky-100"
+              >
+                {writeupUrl}
+              </a>
+            </div>
+          </section>
 
           {/* Project Overview */}
           <section className="rounded-xl border border-blue-400/20 bg-white/10 p-5 backdrop-blur-md md:p-6">
@@ -169,15 +184,6 @@ The framework argues that firms should not be evaluated only by current earnings
           </section>
         </div>
       </div>
-
-      {hasNotes && (
-        <MediaModel
-          isOpen={showNotes}
-          onClose={() => setShowNotes(false)}
-          title={meta.title}
-          media={{ images: meta.notes }}
-        />
-      )}
     </div>
   );
 }
