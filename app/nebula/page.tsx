@@ -46,7 +46,7 @@ function nebulaKindChipClass(kind: NebulaKind, active: boolean): string {
   }
   const t = tones[kind]
   return cn(
-    "inline-flex h-7 items-center rounded-full border px-3 text-xs font-medium whitespace-nowrap cursor-pointer transition",
+    "inline-flex h-7 cursor-pointer items-center rounded-full border px-3 text-xs font-medium whitespace-nowrap transition",
     active ? t.on : t.off
   )
 }
@@ -718,37 +718,53 @@ export default function NebulaPage() {
 
       
           <div className="mb-6 space-y-4">
-            <div className="relative max-w-xl mx-auto">
-              <Input
-                placeholder="Search by title,organization,place,keyword…"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
-                className="w-full bg-black/30 backdrop-blur-md border-red-400/30 text-gray-100 placeholder:text-gray-400 pr-10"
-              />
-              {q && (
-                <button
-                  aria-label="Clear search"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-md hover:bg-white/10 text-gray-300"
-                  onClick={() => setQ("")}
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
+            <div className="relative mx-auto max-w-xl">
+              {/* Gradient frame matches the five kind chip accents (amber → emerald → sky → violet → orange). */}
+              <div className="rounded-lg bg-gradient-to-r from-amber-400/50 via-emerald-400/45 via-sky-400/50 via-violet-400/50 to-orange-400/50 p-px shadow-[0_0_28px_rgba(167,139,250,0.15)]">
+                <div className="relative rounded-[calc(0.5rem-1px)] bg-black/45 backdrop-blur-md">
+                  <Input
+                    placeholder="Search by title, organization, place, keyword…"
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                    className="h-10 w-full border-0 bg-transparent pr-10 text-sm text-gray-100 shadow-none placeholder:text-gray-400 focus-visible:ring-1 focus-visible:ring-sky-400/35 focus-visible:ring-offset-0"
+                  />
+                  {q ? (
+                    <button
+                      type="button"
+                      aria-label="Clear search"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1 text-gray-300 hover:bg-white/10"
+                      onClick={() => setQ("")}
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  ) : null}
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap items-center justify-center gap-2">
               {chips.map((k) => {
                 const active = selectedKinds.includes(k)
                 return (
-                  <span
+                  <button
                     key={k}
+                    type="button"
                     onClick={() => toggleKind(k)}
                     className={nebulaKindChipClass(k, active)}
                   >
                     {k}
-                  </span>
+                  </button>
                 )
               })}
+              {selectedKinds.length > 0 ? (
+                <button
+                  type="button"
+                  onClick={() => setSelectedKinds([])}
+                  className="rounded-full border border-gray-400/35 bg-black/25 px-3 py-1 text-xs font-medium text-gray-200 backdrop-blur-md transition hover:bg-black/40"
+                >
+                  Clear
+                </button>
+              ) : null}
             </div>
           </div>
 
