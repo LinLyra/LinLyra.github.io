@@ -114,20 +114,15 @@ The framework argues that firms should not be evaluated only by current earnings
               The full write-up lives on Notion. Open it here:
             </p>
             <div className="mt-4 flex flex-wrap items-center gap-3">
-              <a
-                href={writeupUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex"
-              >
-                <Button className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
+              <Button asChild className="bg-blue-500/20 border border-blue-400/40 text-blue-100 hover:bg-blue-500/30">
+                <a href={writeupUrl} target="_blank" rel="noopener noreferrer">
                   Open Notion
-                </Button>
-              </a>
+                </a>
+              </Button>
               <a
                 href={writeupUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="text-sm text-sky-200/90 underline underline-offset-4 hover:text-sky-100"
               >
                 {writeupUrl}

@@ -37,6 +37,8 @@ export default function ShipConsole({
   onOpenChange?: (open: boolean) => void
 }) {
   const pathname = usePathname()
+  /** `usePathname()` can be null briefly; never call string methods on it raw. */
+  const safePath = pathname ?? "/"
   const [time, setTime] = useState(0)
   const [history, setHistory] = useState<string[]>([])
   const [open, setOpen] = useState(false)
@@ -60,25 +62,29 @@ export default function ShipConsole({
 
   // Record a page view on navigation (deduped in site-analytics).
   useEffect(() => {
-    const p = pathname.endsWith("/") ? pathname : `${pathname}/`
+    const p = safePath.endsWith("/") ? safePath : `${safePath}/`
     void recordPageView(p).then(() => {
       if (open) void loadStats()
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
+  }, [safePath])
 
   useEffect(() => {
     try {
       const stored = JSON.parse(localStorage.getItem("nav-history") || "[]")
       const prev = Array.isArray(stored) ? stored : []
-      const updated = [pathname, ...prev.filter((p: string) => p !== pathname)].slice(0, 5)
+      const updated = [safePath, ...prev.filter((p: string) => p !== safePath)].slice(0, 5)
       localStorage.setItem("nav-history", JSON.stringify(updated))
       setHistory(updated)
     } catch {
-      setHistory([pathname])
-      localStorage.setItem("nav-history", JSON.stringify([pathname]))
+      setHistory([safePath])
+      try {
+        localStorage.setItem("nav-history", JSON.stringify([safePath]))
+      } catch {
+        /* ignore */
+      }
     }
-  }, [pathname])
+  }, [safePath])
 
   const loadStats = useCallback(async () => {
     setStatsLoading(true)
@@ -125,8 +131,8 @@ export default function ShipConsole({
     return `${String(m).padStart(2, "0")}:${String(sec).padStart(2, "0")}`
   }
 
-  const sectorLabel = useMemo(() => toPrettyRoute(pathname), [pathname])
-  const breadcrumbs = useMemo(() => toBreadcrumbs(pathname), [pathname])
+  const sectorLabel = useMemo(() => toPrettyRoute(safePath), [safePath])
+  const breadcrumbs = useMemo(() => toBreadcrumbs(safePath), [safePath])
 
   const planetLabel = (slug: string | undefined) => {
     if (!slug) return "—"
@@ -277,7 +283,7 @@ export default function ShipConsole({
                       className="rounded-md px-2 py-1 text-xs text-slate-300/70 hover:bg-slate-900/40 hover:text-slate-200"
                       onClick={() => {
                         localStorage.removeItem("nav-history")
-                        setHistory([pathname])
+                        setHistory([safePath])
                       }}
                     >
                       Reset

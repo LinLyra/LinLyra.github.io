@@ -3,8 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import * as React from "react"
-import { useRouter } from "next/navigation"
-import { ArrowUpRight, ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { Space_Grotesk } from "next/font/google"
 
 import { aerotropolisSlidePaths } from "@/lib/aerotropolis-slides"

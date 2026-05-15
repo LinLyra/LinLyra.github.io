@@ -14,7 +14,12 @@ export function getBrowserSupabase(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   if (!url || !key) return null
-  return createClient(url, key)
+  try {
+    return createClient(url, key)
+  } catch {
+    // Invalid URL / key shape throws from @supabase/supabase-js; never crash the app shell.
+    return null
+  }
 }
 
 export function parseAnalyticsPath(path: string) {
@@ -30,12 +35,16 @@ export function parseAnalyticsPath(path: string) {
 
 function getSessionId(): string {
   if (typeof window === "undefined") return "server"
-  let id = localStorage.getItem("sid")
-  if (!id) {
-    id = globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)
-    localStorage.setItem("sid", id)
+  try {
+    let id = localStorage.getItem("sid")
+    if (!id) {
+      id = globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)
+      localStorage.setItem("sid", id)
+    }
+    return id
+  } catch {
+    return globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)
   }
-  return id
 }
 
 /** Record a page or virtual path (e.g. /nebula/slug/). Dedupes rapid repeats within 30s per path. */
@@ -61,7 +70,7 @@ export async function recordPageView(path: string, opts?: { force?: boolean }): 
   if (typeof window === "undefined") return
   const supabase = getBrowserSupabase()
   if (!supabase) {
-    setLastAnalyticsError("Supabase env missing in browser build.")
+    setLastAnalyticsError("Supabase unavailable in browser (missing env or invalid URL).")
     return
   }
 
@@ -69,10 +78,14 @@ export async function recordPageView(path: string, opts?: { force?: boolean }): 
   const { planet_slug, project_id, first_segment } = parseAnalyticsPath(normalized)
 
   if (!opts?.force) {
-    const k = `pv:${normalized}`
-    const last = Number(localStorage.getItem(k) || 0)
-    if (Date.now() - last < 30_000) return
-    localStorage.setItem(k, String(Date.now()))
+    try {
+      const k = `pv:${normalized}`
+      const last = Number(localStorage.getItem(k) || 0)
+      if (Date.now() - last < 30_000) return
+      localStorage.setItem(k, String(Date.now()))
+    } catch {
+      /* continue without dedupe if storage is blocked */
+    }
   }
 
   const row: PageViewInsert = {
