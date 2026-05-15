@@ -17,8 +17,39 @@ import {
 } from "@/components/ui/dialog"
 import { PageCornerLottie } from "@/components/page-corner-lottie"
 import { ScrollReveal } from "@/components/scroll-reveal"
+import { cn } from "@/lib/utils"
 
 type NebulaKind = "Volunteer" | "Networking" | "Talks" | "Workshop" | "Organizing"
+
+function nebulaKindChipClass(kind: NebulaKind, active: boolean): string {
+  const tones: Record<NebulaKind, { on: string; off: string }> = {
+    Organizing: {
+      on: "border-amber-300/55 bg-amber-500/35 text-amber-50 shadow-[0_0_12px_rgba(245,158,11,0.2)]",
+      off: "border-amber-400/30 bg-amber-950/25 text-amber-100/95 hover:bg-amber-500/15",
+    },
+    Volunteer: {
+      on: "border-emerald-300/55 bg-emerald-500/35 text-emerald-50 shadow-[0_0_12px_rgba(52,211,153,0.2)]",
+      off: "border-emerald-400/30 bg-emerald-950/25 text-emerald-100/95 hover:bg-emerald-500/15",
+    },
+    Networking: {
+      on: "border-sky-300/55 bg-sky-500/35 text-sky-50 shadow-[0_0_12px_rgba(56,189,248,0.2)]",
+      off: "border-sky-400/30 bg-sky-950/25 text-sky-100/95 hover:bg-sky-500/15",
+    },
+    Talks: {
+      on: "border-violet-300/55 bg-violet-500/35 text-violet-50 shadow-[0_0_12px_rgba(167,139,250,0.22)]",
+      off: "border-violet-400/30 bg-violet-950/25 text-violet-100/95 hover:bg-violet-500/15",
+    },
+    Workshop: {
+      on: "border-orange-300/55 bg-orange-500/35 text-orange-50 shadow-[0_0_12px_rgba(251,146,60,0.2)]",
+      off: "border-orange-400/30 bg-orange-950/25 text-orange-100/95 hover:bg-orange-500/15",
+    },
+  }
+  const t = tones[kind]
+  return cn(
+    "inline-flex h-7 items-center rounded-full border px-3 text-xs font-medium whitespace-nowrap cursor-pointer transition",
+    active ? t.on : t.off
+  )
+}
 
 type NebulaActivityItem = {
   slug: string
@@ -712,12 +743,7 @@ export default function NebulaPage() {
                   <span
                     key={k}
                     onClick={() => toggleKind(k)}
-                    className={
-                      "inline-flex items-center h-7 rounded-full px-3 text-sm border whitespace-nowrap cursor-pointer " +
-                      (active
-                        ? "bg-red-500/30 border-red-400/40 text-red-100"
-                        : "bg-black/30 text-red-200 border-red-400/20 hover:bg-red-500/10")
-                    }
+                    className={nebulaKindChipClass(k, active)}
                   >
                     {k}
                   </span>
@@ -727,7 +753,7 @@ export default function NebulaPage() {
           </div>
 
 
-          <div className="grid items-start gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-4">
+          <div className="grid items-start gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4">
             {shown.map((a, idx) => (
               <ScrollReveal key={a.slug} variant="soft" delayMs={Math.min(idx, 10) * 45} className="min-h-0 w-full">
                 <button
@@ -744,13 +770,13 @@ export default function NebulaPage() {
                     className="flex w-full flex-col bg-black/25 backdrop-blur-xl border border-red-400/20 hover:bg-black/30 transition-all overflow-hidden shadow-[0_0_26px_rgba(244,63,94,0.10)] hover:border-red-400/35 hover:shadow-[0_0_40px_rgba(248,113,113,0.14)]"
                     title={a.title}
                   >
-                    <div className="relative h-32 w-full shrink-0">
+                    <div className="relative h-24 w-full shrink-0 sm:h-[6.75rem]">
                       <img
                         src={a.cover || "/placeholder.svg"}
                         alt={a.title}
                         loading={idx < 4 ? "eager" : "lazy"}
                         decoding="async"
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                       {a.roleBadge ? (
@@ -763,23 +789,23 @@ export default function NebulaPage() {
                       ) : null}
                     </div>
 
-                    <div className="flex shrink-0 flex-col px-4 pb-4 pt-3">
+                    <div className="flex shrink-0 flex-col px-3 pb-3 pt-2">
                       <div className="flex items-center justify-between gap-2">
-                        <span className="truncate text-xs text-gray-300">{a.org}</span>
-                        <span className="shrink-0 text-xs text-gray-300">{a.date}</span>
+                        <span className="truncate text-[11px] text-gray-300">{a.org}</span>
+                        <span className="shrink-0 text-[11px] text-gray-400">{a.date}</span>
                       </div>
-                      <div className="mt-2 space-y-1.5">
+                      <div className="mt-1.5 space-y-1">
                         <div
-                          className="h-[2.5rem] text-sm font-semibold leading-snug text-gray-100 line-clamp-2"
+                          className="line-clamp-2 text-[13px] font-semibold leading-snug text-gray-100"
                           title={a.title}
                         >
                           {a.title}
                         </div>
-                        <div className="flex h-[2.25rem] items-start gap-1 text-xs leading-snug text-gray-300/80 line-clamp-2">
-                          <MapPin className="mt-0.5 h-3 w-3 shrink-0" />
+                        <div className="flex items-start gap-1 text-[11px] leading-snug text-gray-300/90 line-clamp-1">
+                          <MapPin className="mt-0.5 h-3 w-3 shrink-0 text-rose-300/70" />
                           <span className="min-w-0">{a.location ?? "\u00a0"}</span>
                         </div>
-                        <p className="h-[2.5rem] text-xs leading-5 text-gray-100/90 line-clamp-2">
+                        <p className="line-clamp-2 text-[11px] leading-relaxed text-gray-100/88">
                           {a.summary ?? ""}
                         </p>
                       </div>

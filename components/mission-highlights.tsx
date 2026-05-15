@@ -217,12 +217,12 @@ function MissionCard({ mission }: { mission: Mission }) {
     <>
       <div className={cn("pointer-events-none absolute -inset-16 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100", accentBg(mission.accent))} />
 
-      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden border-b border-white/[0.06] bg-black/40">
+      <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden border-b border-white/[0.06] bg-black/40">
         <Image
           src={src}
           alt={mission.title}
           fill
-          sizes="(max-width: 768px) 72vw, 224px"
+          sizes="(max-width: 768px) 70vw, 200px"
           className="object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
           priority={false}
         />
@@ -233,11 +233,11 @@ function MissionCard({ mission }: { mission: Mission }) {
         </div>
       </div>
 
-      <div className="relative flex min-h-[4.75rem] flex-1 flex-col p-2.5 pt-2">
-        <div className="line-clamp-2 text-[13px] font-semibold leading-snug text-slate-100">
+      <div className="relative flex flex-col p-2 pt-1.5">
+        <div className="line-clamp-2 text-[12px] font-semibold leading-snug text-slate-100 md:text-[13px]">
           {mission.title}
         </div>
-        <div className="mt-1 text-[10px] leading-snug text-slate-300/95">
+        <div className="mt-0.5 text-[9.5px] leading-snug text-slate-300/95 md:text-[10px]">
           {mission.honor ? (
             <>
               <span className="font-semibold text-amber-200 drop-shadow-[0_0_10px_rgba(251,191,36,0.25)]">
@@ -250,7 +250,7 @@ function MissionCard({ mission }: { mission: Mission }) {
           )}
         </div>
         {n > 1 && n < 8 ? (
-          <div className="mt-auto flex items-center gap-1 pt-1.5">
+          <div className="mt-1 flex items-center gap-1">
             {mission.images.map((_, i) => (
               <span
                 key={i}
@@ -262,7 +262,7 @@ function MissionCard({ mission }: { mission: Mission }) {
             ))}
           </div>
         ) : n > 1 ? (
-          <div className="mt-auto w-full pt-1.5">
+          <div className="mt-1 w-full">
             <div className="h-0.5 w-full overflow-hidden rounded-full bg-white/10">
               <div
                 className="h-full rounded-full bg-slate-400/90 transition-[width] duration-300 ease-out"
@@ -276,8 +276,8 @@ function MissionCard({ mission }: { mission: Mission }) {
   )
 
   const cardClass = cn(
-    "group relative flex h-full min-h-[22.5rem] w-[min(13.5rem,82vw)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white/[0.035] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition sm:w-[14rem]",
-    "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] active:translate-y-0"
+    "group relative flex w-[min(12rem,78vw)] shrink-0 snap-start flex-col overflow-hidden rounded-xl bg-white/[0.035] shadow-[0_10px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl transition sm:w-[12.5rem]",
+    "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_14px_40px_rgba(0,0,0,0.48)] active:translate-y-0"
   )
 
   return (

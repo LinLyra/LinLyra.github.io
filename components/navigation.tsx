@@ -7,7 +7,37 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { getSoundState, initSoundFromStorage, toggleMusic } from "@/lib/sound";
-import { useEffect, useMemo, useState as useReactState } from "react";
+import { useEffect, useState as useReactState } from "react";
+import { cn } from "@/lib/utils";
+
+/** Planet routes: each section has its own accent (inactive vs active). */
+function planetNavClass(route: string, active: boolean): string {
+  const palettes: Record<string, { idle: string; on: string }> = {
+    "/learning": {
+      idle: "text-violet-200/90 hover:text-violet-50",
+      on: "font-semibold text-violet-200 drop-shadow-[0_0_14px_rgba(167,139,250,0.55)]",
+    },
+    "/data": {
+      idle: "text-sky-200/90 hover:text-sky-50",
+      on: "font-semibold text-sky-200 drop-shadow-[0_0_14px_rgba(125,211,252,0.5)]",
+    },
+    "/business": {
+      idle: "text-emerald-200/90 hover:text-emerald-50",
+      on: "font-semibold text-emerald-200 drop-shadow-[0_0_14px_rgba(110,231,183,0.45)]",
+    },
+    "/product": {
+      idle: "text-amber-200/90 hover:text-amber-50",
+      on: "font-semibold text-amber-200 drop-shadow-[0_0_14px_rgba(252,211,77,0.45)]",
+    },
+    "/nebula": {
+      idle: "text-rose-200/90 hover:text-rose-50",
+      on: "font-semibold text-rose-200 drop-shadow-[0_0_14px_rgba(251,113,133,0.5)]",
+    },
+  };
+  const p = palettes[route];
+  if (!p) return cn("transition-colors", active ? "font-semibold text-sky-300" : "text-white/90 hover:text-sky-200");
+  return cn("transition-colors font-medium", active ? p.on : p.idle);
+}
 
 interface NavigationProps {
   activeSection: string;
@@ -85,9 +115,12 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
                 {item.route === "/" ? (
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`transition-colors hover:text-blue-300 ${
-                      activeSection === item.id ? "text-blue-400 font-semibold" : "text-white"
-                    }`}
+                    className={cn(
+                      "transition-colors font-medium",
+                      activeSection === item.id
+                        ? "text-sky-300 drop-shadow-[0_0_12px_rgba(125,211,252,0.45)]"
+                        : "text-slate-200/90 hover:text-sky-200"
+                    )}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
                     {item.label}
@@ -95,9 +128,7 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
                 ) : (
                   <Link
                     href={item.route}
-                    className={`transition-colors font-medium hover:text-blue-300 ${
-                      isActiveRoute(item.route) ? "text-blue-400 font-semibold" : "text-white"
-                    }`}
+                    className={planetNavClass(item.route, isActiveRoute(item.route))}
                     aria-current={isActiveRoute(item.route) ? "page" : undefined}
                   >
                     {item.label}
@@ -156,9 +187,12 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
                 {item.route === "/" ? (
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`block w-full py-2 text-left transition-colors hover:text-blue-300 ${
-                      activeSection === item.id ? "text-blue-400 font-semibold" : "text-white"
-                    }`}
+                    className={cn(
+                      "block w-full py-2 text-left font-medium transition-colors",
+                      activeSection === item.id
+                        ? "text-sky-300"
+                        : "text-slate-200/90 hover:text-sky-200"
+                    )}
                     aria-current={activeSection === item.id ? "page" : undefined}
                   >
                     {item.label}
@@ -166,9 +200,10 @@ export function Navigation({ activeSection, onSectionChange }: NavigationProps) 
                 ) : (
                   <Link
                     href={item.route}
-                    className={`block w-full py-2 text-left transition-colors hover:text-blue-300 ${
-                      isActiveRoute(item.route) ? "text-blue-400 font-semibold" : "text-white"
-                    }`}
+                    className={cn(
+                      "block w-full py-2 text-left",
+                      planetNavClass(item.route, isActiveRoute(item.route))
+                    )}
                     onClick={() => setIsMenuOpen(false)}
                     aria-current={isActiveRoute(item.route) ? "page" : undefined}
                   >
