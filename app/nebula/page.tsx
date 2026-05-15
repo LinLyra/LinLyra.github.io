@@ -85,23 +85,23 @@ export default function NebulaPage() {
       date: "2026.01",
       roleBadge: "Co-founder",
       summary:
-        "Co-founded and helped lead a global GTM-focused innovation event in Shanghai (3 days, 2 nights)—bridging hackathon projects and early startups to real users through rapid testing, content, launch strategy, and community exposure.",
+        "Co-founded and helped lead a GTM-focused innovation event in Shanghai — bridging hackathon projects and early startups to real users through rapid testing, content, launch strategy, and community exposure.",
       detailSummary:
         "As one of the organizers of Launchpad S1, I helped build and lead a global go-to-market focused innovation event designed to bridge the gap between hackathon projects, early-stage startups, and real-world users. The event brought together founders, builders, marketers, and creators to help promising products move beyond prototypes and enter the market through rapid user testing, content creation, launch strategy design, and community exposure. I was involved in shaping the overall event experience, coordinating cross-functional collaboration, and creating an environment where innovative products could gain real traction, feedback, and visibility within just a few days.",
       cover: "/competition/launchpad.png",
       gallery: ["/competition/Launchpad1.png", "/competition/launchpad2.png", "/competition/launchpad3.png"],
-      location: "Shanghai · 3-day / 2-night program",
+      location: "Shanghai · 3-day Competition",
       kinds: ["Organizing", "Networking"],
     },
     {
       slug: "finma-westpac-collaboration-session-2025",
-      title: "FINMA & Westpac Event",
+      title: "FINMA & Westpac",
       org: "FINMA × Westpac",
       date: "2026.05",
       summary:
         "Collaborative session between Swiss market supervision and Westpac on how regulation, compliance technology, and regional banking innovation intersect in practice.",
       detailSummary:
-        "Joined an invite-only session at Westpac’s Sydney office bringing together FINMA perspectives and Westpac’s regional banking context. The discussion centered on supervisory expectations, how compliance and risk tooling is evolving alongside digital channels, and what “good” looks like when translating global regulatory principles into day-to-day product and control design. I left with a sharper mental model for how regulators and large banks align on transparency, resilience, and customer trust—and how those themes show up in roadmaps, third-party risk, and cross-border operations.",
+        "Joined an invite-only session at Westpac’s Sydney office bringing together FINMA perspectives and Westpac’s regional banking context. The discussion centered on supervisory expectations, how compliance and risk tooling is evolving alongside digital channels, and what “good” looks like when translating global regulatory principles into day-to-day product and control design.",
       cover: "/activities/westpac.png",
       location: "Westpac Office, Sydney",
       kinds: ["Talks", "Networking"],
@@ -114,7 +114,7 @@ export default function NebulaPage() {
       summary:
         "Small-group visit to UBS’s Sydney trading floor: how risk, liquidity, and client flow come together in real time—and what “good” looks like when markets move fast.",
       detailSummary:
-        "Hosted by Women in Finance (WIF) at UBS’s Sydney office, this session was built as a candid, behind-the-scenes look at how a global markets desk operates day-to-day—not as a generic tour, but as a conversation about workflows, controls, and culture. We walked through how traders and structurers coordinate around live risk limits, how information is triaged when volatility spikes, and how client conversations translate into execution and hedging choices. I left with a clearer picture of the skills that matter on the floor (judgment under uncertainty, communication discipline, and cross-team trust) and how those map to recruiting signals and early-career development paths.",
+        "Hosted by Women in Finance (WIF) at UBS’s Sydney office, this session was built as a candid, behind-the-scenes look at how a global markets desk operates day-to-day—not as a generic tour, but as a conversation about workflows, controls, and culture. We walked through how traders and structurers coordinate around live risk limits, how information is triaged when volatility spikes, and how client conversations translate into execution and hedging choices.",
       cover: "/activities/ubswif.png",
       location: "UBS Office, Sydney",
       kinds: ["Networking", "Talks"],
@@ -127,7 +127,7 @@ export default function NebulaPage() {
       summary:
         "Fast-paced case crack with Accenture practitioners—problem framing, hypothesis trees, and a credible storyline you can defend in 24 hours of pressure.",
       detailSummary:
-        "Held at Accenture’s Sydney office with BusinessOne Society, this Case Crack was structured like a compressed consulting sprint: a messy business problem, incomplete data, and a panel expecting clarity—not jargon. We practiced breaking the question into drivers, prioritizing what matters for the client’s decision, and translating analysis into a simple narrative with explicit trade-offs. The Accenture team emphasized how they evaluate recommendations in real engagements (traceability, implementation risk, and stakeholder alignment), which sharpened my instinct for what “good enough to present” looks like versus what’s just interesting analysis. Great practice for structured communication under time pressure.",
+        "Held at Accenture’s Sydney office with BusinessOne Society, this Case Crack was structured like a compressed consulting sprint: a messy business problem, incomplete data, and a panel expecting clarity—not jargon. We practiced breaking the question into drivers, prioritizing what matters for the client’s decision, and translating analysis into a simple narrative with explicit trade-offs.",
       cover: "/activities/accentureb1.png",
       location: "Accenture Office, Sydney",
       kinds: ["Networking", "Workshop"],
