@@ -66,7 +66,7 @@ export default function NebulaPage() {
       slug: "finma-westpac-collaboration-session-2025",
       title: "FINMA & Westpac Event",
       org: "FINMA × Westpac",
-      date: "2025.02",
+      date: "2026.05",
       summary:
         "Collaborative session between Swiss market supervision and Westpac on how regulation, compliance technology, and regional banking innovation intersect in practice.",
       detailSummary:
@@ -74,6 +74,32 @@ export default function NebulaPage() {
       cover: "/activities/westpac.png",
       location: "Westpac Office, Sydney",
       kinds: ["Talks", "Networking"],
+    },
+    {
+      slug: "ubs-wif-exclusive-trade-floor-walk-2026",
+      title: "WIF × UBS | Exclusive Trade Floor Walk",
+      org: "Women in Finance × UBS",
+      date: "2026.05",
+      summary:
+        "Small-group visit to UBS’s Sydney trading floor: how risk, liquidity, and client flow come together in real time—and what “good” looks like when markets move fast.",
+      detailSummary:
+        "Hosted by Women in Finance (WIF) at UBS’s Sydney office, this session was built as a candid, behind-the-scenes look at how a global markets desk operates day-to-day—not as a generic tour, but as a conversation about workflows, controls, and culture. We walked through how traders and structurers coordinate around live risk limits, how information is triaged when volatility spikes, and how client conversations translate into execution and hedging choices. I left with a clearer picture of the skills that matter on the floor (judgment under uncertainty, communication discipline, and cross-team trust) and how those map to recruiting signals and early-career development paths.",
+      cover: "/activities/ubswif.png",
+      location: "UBS Office, Sydney",
+      kinds: ["Networking", "Talks"],
+    },
+    {
+      slug: "accenture-businessone-case-crack-2026",
+      title: "Accenture × BusinessOne | Case Crack 2026",
+      org: "Accenture × BusinessOne Society",
+      date: "2026.05",
+      summary:
+        "Fast-paced case crack with Accenture practitioners—problem framing, hypothesis trees, and a credible storyline you can defend in 24 hours of pressure.",
+      detailSummary:
+        "Held at Accenture’s Sydney office with BusinessOne Society, this Case Crack was structured like a compressed consulting sprint: a messy business problem, incomplete data, and a panel expecting clarity—not jargon. We practiced breaking the question into drivers, prioritizing what matters for the client’s decision, and translating analysis into a simple narrative with explicit trade-offs. The Accenture team emphasized how they evaluate recommendations in real engagements (traceability, implementation risk, and stakeholder alignment), which sharpened my instinct for what “good enough to present” looks like versus what’s just interesting analysis. Great practice for structured communication under time pressure.",
+      cover: "/activities/accentureb1.png",
+      location: "Accenture Office, Sydney",
+      kinds: ["Networking", "Workshop"],
     },
     {
       slug: "morgan-stanley-unit-industry-insight-evening-2026",

@@ -21,7 +21,10 @@ const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"
 
 type Mission = {
   title: string
+  /** Line under title; if `honor` is set, this is the text after the middle dot. */
   subtitle: string
+  /** Achievement / rank (e.g. First Place, Top 60) — rendered in a brighter accent. */
+  honor?: string
   href: string
   images: string[]
   accent: "blue" | "green" | "amber" | "red" | "purple"
@@ -30,28 +33,38 @@ type Mission = {
 const MISSIONS: Mission[] = [
   {
     title: "Supply Chain Optimization",
-    subtitle: "First Place · Supply Chain / Operations",
+    honor: "First Place",
+    subtitle: "Supply Chain / Operations",
     href: "/data/datathon-2025-supply-chain",
     images: [...datathonSupplyChainSlidePaths()],
     accent: "blue",
   },
   {
+    title: "Aerotropolis South Connector",
+    honor: "Top 6",
+    subtitle: "Project Management · Infrastructure / Transport",
+    href: "/business/aerotropolis-south-connector-2026",
+    images: [...aerotropolisSlidePaths()],
+    accent: "green",
+  },
+  {
     title: "Growth-Based Repricing Framework",
-    subtitle: "CFA Institute Research Challenge · Top 60",
+    honor: "Top 60",
+    subtitle: "CFA Institute Research Challenge · Empirical valuation · Equity research",
     href: "/data/future-financial-analyst",
     images: [...cfaGrowthResearchChallengeSlidePaths()],
     accent: "blue",
   },
   {
     title: "Cost-Efficient Alpha",
-    subtitle: "Healthcare · Biotech",
+    subtitle: "Healthcare · Biotech · Transaction Cost Analysis",
     href: "/data/citi-global-market-challenge-2026",
     images: [...citiGmc2026SlidePaths()],
     accent: "blue",
   },
   {
     title: "Instant Retail Profitability Strategy",
-    subtitle: "Retail · Platform Economy",
+    subtitle: "Retail · Platform Economy · Operating Model · Competitive Benchmarking",
     href: "/business/bain-instant-retail-profitability-strategy",
     images: [...bainInstantRetailSlidePaths()],
     accent: "green",
@@ -63,30 +76,24 @@ const MISSIONS: Mission[] = [
     images: [...pathologyHeSlidePaths()],
     accent: "purple",
   },
-  {
-    title: "Aerotropolis South Connector",
-    subtitle: "Top6 · Project Management · Infrastructure / Transport",
-    href: "/business/aerotropolis-south-connector-2026",
-    images: [...aerotropolisSlidePaths()],
-    accent: "green",
-  },
+  
   {
     title: "Long BeOne, Short Akeso",
-    subtitle: "Retail · Platform Economy",
+    subtitle: "Retail · Platform Economy · Risk Analysis · NLP Sentiment Analysis",
     href: "/business/ubs-finance-challenge-2026",
     images: [...ubsFinance2026SlidePaths()],
     accent: "green",
   },
   {
-    title: "Flourish — KPMG Case Competition",
-    subtitle: "Education · Workforce & Talent",
+    title: "Flourish",
+    subtitle: "Education · Workforce & Talent · Stakeholder Analysis",
     href: "/business/flourish-kpmg-case-competition-2026",
     images: [...flourishKpmg2026SlidePaths()],
     accent: "green",
   },
   {
     title: "Temu Hong Kong Market Entry Strategy",
-    subtitle: "Competition · Strategy · Cross-Border Commerce",
+    subtitle: "E-commerce Strategy · Cross-Border Commerce · Supply Chain",
     href: "/business/temu-hk-entry-strategy-2026",
     images: [...temuHkEntry2026SlidePaths()],
     accent: "green",
@@ -210,12 +217,12 @@ function MissionCard({ mission }: { mission: Mission }) {
     <>
       <div className={cn("pointer-events-none absolute -inset-16 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100", accentBg(mission.accent))} />
 
-      <div className="relative aspect-[5/3] w-full overflow-hidden border-b border-white/[0.06] bg-black/40">
+      <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden border-b border-white/[0.06] bg-black/40">
         <Image
           src={src}
           alt={mission.title}
           fill
-          sizes="200px"
+          sizes="(max-width: 768px) 72vw, 224px"
           className="object-cover transition duration-500 ease-out group-hover:scale-[1.02]"
           priority={false}
         />
@@ -226,13 +233,24 @@ function MissionCard({ mission }: { mission: Mission }) {
         </div>
       </div>
 
-      <div className="relative p-2.5">
+      <div className="relative flex min-h-[4.75rem] flex-1 flex-col p-2.5 pt-2">
         <div className="line-clamp-2 text-[13px] font-semibold leading-snug text-slate-100">
           {mission.title}
         </div>
-        <div className="mt-1 text-[10px] leading-snug text-slate-500">{mission.subtitle}</div>
+        <div className="mt-1 text-[10px] leading-snug text-slate-300/95">
+          {mission.honor ? (
+            <>
+              <span className="font-semibold text-amber-200 drop-shadow-[0_0_10px_rgba(251,191,36,0.25)]">
+                {mission.honor}
+              </span>
+              <span className="text-slate-300/90"> · {mission.subtitle}</span>
+            </>
+          ) : (
+            <span className="text-slate-300/90">{mission.subtitle}</span>
+          )}
+        </div>
         {n > 1 && n < 8 ? (
-          <div className="mt-1.5 flex items-center gap-1">
+          <div className="mt-auto flex items-center gap-1 pt-1.5">
             {mission.images.map((_, i) => (
               <span
                 key={i}
@@ -244,11 +262,13 @@ function MissionCard({ mission }: { mission: Mission }) {
             ))}
           </div>
         ) : n > 1 ? (
-          <div className="mt-1.5 h-0.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div
-              className="h-full rounded-full bg-slate-400/90 transition-[width] duration-300 ease-out"
-              style={{ width: `${((idx + 1) / n) * 100}%` }}
-            />
+          <div className="mt-auto w-full pt-1.5">
+            <div className="h-0.5 w-full overflow-hidden rounded-full bg-white/10">
+              <div
+                className="h-full rounded-full bg-slate-400/90 transition-[width] duration-300 ease-out"
+                style={{ width: `${((idx + 1) / n) * 100}%` }}
+              />
+            </div>
           </div>
         ) : null}
       </div>
@@ -256,7 +276,7 @@ function MissionCard({ mission }: { mission: Mission }) {
   )
 
   const cardClass = cn(
-    "group relative flex min-w-[min(10.5rem,62vw)] max-w-[11.5rem] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white/[0.035] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition",
+    "group relative flex h-full min-h-[22.5rem] w-[min(13.5rem,82vw)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl bg-white/[0.035] shadow-[0_12px_40px_rgba(0,0,0,0.45)] backdrop-blur-xl transition sm:w-[14rem]",
     "ring-1 ring-white/[0.05] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/[0.09] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] active:translate-y-0"
   )
 
