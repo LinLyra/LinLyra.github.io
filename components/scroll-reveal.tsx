@@ -45,9 +45,9 @@ export function ScrollReveal({
           obs.disconnect()
         }
       },
-      // Generous bottom margin so the next grid row is observed while still near the fold
-      // (negative bottom inset was delaying second-row cards until extra scroll).
-      { threshold: 0.06, rootMargin: "160px 0px 42vh 0px" }
+      // Generous bottom margin so the next grid row is observed earlier. IntersectionObserver
+      // only allows px or % in rootMargin — never vh/vw (would throw and crash the page).
+      { threshold: 0.06, rootMargin: "160px 0px 40% 0px" }
     )
     obs.observe(el)
     return () => obs.disconnect()
