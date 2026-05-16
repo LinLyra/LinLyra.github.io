@@ -36,9 +36,9 @@ export function HeroSection() {
                 <h3 className="mb-2 text-[1.125rem] font-semibold leading-snug text-slate-100 md:text-xl">
                   Long (Lyra) LIN
                 </h3>
-                <p className="mb-1 text-sm text-slate-400/90">University of Sydney</p>
-                <p className="mb-1 text-sm text-slate-300/95">BSc Data Science &amp; Business Analytics</p>
-                <p className="text-sm text-slate-500">July 2024 – Expected Dec 2026</p>
+                <p className="mb-1 text-sm text-slate-300/95">University of Sydney</p>
+                <p className="mb-1 text-sm text-slate-200/95">BSc Data Science &amp; Business Analytics</p>
+                <p className="text-sm text-slate-400/95">July 2024 – Expected Dec 2026</p>
               </div>
 
               <div className="flex flex-col gap-2">
@@ -48,6 +48,10 @@ export function HeroSection() {
                       {
                         label: "Fast Learner",
                         cls: "border-sky-400/35 bg-sky-500/15 text-sky-100 hover:bg-sky-500/22",
+                      },
+                      {
+                        label: "Continuous Growth",
+                        cls: "border-indigo-400/35 bg-indigo-500/15 text-indigo-100 hover:bg-indigo-500/22",
                       },
                       {
                         label: "Curiosity Driven",
@@ -108,14 +112,14 @@ export function HeroSection() {
           </h1>
 
           <div className="space-y-3 md:space-y-4">
-            <p className="text-base font-medium text-slate-200 md:text-lg">
-              I don’t just analyze — I build.
+            <p className="text-base font-semibold leading-snug text-slate-50 md:text-lg">
+              Structured thinker who turns ambiguity into clear recommendations — and ships proof when it matters.
             </p>
-            <p className="text-sm leading-relaxed text-slate-200/90 md:text-base md:leading-relaxed">
-              Starting from data, I uncover what’s really happening in complex systems, then translate that into strategy, product design, and working prototypes.
+            <p className="text-sm leading-relaxed text-slate-100/95 md:text-base md:leading-relaxed">
+              Starting from data, I frame the right question, test assumptions, and translate findings into strategy and decisions stakeholders can act on — across finance, consulting, and product contexts.
             </p>
-            <p className="text-sm leading-relaxed text-slate-200/70 md:text-base md:leading-relaxed">
-              What sets me apart is range: I move fast across industries, collaborate across functions, and turn ambiguous problems into shipped solutions.
+            <p className="text-sm leading-relaxed text-slate-100/90 md:text-base md:leading-relaxed">
+              What mentors and recruiters often highlight: speed to learn, clarity under pressure, cross-functional collaboration, and the discipline to follow through from analysis to working prototypes.
             </p>
           </div>
 
