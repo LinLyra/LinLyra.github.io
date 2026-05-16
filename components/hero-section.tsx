@@ -46,16 +46,33 @@ export function HeroSection() {
                   {(
                     [
                       {
-                        label: "Fast Learner",
-                        cls: "border-sky-400/35 bg-sky-500/15 text-sky-100 hover:bg-sky-500/22",
+                        label: "Curiosity Driven",
+                        cls: "border-fuchsia-400/35 bg-fuchsia-500/15 text-fuchsia-100 hover:bg-fuchsia-500/22",
                       },
                       {
                         label: "Continuous Growth",
                         cls: "border-indigo-400/35 bg-indigo-500/15 text-indigo-100 hover:bg-indigo-500/22",
                       },
+                    ] as const
+                  ).map((t) => (
+                    <span
+                      key={t.label}
+                      className={`rounded-full border px-3 py-1.5 text-[12px] font-medium backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_14px_rgba(129,140,248,0.25)] ${t.cls}`}
+                    >
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {(
+                    [
                       {
-                        label: "Curiosity Driven",
-                        cls: "border-fuchsia-400/35 bg-fuchsia-500/15 text-fuchsia-100 hover:bg-fuchsia-500/22",
+                        label: "Problem-to-Product Builder",
+                        cls: "border-amber-400/35 bg-amber-500/15 text-amber-50 hover:bg-amber-500/22",
+                      },
+                      {
+                        label: "Fast Learner",
+                        cls: "border-sky-400/35 bg-sky-500/15 text-sky-100 hover:bg-sky-500/22",
                       },
                     ] as const
                   ).map((t) => (
@@ -77,10 +94,6 @@ export function HeroSection() {
                       {
                         label: "Cross-functional Collaborator",
                         cls: "border-emerald-400/35 bg-emerald-500/15 text-emerald-100 hover:bg-emerald-500/22",
-                      },
-                      {
-                        label: "Problem-to-Product Builder",
-                        cls: "border-amber-400/35 bg-amber-500/15 text-amber-50 hover:bg-amber-500/22",
                       },
                     ] as const
                   ).map((t) => (
@@ -113,13 +126,15 @@ export function HeroSection() {
 
           <div className="space-y-3 md:space-y-4">
             <p className="text-base font-semibold leading-snug text-slate-50 md:text-lg">
-              Structured thinker who turns ambiguity into clear recommendations — and ships proof when it matters.
+              I enjoy turning ambiguous problems into structured decisions, systems, and products that people can actually use.
             </p>
+
             <p className="text-sm leading-relaxed text-slate-100/95 md:text-base md:leading-relaxed">
-              Starting from data, I frame the right question, test assumptions, and translate findings into strategy and decisions stakeholders can act on — across finance, consulting, and product contexts.
+               My work sits at the intersection of analysis, strategy, and execution — combining data-driven thinking with practical judgment to move ideas from exploration to action.
             </p>
+
             <p className="text-sm leading-relaxed text-slate-100/90 md:text-base md:leading-relaxed">
-              What mentors and recruiters often highlight: speed to learn, clarity under pressure, cross-functional collaboration, and the discipline to follow through from analysis to working prototypes.
+               Across product, business, and investment-related projects, I focus on building clear logic, testing assumptions quickly, and creating outcomes that hold up beyond presentations and theory.
             </p>
           </div>
 

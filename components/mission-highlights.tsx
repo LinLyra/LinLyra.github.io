@@ -50,7 +50,7 @@ const MISSIONS: Mission[] = [
   {
     title: "Growth-Based Repricing Framework",
     honor: "Top 60",
-    subtitle: "CFA Institute Research Challenge · Empirical valuation · Equity research",
+    subtitle: "Empirical valuation · Equity research",
     href: "/data/future-financial-analyst",
     images: [...cfaGrowthResearchChallengeSlidePaths()],
     accent: "blue",
@@ -64,7 +64,7 @@ const MISSIONS: Mission[] = [
   },
   {
     title: "Instant Retail Profitability Strategy",
-    subtitle: "Retail · Platform Economy · Operating Model · Competitive Benchmarking",
+    subtitle: "Retail · Platform Economy · Competitive Benchmarking",
     href: "/business/bain-instant-retail-profitability-strategy",
     images: [...bainInstantRetailSlidePaths()],
     accent: "green",
@@ -79,7 +79,7 @@ const MISSIONS: Mission[] = [
   
   {
     title: "Long BeOne, Short Akeso",
-    subtitle: "Retail · Platform Economy · Risk Analysis · NLP Sentiment Analysis",
+    subtitle: "Platform Economy · Risk Analysis · NLP Sentiment Analysis",
     href: "/business/ubs-finance-challenge-2026",
     images: [...ubsFinance2026SlidePaths()],
     accent: "green",
